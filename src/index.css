@@ -1,0 +1,41 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+
+  --pryColor: #0e0c60;
+  --white: #fff;
+  --secColor: #dbb951;
+  --black: #000000;
+  --Grey1: #352f36;
+  --positive: #00c46c;
+  --negative: #ff4e4e;
+}
+
+.main-btn {
+  background: var(--pryColor);
+  border-radius: 12px;
+  padding: 12px 9px;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--white);
+}
+.yellow-frame-btn {
+  border: solid 1px var(--secColor);
+  border-radius: 12px;
+  background-color: white;
+  padding: 12px 9px;
+  font-size: 18px;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--secColor);
+}
