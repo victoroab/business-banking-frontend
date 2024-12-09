@@ -6,7 +6,7 @@ const Home = () => {
   const navigate = useNavigate();
   return (
     <AuthLayout loginBtn terms={false}>
-      <div className="text-center flex justify-center items-center flex-col mt-20 ">
+      <div className="text-center flex justify-center items-center flex-col mt-10 ">
         <MobileIcon />
         <div className="flex w-[500px] py-6 p-20 flex-col gap-6 shadow-sm rounded-md">
           <div className="flex flex-col gap-1">

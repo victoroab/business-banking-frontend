@@ -31,7 +31,7 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
           insured by the NDIC.
         </p>
       </section>
-      <section className="w-1/2 bg-white px-20 py-4">
+      <section className="w-1/2 bg-white px-20 pt-4">
         {loginBtn && (
           <div className="flex justify-end">
             <button className="main-btn w-[160px]" type="submit">
@@ -39,25 +39,31 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
             </button>
           </div>
         )}
-        <div className="h-[80%] flex justify-center items-center flex-col">
-          {children}
+        <div className={loginBtn ? "" : "h-[100%] flex justify-end flex-col"}>
+          <div
+            className={
+              loginBtn ? "" : "h-[90%] flex items-center flex-col shadow-lg"
+            }
+          >
+            {children}
 
-          {terms && (
-            <div className="flex p-6 flex-col gap-8">
-              <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-                By using Alert, you agree to our{" "}
-                <span className="font-bold cursor-pointer text-black">
-                  Terms of Use
-                </span>{" "}
-                and{" "}
-                <span className="font-bold cursor-pointer text-black">
-                  Privacy Policy
-                </span>
-              </p>
+            {terms && (
+              <div className="flex p-6 flex-col gap-8">
+                <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
+                  By using Alert, you agree to our{" "}
+                  <span className="font-bold cursor-pointer text-black">
+                    Terms of Use
+                  </span>{" "}
+                  and{" "}
+                  <span className="font-bold cursor-pointer text-black">
+                    Privacy Policy
+                  </span>
+                </p>
 
-              <BackNavigation />
-            </div>
-          )}
+                <BackNavigation />
+              </div>
+            )}
+          </div>
         </div>
       </section>
     </main>

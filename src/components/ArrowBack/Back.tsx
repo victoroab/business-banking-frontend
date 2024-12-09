@@ -6,14 +6,14 @@ const BackNavigation = () => {
 
   return (
     <div className="flex w-full justify-center">
-      <p
+      <button
         className="text-secColor text-xl font-semibold text-bricolage flex gap-2 cursor-pointer items-center"
         onClick={() => navigate(-1)}
       >
         {" "}
         <BackArrowIcon />
         Go Back
-      </p>
+      </button>
     </div>
   );
 };

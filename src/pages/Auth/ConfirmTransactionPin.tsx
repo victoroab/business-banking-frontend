@@ -6,7 +6,7 @@ const ConfirmTransactionPin = () => {
     <AuthLayout loginBtn={false} terms>
       <div className="text-center flex justify-center items-center flex-col w-full mt-48">
         <Otp
-          page="/confirm-transaction-pin"
+          page="/kyc"
           inputCount={4}
           title="Confirm Your Transaction Pin"
           paragraph={

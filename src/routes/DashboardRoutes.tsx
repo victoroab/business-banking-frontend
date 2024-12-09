@@ -6,6 +6,7 @@ import Passcode from "../pages/Auth/Passcode";
 import ConfirmPasscode from "../pages/Auth/ConfirmPasscode";
 import VerifyOtp from "../pages/Auth/VerifyOtp";
 import ConfirmTransactionPin from "../pages/Auth/ConfirmTransactionPin";
+import KYC from "../pages/Auth/KYC";
 
 const authRoutes: Route[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -31,6 +32,11 @@ const authRoutes: Route[] = [
     path: "/confirm-transaction-pin",
     name: "Confirm Transaction Pin",
     element: <ConfirmTransactionPin />,
+  },
+  {
+    path: "/kyc",
+    name: "Know Your Customer",
+    element: <KYC />,
   },
 ];
 export default authRoutes;

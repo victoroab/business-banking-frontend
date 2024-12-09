@@ -57,7 +57,7 @@ const Otp: React.FC<OTPProps> = ({
           type="submit"
           onClick={() => navigate(page)}
         >
-          continue
+          Continue
         </button>
       </div>
       {resend && (

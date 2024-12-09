@@ -9,10 +9,9 @@ export interface Layout {
   loginBtn: boolean;
   terms: boolean;
 }
-export interface AccountOption {
-  icon: any;
+export interface ProgressStepsProps {
+  id: number;
   title: string;
-  description: string;
 }
 export interface AddProps {
   setActiveTab: any;
@@ -51,4 +50,14 @@ export interface OTPProps {
   title: string;
   paragraph: ReactElement;
   resend?: boolean;
+}
+
+export interface KYCPageProps {
+  setCurrentStep: any;
+}
+
+export interface IDOption {
+  icon: any;
+  title: string;
+  iconBg: string;
 }

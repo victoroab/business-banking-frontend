@@ -19,7 +19,7 @@ const FormInput = ({
   return (
     <div className={`${error ? "" : ""} ${className}`}>
       {label && (
-        <label htmlFor={id} className="labelClassName">
+        <label htmlFor={id} className="labelClassName font-workSans">
           <span>{label}</span>
           {required ? <em className="required"> * </em> : ""}{" "}
         </label>

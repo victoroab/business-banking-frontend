@@ -32,7 +32,7 @@ const SignUp = () => {
                 type="submit"
                 onClick={() => navigate("/verify-otp")}
               >
-                continue
+                Continue
               </button>
             </div>
           </div>
