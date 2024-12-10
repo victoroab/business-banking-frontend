@@ -9,6 +9,7 @@ export default {
         greyColr: "#352F36",
         lightGreyColor: "#777777",
         black: "#000000",
+        negativeRed: "#EE443F",
       },
       fontFamily: {
         bricolage: ['"Bricolage Grotesque"', "sans-serif"],

@@ -18,7 +18,7 @@ const KYC = () => {
       <div className="border px-24 py-14 bg-white w-full flex">
         <div className="w-1/2 flex flex-col gap-10">
           {progressSteps.map((progress: ProgressStepsProps) => (
-            <div className="flex">
+            <div className="flex" key={progress.id}>
               <div
                 className={`w-[200px] items-center gap-2 border-b-2 flex pb-2 ${
                   currentStep === progress.id
@@ -58,7 +58,7 @@ const KYC = () => {
           {currentStep === 6 && (
             <BusinessAddress setCurrentStep={setCurrentStep} />
           )}
-          {currentStep === 7 && <Attestation setCurrentStep={setCurrentStep} />}
+          {currentStep === 7 && <Attestation />}
         </div>
       </div>
     </div>

@@ -37,10 +37,23 @@ export const accountOptions: IDOption[] = [
     icon: BankIcon,
     iconBg: "#f5f5f9",
     title: "Bank Verification Number (BVN)",
+    shortCode: "BVN",
   },
   {
     icon: NINIcon,
     iconBg: "#f6fcf9",
     title: "National Identification Number (NIN)",
+    shortCode: "NIN",
+  },
+];
+
+export const IdTypes: ProgressStepsProps[] = [
+  {
+    id: 1,
+    title: "NIN",
+  },
+  {
+    id: 2,
+    title: "BVN",
   },
 ];

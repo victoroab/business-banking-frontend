@@ -1,7 +1,7 @@
 import { Toaster } from "react-hot-toast";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import authRoutes from "./routes/DashboardRoutes";
+import authRoutes from "./routes/routes";
 
 function App() {
   return (

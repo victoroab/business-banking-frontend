@@ -7,7 +7,7 @@ const Nationality: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
     setCurrentStep(2);
   };
   return (
-    <div className="flex flex-col gap-10">
+    <div className="flex flex-col gap-10 pr-20">
       <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
         Nationality
       </h3>

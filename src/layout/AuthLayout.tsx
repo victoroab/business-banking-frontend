@@ -1,8 +1,10 @@
 import { Layout } from "../interfaces/Global";
 import { NavListIcon } from "../assets/svg/CustomSVGs";
 import BackNavigation from "../components/ArrowBack/Back";
+import { useNavigate } from "react-router-dom";
 
 const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
+  const navigate = useNavigate();
   return (
     <main className="border-red-950 h-screen w-full flex">
       <section className="flex flex-col w-1/2 bg-pryColor-Light px-20 py-6 justify-between">
@@ -34,7 +36,11 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
       <section className="w-1/2 bg-white px-20 pt-4">
         {loginBtn && (
           <div className="flex justify-end">
-            <button className="main-btn w-[160px]" type="submit">
+            <button
+              className="main-btn w-[160px]"
+              type="submit"
+              onClick={() => navigate("/login")}
+            >
               Log In
             </button>
           </div>
