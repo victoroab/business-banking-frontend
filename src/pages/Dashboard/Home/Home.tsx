@@ -1,3 +1,4 @@
+import MobileAppsCard from "../../../components/Dashboard/Home/MobileAppsCard";
 import Navbar from "../../../components/Navbar/Navbar";
 
 const Dashboard = () => {
@@ -7,7 +8,9 @@ const Dashboard = () => {
         title="Good Morning, Bamidele"
         subtitle="Here’s your dashboard overview."
       />
-      <div className=""></div>
+      <div className="px-10">
+        <MobileAppsCard />
+      </div>
     </div>
   );
 };

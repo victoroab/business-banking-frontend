@@ -23,13 +23,13 @@ const Switch: React.FC<SwitchProps> = ({ onToggle }) => {
       </span>
       <div
         className={`w-16 h-8 rounded-full relative cursor-pointer transition-colors ${
-          isLive ? "bg-green-500" : "bg-gray-300"
+          isLive ? "bg-green-500" : "bg-[#f8fbfe] border-[#b3c7d4] border"
         }`}
         onClick={handleToggle}
       >
         <div
-          className={`w-6 h-6 bg-white rounded-full absolute top-1 left-1 transition-transform ${
-            isLive ? "transform translate-x-8" : ""
+          className={`w-6 h-6 rounded-full absolute top-1 left-1 transition-transform ${
+            isLive ? "transform translate-x-8 bg-white" : "bg-[#b3c7d4] "
           }`}
         />
       </div>

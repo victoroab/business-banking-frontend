@@ -11,7 +11,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
   };
 
   return (
-    <div className="flex justify-between items-center py-6 px-6">
+    <div className="flex justify-between items-center p-10">
       <div className="flex flex-col gap-4">
         <h3 className="text-pryColor font-semibold text-[32px] font-bricolage leading-6">
           {title}

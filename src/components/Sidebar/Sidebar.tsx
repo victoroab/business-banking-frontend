@@ -22,7 +22,7 @@ const Sidebar = () => {
                 to={url}
                 className={({ isActive }) =>
                   isActive
-                    ? "bg-gray-50 border border-gray-200 font-normal text-[var(--secColor)] rounded-md"
+                    ? "bg-gray-50 border border-gray-200 font-normal text-[var(--secColor)] rounded-xl"
                     : "text-[#8E949A] font-normal"
                 }
               >
