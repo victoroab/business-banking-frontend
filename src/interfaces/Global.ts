@@ -9,6 +9,11 @@ export interface Layout {
   loginBtn: boolean;
   terms: boolean;
 }
+export interface NavbarProps {
+  title: string;
+  subtitle: string;
+}
+
 export interface ProgressStepsProps {
   id: number;
   title: string;
@@ -39,7 +44,10 @@ export interface IFormInputProps {
   itemPropertyName?: string;
 }
 
-export interface Route {
+export interface DashboardLayoutProps {
+  children: ReactNode;
+}
+export interface RouteProps {
   path: string;
   name: string;
   element: ReactElement;

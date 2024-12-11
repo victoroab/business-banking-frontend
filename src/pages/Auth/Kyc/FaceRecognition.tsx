@@ -11,7 +11,7 @@ const FaceVerification: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
     setCurrentStep(4);
   };
   return (
-    <div className="flex flex-col gap-6 justify-center items-center px-14">
+    <div className="flex flex-col gap-6 justify-center items-center ">
       <div className="rounded-full p-6 w-[138px] h-[138px] bg-[#fefdfb] flex justify-center items-center">
         <CameraIcon />
       </div>

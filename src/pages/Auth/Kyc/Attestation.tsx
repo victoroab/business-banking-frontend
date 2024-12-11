@@ -3,6 +3,7 @@ import { selectGlobal } from "../../../store/slice/globalSlice";
 import { useAppSelector } from "../../../hooks";
 import PopUp from "../../../components/PopUps/PopUp";
 import { CopyIcon, SuccessIcon } from "../../../assets/svg/CustomSVGs";
+import { useNavigate } from "react-router-dom";
 
 const Attestation = () => {
   const { handleShow } = useGlobalHooks();
@@ -10,6 +11,7 @@ const Attestation = () => {
   const handleSubmit = () => {
     handleShow("submit");
   };
+  const navigate = useNavigate();
   return (
     <div className="flex flex-col gap-6 justify-center items-center px-14">
       <div className="flex flex-col gap-4">
@@ -23,7 +25,7 @@ const Attestation = () => {
         </p>
       </div>
 
-      <div className="p-10 gap-4 shadow-sm rounded-md flex flex-col w-full">
+      <div className="p-6 gap-4 shadow-sm rounded-md flex flex-col w-full">
         <div className="grid grid-cols-2 gap-10 w-full">
           <div className="det">
             <p className="tit text-sm text-lightGreyColor">Business Name</p>
@@ -104,7 +106,11 @@ const Attestation = () => {
             </div>
 
             <div className="flex justify-center  w-[80%] gap-6">
-              <button className="main-btn w-full" type="submit">
+              <button
+                className="main-btn w-full"
+                type="submit"
+                onClick={() => navigate("/dashboard")}
+              >
                 Proceed To Dashboard
               </button>
             </div>

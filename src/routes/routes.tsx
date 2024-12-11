@@ -1,4 +1,4 @@
-import { Route } from "../interfaces/Global";
+import { RouteProps } from "../interfaces/Global";
 import Home from "../pages/Auth/Home";
 import SignUp from "../pages/Auth/SignUp";
 import TransactionPin from "../pages/Auth/TransactionPin";
@@ -8,8 +8,14 @@ import VerifyOtp from "../pages/Auth/VerifyOtp";
 import ConfirmTransactionPin from "../pages/Auth/ConfirmTransactionPin";
 import KYC from "../pages/Auth/KYC";
 import SignIn from "../pages/Auth/SignIn";
+import SendMoney from "../pages/Dashboard/SendMoney/SendMoney";
+import Transaction from "../pages/Dashboard/Transaction/Transaction";
+import DashboardHome from "../pages/Dashboard/Home/Home";
+import PayBills from "../pages/Dashboard/PayBills/PayBills";
+import Cards from "../pages/Dashboard/Cards/Cards";
+import Support from "../pages/Dashboard/Support/Support";
 
-const authRoutes: Route[] = [
+const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
   { path: "/signup", name: "SignUp", element: <SignUp /> },
   { path: "/verify-otp", name: "VerifyOTP", element: <VerifyOtp /> },
@@ -45,4 +51,14 @@ const authRoutes: Route[] = [
     element: <SignIn />,
   },
 ];
-export default authRoutes;
+
+const dashboardRoutes: RouteProps[] = [
+  { path: "/dashboard", name: "Home", element: <DashboardHome /> },
+  { path: "/transactions", name: "Transactions", element: <Transaction /> },
+  { path: "/send-money", name: "Send Money", element: <SendMoney /> },
+  { path: "/pay-bills", name: "Home", element: <PayBills /> },
+  { path: "/card", name: "Home", element: <Cards /> },
+  { path: "/support", name: "Home", element: <Support /> },
+];
+
+export { authRoutes, dashboardRoutes };

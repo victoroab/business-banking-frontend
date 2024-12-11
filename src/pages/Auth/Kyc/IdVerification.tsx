@@ -57,7 +57,7 @@ const IdVerification: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
       )}
 
       {(screen === "NIN" || screen === "BVN") && (
-        <div className="flex flex-col gap-4 px-14 justify-center items-center">
+        <div className="flex flex-col gap-4 px-4 justify-center items-center">
           <div className="flex flex-col gap-4 justify-center items-center w-[70%]">
             <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
               Is this {screen} Yours?
