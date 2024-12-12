@@ -8,7 +8,7 @@ import {
   TransactionElectricityIcon,
   TransferActionIcon,
 } from "../assets/svg/CustomSVGs";
-import { IDOption, ProgressStepsProps } from "../interfaces/Global";
+import { DataItem, IDOption, ProgressStepsProps } from "../interfaces/Global";
 
 export const progressSteps: ProgressStepsProps[] = [
   {
@@ -181,10 +181,6 @@ export const transactionHistory = [
   },
 ];
 
-interface DataItem {
-  createdAt: string;
-}
-
 export const getLastMonthData = (array: DataItem[]): DataItem[] => {
   const today = new Date();
   const priorMonth = subMonths(today, 1);
@@ -213,13 +209,26 @@ export const sampleData = [
   { createdAt: "2024-12-20T08:30:00Z", income: 1200 },
   { createdAt: "2024-12-19T12:15:00Z", income: 1500 },
   { createdAt: "2024-12-10T08:30:00Z", income: 1200 },
-  { createdAt: "2024-12-10T12:15:00Z", income: 1500 },
-  { createdAt: "2024-12-09T14:45:00Z", income: 1000 },
-  { createdAt: "2024-12-08T09:10:00Z", income: 800 },
-  { createdAt: "2024-12-07T16:30:00Z", income: 1600 },
-  { createdAt: "2024-12-06T11:00:00Z", income: 1400 },
-  { createdAt: "2024-12-05T10:30:00Z", income: 1100 },
-  { createdAt: "2024-12-04T13:15:00Z", income: 1300 },
-  { createdAt: "2024-12-03T07:45:00Z", income: 1700 },
-  { createdAt: "2024-12-02T15:00:00Z", income: 900 },
+  { createdAt: "2024-12-18T12:15:00Z", income: 1500 },
+  { createdAt: "2024-12-17T14:45:00Z", income: 1000 },
+  { createdAt: "2024-12-16T09:10:00Z", income: 800 },
+  { createdAt: "2024-12-15T16:30:00Z", income: 1600 },
+  { createdAt: "2024-12-14T11:00:00Z", income: 1400 },
+  { createdAt: "2024-12-15T10:30:00Z", income: 1100 },
+  { createdAt: "2024-12-14T13:15:00Z", income: 1300 },
+  { createdAt: "2024-12-13T07:45:00Z", income: 1700 },
+  { createdAt: "2024-12-12T15:00:00Z", income: 900 },
+];
+
+export const filterList = [
+  { value: "week", name: "Weekly" },
+  { value: "month", name: "1M" },
+  { value: "three", name: "3M" },
+  { value: "six", name: "6M" },
+  { value: "yearly", name: "1Y" },
+];
+
+export const typeList = [
+  { value: "income", name: "Income" },
+  { value: "expenses", name: "Expenses" },
 ];

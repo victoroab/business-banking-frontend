@@ -70,3 +70,15 @@ export interface IDOption {
   iconBg: string;
   shortCode: string;
 }
+export interface DataItem {
+  createdAt: string;
+}
+
+export interface AnalyticsChartProps {
+  data: { createdAt: string }[];
+}
+
+export interface GraphData {
+  name: string;
+  income: number;
+}

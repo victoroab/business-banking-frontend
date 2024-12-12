@@ -9,7 +9,6 @@ const IdVerification: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
   const handleNavigate = (title: string) => {
     setCurrentStep(2);
     setScreen(title);
-    console.log(title);
   };
 
   const handleConfirmation = () => {

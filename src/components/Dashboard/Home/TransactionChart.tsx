@@ -10,25 +10,19 @@ import {
   isSameWeek,
   parseJSON,
 } from "date-fns";
-import { getLastMonthData, getLastWeekData } from "../../../utils";
-
-interface AnalyticsChartProps {
-  data: { createdAt: string }[];
-}
-
-interface GraphData {
-  name: string;
-  income: number;
-}
+import {
+  filterList,
+  getLastMonthData,
+  getLastWeekData,
+  typeList,
+} from "../../../utils";
+import { AnalyticsChartProps, GraphData } from "../../../interfaces/Global";
+import ChartToolTip from "./ChartToolTip";
 
 const TransactionChart: React.FC<AnalyticsChartProps> = ({ data }) => {
-  const [filterBy, setFilter] = useState<"week" | "month">("week");
+  const [filterBy, setFilter] = useState<string>("week");
+  const [type, setType] = useState<"income" | "expenses">("income");
   const [graphData, setGraphData] = useState<GraphData[]>([]);
-
-  const options = [
-    { value: "week", name: "Weekly" },
-    { value: "month", name: "Monthly" },
-  ];
 
   const getWeekData = useCallback(() => {
     const today = new Date();
@@ -77,20 +71,37 @@ const TransactionChart: React.FC<AnalyticsChartProps> = ({ data }) => {
   }, [filterBy, getWeekData, getMonthData]);
 
   return (
-    <div className="bg-white h-[567px] shadow-[0_10px_10px_-5px_#9596970a] rounded-lg  w-[60%]">
-      <div className="flex flex-col gap-4 px-10 pt-2">
-        <h3 className="text-lg font-workSans text-[20px] font-medium text-[#151717]">
-          Transaction Insights
-        </h3>
+    <div className="bg-white h-[650px] shadow-[0_10px_10px_-5px_#9596970a] rounded-lg  w-[60%]">
+      <div className="flex flex-col gap-3 px-10 pt-6">
+        <div className="flex justify-between items-center">
+          <h3 className="text-lg font-workSans text-[20px] font-medium text-[#151717]">
+            Transaction Insights
+          </h3>
+          <div className="flex gap-2">
+            {filterList.map((option, index) => (
+              <p
+                onClick={() => setFilter(option.value)}
+                key={index}
+                className={`font-workSans text-sm ${
+                  filterBy === option.value
+                    ? "rounded-lg bg-[#F3F4F7] cursor-pointer p-2 border font-medium "
+                    : "cursor-pointer p-2"
+                }`}
+              >
+                {option.name}
+              </p>
+            ))}
+          </div>
+        </div>
         <select
           name="time"
           onChange={(event) =>
-            setFilter(event.target.value as "week" | "month")
+            setType(event.target.value as "income" | "expenses")
           }
-          value={filterBy}
-          className="text-sm text-[#4e5152] bg-transparent border  w-[100px]"
+          value={type}
+          className="text-sm text-greyColr font-medium bg-transparent border w-[120px] p-4 rounded-lg border-greyColr"
         >
-          {options.map((option, index) => (
+          {typeList.map((option, index) => (
             <option value={option.value} key={index}>
               {option.name}
             </option>
@@ -100,22 +111,40 @@ const TransactionChart: React.FC<AnalyticsChartProps> = ({ data }) => {
           #50,000.00
         </p>
         <div className="font-workSans text-pryColor  font-2xl flex gap-2 items-center">
-          <div className="percentage bg-[#F3FBF8] flex justify-center items-center rounded-xl px-2 py-1">
-            <p className="text-positive">23%</p>
+          <div
+            className={`percentage ${
+              type === "income" ? "bg-[#F3FBF8]" : "bg-[#FFF7F5]"
+            } flex justify-center items-center rounded-xl px-2 py-1`}
+          >
+            <p
+              className={`${
+                type === "income" ? "text-positive" : "text-nagative"
+              }`}
+            >
+              23%
+            </p>
           </div>
           <span className="text-greyColr font-normal"> vs last month</span>
         </div>
       </div>
 
-      <ResponsiveContainer width="100%" height="62%">
+      <ResponsiveContainer width="100%" height="60%">
         <AreaChart
           data={graphData}
           margin={{ top: 10, right: 0, left: 0, bottom: 0 }}
         >
           <defs>
             <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stopColor="#25A96924" stopOpacity={0.8} />
-              <stop offset="100%" stopColor="#25A96924" stopOpacity={0.1} />
+              <stop
+                offset="0%"
+                stopColor={type === "income" ? "#25A96924" : "#f8cfcc"}
+                stopOpacity={0.8}
+              />
+              <stop
+                offset="100%"
+                stopColor={type === "income" ? "#25A96924" : "#f8cfcc"}
+                stopOpacity={0.1}
+              />
             </linearGradient>
           </defs>
 
@@ -127,11 +156,11 @@ const TransactionChart: React.FC<AnalyticsChartProps> = ({ data }) => {
             dx={15}
             interval="preserveStartEnd"
           />
-          <Tooltip />
+          <Tooltip content={<ChartToolTip type={type} />} />
           <Area
             type="monotone"
             dataKey="income"
-            stroke="#25A969"
+            stroke={type === "income" ? "#25A969" : "#EE443F"}
             fill="url(#colorUv)"
             fillOpacity={1}
             strokeWidth={3}
