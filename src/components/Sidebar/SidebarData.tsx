@@ -5,6 +5,7 @@ import {
   PayBillIcons,
   SupportIcon,
   CardIcon,
+  SidebarUserIcon,
 } from "../../assets/svg/CustomSVGs";
 
 export const SidebarData = [
@@ -43,5 +44,11 @@ export const SidebarData = [
     icon: <SupportIcon />,
     title: "Supports",
     url: "/support",
+  },
+  {
+    id: "tab5",
+    icon: <SidebarUserIcon />,
+    title: "Account",
+    url: "/account",
   },
 ];

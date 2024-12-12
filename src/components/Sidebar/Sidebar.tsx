@@ -6,7 +6,7 @@ import { NavListIcon } from "../../assets/svg/CustomSVGs";
 
 const Sidebar = () => {
   return (
-    <main className=" sidebarContainer py-8 flex flex-col gap-10 px-10">
+    <main className=" sidebarContainer py-8 flex flex-col gap-10 px-6">
       <div className="flex gap-2 item-center ">
         <NavListIcon />
         <h1 className="font-bold text-base text-pryColor font-bricolage m-0 p-1">
@@ -28,7 +28,7 @@ const Sidebar = () => {
               >
                 <hgroup className=" flex gap-4 items-center p-3">
                   <h4>{icon} </h4>
-                  <p>{title}</p>
+                  <p className="font-workSans">{title}</p>
                 </hgroup>
               </NavLink>
             </React.Fragment>

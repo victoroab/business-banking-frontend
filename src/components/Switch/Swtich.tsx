@@ -22,8 +22,10 @@ const Switch: React.FC<SwitchProps> = ({ onToggle }) => {
         {isLive ? "Live" : "Test"} Mode
       </span>
       <div
-        className={`w-16 h-8 rounded-full relative cursor-pointer transition-colors ${
-          isLive ? "bg-green-500" : "bg-[#f8fbfe] border-[#b3c7d4] border"
+        className={`w-16 rounded-full relative cursor-pointer transition-colors ${
+          isLive
+            ? "bg-green-500 h-8"
+            : "bg-[#f8fbfe] border-[#b3c7d4] border h-[34px]"
         }`}
         onClick={handleToggle}
       >

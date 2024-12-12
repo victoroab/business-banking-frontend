@@ -1,4 +1,10 @@
-import { BankIcon, NINIcon } from "../assets/svg/CustomSVGs";
+import {
+  AirtimeActionIcon,
+  BankIcon,
+  NINIcon,
+  PayBillActionIcon,
+  TransferActionIcon,
+} from "../assets/svg/CustomSVGs";
 import { IDOption, ProgressStepsProps } from "../interfaces/Global";
 
 export const progressSteps: ProgressStepsProps[] = [
@@ -50,10 +56,31 @@ export const accountOptions: IDOption[] = [
 export const AccountTypes: ProgressStepsProps[] = [
   {
     id: 1,
-    title: "NIN",
+    title: "BVN",
   },
   {
     id: 2,
     title: "BVN",
+  },
+];
+
+export const quickActions = [
+  {
+    id: 1,
+    icon: TransferActionIcon,
+    title: "Transfer",
+    desc: "Send money to anyone",
+  },
+  {
+    id: 2,
+    icon: AirtimeActionIcon,
+    title: "Airtime and Data",
+    desc: "Recharge your mobile lines",
+  },
+  {
+    id: 3,
+    icon: PayBillActionIcon,
+    title: "Pay Bills",
+    desc: "Renew your DSTV subscription",
   },
 ];

@@ -14,6 +14,7 @@ import DashboardHome from "../pages/Dashboard/Home/Home";
 import PayBills from "../pages/Dashboard/PayBills/PayBills";
 import Cards from "../pages/Dashboard/Cards/Cards";
 import Support from "../pages/Dashboard/Support/Support";
+import Account from "../pages/Dashboard/Account/Account";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -59,6 +60,7 @@ const dashboardRoutes: RouteProps[] = [
   { path: "/pay-bills", name: "Home", element: <PayBills /> },
   { path: "/card", name: "Home", element: <Cards /> },
   { path: "/support", name: "Home", element: <Support /> },
+  { path: "/account", name: "Account", element: <Account /> },
 ];
 
 export { authRoutes, dashboardRoutes };
