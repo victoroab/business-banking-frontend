@@ -47,7 +47,7 @@ export const accountOptions: IDOption[] = [
   },
 ];
 
-export const IdTypes: ProgressStepsProps[] = [
+export const AccountTypes: ProgressStepsProps[] = [
   {
     id: 1,
     title: "NIN",
