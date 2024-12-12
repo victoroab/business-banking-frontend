@@ -6,6 +6,8 @@ import {
   SupportIcon,
   CardIcon,
   SidebarUserIcon,
+  SidebarAirtimeIcon,
+  SidebarPOSIcon,
 } from "../../assets/svg/CustomSVGs";
 
 export const SidebarData = [
@@ -29,6 +31,12 @@ export const SidebarData = [
   },
   {
     id: "tab4",
+    icon: <SidebarAirtimeIcon />,
+    title: "Airtime & Data",
+    url: "/pay-bills",
+  },
+  {
+    id: "tab4",
     icon: <PayBillIcons />,
     title: "Pay Bills",
     url: "/pay-bills",
@@ -38,6 +46,12 @@ export const SidebarData = [
     icon: <CardIcon />,
     title: "Cards",
     url: "/card",
+  },
+  {
+    id: "tab4",
+    icon: <SidebarPOSIcon />,
+    title: "POS",
+    url: "/pay-bills",
   },
   {
     id: "tab5",
