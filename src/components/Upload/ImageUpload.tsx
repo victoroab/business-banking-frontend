@@ -55,7 +55,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ title, required }) => {
         <input
           id="file-upload"
           type="file"
-          accept="*"
+          accept=".csv, .pdf"
           className="hidden"
           onChange={handleFileChange}
         />

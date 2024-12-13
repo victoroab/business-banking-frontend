@@ -27,3 +27,96 @@ export const UploadBulkIcon = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
+
+export const FolderIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    {...props}
+    width="96"
+    height="74"
+    viewBox="0 0 96 74"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M8 10.1384C8 4.61558 12.4772 0.138428 18 0.138428H32.9813C36.1394 0.138428 39.1119 1.63024 40.9992 4.16236L41.2508 4.49991C43.1381 7.03203 46.1106 8.52384 49.2687 8.52384H78C83.5229 8.52384 88 13.001 88 18.5238V28.8884H8V10.1384Z"
+      fill="#DBB950"
+    />
+    <g filter="url(#filter0_d_908_15303)">
+      <path
+        d="M8 26.3884C8 23.627 10.2386 21.3884 13 21.3884H83C85.7614 21.3884 88 23.627 88 26.3884V61.3884C88 66.9113 83.5229 71.3884 78 71.3884H18C12.4772 71.3884 8 66.9113 8 61.3884V26.3884Z"
+        fill="#DBB950"
+      />
+      <path
+        d="M8 26.3884C8 23.627 10.2386 21.3884 13 21.3884H83C85.7614 21.3884 88 23.627 88 26.3884V61.3884C88 66.9113 83.5229 71.3884 78 71.3884H18C12.4772 71.3884 8 66.9113 8 61.3884V26.3884Z"
+        fill="url(#paint0_linear_908_15303)"
+        fill-opacity="0.15"
+      />
+      <path
+        d="M8 26.3884C8 23.627 10.2386 21.3884 13 21.3884H83C85.7614 21.3884 88 23.627 88 26.3884V61.3884C88 66.9113 83.5229 71.3884 78 71.3884H18C12.4772 71.3884 8 66.9113 8 61.3884V26.3884Z"
+        fill="url(#paint1_linear_908_15303)"
+        fill-opacity="0.15"
+      />
+    </g>
+    <defs>
+      <filter
+        id="filter0_d_908_15303"
+        x="0"
+        y="7.38843"
+        width="96"
+        height="66"
+        filterUnits="userSpaceOnUse"
+        color-interpolation-filters="sRGB"
+      >
+        <feFlood flood-opacity="0" result="BackgroundImageFix" />
+        <feColorMatrix
+          in="SourceAlpha"
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
+          result="hardAlpha"
+        />
+        <feOffset dy="-6" />
+        <feGaussianBlur stdDeviation="4" />
+        <feComposite in2="hardAlpha" operator="out" />
+        <feColorMatrix
+          type="matrix"
+          values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.2 0"
+        />
+        <feBlend
+          mode="normal"
+          in2="BackgroundImageFix"
+          result="effect1_dropShadow_908_15303"
+        />
+        <feBlend
+          mode="normal"
+          in="SourceGraphic"
+          in2="effect1_dropShadow_908_15303"
+          result="shape"
+        />
+      </filter>
+      <linearGradient
+        id="paint0_linear_908_15303"
+        x1="48"
+        y1="21.3884"
+        x2="48"
+        y2="71.3884"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="white" />
+        <stop offset="0.5" stop-color="white" stop-opacity="0" />
+        <stop offset="1" />
+      </linearGradient>
+      <linearGradient
+        id="paint1_linear_908_15303"
+        x1="8"
+        y1="46.3884"
+        x2="88"
+        y2="46.3884"
+        gradientUnits="userSpaceOnUse"
+      >
+        <stop stop-color="white" />
+        <stop offset="0.5" stop-color="white" stop-opacity="0" />
+        <stop offset="1" />
+      </linearGradient>
+    </defs>
+  </svg>
+);

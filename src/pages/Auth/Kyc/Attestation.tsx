@@ -4,8 +4,11 @@ import { useAppSelector } from "../../../hooks";
 import PopUp from "../../../components/PopUps/PopUp";
 import { CopyIcon, SuccessIcon } from "../../../assets/svg/CustomSVGs";
 import { useNavigate } from "react-router-dom";
+import { attestation } from "../../../utils";
+import { KYCPageProps } from "../../../interfaces/Global";
+import { FolderIcon } from "../../../assets/svg/Auth";
 
-const Attestation = () => {
+const Attestation: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
   const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
   const handleSubmit = () => {
@@ -25,8 +28,24 @@ const Attestation = () => {
         </p>
       </div>
 
-      <div className="p-6 gap-4 shadow-sm rounded-md flex flex-col w-full">
-        <div className="grid grid-cols-2 gap-10 w-full">
+      <div className=" flex justify-between items-center w-full">
+        {attestation?.map((attest) => (
+          <div
+            className="flex justify-between items-center flex-col gap-2"
+            key={attest.id}
+          >
+            <FolderIcon />
+            <p className="title font-medium font-workSans">{attest.title}</p>
+            <p
+              className="text-positive font-workSans cursor-pointer font-medium"
+              onClick={() => setCurrentStep(attest.navigate)}
+            >
+              Edit
+            </p>
+          </div>
+        ))}
+
+        {/* <div className="grid grid-cols-2 gap-10 w-full">
           <div className="det">
             <p className="tit text-sm text-lightGreyColor">Business Name</p>
             <p className="va">Zara</p>
@@ -58,7 +77,7 @@ const Attestation = () => {
             Estimated Annual Income
           </p>
           <p className="va">NGN 5,000,000 - NGN 10,000,000</p>
-        </div>
+        </div> */}
       </div>
 
       <div className="p-4 gap-4 shadow-sm rounded-md items-center flex w-full">

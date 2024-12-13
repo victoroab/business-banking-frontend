@@ -236,3 +236,9 @@ export const typeList = [
   { value: "income", name: "Income" },
   { value: "expenses", name: "Expenses" },
 ];
+
+export const attestation = [
+  { id: 1, title: "Business Details", navigate: 5 },
+  { id: 2, title: "Business Documents", navigate: 6 },
+  { id: 3, title: "Business Address", navigate: 7 },
+];
