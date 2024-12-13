@@ -1,5 +1,5 @@
 import { Layout } from "../interfaces/Global";
-import { NavListIcon } from "../assets/svg/CustomSVGs";
+import { AlertLogoIcon } from "../assets/svg/Sidebar";
 import BackNavigation from "../components/ArrowBack/Back";
 import { useNavigate } from "react-router-dom";
 
@@ -9,7 +9,7 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
     <main className="border-red-950 h-screen w-full flex">
       <section className="flex flex-col w-1/2 bg-pryColor-Light px-20 py-6 justify-between">
         <div className="flex gap-2 item-center ">
-          <NavListIcon />
+          <AlertLogoIcon />
           <h1 className="font-bold text-base text-pryColor font-bricolage m-0 p-1">
             Alert Business
           </h1>

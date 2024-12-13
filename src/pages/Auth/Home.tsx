@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { MobileIcon } from "../../assets/svg/CustomSVGs";
+import { MobileIcon } from "../../assets/svg/Mobile";
 import AuthLayout from "../../layout/AuthLayout";
 
 const Home = () => {

@@ -1,9 +1,5 @@
-import {
-  BalanceIcon,
-  CopyIcon,
-  EyeIcon,
-  NavListIcon,
-} from "../../../assets/svg/CustomSVGs";
+import { BalanceIcon, CopyIcon, EyeIcon } from "../../../assets/svg/CustomSVGs";
+import { AlertLogoIcon } from "../../../assets/svg/Sidebar";
 
 interface CardProps {
   type: string;
@@ -14,7 +10,7 @@ const AccountCard = ({ type }: CardProps) => {
       <div className=" flex flex-col gap-4">
         <div className="items-center flex gap-2">
           <p className="text-greyColr font-workSans shadow-sm flex gap-2  items-center rounded-md px-2 py-1 leading-4 font-normal text-sm">
-            <NavListIcon /> Bamidele Akinyemi
+            <AlertLogoIcon /> Bamidele Akinyemi
             <span className="text-sm font-medium text-pryColor">
               1234567890
             </span>

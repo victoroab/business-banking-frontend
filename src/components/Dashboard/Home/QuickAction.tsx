@@ -8,7 +8,10 @@ const QuickAction = () => {
       </h3>
       <div className="flex justify-center items-center gap-40 bg-white rounded-lg p-10">
         {quickActions?.map((action: any) => (
-          <div className="items-center justify-center flex flex-col gap-2">
+          <div
+            className="items-center justify-center flex flex-col gap-2"
+            key={action.id}
+          >
             <div className="icon w-[40px] h-[45px] bg-pryColor-Light rounded-md flex justify-center items-center">
               <action.icon />
             </div>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { KBrandIcon } from "../../assets/svg/CustomSVGs";
+import { KBrandIcon } from "../../assets/svg/Alert";
 import { progressSteps } from "../../utils";
 import { ProgressStepsProps } from "../../interfaces/Global";
 import Nationality from "./Kyc/Nationality";

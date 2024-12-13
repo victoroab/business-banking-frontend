@@ -14,7 +14,7 @@ const TransactionHistory = () => {
 
       <div className="flex flex-col gap-4">
         {transactionHistory?.map((transaction: any) => (
-          <div className="flex justify-between ">
+          <div className="flex justify-between" key={transaction.id}>
             <div className="left flex items-center gap-2">
               <div
                 className={`w-[40px] h-[40px] rounded-md items-center justify-center flex ${

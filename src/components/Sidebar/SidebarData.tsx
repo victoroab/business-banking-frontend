@@ -8,7 +8,7 @@ import {
   SidebarUserIcon,
   SidebarAirtimeIcon,
   SidebarPOSIcon,
-} from "../../assets/svg/CustomSVGs";
+} from "../../assets/svg/Sidebar";
 
 export const SidebarData = [
   {
@@ -36,31 +36,31 @@ export const SidebarData = [
     url: "/pay-bills",
   },
   {
-    id: "tab4",
+    id: "tab5",
     icon: <PayBillIcons />,
     title: "Pay Bills",
     url: "/pay-bills",
   },
   {
-    id: "tab5",
+    id: "tab6",
     icon: <CardIcon />,
     title: "Cards",
     url: "/card",
   },
   {
-    id: "tab4",
+    id: "tab7",
     icon: <SidebarPOSIcon />,
     title: "POS",
     url: "/pay-bills",
   },
   {
-    id: "tab5",
+    id: "tab8",
     icon: <SupportIcon />,
     title: "Supports",
     url: "/support",
   },
   {
-    id: "tab5",
+    id: "tab9",
     icon: <SidebarUserIcon />,
     title: "Account",
     url: "/account",
