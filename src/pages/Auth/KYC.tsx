@@ -9,14 +9,15 @@ import BusinessDetails from "./Kyc/BusinessDetails";
 import ResidentialAddress from "./Kyc/ResidentialAddress";
 import Attestation from "./Kyc/Attestation";
 import BusinessAddress from "./Kyc/BusinessAddress";
+import BusinessDocument from "./Kyc/BusinessDocument";
 
 const KYC = () => {
   const [currentStep, setCurrentStep] = useState(1);
   return (
-    <div className="bg-pryColor-Light h-screen w-full border flex flex-col gap-10 justify-center items-center py-6 px-32">
+    <div className="bg-pryColor-Light w-full border flex flex-col gap-10 justify-center items-center py-6 px-32 h-screen">
       <KBrandIcon />
-      <div className="border px-24 py-14 bg-white w-full flex">
-        <div className="w-1/2 flex flex-col gap-10">
+      <div className="border px-24 py-14 bg-white w-full flex relative h-[80vh]">
+        <div className="w-1/2 flex flex-col gap-10 fixed">
           {progressSteps.map((progress: ProgressStepsProps) => (
             <div className="flex" key={progress.id}>
               <div
@@ -41,7 +42,7 @@ const KYC = () => {
             </div>
           ))}
         </div>
-        <div className=" w-1/2">
+        <div className=" w-1/2 overflow-y-auto ml-[50%] h-full">
           {currentStep === 1 && <Nationality setCurrentStep={setCurrentStep} />}
           {currentStep === 2 && (
             <IdVerification setCurrentStep={setCurrentStep} />
@@ -56,9 +57,12 @@ const KYC = () => {
             <BusinessDetails setCurrentStep={setCurrentStep} />
           )}
           {currentStep === 6 && (
+            <BusinessDocument setCurrentStep={setCurrentStep} />
+          )}
+          {currentStep === 7 && (
             <BusinessAddress setCurrentStep={setCurrentStep} />
           )}
-          {currentStep === 7 && <Attestation />}
+          {currentStep === 8 && <Attestation />}
         </div>
       </div>
     </div>

@@ -2,6 +2,7 @@ import React from "react";
 import { KYCPageProps } from "../../../interfaces/Global";
 import FormInput from "../../../components/FormInput";
 import { CautionIcon, UploadIcon } from "../../../assets/svg/CustomSVGs";
+import AddDirector from "../../../components/Auth/AddDirector";
 
 const BusinessDetails: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
   const handleSubmit = () => {
@@ -42,6 +43,20 @@ const BusinessDetails: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
         <FormInput id={""} placeholder="Business Industry" />
         <FormInput id={""} placeholder="Company Size" />
         <FormInput id={""} placeholder="Estimated Annual Income" />
+      </div>
+
+      <div className="flex flex-col gap-6 mt-2">
+        <div className="flex flex-col gap-4">
+          <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
+            Business Director
+          </h3>
+          <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
+            Provide some information about the directors of your business. You
+            can add multiple directors.
+          </p>
+        </div>
+
+        <AddDirector />
       </div>
 
       <div className="flex justify-center  w-full gap-6">

@@ -33,10 +33,14 @@ export const progressSteps: ProgressStepsProps[] = [
   },
   {
     id: 6,
-    title: "Business Address",
+    title: "Business Document",
   },
   {
     id: 7,
+    title: "Business Address",
+  },
+  {
+    id: 8,
     title: "Attestation",
   },
 ];
