@@ -15,6 +15,7 @@ const FormInput = ({
   disabled,
   defaultValue,
   error,
+  sublabel,
 }: IFormInputProps) => {
   return (
     <div className={`${error ? "" : ""} ${className}`}>
@@ -22,6 +23,7 @@ const FormInput = ({
         <label htmlFor={id} className="labelClassName font-workSans">
           <span>{label}</span>
           {required ? <em className="required"> * </em> : ""}{" "}
+          <span>{sublabel}</span>
         </label>
       )}
 

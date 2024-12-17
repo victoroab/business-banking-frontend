@@ -37,6 +37,7 @@ export interface IFormInputProps {
   onBlur?: (e: any) => void;
   icon?: JSX.Element | string;
   required?: boolean;
+  sublabel?: string;
   disabled?: boolean;
   selectOptions?: any[];
   valuePropertyName?: string;
@@ -68,7 +69,7 @@ export interface IDOption {
   icon: any;
   title: string;
   iconBg: string;
-  shortCode: string;
+  shortCode?: string;
 }
 export interface DataItem {
   createdAt: string;
@@ -81,4 +82,14 @@ export interface AnalyticsChartProps {
 export interface GraphData {
   name: string;
   income: number;
+}
+
+export type StepComponentProps = {
+  step: number;
+  component: React.ComponentType<{ setCurrentStep: (step: number) => void }>;
+};
+
+export interface ProgressProps {
+  stepsComponents: StepComponentProps[];
+  progressSteps: ProgressStepsProps[];
 }

@@ -2,6 +2,7 @@ import { Layout } from "../interfaces/Global";
 import { AlertLogoIcon } from "../assets/svg/Sidebar";
 import BackNavigation from "../components/ArrowBack/Back";
 import { useNavigate } from "react-router-dom";
+import { CBNIcon, NDICIcon } from "../assets/svg/Auth";
 
 const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
   const navigate = useNavigate();
@@ -27,11 +28,21 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
             enhance efficiency, and help your business grow
           </p>
         </div>
-
-        <p className="footer-text font-normal text-sm text-greyColr font-workSans leading-4">
-          Alert MFB is licensed by the Central Bank of Nigeria. All deposits are
-          insured by the NDIC.
-        </p>
+        <div className="flex flex-col">
+          <p className="footer-text font-normal text-sm text-greyColr font-workSans leading-4 flex items-center gap-1">
+            Alert MFB is licensed by the Central Bank of Nigeria{" "}
+            <span className="flex items-center gap-1">
+              <CBNIcon /> All deposits are
+            </span>{" "}
+          </p>
+          <p className="footer-text font-normal text-sm text-greyColr font-workSans leading-4 flex items-center gap-1">
+            insured by the NDIC{" "}
+            <span>
+              {" "}
+              <NDICIcon />
+            </span>
+          </p>
+        </div>
       </section>
       <section className="w-1/2 bg-white px-20 pt-4">
         {loginBtn && (

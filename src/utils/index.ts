@@ -9,8 +9,9 @@ import {
   TransferActionIcon,
 } from "../assets/svg/CustomSVGs";
 import { DataItem, IDOption, ProgressStepsProps } from "../interfaces/Global";
+import { BettingIcon, CableIcon, ElectricityIcon } from "../assets/svg/PayBill";
 
-export const progressSteps: ProgressStepsProps[] = [
+export const KYCProgressSteps: ProgressStepsProps[] = [
   {
     id: 1,
     title: "Nationality",
@@ -57,6 +58,24 @@ export const accountOptions: IDOption[] = [
     iconBg: "#f6fcf9",
     title: "National Identification Number (NIN)",
     shortCode: "NIN",
+  },
+];
+
+export const payBillOptions: IDOption[] = [
+  {
+    icon: ElectricityIcon,
+    iconBg: "#f5f5f9",
+    title: "Electricity",
+  },
+  {
+    icon: CableIcon,
+    iconBg: "#f6fcf9",
+    title: "Cable TV",
+  },
+  {
+    icon: BettingIcon,
+    iconBg: "#f6fcf9",
+    title: "Betting",
   },
 ];
 
@@ -241,4 +260,35 @@ export const attestation = [
   { id: 1, title: "Business Details", navigate: 5 },
   { id: 2, title: "Business Documents", navigate: 6 },
   { id: 3, title: "Business Address", navigate: 7 },
+];
+
+export const newBillProgressSteps: ProgressStepsProps[] = [
+  {
+    id: 1,
+    title: "Select Debit Account",
+  },
+  {
+    id: 2,
+    title: "Select a Category",
+  },
+  {
+    id: 3,
+    title: "Select Provider",
+  },
+  {
+    id: 4,
+    title: "Select Package",
+  },
+  {
+    id: 5,
+    title: "Add Beneficiary",
+  },
+  {
+    id: 6,
+    title: "Amount",
+  },
+  {
+    id: 7,
+    title: "Confirmation",
+  },
 ];

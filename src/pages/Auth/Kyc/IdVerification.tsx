@@ -35,7 +35,7 @@ const IdVerification: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
               <div
                 className="account-option shadow-sm flex flex-col cursor-pointer rounded-xl p-6 gap-4"
                 key={index}
-                onClick={() => handleNavigate(option?.shortCode)}
+                onClick={() => handleNavigate(option?.shortCode as string)}
               >
                 <div
                   className="flex items-center justify-center w-[40px] h-[40px] p-2 rounded-sm"
