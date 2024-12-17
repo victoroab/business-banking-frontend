@@ -68,8 +68,13 @@ export interface KYCPageProps {
 export interface IDOption {
   icon: any;
   title: string;
-  iconBg: string;
+  iconBg?: string;
   shortCode?: string;
+  package?: {
+
+    title: string;
+    shortCode?: string;
+  }[];
 }
 export interface DataItem {
   createdAt: string;

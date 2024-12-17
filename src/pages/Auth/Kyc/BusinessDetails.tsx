@@ -9,7 +9,7 @@ const BusinessDetails: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
     setCurrentStep(6);
   };
   return (
-    <div className="flex flex-col gap-6 justify-center items-center px-14">
+    <div className="flex flex-col gap-6 justify-center items-center px-10">
       <div className="flex flex-col gap-4">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
           Business Details
@@ -19,7 +19,10 @@ const BusinessDetails: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
         </p>
       </div>
 
-      <div className="py-6 px-10 gap-4 shadow-sm rounded-md items-center flex w-full ">
+      <div
+        className="py-6 px-10 gap-4 rounded-md items-center flex w-full"
+        style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
+      >
         <UploadIcon />
         <div className="flex flex-col gap-2">
           <p className="text-greyColr font-workSans leading-4 font-medium text-sm">
@@ -33,7 +36,10 @@ const BusinessDetails: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
 
       <div className="flex flex-col gap-4 w-[100%]">
         <FormInput id={""} placeholder="Business Name" />
-        <div className="px-6 py-2 -mt-3 gap-4 shadow-sm rounded-md items-center flex w-full">
+        <div
+          className="px-6 py-2 -mt-3 gap-4 rounded-md items-center flex w-full"
+          style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
+        >
           <CautionIcon />
           <p className="text-greyColr font-workSans leading-4 font-normal text-xs">
             Use the registered business name on your documents

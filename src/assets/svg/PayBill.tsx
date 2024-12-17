@@ -103,3 +103,51 @@ export const BettingIcon = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
+
+export const BeneficiaryIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    width="81"
+    {...props}
+    height="80"
+    viewBox="0 0 81 80"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <g clip-path="url(#clip0_930_6312)">
+      <path
+        d="M34.0752 30C34.0752 24.3333 38.4085 20 44.0752 20C49.7419 20 54.0752 24.3333 54.0752 30C54.0752 35.6667 49.7419 40 44.0752 40C38.4085 40 34.0752 35.6667 34.0752 30ZM44.0752 46.6667C28.7419 46.6667 24.0752 57.6667 24.0752 57.6667V63.3333H64.0752V57.6667C64.0752 57.6667 59.4085 46.6667 44.0752 46.6667Z"
+        fill="#DBB950"
+      />
+      <path
+        d="M65.7425 36.6667C70.3449 36.6667 74.0758 32.9357 74.0758 28.3333C74.0758 23.731 70.3449 20 65.7425 20C61.1401 20 57.4092 23.731 57.4092 28.3333C57.4092 32.9357 61.1401 36.6667 65.7425 36.6667Z"
+        fill="#DBB950"
+      />
+      <path
+        d="M65.7425 43.333C61.7425 43.333 58.7425 44.333 56.4092 45.9997C64.0758 49.6663 67.0758 55.9997 67.0758 56.6663V56.9997H80.7425V52.6663C80.7425 52.333 77.0758 43.333 65.7425 43.333Z"
+        fill="#DBB950"
+      />
+      <path
+        d="M17.4092 26.667V53.3337"
+        stroke="#DBB950"
+        stroke-width="2"
+        stroke-miterlimit="10"
+      />
+      <path
+        d="M30.7419 40H4.0752"
+        stroke="#DBB950"
+        stroke-width="2"
+        stroke-miterlimit="10"
+      />
+    </g>
+    <defs>
+      <clipPath id="clip0_930_6312">
+        <rect
+          width="80"
+          height="80"
+          fill="white"
+          transform="translate(0.742188)"
+        />
+      </clipPath>
+    </defs>
+  </svg>
+);

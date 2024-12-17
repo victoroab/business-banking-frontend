@@ -8,6 +8,8 @@ interface GlobalState {
 
 const initialState: GlobalState = {
   accountStatus: "",
+  billCategory: "",
+  selectedElectricityProvider: "",
 };
 
 export const globalSlice = createSlice({
@@ -25,10 +27,21 @@ export const globalSlice = createSlice({
     saveAccountStatus: (state, action) => {
       state.accountStatus = action.payload;
     },
+    saveBillCategory: (state, action) => {
+      state.billCategory = action.payload;
+    },
+    saveElectricityProvider: (state, action) => {
+      state.selectedElectricityProvider = action.payload;
+    },
   },
 });
 
-export const { toggleShow, saveAccountStatus } = globalSlice.actions;
+export const {
+  toggleShow,
+  saveAccountStatus,
+  saveBillCategory,
+  saveElectricityProvider,
+} = globalSlice.actions;
 
 export const selectGlobal = (state: RootState) => state.global;
 export default globalSlice.reducer;

@@ -5,17 +5,36 @@ import DebitAccount from "./NewBill/DebitAccount";
 import Navbar from "../../../components/Navbar/Navbar";
 import BackNavigation from "../../../components/ArrowBack/Back";
 import Category from "./NewBill/Category";
+import { useSelector } from "react-redux";
+import { selectGlobal } from "../../../store/slice/globalSlice";
+import ElectricityProvider from "./NewBill/Electricity/Provider";
+import CableProvider from "./NewBill/CableTV/Provider";
+import BettingProvider from "./NewBill/Betting/Provider";
+import Package from "./NewBill/Electricity/Package";
+import AddBeneficiary from "./NewBill/AddBeneficiary";
+import Amount from "./NewBill/Amount";
+import Confirmation from "./NewBill/Confirmation";
 
 const NewBill = () => {
+  const { billCategory } = useSelector(selectGlobal);
+
+  console.log(billCategory, "sodiq");
+
+  const Provider =
+    billCategory === "Electricity"
+      ? ElectricityProvider
+      : billCategory === "Cable TV"
+      ? CableProvider
+      : BettingProvider;
+
   const stepsComponents: StepComponentProps[] = [
     { step: 1, component: DebitAccount },
     { step: 2, component: Category },
-    // { step: 3, component: FaceVerification },
-    // { step: 4, component: ResidentialAddress },
-    // { step: 5, component: BusinessDetails },
-    // { step: 6, component: BusinessDocument },
-    // { step: 7, component: BusinessAddress },
-    // { step: 8, component: Attestation },
+    { step: 3, component: Provider },
+    { step: 4, component: Package },
+    { step: 5, component: AddBeneficiary },
+    { step: 6, component: Amount },
+    { step: 7, component: Confirmation },
   ];
 
   return (

@@ -33,7 +33,10 @@ const IdVerification: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
           <div className="flex flex-col gap-2">
             {accountOptions.map((option: IDOption, index) => (
               <div
-                className="account-option shadow-sm flex flex-col cursor-pointer rounded-xl p-6 gap-4"
+                className="account-option flex flex-col cursor-pointer rounded-xl p-6 gap-4"
+                style={{
+                  boxShadow: "0px 1px 7px 5px rgba(216, 216, 216, 0.2)",
+                }}
                 key={index}
                 onClick={() => handleNavigate(option?.shortCode as string)}
               >
@@ -74,7 +77,10 @@ const IdVerification: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
             />
           </div>
 
-          <div className="py-6 p-20 gap-2 shadow-sm rounded-md justify-center items-center flex flex-col w-[70%]">
+          <div
+            className="py-6 p-20 gap-2 rounded-md justify-center items-center flex flex-col w-[70%]"
+            style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
+          >
             <p className="text-greyColr font-workSans leading-4 font-medium text-sm">
               Bamidele Akinyemi
             </p>

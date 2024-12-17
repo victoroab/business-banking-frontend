@@ -35,7 +35,7 @@ const ProgressLayout = ({ stepsComponents, progressSteps }: ProgressProps) => {
         ))}
       </div>
 
-      <div className="w-1/2 overflow-y-auto ml-[50%] h-full">
+      <div className="w-[65%] overflow-y-auto ml-[50%] h-full px-6">
         {stepsComponents.map(
           ({ step, component: Component }: StepComponentProps) =>
             currentStep === step ? (

@@ -292,3 +292,134 @@ export const newBillProgressSteps: ProgressStepsProps[] = [
     title: "Confirmation",
   },
 ];
+
+export const electricityProvider: IDOption[] = [
+  {
+    icon: ElectricityIcon,
+    iconBg: "#f5f5f9",
+    title: "Abuja Electricity Distribution",
+    package: [
+      {
+        title: "Abuja Electricity Distribution",
+      },
+      {
+        title: "Gbagbawalada Electricity Distribution",
+      },
+      {
+        title: "FCT Electricity Distribution",
+      },
+      {
+        title: "Jabi Electricity Distribution",
+      },
+    ],
+  },
+  {
+    icon: CableIcon,
+    iconBg: "#f6fcf9",
+    title: "Oyo Electricity Distribution",
+    package: [
+      {
+        title: "Ibadan Electricity Distribution",
+      },
+      {
+        title: "Oyo Electricity Distribution",
+      },
+      {
+        title: "Iwo Electricity Distribution",
+      },
+      {
+        title: "Akobo Electricity Distribution",
+      },
+      {
+        title: "Ede Electricity Distribution",
+      },
+    ],
+  },
+  {
+    icon: BettingIcon,
+    iconBg: "#f6fcf9",
+    title: "Lagos Electricity Distribution",
+    package: [
+      {
+        title: "Ikeja Electricity Distribution",
+      },
+      {
+        title: "Yaba Electricity Distribution",
+      },
+      {
+        title: "Mayland Electricity Distribution",
+      },
+      {
+        title: "Lekki Electricity Distribution",
+      },
+      {
+        title: "Berger Electricity Distribution",
+      },
+    ],
+  },
+  {
+    icon: BettingIcon,
+    iconBg: "#f6fcf9",
+    title: "Ondo Electricity Distribution",
+    package: [
+      {
+        title: "Akure Electricity Distribution",
+      },
+      {
+        title: "Owo Electricity Distribution",
+      },
+      {
+        title: "Ondo Electricity Distribution",
+      },
+      {
+        title: "Ore Electricity Distribution",
+      },
+    ],
+  },
+];
+
+export const bettingProvider: IDOption[] = [
+  {
+    icon: ElectricityIcon,
+    iconBg: "#f5f5f9",
+    title: "Sporty Bet",
+  },
+  {
+    icon: CableIcon,
+    iconBg: "#f6fcf9",
+    title: "Bet9ja",
+  },
+  {
+    icon: BettingIcon,
+    iconBg: "#f6fcf9",
+    title: "KIWI Bet",
+  },
+  {
+    icon: BettingIcon,
+    iconBg: "#f6fcf9",
+    title: "Sure Bet",
+  },
+];
+
+export const cableProvider: IDOption[] = [
+  {
+    icon: ElectricityIcon,
+    iconBg: "#f5f5f9",
+    title: "DSTV",
+  },
+  {
+    icon: CableIcon,
+    iconBg: "#f6fcf9",
+    title: "GoTV",
+  },
+  {
+    icon: BettingIcon,
+    iconBg: "#f6fcf9",
+    title: "Startimes",
+  },
+  {
+    icon: BettingIcon,
+    iconBg: "#f6fcf9",
+    title: "Showmax",
+  },
+];

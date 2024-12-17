@@ -8,7 +8,7 @@ const BusinessDocument: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
   };
 
   return (
-    <div className="flex flex-col gap-6 justify-center items-center px-14">
+    <div className="flex flex-col gap-6 justify-center items-center px-4">
       <div className="flex flex-col gap-4">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
           Business Document

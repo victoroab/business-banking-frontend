@@ -16,7 +16,7 @@ const Attestation: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
   };
   const navigate = useNavigate();
   return (
-    <div className="flex flex-col gap-6 justify-center items-center px-14">
+    <div className="flex flex-col gap-6 justify-center items-center px-6">
       <div className="flex flex-col gap-4">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
           Attestation
@@ -44,43 +44,12 @@ const Attestation: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
             </p>
           </div>
         ))}
-
-        {/* <div className="grid grid-cols-2 gap-10 w-full">
-          <div className="det">
-            <p className="tit text-sm text-lightGreyColor">Business Name</p>
-            <p className="va">Zara</p>
-          </div>
-          <div
-            className="det
-          "
-          >
-            <p className="tit text-sm text-lightGreyColor">Business Industry</p>
-            <p className="va">Fashion</p>
-          </div>
-        </div>
-        <div className="grid grid-cols-2 gap-10 w-full">
-          <div className="det">
-            <p className="tit text-sm text-lightGreyColor">Business Address</p>
-            <p className="va">132, Herbert Macaulay Way, Yaba, Lagos State</p>
-          </div>
-          <div className="det">
-            <p className="tit text-sm text-lightGreyColor">Business Location</p>
-            <p className="va">Nigeria</p>
-          </div>
-        </div>
-        <div className="det">
-          <p className="tit text-sm text-lightGreyColor">Business Size</p>
-          <p className="va">100 - 500</p>
-        </div>
-        <div className="det">
-          <p className="tit text-sm text-lightGreyColor">
-            Estimated Annual Income
-          </p>
-          <p className="va">NGN 5,000,000 - NGN 10,000,000</p>
-        </div> */}
       </div>
 
-      <div className="p-4 gap-4 shadow-sm rounded-md items-center flex w-full">
+      <div
+        className="p-4 gap-4 rounded-md items-center flex w-full"
+        style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
+      >
         <input type="checkbox" />
         <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
           I Attest that all the information provided above is correct
@@ -100,7 +69,10 @@ const Attestation: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
       {toggle["submit"] && (
         <PopUp id={"submit"}>
           <div className="bg-white rounded-lg flex flex-col items-center justify-center p-10 gap-10 w-[650px]">
-            <div className="p-4 gap-4 shadow-sm rounded-full items-center justify-center flex w-[122px] h-[122px]">
+            <div
+              className="p-4 gap-4 rounded-full items-center justify-center flex w-[122px] h-[122px]"
+              style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
+            >
               <SuccessIcon />
             </div>
 
@@ -114,7 +86,10 @@ const Attestation: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
               </p>
             </div>
 
-            <div className="p-4 gap-4 shadow-sm rounded-md items-center flex w-[80%] justify-between">
+            <div
+              className="p-4 gap-4  rounded-md items-center flex w-[80%] justify-between"
+              style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
+            >
               <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
                 Account Number:{" "}
                 <span className="text-sm font-medium">1234567890</span>
