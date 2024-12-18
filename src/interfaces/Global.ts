@@ -71,7 +71,6 @@ export interface IDOption {
   iconBg?: string;
   shortCode?: string;
   package?: {
-
     title: string;
     shortCode?: string;
   }[];
@@ -97,4 +96,18 @@ export type StepComponentProps = {
 export interface ProgressProps {
   stepsComponents: StepComponentProps[];
   progressSteps: ProgressStepsProps[];
+}
+
+type TransactionType = "debit" | "credit" | "transfer";
+type TransactionStatus = "successful" | "failed";
+
+export interface TransactionRowData {
+  id: number;
+  sender: string;
+  beneficiary: string;
+  bank: string;
+  amount: number;
+  transactionType: TransactionType;
+  status: TransactionStatus;
+  createdAt: string;
 }

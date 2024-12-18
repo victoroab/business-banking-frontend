@@ -3,12 +3,14 @@ import { RootState } from "../store";
 
 interface GlobalState {
   accountStatus: string;
+  searchQuery: string;
   [key: string]: boolean | number | string;
 }
 
 const initialState: GlobalState = {
   accountStatus: "",
   billCategory: "",
+  searchQuery: "",
   selectedElectricityProvider: "",
 };
 
@@ -29,6 +31,9 @@ export const globalSlice = createSlice({
     },
     saveBillCategory: (state, action) => {
       state.billCategory = action.payload;
+    },
+    setSearchQuery: (state, action) => {
+      state.searchQuery = action.payload;
     },
     saveElectricityProvider: (state, action) => {
       state.selectedElectricityProvider = action.payload;

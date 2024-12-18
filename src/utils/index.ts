@@ -8,7 +8,12 @@ import {
   TransactionElectricityIcon,
   TransferActionIcon,
 } from "../assets/svg/CustomSVGs";
-import { DataItem, IDOption, ProgressStepsProps } from "../interfaces/Global";
+import {
+  DataItem,
+  IDOption,
+  ProgressStepsProps,
+  TransactionRowData,
+} from "../interfaces/Global";
 import { BettingIcon, CableIcon, ElectricityIcon } from "../assets/svg/PayBill";
 
 export const KYCProgressSteps: ProgressStepsProps[] = [
@@ -421,5 +426,164 @@ export const cableProvider: IDOption[] = [
     icon: BettingIcon,
     iconBg: "#f6fcf9",
     title: "Showmax",
+  },
+];
+
+export const newTransaction: ProgressStepsProps[] = [
+  {
+    id: 1,
+    title: "Select Debit Account",
+  },
+  {
+    id: 2,
+    title: "Bank Details",
+  },
+  {
+    id: 3,
+    title: "Amount",
+  },
+
+  {
+    id: 4,
+    title: "Confirmation",
+  },
+];
+
+export const tableCustomStyles = {
+  headCells: {
+    style: {
+      color: "var(--Grey1)",
+      fontWeight: 600,
+      backgroundColor: "#F6F6F7",
+      fontSize: 14,
+      display: "flex",
+      justifyContent: "center",
+      // textAlign: "center",
+    },
+  },
+  cells: {
+    style: {
+      color: "#352F36",
+      fontSize: "14px",
+      fontWeight: "400",
+      display: "flex",
+      verticalAlign: "middle",
+      padding: "30px 10px",
+
+      justifyContent: "center",
+    },
+  },
+  columns: {
+    0: {
+      style: {
+        textAlign: "left",
+        border: "solid red 2px !important",
+        display: "flex",
+        justifyContent: "start !important",
+      },
+    },
+  },
+};
+
+export const transactionsData: TransactionRowData[] = [
+  {
+    id: 1,
+    sender: "John Doe",
+    beneficiary: "Jane Smith",
+    bank: "Bank of America",
+    amount: 10000.5,
+    transactionType: "transfer",
+    status: "successful",
+    createdAt: "2024-12-15T14:30:00Z",
+  },
+  {
+    id: 2,
+    sender: "Alice Green",
+    beneficiary: "Bob White",
+    bank: "Chase Bank",
+    amount: 250000.0,
+    transactionType: "credit",
+    status: "successful",
+    createdAt: "2024-12-17T09:45:00Z",
+  },
+  {
+    id: 3,
+    sender: "Charlie Black",
+    beneficiary: "David Blue",
+    bank: "Citibank",
+    amount: 5000000.75,
+    transactionType: "debit",
+    status: "failed",
+    createdAt: "2024-12-18T12:00:00Z",
+  },
+  {
+    id: 4,
+    sender: "Eve White",
+    beneficiary: "Frank Gray",
+    bank: "Wells Fargo",
+    amount: 30000.0,
+    transactionType: "transfer",
+    status: "successful",
+    createdAt: "2024-12-18T13:00:00Z",
+  },
+  {
+    id: 5,
+    sender: "Grace Black",
+    beneficiary: "Henry Yellow",
+    bank: "HSBC",
+    amount: 150000.0,
+    transactionType: "credit",
+    status: "failed",
+    createdAt: "2024-12-19T10:30:00Z",
+  },
+  {
+    id: 6,
+    sender: "John Doe",
+    beneficiary: "Jane Smith",
+    bank: "Bank of America",
+    amount: 10000.5,
+    transactionType: "transfer",
+    status: "successful",
+    createdAt: "2024-12-15T14:30:00Z",
+  },
+  {
+    id: 7,
+    sender: "Alice Green",
+    beneficiary: "Bob White",
+    bank: "Chase Bank",
+    amount: 250000.0,
+    transactionType: "credit",
+    status: "successful",
+    createdAt: "2024-12-17T09:45:00Z",
+  },
+  {
+    id: 8,
+    sender: "Charlie Black",
+    beneficiary: "David Blue",
+    bank: "Citibank",
+    amount: 5000000.75,
+    transactionType: "debit",
+    status: "failed",
+    createdAt: "2024-12-18T12:00:00Z",
+  },
+  {
+    id: 9,
+    sender: "Eve White",
+    beneficiary: "Frank Gray",
+    bank: "Wells Fargo",
+    amount: 30000.0,
+    transactionType: "transfer",
+    status: "successful",
+    createdAt: "2024-12-18T13:00:00Z",
+  },
+  {
+    id: 10,
+    sender: "Grace Black",
+    beneficiary: "Henry Yellow",
+    bank: "HSBC",
+    amount: 150000.0,
+    transactionType: "credit",
+    status: "failed",
+    createdAt: "2024-12-19T10:30:00Z",
   },
 ];
