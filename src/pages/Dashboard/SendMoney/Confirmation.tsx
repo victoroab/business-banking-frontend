@@ -134,7 +134,7 @@ const Confirmation: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
 
       {toggle["submit-bill"] && (
         <PopUp id={"submit-bill"}>
-          <div className="bg-pryColor rounded-lg flex flex-col items-center justify-center p-10 gap-10 w-[650px]">
+          <div className="bg-white rounded-lg flex flex-col items-center justify-center p-10 gap-10 w-[650px]">
             <div
               className="p-4 gap-4 rounded-full items-center justify-center flex w-[122px] h-[122px]"
               style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}

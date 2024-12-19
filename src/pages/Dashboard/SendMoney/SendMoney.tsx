@@ -8,12 +8,18 @@ import { tableCustomStyles, transactionsData } from "../../../utils";
 import { TransactionRowData } from "../../../interfaces/Global";
 import ActionMenu from "./ActionMenu";
 import { IoMdMore } from "react-icons/io";
+import { selectGlobal } from "../../../store/slice/globalSlice";
+import { useAppSelector } from "../../../hooks";
+import PopUp from "../../../components/PopUps/PopUp";
+import TransactionDetails from "../../../components/Dashboard/Transaction/TransactionDetails";
 
 const SendMoney = () => {
   const { handleSearch, handleShow } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [selectedRowId, setSelectedRowId] = useState<number | null>(null);
+  const [selectedRow, setSelectedRow] = useState<TransactionRowData>();
   const [isActionMenuOpen, setIsActionMenuOpen] = useState(false);
+  const toggle = useAppSelector(selectGlobal);
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
@@ -23,8 +29,8 @@ const SendMoney = () => {
   });
   const navigate = useNavigate();
 
-  const handleOpenModal = (storeUserId: number) => {
-    setSelectedRowId(storeUserId);
+  const handleOpenModal = (transactionId: number) => {
+    setSelectedRowId(transactionId);
     setIsActionMenuOpen((prev) => !prev);
   };
 
@@ -127,8 +133,9 @@ const SendMoney = () => {
   //   setQueryData((prev) => ({ ...prev, [id]: parseInt(value) }));
   // };
 
-  const handleRowClick = (row: { id: number }) => {
-    navigate(`/terminal-management/details/${row.id}`);
+  const handleRowClick = (row: TransactionRowData) => {
+    setSelectedRow(row);
+    handleShow(`transaction-details`);
   };
 
   return (
@@ -184,6 +191,10 @@ const SendMoney = () => {
           </section>
         </div>
       </div>
+
+      {toggle["transaction-details"] && (
+        <TransactionDetails selectedRow={selectedRow as TransactionRowData} />
+      )}
     </div>
   );
 };

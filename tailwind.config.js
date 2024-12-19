@@ -13,6 +13,7 @@ export default {
         nagative: "#EE443F",
         positive: "#25A969",
         amount: "#162458",
+        statusBlue: "#1C7CD5",
       },
       fontFamily: {
         bricolage: ['"Bricolage Grotesque"', "sans-serif"],

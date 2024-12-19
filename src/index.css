@@ -50,6 +50,17 @@
   font-weight: 500;
   background-color: var(--negative);
 }
+
+.red-outline-btn {
+  border-radius: 12px;
+  color: var(--negative);
+  padding: 12px 9px;
+  font-size: 18px;
+  border: 1px solid var(--negative);
+  cursor: pointer;
+  font-weight: 500;
+}
+
 /* === Pagination styles start ==== */
 .paginContainer {
   display: flex;
