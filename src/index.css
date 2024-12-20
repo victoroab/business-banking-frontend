@@ -125,10 +125,10 @@
   display: flex;
   justify-content: start;
 }
-/* .bAhklE {
+
+[data-column-id="sender"].rdt_TableCol {
   text-align: center;
   width: 100%;
   display: flex;
   justify-content: start;
-  border: solid red !important;
-} */
+}

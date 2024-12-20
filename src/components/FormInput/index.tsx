@@ -1,4 +1,5 @@
 import { IFormInputProps } from "../../interfaces/Global";
+import Select from "../Select/Select";
 import "./style.css";
 const FormInput = ({
   className,
@@ -16,6 +17,10 @@ const FormInput = ({
   defaultValue,
   error,
   sublabel,
+  selectOptions,
+  keyPropertyName,
+  itemPropertyName,
+  valuePropertyName,
 }: IFormInputProps) => {
   return (
     <div className={`${error ? "" : ""} ${className}`}>
@@ -30,7 +35,25 @@ const FormInput = ({
       <div className="input">
         {icon && <span>{icon}</span>}
         {type === "cSelect" ? (
-          <></>
+          <Select
+            id={id}
+            options={selectOptions}
+            selectedOption={defaultValue}
+            setSelectedOption={(option: any) =>
+              onChange &&
+              onChange({
+                target: {
+                  name: id,
+                  value: option,
+                },
+              })
+            }
+            errors={error}
+            placeholder={placeholder}
+            keyPropertyName={keyPropertyName}
+            itemPropertyName={itemPropertyName}
+            valuePropertyName={valuePropertyName}
+          />
         ) : (
           <>
             <input

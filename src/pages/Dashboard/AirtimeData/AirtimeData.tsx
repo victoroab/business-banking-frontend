@@ -1,20 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/Navbar/Navbar";
 import Paginate from "../../../components/Paginate";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import { useState } from "react";
 import DataTable from "react-data-table-component";
 import { tableCustomStyles, transactionsData } from "../../../utils";
-import { RowDataProps } from "../../../interfaces/Global";
-import { selectGlobal } from "../../../store/slice/globalSlice";
-import { useAppSelector } from "../../../hooks";
-import TransactionDetails from "../../../components/Dashboard/Transaction/TransactionDetails";
 import { columnsData } from "../../../utils/table";
+import { useAppSelector } from "../../../hooks";
+import { selectGlobal } from "../../../store/slice/globalSlice";
+import { RowDataProps } from "../../../interfaces/Global";
 
-const Transaction = () => {
+const AirtimeData = () => {
   const { handleSearch, handleShow } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
-  const [selectedRow, setSelectedRow] = useState<RowDataProps>();
   const toggle = useAppSelector(selectGlobal);
+  const [selectedRow, setSelectedRow] = useState<RowDataProps>();
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
@@ -22,6 +22,7 @@ const Transaction = () => {
     pageNumber: 1,
     pageSize: 10,
   });
+  const navigate = useNavigate();
 
   const handleOpenModal = (row: RowDataProps) => {
     handleShow("show-action");
@@ -30,11 +31,29 @@ const Transaction = () => {
 
   return (
     <div className="border">
-      <Navbar title="Transactions" subtitle="Here’s all your transactions." />
+      <Navbar
+        title="Airtime & Data"
+        subtitle="Easily recharge you phone or prchase data bundles in just a few clicks"
+      />
       <div className="flex flex-col gap-10">
+        <div className="flex justify-end px-10 gap-6">
+          <button
+            className="main-btn w-40 font-bricolage"
+            onClick={() => navigate("/new-transaction")}
+          >
+            Buy Airtime
+          </button>
+          <button
+            className="yellow-frame-btn w-40 font-bricolage"
+            onClick={() => navigate("/new-transaction")}
+          >
+            Buy Data
+          </button>
+        </div>
+
         <div className="flex flex-col gap-4">
           <div className="flex justify-between px-10 items-center">
-            <div className="font-medium">Transactions</div>
+            <div className="font-medium">Recent Topups</div>
             <div className="font-semibold text-negativeRed text-xs curpo">
               Download CSV
             </div>
@@ -72,12 +91,8 @@ const Transaction = () => {
           </section>
         </div>
       </div>
-
-      {toggle["transaction-details"] && (
-        <TransactionDetails selectedRow={selectedRow as RowDataProps} />
-      )}
     </div>
   );
 };
 
-export default Transaction;
+export default AirtimeData;

@@ -101,7 +101,7 @@ export interface ProgressProps {
 type TransactionType = "debit" | "credit" | "transfer";
 type TransactionStatus = "successful" | "failed";
 
-export interface TransactionRowData {
+export interface RowDataProps {
   id: number;
   sender: string;
   beneficiary: string;
@@ -110,4 +110,10 @@ export interface TransactionRowData {
   transactionType: TransactionType;
   status: TransactionStatus;
   createdAt: string;
+}
+
+export interface IColData {
+  selector?: (row: any) => string;
+  cell?: (row: any) => ReactNode;
+  [key: string]: string | number | any;
 }

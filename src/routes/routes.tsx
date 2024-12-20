@@ -17,6 +17,8 @@ import Support from "../pages/Dashboard/Support/Support";
 import Account from "../pages/Dashboard/Account/Account";
 import NewBill from "../pages/Dashboard/PayBills/NewBill";
 import NewTransaction from "../pages/Dashboard/SendMoney/NewTransaction";
+import AirtimeData from "../pages/Dashboard/AirtimeData/AirtimeData";
+import Pos from "../pages/Dashboard/POS/Pos";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -64,6 +66,8 @@ const dashboardRoutes: RouteProps[] = [
   { path: "/card", name: "Home", element: <Cards /> },
   { path: "/support", name: "Home", element: <Support /> },
   { path: "/account", name: "Account", element: <Account /> },
+  { path: "/pos", name: "Account", element: <Pos /> },
+  { path: "/airtime-data", name: "Account", element: <AirtimeData /> },
   {
     path: "/new-transaction",
     name: "Transaction",

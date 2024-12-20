@@ -1,20 +1,20 @@
+import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/Navbar/Navbar";
 import Paginate from "../../../components/Paginate";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import { useState } from "react";
 import DataTable from "react-data-table-component";
 import { tableCustomStyles, transactionsData } from "../../../utils";
-import { RowDataProps } from "../../../interfaces/Global";
-import { selectGlobal } from "../../../store/slice/globalSlice";
-import { useAppSelector } from "../../../hooks";
-import TransactionDetails from "../../../components/Dashboard/Transaction/TransactionDetails";
 import { columnsData } from "../../../utils/table";
+import { useAppSelector } from "../../../hooks";
+import { selectGlobal } from "../../../store/slice/globalSlice";
+import { RowDataProps } from "../../../interfaces/Global";
 
-const Transaction = () => {
+const Pos = () => {
   const { handleSearch, handleShow } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
-  const [selectedRow, setSelectedRow] = useState<RowDataProps>();
   const toggle = useAppSelector(selectGlobal);
+  const [selectedRow, setSelectedRow] = useState<RowDataProps>();
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
@@ -22,6 +22,7 @@ const Transaction = () => {
     pageNumber: 1,
     pageSize: 10,
   });
+  const navigate = useNavigate();
 
   const handleOpenModal = (row: RowDataProps) => {
     handleShow("show-action");
@@ -30,11 +31,20 @@ const Transaction = () => {
 
   return (
     <div className="border">
-      <Navbar title="Transactions" subtitle="Here’s all your transactions." />
+      <Navbar title="POS" subtitle="Here's your your POS Terminals" />
       <div className="flex flex-col gap-10">
+        <div className="flex justify-end px-10">
+          <button
+            className="main-btn w-40 font-bricolage"
+            onClick={() => navigate("/new-transaction")}
+          >
+            Request Another POS
+          </button>
+        </div>
+
         <div className="flex flex-col gap-4">
           <div className="flex justify-between px-10 items-center">
-            <div className="font-medium">Transactions</div>
+            <div className="font-medium">POS Terminals</div>
             <div className="font-semibold text-negativeRed text-xs curpo">
               Download CSV
             </div>
@@ -72,12 +82,8 @@ const Transaction = () => {
           </section>
         </div>
       </div>
-
-      {toggle["transaction-details"] && (
-        <TransactionDetails selectedRow={selectedRow as RowDataProps} />
-      )}
     </div>
   );
 };
 
-export default Transaction;
+export default Pos;

@@ -43,6 +43,7 @@ export const globalSlice = createSlice({
 
 export const {
   toggleShow,
+  setSearchQuery,
   saveAccountStatus,
   saveBillCategory,
   saveElectricityProvider,

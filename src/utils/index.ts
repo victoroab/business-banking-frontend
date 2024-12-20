@@ -12,7 +12,7 @@ import {
   DataItem,
   IDOption,
   ProgressStepsProps,
-  TransactionRowData,
+  RowDataProps,
 } from "../interfaces/Global";
 import { BettingIcon, CableIcon, ElectricityIcon } from "../assets/svg/PayBill";
 
@@ -458,7 +458,6 @@ export const tableCustomStyles = {
       fontSize: 14,
       display: "flex",
       justifyContent: "center",
-      // textAlign: "center",
     },
   },
   cells: {
@@ -469,7 +468,6 @@ export const tableCustomStyles = {
       display: "flex",
       verticalAlign: "middle",
       padding: "30px 10px",
-
       justifyContent: "center",
     },
   },
@@ -485,7 +483,7 @@ export const tableCustomStyles = {
   },
 };
 
-export const transactionsData: TransactionRowData[] = [
+export const transactionsData: RowDataProps[] = [
   {
     id: 1,
     sender: "John Doe",
@@ -586,4 +584,12 @@ export const transactionsData: TransactionRowData[] = [
     status: "failed",
     createdAt: "2024-12-19T10:30:00Z",
   },
+];
+
+export const industries = [
+  { id: 1, industry: "Financial technology" },
+  { id: 2, industry: "Ecommerce" },
+  { id: 3, industry: "Education" },
+  { id: 4, industry: "Health" },
+  { id: 5, industry: "Technology" },
 ];

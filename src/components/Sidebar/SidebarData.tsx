@@ -33,7 +33,7 @@ export const SidebarData = [
     id: "tab4",
     icon: <SidebarAirtimeIcon />,
     title: "Airtime & Data",
-    url: "/pay-bills",
+    url: "/airtime-data",
   },
   {
     id: "tab5",
@@ -51,7 +51,7 @@ export const SidebarData = [
     id: "tab7",
     icon: <SidebarPOSIcon />,
     title: "POS",
-    url: "/pay-bills",
+    url: "/pos",
   },
   {
     id: "tab8",

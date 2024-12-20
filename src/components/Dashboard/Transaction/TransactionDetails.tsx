@@ -1,9 +1,9 @@
 import { CloseIcon } from "../../../assets/svg/Auth";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
-import { TransactionRowData } from "../../../interfaces/Global";
+import { RowDataProps } from "../../../interfaces/Global";
 import PopUp from "../../PopUps/PopUp";
 interface TransactionDetailsProps {
-  selectedRow: TransactionRowData;
+  selectedRow: RowDataProps;
 }
 const TransactionDetails = ({ selectedRow }: TransactionDetailsProps) => {
   const { handleShow } = useGlobalHooks();

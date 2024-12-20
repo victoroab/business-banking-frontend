@@ -1,6 +1,7 @@
 import React from "react";
 import { KYCPageProps } from "../../../../interfaces/Global";
 import FormInput from "../../../../components/FormInput";
+import { industries } from "../../../../utils";
 
 const DebitAccount: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
   const handleSubmit = () => {
@@ -21,9 +22,18 @@ const DebitAccount: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
       <div className="form">
         <form action="#" className="flex gap-8 flex-col">
           <FormInput
-            id={""}
-            placeholder="Debit Account"
-            className="flex flex-col gap-4"
+            id="debitAccount"
+            name="debitAccount"
+            label="Debit Account"
+            type="cSelect"
+            selectOptions={industries}
+            placeholder="Select industry"
+            keyPropertyName="industry"
+            valuePropertyName="industry"
+            itemPropertyName="industry"
+            //  defaultValue={values?.industry}
+            //  onChange={handleChange}
+            //  onBlur={handleBlur}
           />
           <div className="flex justify-center  w-full gap-6">
             <button

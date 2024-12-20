@@ -151,3 +151,19 @@ export const BeneficiaryIcon = (props: SVGProps<SVGSVGElement>) => (
     </defs>
   </svg>
 );
+
+export const ArrowDownIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    {...props}
+    width="13"
+    height="9"
+    viewBox="0 0 13 9"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M12.5549 0.260742H11.383C11.3033 0.260742 11.2283 0.299805 11.1814 0.363867L6.74239 6.48262L2.30332 0.363867C2.25645 0.299805 2.18145 0.260742 2.10176 0.260742H0.929885C0.828323 0.260742 0.768948 0.376367 0.828323 0.45918L6.3377 8.05449C6.5377 8.32949 6.94707 8.32949 7.14551 8.05449L12.6549 0.45918C12.7158 0.376367 12.6564 0.260742 12.5549 0.260742Z"
+      fill="#352F36"
+    />
+  </svg>
+);
