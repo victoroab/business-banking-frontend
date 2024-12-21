@@ -1,9 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { MobileIcon } from "../../assets/svg/Mobile";
 import AuthLayout from "../../layout/AuthLayout";
+import { useAppDispatch } from "../../hooks";
+import { setHavePersonalAccount } from "../../store/slice/globalSlice";
 
 const Home = () => {
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+
+  const handleAccountStatus = (status: boolean) => {
+    dispatch(setHavePersonalAccount(status));
+    navigate("/signup");
+  };
   return (
     <AuthLayout loginBtn terms={false}>
       <div className="text-center flex justify-center items-center flex-col mt-10 ">
@@ -26,14 +34,14 @@ const Home = () => {
             <button
               className="yellow-frame-btn w-1/2"
               type="submit"
-              onClick={() => navigate("/signup")}
+              onClick={() => handleAccountStatus(false)}
             >
               No, I Don't
             </button>
             <button
               className="main-btn w-1/2"
               type="submit"
-              onClick={() => navigate("/signup")}
+              onClick={() => handleAccountStatus(true)}
             >
               Yes, I do
             </button>

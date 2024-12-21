@@ -1,17 +1,13 @@
-import { useState } from "react";
 import OtpInput from "react-otp-input";
-import { useNavigate } from "react-router-dom";
 import { OTPProps } from "../../interfaces/Global";
 
 const Otp: React.FC<OTPProps> = ({
-  page,
   title,
   paragraph,
   inputCount,
-  resend,
+  setOtpCode,
+  otpCode,
 }) => {
-  const [otpcode, setOtpCode] = useState<string>("");
-  const navigate = useNavigate();
   const handleChange = (otp: string) => {
     setOtpCode(otp);
   };
@@ -26,10 +22,10 @@ const Otp: React.FC<OTPProps> = ({
           {paragraph}
         </p>
       </div>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center flex-col">
         {" "}
         <OtpInput
-          value={otpcode}
+          value={otpCode}
           onChange={handleChange}
           numInputs={inputCount}
           inputType="password"
@@ -50,25 +46,6 @@ const Otp: React.FC<OTPProps> = ({
           renderInput={(props) => <input {...props} />}
         />
       </div>
-
-      <div className="flex justify-center  w-full gap-6">
-        <button
-          className="main-btn w-full"
-          type="submit"
-          onClick={() => navigate(page)}
-        >
-          Continue
-        </button>
-      </div>
-      {resend && (
-        <p className="text-lightGreyColor font-workSans leading-4 font-normal text-[13px]">
-          Didn’t get the code?{" "}
-          <span className="font-bold cursor-pointer text-pryColor">
-            {" "}
-            Resend Code
-          </span>
-        </p>
-      )}
     </div>
   );
 };

@@ -54,11 +54,11 @@ export interface RouteProps {
   element: ReactElement;
 }
 export interface OTPProps {
-  page: string;
   inputCount: number;
   title: string;
   paragraph: ReactElement;
-  resend?: boolean;
+  setOtpCode: React.Dispatch<React.SetStateAction<string>>;
+  otpCode: string;
 }
 
 export interface KYCPageProps {

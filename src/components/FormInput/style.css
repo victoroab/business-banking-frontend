@@ -1,6 +1,9 @@
 .errorMsg {
   color: red;
   font-size: 12px;
+  display: flex;
+  align-items: start;
+  text-align: left;
 }
 .shortP {
   font-size: 14px;
