@@ -1,18 +1,23 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
+interface UserInfo {
+  access_token: string;
+  refresh_token: string;
+}
+
 interface AuthState {
   phoneNumber: string;
   passcode: string;
   transactionPin: string;
-  havePersonalAccount: boolean;
+  userInfo: UserInfo | undefined;
 }
 
 const initialState: AuthState = {
   passcode: "",
   phoneNumber: "",
   transactionPin: "",
-  havePersonalAccount: false,
+  userInfo: undefined,
 };
 
 export const authSlice = createSlice({
@@ -26,21 +31,17 @@ export const authSlice = createSlice({
     setPasscode: (state, action) => {
       state.passcode = action.payload;
     },
-    setHavePersonalAccount: (state, action) => {
-      state.havePersonalAccount = action.payload;
-    },
     setTransactionPin: (state, action) => {
       state.transactionPin = action.payload;
+    },
+    saveUserInfo: (state, action) => {
+      state.userInfo = action.payload;
     },
   },
 });
 
-export const {
-  setPhoneNumber,
-  setPasscode,
-  setHavePersonalAccount,
-  setTransactionPin,
-} = authSlice.actions;
+export const { setPhoneNumber, setPasscode, setTransactionPin, saveUserInfo } =
+  authSlice.actions;
 
 export const selectAuth = (state: RootState) => state.auth;
 export default authSlice.reducer;

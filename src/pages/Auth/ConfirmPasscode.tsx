@@ -1,8 +1,8 @@
 import AuthLayout from "../../layout/AuthLayout";
 import Otp from "../../components/OTP/Otp";
 import { useState } from "react";
-import { useAppSelector } from "../../hooks";
-import { selectAuth } from "../../store/slice/authSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks";
+import { saveUserInfo, selectAuth } from "../../store/slice/authSlice";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { useSetPasscodeMutation } from "../../service/auth";
@@ -10,12 +10,12 @@ import { useSetPasscodeMutation } from "../../service/auth";
 const ConfirmPasscode = () => {
   const [otpCode, setOtpCode] = useState<string>("");
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const { passcode, phoneNumber } = useAppSelector(selectAuth);
   const [setPasscode] = useSetPasscodeMutation();
 
   const handleSubmit = async () => {
     try {
-      console.log(passcode, otpCode);
       if (passcode !== otpCode) {
         toast.error("Passcode mismatch");
       } else {
@@ -26,6 +26,8 @@ const ConfirmPasscode = () => {
         };
 
         const response = await setPasscode(requiredData).unwrap();
+
+        dispatch(saveUserInfo(response.data));
         toast.success(response?.message);
         navigate("/transaction-pin");
       }

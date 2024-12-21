@@ -3,16 +3,18 @@ import Otp from "../../components/OTP/Otp";
 import { useState } from "react";
 import { useVerfifyPhoneMutation } from "../../service/auth";
 import { useAppSelector } from "../../hooks";
-import { selectAuth } from "../../store/slice/authSlice";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { selectGlobal } from "../../store/slice/globalSlice";
+import { selectAuth } from "../../store/slice/authSlice";
 
 const VerifyOtp = () => {
   const navigate = useNavigate();
   const [otpCode, setOtpCode] = useState<string>("");
   const [verifyPhone] = useVerfifyPhoneMutation();
+  const { havePersonalAccount } = useAppSelector(selectGlobal);
   const { phoneNumber } = useAppSelector(selectAuth);
-
+  console.log(havePersonalAccount);
   const handleSubmit = async () => {
     const requiredData = {
       phoneNumber: phoneNumber,
@@ -21,7 +23,9 @@ const VerifyOtp = () => {
     try {
       const response = await verifyPhone(requiredData).unwrap();
       toast.success(response?.message);
-      navigate("/passcode");
+      navigate(
+        `${havePersonalAccount === true ? "/passcode" : "/email-address"}`
+      );
     } catch (error: any) {
       toast.error(error.data.message);
     }

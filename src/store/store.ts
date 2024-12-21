@@ -15,11 +15,13 @@ import storage from "redux-persist/lib/storage";
 import { globalSlice } from "./slice/globalSlice";
 import { authApi } from "../service/auth";
 import { authSlice } from "./slice/authSlice";
+import { kybApi } from "../service/kyb";
 
 const rootReducers = combineReducers({
   global: globalSlice.reducer,
   auth: authSlice.reducer,
   [authApi.reducerPath]: authApi.reducer,
+  [kybApi.reducerPath]: kybApi.reducer,
 });
 
 const persistConfig = {
@@ -41,7 +43,7 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(authApi.middleware),
+    }).concat(authApi.middleware, kybApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

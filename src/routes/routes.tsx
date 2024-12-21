@@ -19,11 +19,13 @@ import NewBill from "../pages/Dashboard/PayBills/NewBill";
 import NewTransaction from "../pages/Dashboard/SendMoney/NewTransaction";
 import AirtimeData from "../pages/Dashboard/AirtimeData/AirtimeData";
 import Pos from "../pages/Dashboard/POS/Pos";
+import EmailAddress from "../pages/Auth/Email";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
   { path: "/signup", name: "SignUp", element: <SignUp /> },
   { path: "/verify-otp", name: "VerifyOTP", element: <VerifyOtp /> },
+  { path: "/email-address", name: "Email", element: <EmailAddress /> },
   { path: "/passcode", name: "Passcode", element: <Passcode /> },
   {
     path: "/confirm-passcode",

@@ -32,13 +32,10 @@ export const authApi = createApi({
       invalidatesTags: [{ type: "Auth", id: "Auth" }],
     }),
 
-    //set-passcode
-    setPasscode: builder.mutation<
-      any,
-      { passcode: string; confirmPasscode: string }
-    >({
+    //set-email
+    setEmail: builder.mutation<any, { phoneNumber: string; email: string }>({
       query: (body) => ({
-        url: "/auth/signup/set-passcode",
+        url: "/auth/signup/set-email",
         method: "POST",
         body,
       }),
@@ -46,13 +43,13 @@ export const authApi = createApi({
       invalidatesTags: [{ type: "Auth", id: "Auth" }],
     }),
 
-    //set-transaction^pin
-    setTransactionPin: builder.mutation<
+    //set-passcode
+    setPasscode: builder.mutation<
       any,
-      { pin: string; confirmPin: string }
+      { passcode: string; confirmPasscode: string; phoneNumber: string }
     >({
       query: (body) => ({
-        url: "/auth/signup/set-pin",
+        url: "/auth/signup/set-passcode",
         method: "POST",
         body,
       }),
@@ -65,6 +62,6 @@ export const authApi = createApi({
 export const {
   useInitiateMutation,
   useVerfifyPhoneMutation,
+  useSetEmailMutation,
   useSetPasscodeMutation,
-  useSetTransactionPinMutation,
 } = authApi;
