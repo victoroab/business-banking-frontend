@@ -593,3 +593,63 @@ export const industries = [
   { id: 4, industry: "Health" },
   { id: 5, industry: "Technology" },
 ];
+
+export const accountSettingsSteps: ProgressStepsProps[] = [
+  {
+    id: 1,
+    title: "Profile",
+  },
+  {
+    id: 2,
+    title: "Verification",
+  },
+  {
+    id: 3,
+    title: "Transaction Limit",
+  },
+  {
+    id: 4,
+    title: "Notification Preferences",
+  },
+  {
+    id: 5,
+    title: "Reset Passcode",
+  },
+  {
+    id: 6,
+    title: "Change Transaction PIN",
+  },
+  {
+    id: 7,
+    title: "Security Question",
+  },
+  {
+    id: 8,
+    title: "Enable Face ID",
+  },
+
+  {
+    id: 9,
+    title: "Bank Statement",
+  },
+  {
+    id: 10,
+    title: "Manage Beneficiaries",
+  },
+  {
+    id: 11,
+    title: "Device Management",
+  },
+  {
+    id: 12,
+    title: "Contact US",
+  },
+  {
+    id: 13,
+    title: "Terms and Conditions",
+  },
+  {
+    id: 14,
+    title: "Visit our Website",
+  },
+];

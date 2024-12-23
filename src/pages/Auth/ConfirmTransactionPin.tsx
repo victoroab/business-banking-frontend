@@ -10,7 +10,7 @@ import { selectAuth } from "../../store/slice/authSlice";
 const ConfirmTransactionPin = () => {
   const [otpCode, setOtpCode] = useState<string>("");
   const navigate = useNavigate();
-  const { transactionPin, phoneNumber } = useAppSelector(selectAuth);
+  const { transactionPin } = useAppSelector(selectAuth);
   const [setTransactionPin] = useSetTransactionPinMutation();
 
   const handleSubmit = async () => {
@@ -19,7 +19,6 @@ const ConfirmTransactionPin = () => {
         toast.error("Transaction Pin mismatch");
       } else {
         const requiredData = {
-          phoneNumber: phoneNumber,
           pin: transactionPin,
           confirmPin: otpCode,
         };
@@ -51,11 +50,7 @@ const ConfirmTransactionPin = () => {
         />
 
         <div className="flex justify-center  w-full gap-6">
-          <button
-            className="main-btn w-full"
-            type="submit"
-            onClick={handleSubmit}
-          >
+          <button className="main-btn w-full" onClick={handleSubmit}>
             Continue
           </button>
         </div>

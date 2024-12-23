@@ -15,9 +15,9 @@ const customBaseQuery: BaseQueryFn<
 > = async (args, api, extraOptions) => {
   const baseResult = await fetchBaseQuery({
     baseUrl: BASE_URL,
-    //config
     prepareHeaders: (headers, { getState }) => {
-      const userToken = (getState() as RootState)?.auth?.userInfo?.access_token;
+      const userToken = (getState() as RootState)?.auth?.userInfo
+        ?.refresh_token;
       if (userToken) {
         headers.set("Authorization", `Bearer ${userToken}`);
       }
@@ -30,12 +30,12 @@ const customBaseQuery: BaseQueryFn<
     ...baseResult,
   };
 
-  const errorCode = newResponse?.error?.status;
+  // const errorCode = newResponse?.error?.status;
 
-  if (errorCode === 401) {
-    localStorage.clear();
-    window.location.href = "/signin";
-  }
+  // if (errorCode === 401) {
+  //   localStorage.clear();
+  //   window.location.href = "/";
+  // }
   return baseResult;
 };
 
@@ -49,7 +49,7 @@ export const kybApi = createApi({
     //set-transaction-pin
     setTransactionPin: builder.mutation<
       any,
-      { pin: string; confirmPin: string; phoneNumber: string }
+      { pin: string; confirmPin: string }
     >({
       query: (body) => ({
         url: "/auth/signup/set-pin",
@@ -59,7 +59,43 @@ export const kybApi = createApi({
 
       invalidatesTags: [{ type: "KYB", id: "KYB" }],
     }),
+    //set-country
+    setNationality: builder.mutation<any, { country: string }>({
+      query: (body) => ({
+        url: "/kyb/nationality",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "KYB", id: "KYB" }],
+    }),
+    //verify-btn
+    verifyBVN: builder.mutation<any, { bvn: string }>({
+      query: (body) => ({
+        url: "/kyb/verify-bvn",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "KYB", id: "KYB" }],
+    }),
+
+    //verify-nin
+    verifyNIN: builder.mutation<any, { nin: string }>({
+      query: (body) => ({
+        url: "/kyb/verify-nin",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "KYB", id: "KYB" }],
+    }),
   }),
 });
 
-export const { useSetTransactionPinMutation } = kybApi;
+export const {
+  useSetTransactionPinMutation,
+  useSetNationalityMutation,
+  useVerifyBVNMutation,
+  useVerifyNINMutation,
+} = kybApi;
