@@ -653,3 +653,24 @@ export const accountSettingsSteps: ProgressStepsProps[] = [
     title: "Visit our Website",
   },
 ];
+
+export const accountVerificationOptions: IDOption[] = [
+  {
+    icon: BankIcon,
+    iconBg: "#f5f5f9",
+    status: "Verified",
+    title: "Bank Verification Number (BVN)",
+  },
+  {
+    icon: NINIcon,
+    iconBg: "#f6fcf9",
+    status: "Unverified",
+    title: "National Identification Number (NIN)",
+  },
+  {
+    icon: NINIcon,
+    iconBg: "#f6fcf9",
+    status: "Pending",
+    title: "Address Verification",
+  },
+];

@@ -69,6 +69,7 @@ export interface IDOption {
   icon: any;
   title: string;
   iconBg?: string;
+  status?: string;
   shortCode?: string;
   package?: {
     title: string;

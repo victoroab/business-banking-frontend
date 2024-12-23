@@ -5,13 +5,13 @@ export default {
     extend: {
       colors: {
         pryColor: { DEFAULT: "#0E0C60", Light: "#F8FBFE" },
-        secColor: "#DBB950",
+        secColor: { DEFAULT: "#DBB950", Light: "#FDFCF8" },
         greyColr: "#352F36",
         lightGreyColor: "#777777",
         black: "#000000",
         negativeRed: "#EE443F",
-        nagative: "#EE443F",
-        positive: "#25A969",
+        nagative: { DEFAULT: "#EE443F", Light: "#FFF8F8" },
+        positive: { DEFAULT: "#25A969", Light: "#F6FCF9" },
         amount: "#162458",
         statusBlue: "#1C7CD5",
       },
