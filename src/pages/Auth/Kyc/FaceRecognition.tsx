@@ -1,14 +1,16 @@
-import React from "react";
-import { KYCPageProps } from "../../../interfaces/Global";
 import {
   CameraIcon,
   GlassesIcon,
   LightIcon,
 } from "../../../assets/svg/CustomSVGs";
+import { setKycCurrentStep } from "../../../store/slice/authSlice";
+import { useAppDispatch } from "../../../hooks";
 
-const FaceVerification: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
+const FaceVerification = () => {
+  const dispatch = useAppDispatch();
+
   const handleSubmit = () => {
-    setCurrentStep(4);
+    dispatch(setKycCurrentStep(4));
   };
   return (
     <div className="flex flex-col gap-6 justify-center items-center ">

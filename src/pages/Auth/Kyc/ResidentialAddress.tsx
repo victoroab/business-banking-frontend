@@ -1,10 +1,12 @@
-import React from "react";
-import { KYCPageProps } from "../../../interfaces/Global";
 import FormInput from "../../../components/FormInput";
+import { setKycCurrentStep } from "../../../store/slice/authSlice";
+import { useAppDispatch } from "../../../hooks";
 
-const ResidentialAddress: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
+const ResidentialAddress = () => {
+  const dispatch = useAppDispatch();
+
   const handleSubmit = () => {
-    setCurrentStep(5);
+    dispatch(setKycCurrentStep(5));
   };
   return (
     <div className="flex flex-col gap-6 justify-center items-center px-14">

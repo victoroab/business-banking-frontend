@@ -1,25 +1,29 @@
-import React from "react";
-import { KYCPageProps } from "../../../interfaces/Global";
 import FormInput from "../../../components/FormInput";
 import toast from "react-hot-toast";
 import { useSetNationalityMutation } from "../../../service/kyb";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import Spinner from "../../../components/Spinner/Spinner";
+import { useAppDispatch } from "../../../hooks";
+import { setKycCurrentStep } from "../../../store/slice/authSlice";
 
-const Nationality: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
+const Nationality = () => {
   const [setNationality, { isLoading }] = useSetNationalityMutation();
+  const dispatch = useAppDispatch();
+
   const initialValues = {
     country: "",
   };
 
   const onSubmit = async (formData: { country: string }) => {
     try {
-      const response = await setNationality(formData).unwrap();
-      toast.success(response?.message);
-      setCurrentStep(2);
+      // const response = await setNationality(formData).unwrap();
+      // toast.success(response?.message);
+      dispatch(setKycCurrentStep(2));
+
+      //
     } catch (error: any) {
-      toast.error(error.data.message);
+      // toast.error(error.data.message);
     }
   };
 

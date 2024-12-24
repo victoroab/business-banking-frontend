@@ -91,7 +91,7 @@ export interface GraphData {
 
 export type StepComponentProps = {
   step: number;
-  component: React.ComponentType<{ setCurrentStep: (step: number) => void }>;
+  component: React.ComponentType<any>;
 };
 
 export interface ProgressProps {

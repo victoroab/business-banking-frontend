@@ -11,6 +11,7 @@ interface AuthState {
   passcode: string;
   email: string;
   transactionPin: string;
+  kycCurrentStep: number;
   userInfo: UserInfo | undefined;
 }
 
@@ -19,6 +20,7 @@ const initialState: AuthState = {
   phoneNumber: "",
   email: "",
   transactionPin: "",
+  kycCurrentStep: 1,
   userInfo: undefined,
 };
 
@@ -36,6 +38,10 @@ export const authSlice = createSlice({
     setEmailAddress: (state, action) => {
       state.email = action.payload;
     },
+    setKycCurrentStep: (state, action) => {
+      state.kycCurrentStep = action.payload;
+      console.log(state.kycCurrentStep);
+    },
     setTransactionPin: (state, action) => {
       state.transactionPin = action.payload;
     },
@@ -51,6 +57,7 @@ export const {
   setPasscode,
   setTransactionPin,
   saveUserInfo,
+  setKycCurrentStep,
 } = authSlice.actions;
 
 export const selectAuth = (state: RootState) => state.auth;
