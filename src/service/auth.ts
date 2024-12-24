@@ -43,6 +43,20 @@ export const authApi = createApi({
       invalidatesTags: [{ type: "Auth", id: "Auth" }],
     }),
 
+    //verify-phone
+    verfifyEmail: builder.mutation<
+      any,
+      { phoneNumber: string; otp: string; email: string }
+    >({
+      query: (body) => ({
+        url: "/auth/signup/verify-email",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Auth", id: "Auth" }],
+    }),
+
     //set-passcode
     setPasscode: builder.mutation<
       any,
@@ -63,5 +77,6 @@ export const {
   useInitiateMutation,
   useVerfifyPhoneMutation,
   useSetEmailMutation,
+  useVerfifyEmailMutation,
   useSetPasscodeMutation,
 } = authApi;

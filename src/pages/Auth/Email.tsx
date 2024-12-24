@@ -3,15 +3,15 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import toast from "react-hot-toast";
 import { useSetEmailMutation } from "../../service/auth";
-import { selectAuth } from "../../store/slice/authSlice";
-import { useAppSelector } from "../../hooks";
+import { selectAuth, setEmailAddress } from "../../store/slice/authSlice";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import FormInput from "../../components/FormInput";
 import AuthLayout from "../../layout/AuthLayout";
 import Spinner from "../../components/Spinner/Spinner";
 
 const EmailAddress = () => {
   const { phoneNumber } = useAppSelector(selectAuth);
-
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [setEmail, { isLoading }] = useSetEmailMutation();
 
@@ -29,8 +29,8 @@ const EmailAddress = () => {
       };
       const response = await setEmail(requiredData).unwrap();
       toast.success(response?.message);
-
-      navigate("/passcode");
+      dispatch(setEmailAddress(formData.email));
+      navigate("/verify-email");
     } catch (error: any) {
       toast.error(error.data.message);
     }

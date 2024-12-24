@@ -9,6 +9,7 @@ interface UserInfo {
 interface AuthState {
   phoneNumber: string;
   passcode: string;
+  email: string;
   transactionPin: string;
   userInfo: UserInfo | undefined;
 }
@@ -16,6 +17,7 @@ interface AuthState {
 const initialState: AuthState = {
   passcode: "",
   phoneNumber: "",
+  email: "",
   transactionPin: "",
   userInfo: undefined,
 };
@@ -31,6 +33,9 @@ export const authSlice = createSlice({
     setPasscode: (state, action) => {
       state.passcode = action.payload;
     },
+    setEmailAddress: (state, action) => {
+      state.email = action.payload;
+    },
     setTransactionPin: (state, action) => {
       state.transactionPin = action.payload;
     },
@@ -40,8 +45,13 @@ export const authSlice = createSlice({
   },
 });
 
-export const { setPhoneNumber, setPasscode, setTransactionPin, saveUserInfo } =
-  authSlice.actions;
+export const {
+  setPhoneNumber,
+  setEmailAddress,
+  setPasscode,
+  setTransactionPin,
+  saveUserInfo,
+} = authSlice.actions;
 
 export const selectAuth = (state: RootState) => state.auth;
 export default authSlice.reducer;
