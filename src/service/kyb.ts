@@ -43,7 +43,7 @@ export const kybApi = createApi({
   reducerPath: "kybApi",
   baseQuery: customBaseQuery,
 
-  tagTypes: ["KYB", "Account"],
+  tagTypes: ["KYB", "Auth", "Account"],
 
   endpoints: (builder) => ({
     //set-transaction-pin
@@ -90,6 +90,19 @@ export const kybApi = createApi({
 
       invalidatesTags: [{ type: "KYB", id: "KYB" }],
     }),
+    //set-name-dob
+    setName: builder.mutation<
+      any,
+      { firstName: string; lastName: string; otherName: string; dob: string }
+    >({
+      query: (body) => ({
+        url: "auth/signup/set-name-dob",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Auth", id: "KYB" }],
+    }),
   }),
 });
 
@@ -98,4 +111,5 @@ export const {
   useSetNationalityMutation,
   useVerifyBVNMutation,
   useVerifyNINMutation,
+  useSetNameMutation,
 } = kybApi;

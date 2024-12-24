@@ -21,6 +21,7 @@ import AirtimeData from "../pages/Dashboard/AirtimeData/AirtimeData";
 import Pos from "../pages/Dashboard/POS/Pos";
 import EmailAddress from "../pages/Auth/Email";
 import VerifyEmail from "../pages/Auth/VerifyEmail";
+import Profile from "../pages/Auth/Profile";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -49,6 +50,7 @@ const authRoutes: RouteProps[] = [
     name: "Confirm Transaction Pin",
     element: <ConfirmTransactionPin />,
   },
+  { path: "/profile", name: "Profile", element: <Profile /> },
   {
     path: "/kyc",
     name: "Know Your Customer",

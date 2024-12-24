@@ -7,12 +7,19 @@ import { useAppSelector } from "../../hooks";
 import { useSetTransactionPinMutation } from "../../service/kyb";
 import { selectAuth } from "../../store/slice/authSlice";
 import Spinner from "../../components/Spinner/Spinner";
+import { selectGlobal } from "../../store/slice/globalSlice";
+import { useGlobalHooks } from "../../hooks/globalHooks";
+import SuccessMessage from "../../components/PopUps/SuccessMessage";
 
 const ConfirmTransactionPin = () => {
+  const { handleShow } = useGlobalHooks();
   const [otpCode, setOtpCode] = useState<string>("");
+  const toggle = useAppSelector(selectGlobal);
   const navigate = useNavigate();
   const { transactionPin } = useAppSelector(selectAuth);
+  const { havePersonalAccount } = useAppSelector(selectGlobal);
   const [setTransactionPin, { isLoading }] = useSetTransactionPinMutation();
+  const [responseMessage, setResponseMessage] = useState("");
 
   const handleSubmit = async () => {
     try {
@@ -26,14 +33,16 @@ const ConfirmTransactionPin = () => {
 
         const response = await setTransactionPin(requiredData).unwrap();
 
-        toast.success(response?.message);
-        navigate("/kyc");
+        setResponseMessage(response?.message);
+        handleShow("success");
       }
     } catch (error: any) {
       toast.error(error.data.message);
     }
   };
-
+  const handleNavigate = () => {
+    navigate(`${havePersonalAccount === true ? "/kyc" : "/profile"}`);
+  };
   return (
     <AuthLayout loginBtn={false} terms>
       <div className="text-center flex justify-center items-center flex-col w-full mt-48 px-8 gap-8">
@@ -56,6 +65,16 @@ const ConfirmTransactionPin = () => {
           </button>
         </div>
       </div>
+
+      {toggle["success"] && (
+        <SuccessMessage
+          handleNavigate={handleNavigate}
+          responseMessage={responseMessage}
+          paragraph={
+            " Your PIN is set and ready to use. You’re now one step closer to secure and seamless transactions. Remember to keep your PIN private and safe"
+          }
+        />
+      )}
     </AuthLayout>
   );
 };
