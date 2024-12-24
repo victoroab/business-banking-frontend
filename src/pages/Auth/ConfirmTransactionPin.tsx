@@ -6,12 +6,13 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../hooks";
 import { useSetTransactionPinMutation } from "../../service/kyb";
 import { selectAuth } from "../../store/slice/authSlice";
+import Spinner from "../../components/Spinner/Spinner";
 
 const ConfirmTransactionPin = () => {
   const [otpCode, setOtpCode] = useState<string>("");
   const navigate = useNavigate();
   const { transactionPin } = useAppSelector(selectAuth);
-  const [setTransactionPin] = useSetTransactionPinMutation();
+  const [setTransactionPin, { isLoading }] = useSetTransactionPinMutation();
 
   const handleSubmit = async () => {
     try {
@@ -51,7 +52,7 @@ const ConfirmTransactionPin = () => {
 
         <div className="flex justify-center  w-full gap-6">
           <button className="main-btn w-full" onClick={handleSubmit}>
-            Continue
+            {isLoading ? <Spinner /> : "Continue"}
           </button>
         </div>
       </div>

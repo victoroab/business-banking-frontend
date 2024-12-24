@@ -5,9 +5,10 @@ import toast from "react-hot-toast";
 import { useSetNationalityMutation } from "../../../service/kyb";
 import * as Yup from "yup";
 import { useFormik } from "formik";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const Nationality: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
-  const [setNationality] = useSetNationalityMutation();
+  const [setNationality, { isLoading }] = useSetNationalityMutation();
   const initialValues = {
     country: "",
   };
@@ -58,7 +59,7 @@ const Nationality: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
           />
           <div className="flex justify-center  w-full gap-6">
             <button className="main-btn w-full" type="submit">
-              Continue
+              {isLoading ? <Spinner /> : "Continue"}
             </button>
           </div>
         </form>

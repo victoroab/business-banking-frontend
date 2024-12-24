@@ -4,18 +4,16 @@ import AuthLayout from "../../layout/AuthLayout";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useInitiateMutation } from "../../service/auth";
-import { useAppDispatch, useAppSelector } from "../../hooks";
-import { selectGlobal } from "../../store/slice/globalSlice";
+import { useAppDispatch } from "../../hooks";
 import toast from "react-hot-toast";
 import { setPhoneNumber } from "../../store/slice/authSlice";
+import Spinner from "../../components/Spinner/Spinner";
 
 const SignUp = () => {
-  const { havePersonalAccount } = useAppSelector(selectGlobal);
   const dispatch = useAppDispatch();
-  console.log(havePersonalAccount);
 
   const navigate = useNavigate();
-  const [initiate] = useInitiateMutation();
+  const [initiate, { isLoading }] = useInitiateMutation();
 
   const initialValues = {
     phoneNumber: "",
@@ -74,7 +72,7 @@ const SignUp = () => {
 
             <div className="flex justify-center  w-full gap-6">
               <button className="main-btn w-full" type="submit">
-                Continue
+                {isLoading ? <Spinner /> : "Continue"}
               </button>
             </div>
           </form>

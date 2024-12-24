@@ -10,6 +10,7 @@ import { selectGlobal } from "../../store/slice/globalSlice";
 import { useGlobalHooks } from "../../hooks/globalHooks";
 import { SuccessIcon } from "../../assets/svg/CustomSVGs";
 import PopUp from "../../components/PopUps/PopUp";
+import Spinner from "../../components/Spinner/Spinner";
 
 const ConfirmPasscode = () => {
   const { handleShow } = useGlobalHooks();
@@ -18,7 +19,7 @@ const ConfirmPasscode = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { passcode, phoneNumber } = useAppSelector(selectAuth);
-  const [setPasscode] = useSetPasscodeMutation();
+  const [setPasscode, { isLoading }] = useSetPasscodeMutation();
   const [responseMessage, setResponseMessage] = useState("");
 
   const handleSubmit = async () => {
@@ -61,7 +62,7 @@ const ConfirmPasscode = () => {
 
         <div className="flex justify-center  w-full gap-6">
           <button className="main-btn w-full" onClick={handleSubmit}>
-            Continue
+            {isLoading ? <Spinner /> : "Continue"}
           </button>
         </div>
       </div>

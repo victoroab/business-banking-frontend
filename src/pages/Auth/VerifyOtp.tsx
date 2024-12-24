@@ -7,14 +7,15 @@ import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { selectGlobal } from "../../store/slice/globalSlice";
 import { selectAuth } from "../../store/slice/authSlice";
+import Spinner from "../../components/Spinner/Spinner";
 
 const VerifyOtp = () => {
   const navigate = useNavigate();
   const [otpCode, setOtpCode] = useState<string>("");
-  const [verifyPhone] = useVerfifyPhoneMutation();
+  const [verifyPhone, { isLoading }] = useVerfifyPhoneMutation();
   const { havePersonalAccount } = useAppSelector(selectGlobal);
   const { phoneNumber } = useAppSelector(selectAuth);
-  console.log(havePersonalAccount);
+
   const handleSubmit = async () => {
     const requiredData = {
       phoneNumber: phoneNumber,
@@ -52,7 +53,7 @@ const VerifyOtp = () => {
             type="submit"
             onClick={handleSubmit}
           >
-            Continue
+            {isLoading ? <Spinner /> : "Continue"}
           </button>
         </div>
 

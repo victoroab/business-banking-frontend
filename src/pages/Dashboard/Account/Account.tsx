@@ -2,8 +2,8 @@ import { useState } from "react";
 import Navbar from "../../../components/Navbar/Navbar";
 import { accountSettingsSteps } from "../../../utils";
 import Profile from "./Profile";
-import Verification from "./verification";
 import TransactionLimit from "./TransactionLimit";
+import Verification from "./Verification";
 
 const Account = () => {
   const [currentTab, setCurrentTab] = useState<number>(1);

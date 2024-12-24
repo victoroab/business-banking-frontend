@@ -7,12 +7,13 @@ import { selectAuth } from "../../store/slice/authSlice";
 import { useAppSelector } from "../../hooks";
 import FormInput from "../../components/FormInput";
 import AuthLayout from "../../layout/AuthLayout";
+import Spinner from "../../components/Spinner/Spinner";
 
 const EmailAddress = () => {
   const { phoneNumber } = useAppSelector(selectAuth);
 
   const navigate = useNavigate();
-  const [setEmail] = useSetEmailMutation();
+  const [setEmail, { isLoading }] = useSetEmailMutation();
 
   const initialValues = {
     email: "",
@@ -77,7 +78,7 @@ const EmailAddress = () => {
 
             <div className="flex justify-center  w-full gap-6">
               <button className="main-btn w-full" type="submit">
-                Continue
+                {isLoading ? <Spinner /> : "Continue"}
               </button>
             </div>
           </form>
