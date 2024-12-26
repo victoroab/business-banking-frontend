@@ -27,9 +27,9 @@ const customBaseQuery: BaseQueryFn<
     },
   })(args, api, extraOptions);
 
-  const newResponse: any = {
-    ...baseResult,
-  };
+  // const newResponse: any = {
+  //   ...baseResult,
+  // };
 
   // const errorCode = newResponse?.error?.status;
 

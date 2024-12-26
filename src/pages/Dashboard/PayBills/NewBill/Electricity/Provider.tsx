@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { ArrowRightIcon } from "../../../../../assets/svg/CustomSVGs";
-import { useAppDispatch } from "../../../../../hooks";
 import { IDOption, KYCPageProps } from "../../../../../interfaces/Global";
 import { electricityProvider } from "../../../../../utils";
 import { saveElectricityProvider } from "../../../../../store/slice/globalSlice";
@@ -15,6 +14,8 @@ const Provider: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
     dispatch(saveElectricityProvider(title));
     setCurrentStep(4);
   };
+
+  console.log(selectedCategory);
 
   return (
     <div className="flex flex-col gap-10">

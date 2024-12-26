@@ -67,13 +67,7 @@ const IdVerification: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
               setCurrentStep={setCurrentStep}
             /> // to fetch either nin or bvn details
           ) : (
-            <>
-              {itentityType === "NIN" ? (
-                <NIN setCurrentStep={setCurrentStep} />
-              ) : (
-                <BVN />
-              )}
-            </>
+            <>{itentityType === "NIN" ? <NIN /> : <BVN />}</>
           )}
         </>
       )}

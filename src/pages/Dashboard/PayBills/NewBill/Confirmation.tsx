@@ -1,6 +1,3 @@
-import React from "react";
-
-import { KYCPageProps } from "../../../../interfaces/Global";
 import PopUp from "../../../../components/PopUps/PopUp";
 import { SuccessIcon } from "../../../../assets/svg/CustomSVGs";
 import { useGlobalHooks } from "../../../../hooks/globalHooks";
@@ -8,7 +5,7 @@ import { useAppSelector } from "../../../../hooks";
 import { selectGlobal } from "../../../../store/slice/globalSlice";
 import { AlertLogoIcon } from "../../../../assets/svg/Sidebar";
 
-const Confirmation: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
+const Confirmation = () => {
   const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
 

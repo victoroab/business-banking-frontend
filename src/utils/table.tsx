@@ -4,7 +4,7 @@ import { IColData, RowDataProps } from "../interfaces/Global";
 
 export const columnsData = (
   handleOpenModal: (row: RowDataProps) => void,
-  toggle: any,
+
   selectedRow: RowDataProps,
   openAction?: any
 ): IColData[] => {

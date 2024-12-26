@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { ArrowRightIcon } from "../../../../../assets/svg/CustomSVGs";
-import { IDOption, KYCPageProps } from "../../../../../interfaces/Global";
-import { useDispatch, useSelector } from "react-redux";
-import { useAppSelector } from "../../../../../hooks";
+import { KYCPageProps } from "../../../../../interfaces/Global";
+import { useSelector } from "react-redux";
 import { selectGlobal } from "../../../../../store/slice/globalSlice";
 import { electricityProvider } from "../../../../../utils";
 const Package: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
@@ -16,7 +15,6 @@ const Package: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
 
   console.log(selectedProviderPackages);
 
-  const dispatch = useDispatch();
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const handleNavigate = (title: string) => {
     setSelectedCategory(title);
@@ -24,6 +22,8 @@ const Package: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
     setCurrentStep(5);
     // setScreen(title);
   };
+
+  console.log(selectedCategory);
 
   return (
     <div className="flex flex-col gap-10">

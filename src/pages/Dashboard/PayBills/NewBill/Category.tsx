@@ -14,7 +14,7 @@ const Category: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
     setCurrentStep(3);
     // setScreen(title);
   };
-
+  console.log(selectedCategory);
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4">
