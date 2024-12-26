@@ -1,10 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/Navbar/Navbar";
 import { RowDataProps } from "../../../interfaces/Global";
-import { useAppSelector } from "../../../hooks";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import { useState } from "react";
-import { selectGlobal } from "../../../store/slice/globalSlice";
 import DataTable from "react-data-table-component";
 import Paginate from "../../../components/Paginate";
 import { tableCustomStyles, transactionsData } from "../../../utils";
@@ -15,7 +13,6 @@ const PayBills = () => {
   const { handleSearch, handleShow } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [selectedRow, setSelectedRow] = useState<RowDataProps>();
-  const toggle = useAppSelector(selectGlobal);
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
@@ -54,7 +51,7 @@ const PayBills = () => {
           <DataTable
             columns={columnsData(
               handleOpenModal,
-              toggle,
+
               selectedRow as RowDataProps
             )}
             data={transactionsData}
