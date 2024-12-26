@@ -91,7 +91,7 @@ export const AccountTypes: ProgressStepsProps[] = [
   },
   {
     id: 2,
-    title: "BVN",
+    title: "NIN",
   },
 ];
 
@@ -592,6 +592,18 @@ export const industries = [
   { id: 3, industry: "Education" },
   { id: 4, industry: "Health" },
   { id: 5, industry: "Technology" },
+];
+
+export const companySize = [
+  { id: 1, size: "1-100" },
+  { id: 2, size: "101-200" },
+  { id: 3, size: "201-300" },
+];
+
+export const annualIncome = [
+  { id: 1, income: "100,000-1,000,000" },
+  { id: 2, income: "1,000,000-10,000,000" },
+  { id: 3, income: "10,000,000-100,000,000" },
 ];
 
 export const accountSettingsSteps: ProgressStepsProps[] = [

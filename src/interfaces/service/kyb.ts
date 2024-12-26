@@ -6,3 +6,24 @@ export interface AddressProps {
   landmark: string;
   lga: string;
 }
+
+export type BusinessInfo = {
+  logo: string;
+  name: string;
+  phone: string;
+  companyType: "COMPANY" | "SOLE_PROPRIETORSHIP" | "PARTNERSHIP";
+  rcNumber: string;
+  industry: string;
+  size: "Small" | "Medium" | "Large";
+  annualIncome: string | number;
+  directors: Director[];
+};
+
+export type Director = {
+  firstName: string;
+  lastName: string;
+  idNo: string;
+  idType: string;
+  email: string;
+  phone: string;
+};

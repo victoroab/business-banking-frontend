@@ -32,14 +32,14 @@ const SignUp = () => {
     }
   };
 
-  const terminalProfileSchema = Yup.object().shape({
+  const formSchema = Yup.object().shape({
     phoneNumber: Yup.string().required("Phone number is required"),
   });
 
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
-      validationSchema: terminalProfileSchema,
+      validationSchema: formSchema,
       onSubmit,
     });
 

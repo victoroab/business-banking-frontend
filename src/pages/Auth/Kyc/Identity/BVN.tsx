@@ -27,14 +27,14 @@ const BVN = () => {
     }
   };
 
-  const terminalProfileSchema = Yup.object().shape({
+  const formSchema = Yup.object().shape({
     bvn: Yup.string().required("BVN is required"),
   });
 
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
-      validationSchema: terminalProfileSchema,
+      validationSchema: formSchema,
       onSubmit,
     });
 

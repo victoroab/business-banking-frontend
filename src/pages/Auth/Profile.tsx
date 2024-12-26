@@ -39,7 +39,7 @@ const Profile = () => {
     }
   };
 
-  const terminalProfileSchema = Yup.object().shape({
+  const formSchema = Yup.object().shape({
     firstName: Yup.string().required("First name is required"),
     otherName: Yup.string(),
     lastName: Yup.string().required("Last name is required"),
@@ -48,7 +48,7 @@ const Profile = () => {
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
-      validationSchema: terminalProfileSchema,
+      validationSchema: formSchema,
       onSubmit,
     });
 

@@ -4,7 +4,6 @@ import toast from "react-hot-toast";
 import { setKycCurrentStep } from "../../../../store/slice/authSlice";
 import { useAppDispatch } from "../../../../hooks";
 import FormInput from "../../../../components/FormInput";
-
 import Spinner from "../../../../components/Spinner/Spinner";
 import { CautionIcon } from "../../../../assets/svg/CustomSVGs";
 import { useVerifyNINMutation } from "../../../../service/kyb";
@@ -28,14 +27,14 @@ const NIN = () => {
     }
   };
 
-  const terminalProfileSchema = Yup.object().shape({
+  const formSchema = Yup.object().shape({
     nin: Yup.string().required("NIN is required"),
   });
 
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
-      validationSchema: terminalProfileSchema,
+      validationSchema: formSchema,
       onSubmit,
     });
 
