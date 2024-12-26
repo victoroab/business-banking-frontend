@@ -3,10 +3,14 @@ import { KYCPageProps } from "../../../interfaces/Global";
 import FormInput from "../../../components/FormInput";
 import { CautionIcon, UploadIcon } from "../../../assets/svg/CustomSVGs";
 import AddDirector from "../../../components/Auth/AddDirector";
+import { setKycCurrentStep } from "../../../store/slice/authSlice";
+import { useAppDispatch } from "../../../hooks";
 
-const BusinessDetails: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
+const BusinessDetails: React.FC<KYCPageProps> = () => {
+  const dispatch = useAppDispatch();
+
   const handleSubmit = () => {
-    setCurrentStep(6);
+    dispatch(setKycCurrentStep(6));
   };
   return (
     <div className="flex flex-col gap-6 justify-center items-center px-10">

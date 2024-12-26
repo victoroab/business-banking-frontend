@@ -6,6 +6,7 @@ import {
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store/store";
+import { AddressProps } from "../interfaces/service/kyb";
 const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 
 const customBaseQuery: BaseQueryFn<
@@ -69,6 +70,20 @@ export const kybApi = createApi({
 
       invalidatesTags: [{ type: "KYB", id: "KYB" }],
     }),
+
+    //set-name-dob
+    setName: builder.mutation<
+      any,
+      { firstName: string; lastName: string; otherName: string; dob: string }
+    >({
+      query: (body) => ({
+        url: "auth/signup/set-name-dob",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Auth", id: "KYB" }],
+    }),
     //verify-btn
     verifyBVN: builder.mutation<any, { bvn: string }>({
       query: (body) => ({
@@ -90,18 +105,88 @@ export const kybApi = createApi({
 
       invalidatesTags: [{ type: "KYB", id: "KYB" }],
     }),
-    //set-name-dob
-    setName: builder.mutation<
-      any,
-      { firstName: string; lastName: string; otherName: string; dob: string }
-    >({
+
+    //validate-btn
+    validateBVN: builder.mutation<any, { bvn: string }>({
       query: (body) => ({
-        url: "auth/signup/set-name-dob",
+        url: "/kyb/validate-bvn",
         method: "POST",
         body,
       }),
 
-      invalidatesTags: [{ type: "Auth", id: "KYB" }],
+      invalidatesTags: [{ type: "KYB", id: "KYB" }],
+    }),
+
+    //verify-tin
+    verifyTin: builder.mutation<any, { tin: string }>({
+      query: (body) => ({
+        url: "/kyb/verify-tin",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "KYB", id: "KYB" }],
+    }),
+    //verify-btn-otp
+    verifyBVNOtp: builder.mutation<any, { bvn: string }>({
+      query: (body) => ({
+        url: "/kyb/verify-bvn-otp",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "KYB", id: "KYB" }],
+    }),
+    //verify-face
+    verifyFace: builder.mutation<any, { image: string }>({
+      query: (body) => ({
+        url: "/kyb/verify-face",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "KYB", id: "KYB" }],
+    }),
+    //verify-residential-addresss
+    verifyResidentialAddress: builder.mutation<any, AddressProps>({
+      query: (body) => ({
+        url: "/kyb/verify-residential-address",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "KYB", id: "KYB" }],
+    }),
+    //verify-business-documents
+    verifyBusinessDocuments: builder.mutation<any, any>({
+      query: (body) => ({
+        url: "/kyb/verify-busines-documents",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "KYB", id: "KYB" }],
+    }),
+
+    //verify-business-address
+    verifyBusinessAddress: builder.mutation<any, AddressProps>({
+      query: (body) => ({
+        url: "/kyb/verify-business-address",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "KYB", id: "KYB" }],
+    }),
+    //ve
+    attestation: builder.mutation<any, any>({
+      query: (body) => ({
+        url: "/kyb/attestation",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "KYB", id: "KYB" }],
     }),
   }),
 });
@@ -112,4 +197,12 @@ export const {
   useVerifyBVNMutation,
   useVerifyNINMutation,
   useSetNameMutation,
+  useValidateBVNMutation,
+  useVerifyResidentialAddressMutation,
+  useAttestationMutation,
+  useVerifyBVNOtpMutation,
+  useVerifyBusinessAddressMutation,
+  useVerifyBusinessDocumentsMutation,
+  useVerifyFaceMutation,
+  useVerifyTinMutation,
 } = kybApi;

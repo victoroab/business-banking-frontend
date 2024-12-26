@@ -17,24 +17,24 @@ const Nationality = () => {
 
   const onSubmit = async (formData: { country: string }) => {
     try {
-      // const response = await setNationality(formData).unwrap();
-      // toast.success(response?.message);
+      const response = await setNationality(formData).unwrap();
+      toast.success(response?.message);
       dispatch(setKycCurrentStep(2));
 
       //
     } catch (error: any) {
-      // toast.error(error.data.message);
+      toast.error(error.data.message);
     }
   };
 
-  const terminalProfileSchema = Yup.object().shape({
+  const countrySchema = Yup.object().shape({
     country: Yup.string().required("country is required"),
   });
 
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
-      validationSchema: terminalProfileSchema,
+      validationSchema: countrySchema,
       onSubmit,
     });
 

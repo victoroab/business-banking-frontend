@@ -1,10 +1,14 @@
 import React from "react";
 import { KYCPageProps } from "../../../interfaces/Global";
 import ImageUpload from "../../../components/Upload/ImageUpload";
+import { setKycCurrentStep } from "../../../store/slice/authSlice";
+import { useAppDispatch } from "../../../hooks";
 
-const BusinessDocument: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
+const BusinessDocument: React.FC<KYCPageProps> = () => {
+  const dispatch = useAppDispatch();
+
   const handleSubmit = () => {
-    setCurrentStep(7);
+    dispatch(setKycCurrentStep(7));
   };
 
   return (
