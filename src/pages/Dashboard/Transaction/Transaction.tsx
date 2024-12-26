@@ -48,7 +48,7 @@ const Transaction = () => {
               <DataTable
                 columns={columnsData(
                   handleOpenModal,
-                  toggle,
+
                   selectedRow as RowDataProps
                 )}
                 data={transactionsData}

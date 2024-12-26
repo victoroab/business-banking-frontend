@@ -6,14 +6,11 @@ import { useState } from "react";
 import DataTable from "react-data-table-component";
 import { tableCustomStyles, transactionsData } from "../../../utils";
 import { columnsData } from "../../../utils/table";
-import { useAppSelector } from "../../../hooks";
-import { selectGlobal } from "../../../store/slice/globalSlice";
 import { RowDataProps } from "../../../interfaces/Global";
 
 const Pos = () => {
   const { handleSearch, handleShow } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
-  const toggle = useAppSelector(selectGlobal);
   const [selectedRow, setSelectedRow] = useState<RowDataProps>();
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
@@ -58,7 +55,7 @@ const Pos = () => {
               <DataTable
                 columns={columnsData(
                   handleOpenModal,
-                  toggle,
+
                   selectedRow as RowDataProps
                 )}
                 data={transactionsData}
