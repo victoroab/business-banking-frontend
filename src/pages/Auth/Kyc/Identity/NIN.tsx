@@ -1,44 +1,31 @@
-import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import toast from "react-hot-toast";
-import { useSetEmailMutation } from "../../../../service/auth";
-import {
-  selectAuth,
-  setEmailAddress,
-  setKycCurrentStep,
-} from "../../../../store/slice/authSlice";
-import { useAppDispatch, useAppSelector } from "../../../../hooks";
+import { setKycCurrentStep } from "../../../../store/slice/authSlice";
+import { useAppDispatch } from "../../../../hooks";
 import FormInput from "../../../../components/FormInput";
-import AuthLayout from "../../../../layout/AuthLayout";
-import Spinner from "../../../../components/Spinner/Spinner";
-import { KYCPageProps } from "../../../../interfaces/Global";
 
-const NIN: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
-  const { phoneNumber } = useAppSelector(selectAuth);
+import Spinner from "../../../../components/Spinner/Spinner";
+import { CautionIcon } from "../../../../assets/svg/CustomSVGs";
+import { useVerifyNINMutation } from "../../../../service/kyb";
+
+const NIN = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const [setEmail, { isLoading }] = useSetEmailMutation();
+
+  const [verifyNIN, { isLoading }] = useVerifyNINMutation();
 
   const initialValues = {
     nin: "",
   };
 
   const onSubmit = async (formData: { nin: string }) => {
-    dispatch(setKycCurrentStep(3));
-    // console.log(formData);
-
-    // try {
-    //   const requiredData = {
-    //     nin: formData.nin,
-    //   };
-    //   const response = await setEmail(requiredData).unwrap();
-    //   toast.success(response?.message);
-    //   dispatch(setEmailAddress(formData.nin));
-    //   navigate("/verify-email");
-    // } catch (error: any) {
-    //   toast.error(error.data.message);
-    // }
+    try {
+      const response = await verifyNIN(formData).unwrap();
+      toast.success(response?.message);
+      dispatch(setKycCurrentStep(3));
+    } catch (error: any) {
+      toast.error(error.data.message);
+    }
   };
 
   const terminalProfileSchema = Yup.object().shape({
@@ -54,7 +41,7 @@ const NIN: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
 
   return (
     <div>
-      <div className="text-center flex justify-center items-center flex-col w-full">
+      <div className="flex justify-center items-center flex-col w-full">
         <form
           className="flex px-8 flex-col gap-8 w-full"
           onSubmit={handleSubmit}
@@ -78,6 +65,17 @@ const NIN: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
             onChange={handleChange}
             defaultValue={values?.nin}
           />
+          <div
+            className="px-6 py-2 -mt-3 gap-4 rounded-md items-center flex w-full"
+            style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
+          >
+            <CautionIcon />
+            <p className="text-greyColr font-workSans leading-4 font-normal text-xs">
+              Dial *346# on your registered phone number to get your NIN.
+              <br /> Service costs NGN 20. Visit{" "}
+              <span className="text-positive"> nimc.gov.ng/sms-service</span>
+            </p>
+          </div>
 
           <div className="flex justify-center  w-full gap-6">
             <button className="main-btn w-full" type="submit">
