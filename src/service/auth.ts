@@ -11,7 +11,10 @@ export const authApi = createApi({
 
   endpoints: (builder) => ({
     //initiate
-    initiate: builder.mutation<any, { phoneNumber: string }>({
+    initiate: builder.mutation<
+      any,
+      { phoneNumber: string; onboardType: string }
+    >({
       query: (body) => ({
         url: "/auth/signup/initiate",
         method: "POST",

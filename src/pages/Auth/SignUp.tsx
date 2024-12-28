@@ -20,10 +20,13 @@ const SignUp = () => {
   };
 
   const onSubmit = async (formData: { phoneNumber: string }) => {
-    console.log(formData);
+    const requiredData = {
+      phoneNumber: formData.phoneNumber,
+      onboardType: "NEW",
+    };
 
     try {
-      const response = await initiate(formData).unwrap();
+      const response = await initiate(requiredData).unwrap();
       toast.success(response?.message);
       dispatch(setPhoneNumber(formData.phoneNumber));
       navigate("/verify-otp");
