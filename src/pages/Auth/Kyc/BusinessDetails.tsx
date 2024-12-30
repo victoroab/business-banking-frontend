@@ -106,17 +106,20 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
       </div>
 
       <div className="flex flex-col gap-4 w-[100%]">
-        <FormInput id={""} placeholder="Business Name" />
-        <div
-          className="px-6 py-2 -mt-3 gap-4 rounded-md items-center flex w-full"
-          style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
-        >
-          <CautionIcon />
-          <p className="text-greyColr font-workSans leading-4 font-normal text-xs">
-            Use the registered business name on your documents
-          </p>
-        </div>
-
+        <FormInput
+          placeholder="Business Entity"
+          id={"entity"}
+          name="entity"
+          error={touched.size ? errors.size : undefined}
+          type="cSelect"
+          selectOptions={companySize}
+          keyPropertyName="size"
+          valuePropertyName="size"
+          itemPropertyName="size"
+          defaultValue={values?.size}
+          onChange={handleChange}
+          onBlur={handleBlur}
+        />
         <FormInput
           placeholder="Business Name"
           type="text"
@@ -127,6 +130,16 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
           onChange={handleChange}
           defaultValue={values?.name}
         />
+        <div
+          className="px-6 py-2 -mt-3 gap-4 rounded-md items-center flex w-full"
+          style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
+        >
+          <CautionIcon />
+          <p className="text-greyColr font-workSans leading-4 font-normal text-xs">
+            Use the registered business name on your documents
+          </p>
+        </div>
+
         <FormInput
           placeholder="Business Phone"
           type="text"

@@ -23,7 +23,7 @@ export const KYCProgressSteps: ProgressStepsProps[] = [
   },
   {
     id: 2,
-    title: "BVN or NIN",
+    title: "BVN & NIN",
   },
   {
     id: 3,
@@ -234,22 +234,22 @@ export const getLastWeekData = (array: DataItem[]): DataItem[] => {
 };
 
 export const sampleData = [
-  { createdAt: "2024-12-20T08:30:00Z", income: 1200 },
-  { createdAt: "2024-12-19T12:15:00Z", income: 1500 },
-  { createdAt: "2024-12-10T08:30:00Z", income: 1200 },
-  { createdAt: "2024-12-18T12:15:00Z", income: 1500 },
-  { createdAt: "2024-12-17T14:45:00Z", income: 1000 },
-  { createdAt: "2024-12-16T09:10:00Z", income: 800 },
-  { createdAt: "2024-12-15T16:30:00Z", income: 1600 },
-  { createdAt: "2024-12-14T11:00:00Z", income: 1400 },
-  { createdAt: "2024-12-15T10:30:00Z", income: 1100 },
-  { createdAt: "2024-12-14T13:15:00Z", income: 1300 },
-  { createdAt: "2024-12-13T07:45:00Z", income: 1700 },
-  { createdAt: "2024-12-12T15:00:00Z", income: 900 },
+  { createdAt: "2024-12-30T08:30:00Z", income: 1200 },
+  { createdAt: "2024-12-29T12:15:00Z", income: 1500 },
+  { createdAt: "2024-12-28T08:30:00Z", income: 1200 },
+  { createdAt: "2024-12-28T12:15:00Z", income: 1500 },
+  { createdAt: "2024-12-27T14:45:00Z", income: 1000 },
+  { createdAt: "2024-12-26T09:10:00Z", income: 800 },
+  { createdAt: "2024-12-25T16:30:00Z", income: 1600 },
+  { createdAt: "2024-12-24T11:00:00Z", income: 1400 },
+  { createdAt: "2024-12-25T10:30:00Z", income: 1100 },
+  { createdAt: "2024-12-24T13:15:00Z", income: 1300 },
+  { createdAt: "2024-12-23T07:45:00Z", income: 1700 },
+  { createdAt: "2024-12-22T15:00:00Z", income: 900 },
 ];
 
 export const filterList = [
-  { value: "week", name: "Weekly" },
+  // { value: "week", name: "Weekly" },
   { value: "month", name: "1M" },
   { value: "three", name: "3M" },
   { value: "six", name: "6M" },

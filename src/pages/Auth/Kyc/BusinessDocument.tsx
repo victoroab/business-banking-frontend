@@ -30,7 +30,7 @@ const BusinessDocument: React.FC<KYCPageProps> = () => {
           required
         />
       </div>
-      <div className="flex justify-center w-full gap-6">
+      <div className="flex justify-center w-full gap-6 px-4">
         <button
           className="main-btn w-full"
           type="submit"

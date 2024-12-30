@@ -31,7 +31,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ title, required }) => {
 
       <label
         htmlFor="file-upload"
-        className="mt-4 flex h-40 w-full cursor-pointer flex-col items-center justify-center rounded-lg border border-dashed border-primary"
+        className="mt-4 flex h-40 w-full cursor-pointer flex-col items-center justify-center rounded-xl border-dashed border-primary border-2"
       >
         <div className="flex justify-center flex-col items-center ">
           <UploadBulkIcon />

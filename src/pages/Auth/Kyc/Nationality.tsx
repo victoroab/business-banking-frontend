@@ -53,7 +53,6 @@ const Nationality = () => {
           <FormInput
             id={""}
             placeholder="Nigeria"
-            label="Country"
             name="country"
             error={touched.country ? errors.country : undefined}
             onBlur={handleBlur}

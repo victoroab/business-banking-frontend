@@ -14,6 +14,7 @@ const Transaction = () => {
   const { handleSearch, handleShow } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [selectedRow, setSelectedRow] = useState<RowDataProps>();
+  const [openAction, IsOpenAction] = useState<boolean>(false);
   const toggle = useAppSelector(selectGlobal);
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
@@ -25,6 +26,7 @@ const Transaction = () => {
 
   const handleOpenModal = (row: RowDataProps) => {
     handleShow("show-action");
+    IsOpenAction((prev) => !prev);
     setSelectedRow(row);
   };
 
@@ -48,8 +50,8 @@ const Transaction = () => {
               <DataTable
                 columns={columnsData(
                   handleOpenModal,
-
-                  selectedRow as RowDataProps
+                  selectedRow as RowDataProps,
+                  openAction
                 )}
                 data={transactionsData}
                 customStyles={tableCustomStyles}

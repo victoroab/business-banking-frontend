@@ -24,8 +24,8 @@ const BusinessAddress = () => {
 
   const onSubmit = async (formData: AddressProps) => {
     try {
-      const response = await setBusinessAddress(formData).unwrap();
-      toast.success(response?.message);
+      // const response = await setBusinessAddress(formData).unwrap();
+      // toast.success(response?.message);
       dispatch(setKycCurrentStep(8));
 
       //

@@ -56,7 +56,7 @@ export const SidebarData = [
   {
     id: "tab8",
     icon: <SupportIcon />,
-    title: "Supports",
+    title: "Support",
     url: "/support",
   },
   {

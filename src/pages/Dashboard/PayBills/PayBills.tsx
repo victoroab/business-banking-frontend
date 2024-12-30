@@ -32,47 +32,49 @@ const PayBills = () => {
         title="Pay Bill"
         subtitle="Settle your bills for utilities, subscriptions, and more—all in one place!"
       />
-      <div className="">
-        <div className="flex justify-end px-10">
-          <button
-            className="main-btn w-40 font-bricolage"
-            onClick={() => navigate("/pay-new-bill")}
-          >
-            Pay New Bill
-          </button>
+      <div className="flex flex-col gap-10">
+        <div className="flex flex-col gap-10">
+          <div className="flex justify-end px-10">
+            <button
+              className="main-btn w-40 font-bricolage"
+              onClick={() => navigate("/pay-new-bill")}
+            >
+              Pay New Bill
+            </button>
+          </div>
         </div>
+
+        <section
+          className="relative px-10 font-workSans"
+          style={{ boxShadow: "0px 1px 7px 4px rgba(216, 216, 216, 0.2)" }}
+        >
+          <div className="">
+            <DataTable
+              columns={columnsData(
+                handleOpenModal,
+
+                selectedRow as RowDataProps
+              )}
+              data={transactionsData}
+              customStyles={tableCustomStyles}
+              className=""
+            />
+          </div>
+
+          <div className="">
+            <Paginate
+              data={transactionsData}
+              handleSearch={handleSearch}
+              currentPage={filteredData}
+              setCurrentPage={setFilteredData}
+              searchParams="ref"
+              itemsPerPage={queryData?.pageSize as number}
+              setQueryData={setQueryData}
+              totalItemsCount={transactionsData.length}
+            />
+          </div>
+        </section>
       </div>
-
-      <section
-        className="relative px-10 font-workSans"
-        style={{ boxShadow: "0px 1px 7px 4px rgba(216, 216, 216, 0.2)" }}
-      >
-        <div className="">
-          <DataTable
-            columns={columnsData(
-              handleOpenModal,
-
-              selectedRow as RowDataProps
-            )}
-            data={transactionsData}
-            customStyles={tableCustomStyles}
-            className=""
-          />
-        </div>
-
-        <div className="">
-          <Paginate
-            data={transactionsData}
-            handleSearch={handleSearch}
-            currentPage={filteredData}
-            setCurrentPage={setFilteredData}
-            searchParams="ref"
-            itemsPerPage={queryData?.pageSize as number}
-            setQueryData={setQueryData}
-            totalItemsCount={transactionsData.length}
-          />
-        </div>
-      </section>
     </div>
   );
 };

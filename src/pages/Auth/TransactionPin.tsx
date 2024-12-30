@@ -17,7 +17,7 @@ const TransactionPin = () => {
 
   return (
     <AuthLayout loginBtn={false} terms>
-      <div className="text-center flex justify-center items-center flex-col w-full mt-48 gap-8 px-8">
+      <div className="text-center flex justify-center items-center flex-col w-full mt-48 gap-8 px-14">
         <Otp
           inputCount={4}
           title="Create Your Transaction Pin"

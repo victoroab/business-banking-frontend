@@ -14,7 +14,7 @@ const FaceVerification = () => {
   };
   return (
     <div className="flex flex-col gap-6 justify-center items-center ">
-      <div className="rounded-full p-6 w-[138px] h-[138px] bg-[#fefdfb] flex justify-center items-center">
+      <div className="rounded-full p-6 w-[138px] h-[138px] bg-[#fdfbf6] flex justify-center items-center">
         <CameraIcon />
       </div>
       <div className="flex flex-col gap-4 justify-center items-center">
@@ -29,7 +29,7 @@ const FaceVerification = () => {
         </p>
       </div>
 
-      <div className="border-dashed p-6 bg-pryColor-Light flex flex-col border gap-4 rounded-md w-[100%]">
+      <div className="border-dashed p-6 bg-pryColor-Light flex flex-col border gap-4 rounded-xl w-[100%]">
         <div className="flex gap-4 items-center">
           <LightIcon />
           <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
@@ -39,8 +39,8 @@ const FaceVerification = () => {
         <div className="flex gap-4 items-center">
           <GlassesIcon />
           <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-            Take off glasses, hats, face masks, or
-            <br /> any coverings that obscure your face
+            Take off glasses, hats, face masks, or any coverings that obscure
+            your face
           </p>
         </div>
       </div>

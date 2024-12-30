@@ -45,7 +45,7 @@ const ConfirmTransactionPin = () => {
   };
   return (
     <AuthLayout loginBtn={false} terms>
-      <div className="text-center flex justify-center items-center flex-col w-full mt-48 px-8 gap-8">
+      <div className="text-center flex justify-center items-center flex-col w-full mt-48 px-14 gap-8">
         <Otp
           inputCount={4}
           setOtpCode={setOtpCode}

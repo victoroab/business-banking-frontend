@@ -53,11 +53,11 @@ const ResidentialAddress = () => {
       onSubmit={handleSubmit}
       className="flex flex-col gap-6 justify-center items-center px-14"
     >
-      <div className="flex flex-col gap-4 justify-center items-center">
+      <div className="flex flex-col gap-4">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
           Residential Address
         </h3>
-        <p className="text-greyColr font-workSans leading-4 font-normal text-sm text-center">
+        <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
           Provide your current address for verification and security purposes.
         </p>
       </div>

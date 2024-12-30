@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { IDOption } from "../../../interfaces/Global";
 import { accountOptions } from "../../../utils";
-import { ArrowRightIcon } from "../../../assets/svg/CustomSVGs";
 import IdentityDetails from "./Identity/IdentityDetails";
 import { useAppSelector } from "../../../hooks";
 import { selectGlobal } from "../../../store/slice/globalSlice";
@@ -22,7 +21,7 @@ const IdVerification = () => {
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-4">
             <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-              Choose Your ID Type for Verification
+              Provide These IDs For Verification
             </h3>
             <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
               To keep your account secure and compliant, we need to validate{" "}
@@ -51,10 +50,15 @@ const IdVerification = () => {
                   <h2 className="text-base font-medium text-lightGreyColor m-0 font-workSans">
                     {option?.title}
                   </h2>
-                  <ArrowRightIcon />
                 </div>
               </div>
             ))}
+          </div>
+
+          <div className="flex justify-center  w-full gap-6">
+            <button className="main-btn w-full" type="submit">
+              Verify Identity
+            </button>
           </div>
         </div>
       )}

@@ -27,6 +27,7 @@
   border-radius: 12px;
   padding: 12px 9px;
   font-size: 18px;
+  font-family: "Bricolage Grotesque", serif;
   cursor: pointer;
   font-weight: 500;
   color: var(--white);
@@ -37,6 +38,7 @@
   background-color: white;
   padding: 12px 9px;
   font-size: 18px;
+  font-family: "Bricolage Grotesque", serif;
   cursor: pointer;
   font-weight: 500;
   color: var(--secColor);
@@ -46,6 +48,7 @@
   color: white;
   padding: 12px 9px;
   font-size: 18px;
+  font-family: "Bricolage Grotesque", serif;
   cursor: pointer;
   font-weight: 500;
   background-color: var(--negative);

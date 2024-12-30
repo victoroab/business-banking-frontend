@@ -44,7 +44,7 @@ const SendMoney = () => {
           </button>
         </div>
 
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-10">
           <div className="flex justify-between px-10 items-center">
             <div className="font-medium">Transactions</div>
             <div className="font-semibold text-negativeRed text-xs curpo">

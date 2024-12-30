@@ -31,7 +31,7 @@ const VerifyEmail = () => {
 
   return (
     <AuthLayout loginBtn={false} terms>
-      <div className="text-center flex justify-center gap-8 items-center flex-col w-full mt-48 px-6 ">
+      <div className="text-center flex justify-center gap-8 items-center flex-col w-full mt-48 px-14 ">
         <Otp
           inputCount={6}
           title={"Verify Your Email Address"}
@@ -40,7 +40,7 @@ const VerifyEmail = () => {
           paragraph={
             <p>
               We sent a 6 digit code to {email}. Check your email and enter it
-              <br /> here.
+              here.
             </p>
           }
         />

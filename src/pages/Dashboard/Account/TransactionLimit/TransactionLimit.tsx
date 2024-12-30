@@ -44,7 +44,7 @@ const TransactionLimit = () => {
               style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
             >
               <div className="flex justify-between items-center gap-6">
-                <div className="border-dashed p-4 justify-center  w-[198px]  items-center gap-2 flex flex-col border rounded-xl">
+                <div className="border-dashed p-4 justify-center border-2 w-[198px]  items-center gap-2 flex flex-col  rounded-xl">
                   <p className="text-lightGreyColor font-workSansleading-4  font-normal text-sm">
                     Daily Transfer Limit
                   </p>
@@ -53,7 +53,7 @@ const TransactionLimit = () => {
                   </p>
                 </div>
 
-                <div className="border-dashed p-4 justify-center w-[198px] items-center gap-2  flex flex-col border rounded-xl">
+                <div className="border-dashed p-4 justify-center w-[198px] items-center gap-2  flex flex-col border-2 rounded-xl">
                   <p className="text-lightGreyColor font-workSans leading-4 font-normal text-sm">
                     Single Transfer Limit
                   </p>
@@ -81,7 +81,7 @@ const TransactionLimit = () => {
               style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
             >
               <div className="flex justify-between items-center gap-6">
-                <div className="border-dashed p-4 justify-center  w-[198px]  items-center gap-2 flex flex-col border rounded-xl">
+                <div className="border-dashed p-4 justify-center  w-[198px]  items-center gap-2 flex flex-col border-2 rounded-xl">
                   <p className="text-lightGreyColor font-workSansleading-4  font-normal text-sm">
                     Daily Transfer Limit
                   </p>
@@ -90,7 +90,7 @@ const TransactionLimit = () => {
                   </p>
                 </div>
 
-                <div className="border-dashed p-4 justify-center w-[198px] items-center gap-2  flex flex-col border rounded-xl">
+                <div className="border-dashed p-4 justify-center w-[198px] items-center gap-2  flex flex-col border-2 rounded-xl">
                   <p className="text-lightGreyColor font-workSans leading-4 font-normal text-sm">
                     Single Transfer Limit
                   </p>
@@ -118,7 +118,7 @@ const TransactionLimit = () => {
               style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
             >
               <div className="flex justify-between items-center gap-6">
-                <div className="border-dashed p-4 justify-center  w-[198px]  items-center gap-2 flex flex-col border rounded-xl">
+                <div className="border-dashed p-4 justify-center  w-[198px]  items-center gap-2 flex flex-col border-2 rounded-xl">
                   <p className="text-lightGreyColor font-workSansleading-4  font-normal text-sm">
                     Daily Transfer Limit
                   </p>
@@ -127,7 +127,7 @@ const TransactionLimit = () => {
                   </p>
                 </div>
 
-                <div className="border-dashed p-4 justify-center w-[198px] items-center gap-2  flex flex-col border rounded-xl">
+                <div className="border-dashed p-4 justify-center w-[198px] items-center gap-2  flex flex-col border-2 rounded-xl">
                   <p className="text-lightGreyColor font-workSans leading-4 font-normal text-sm">
                     Single Transfer Limit
                   </p>

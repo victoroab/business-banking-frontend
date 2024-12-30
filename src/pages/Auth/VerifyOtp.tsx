@@ -42,7 +42,7 @@ const VerifyOtp = () => {
       const response = havePersonalAccount
         ? await verifyAccount(requiredExistingData).unwrap()
         : await verifyPhone(requiredData);
-        console.log(response)
+      console.log(response);
       toast.success(response?.data?.message);
       havePersonalAccount && dispatch(setExistingVerificationOTP(otpCode));
       navigate(
@@ -63,8 +63,8 @@ const VerifyOtp = () => {
           otpCode={otpCode}
           paragraph={
             <p>
-              We sent a 6 digit code to ***4858. Check your SMS and enter it
-              <br /> here.
+              We sent a 6 digit code to {phoneNumber}. Check your SMS and enter
+              it here.
             </p>
           }
         />

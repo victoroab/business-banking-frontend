@@ -13,9 +13,9 @@
   width: 100%;
   line-height: 1.5;
   color: #495057;
-  background-color: #fafafb;
+  background-color: #f1f2f3;
   background-clip: padding-box;
-  border-radius: 16px;
+  border-radius: 12px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
