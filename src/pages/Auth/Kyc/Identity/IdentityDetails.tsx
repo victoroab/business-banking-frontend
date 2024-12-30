@@ -4,6 +4,7 @@ import { useGetBVNDetailsQuery } from "../../../../service/kyb";
 import Spinner from "../../../../components/Spinner/Spinner";
 import { setKycCurrentStep } from "../../../../store/slice/authSlice";
 import { useAppDispatch } from "../../../../hooks";
+import { PhoneIcon } from "../../../../assets/svg/Auth";
 
 const IdentityDetails: React.FC<{ identityType: string }> = ({
   identityType,
@@ -17,12 +18,12 @@ const IdentityDetails: React.FC<{ identityType: string }> = ({
   return (
     <div className="flex flex-col gap-4 px-4 justify-center items-center">
       {isLoading ? (
-        <>
+        <div className="flex justify-center items-center">
           <Spinner />{" "}
-        </>
+        </div>
       ) : (
-        <>
-          <div className="flex flex-col gap-4 justify-center items-center w-[70%]">
+        <div className=" flex flex-col w-full justify-center items-center gap-6">
+          <div className="flex flex-col gap-4 justify-center items-center w-[80%]">
             <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
               Is this {identityType} Yours?
             </h3>
@@ -40,8 +41,8 @@ const IdentityDetails: React.FC<{ identityType: string }> = ({
           </div>
 
           <div
-            className="py-6 px-10 gap-2 rounded-md justify-center items-center flex flex-col w-[70%]"
-            style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
+            className="py-6 px-10 gap-2 rounded-xl justify-center items-center flex flex-col w-[80%]"
+            style={{ boxShadow: "0px 1px 5px 2px rgba(229, 229, 229, 0.2)" }}
           >
             <p className="text-greyColr font-workSans leading-4 font-medium text-sm">
               {bvnData?.firstName +
@@ -50,36 +51,29 @@ const IdentityDetails: React.FC<{ identityType: string }> = ({
                 " " +
                 bvnData?.otherName}
             </p>
-            <p className="text-greyColr font-workSans leading-4 font-medium text-sm">
-              {bvnData?.phoneNumber}
+            <p className="text-greyColr font-workSans leading-4 font-medium text-sm flex gap-2 items-center">
+              <PhoneIcon /> {bvnData?.phoneNumber}
             </p>
           </div>
 
-          <div className="border-dashed p-2 justify-center items-center flex flex-col border rounded-md w-[70%]">
-            <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
+          <div className="border-dashed p-4 justify-center items-center gap-2 flex flex-col border rounded-xl w-[80%]">
+            <p className="text-lightGreyColor font-workSans leading-4 font-normal text-sm">
               Bank Verification Number(BVN)
             </p>
-            <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
+            <p className="text-greyColr font-workSans leading-4 font-medium text-sm">
               1234567890
             </p>
           </div>
-          <div className="flex justify-center px-14 w-full gap-6">
+          <div className="flex justify-center w-[80%] gap-6">
             <button
-              className="red-frame-btn w-1/2 font-bricolage"
-              type="submit"
-              onClick={handleConfirmation}
-            >
-              No, It Isn't
-            </button>
-            <button
-              className="main-btn w-1/2 font-bricolage"
+              className="main-btn w-full font-bricolage"
               type="submit"
               onClick={handleConfirmation}
             >
               Yes, It's Mine
             </button>
           </div>
-        </>
+        </div>
       )}
     </div>
   );
