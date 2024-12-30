@@ -137,6 +137,11 @@ export const kybApi = createApi({
 
       invalidatesTags: [{ type: "KYB", id: "KYB" }],
     }),
+    getBVNDetails: builder.query({
+      query: () => "kyb/retrieve-bvn-details",
+      providesTags: [{ type: "KYB", id: "KYB" }],
+    }),
+
     //verify-face
     verifyFace: builder.mutation<any, { image: string }>({
       query: (body) => ({
@@ -218,4 +223,5 @@ export const {
   useVerifyFaceMutation,
   useVerifyTinMutation,
   useVerifyBusinesDetailsMutation,
+  useGetBVNDetailsQuery,
 } = kybApi;

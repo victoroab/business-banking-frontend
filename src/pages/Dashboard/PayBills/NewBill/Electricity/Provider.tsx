@@ -9,7 +9,6 @@ const Provider: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
   const dispatch = useDispatch();
   const [selectedCategory, setSelectedCategory] = useState<string>("");
   const handleNavigate = (title: string) => {
-    console.log(title, "selecttttt");
     setSelectedCategory(title);
     dispatch(saveElectricityProvider(title));
     setCurrentStep(4);

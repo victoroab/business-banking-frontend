@@ -46,7 +46,7 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
         directors: directors,
       };
 
-      console.log(requiredData);
+
 
       const response = await verifyBusinessDetails(requiredData).unwrap();
       toast.success(response?.message);

@@ -7,8 +7,6 @@ import { electricityProvider } from "../../../../../utils";
 const Package: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
   const { selectedElectricityProvider } = useSelector(selectGlobal);
 
-  console.log(selectedElectricityProvider, "lanre");
-
   const selectedProviderPackages = electricityProvider?.find(
     (option: any) => selectedElectricityProvider === option?.title
   );

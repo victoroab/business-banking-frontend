@@ -35,6 +35,20 @@ export const authApi = createApi({
       invalidatesTags: [{ type: "Auth", id: "Auth" }],
     }),
 
+    //verify-existing-account
+    verfifyExistingAccount: builder.mutation<
+      any,
+      { accountNumber: string; otp: string }
+    >({
+      query: (body) => ({
+        url: "/auth/signup/verify-existing",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Auth", id: "Auth" }],
+    }),
+
     //set-email
     setEmail: builder.mutation<any, { phoneNumber: string; email: string }>({
       query: (body) => ({
@@ -73,6 +87,24 @@ export const authApi = createApi({
 
       invalidatesTags: [{ type: "Auth", id: "Auth" }],
     }),
+    //set-existing-passcode
+    setExistingPasscode: builder.mutation<
+      any,
+      {
+        passcode: string;
+        confirmPasscode: string;
+        accountNumber: string;
+        otp: string;
+      }
+    >({
+      query: (body) => ({
+        url: "/auth/signup/set-existing-passcode",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Auth", id: "Auth" }],
+    }),
   }),
 });
 
@@ -82,4 +114,6 @@ export const {
   useSetEmailMutation,
   useVerfifyEmailMutation,
   useSetPasscodeMutation,
+  useVerfifyExistingAccountMutation,
+  useSetExistingPasscodeMutation,
 } = authApi;

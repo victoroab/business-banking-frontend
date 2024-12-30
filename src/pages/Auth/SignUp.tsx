@@ -4,16 +4,18 @@ import AuthLayout from "../../layout/AuthLayout";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useInitiateMutation } from "../../service/auth";
-import { useAppDispatch } from "../../hooks";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import toast from "react-hot-toast";
 import { setPhoneNumber } from "../../store/slice/authSlice";
 import Spinner from "../../components/Spinner/Spinner";
+import { selectGlobal } from "../../store/slice/globalSlice";
 
 const SignUp = () => {
   const dispatch = useAppDispatch();
 
   const navigate = useNavigate();
   const [initiate, { isLoading }] = useInitiateMutation();
+  const { havePersonalAccount } = useAppSelector(selectGlobal);
 
   const initialValues = {
     phoneNumber: "",
@@ -22,7 +24,7 @@ const SignUp = () => {
   const onSubmit = async (formData: { phoneNumber: string }) => {
     const requiredData = {
       phoneNumber: formData.phoneNumber,
-      onboardType: "NEW",
+      onboardType: havePersonalAccount ? "EXISTING" : "NEW",
     };
 
     try {
@@ -63,7 +65,7 @@ const SignUp = () => {
             </div>
 
             <FormInput
-              placeholder="070000000000"
+              placeholder={havePersonalAccount ? "1234567890" : "07000000000"}
               type="text"
               id={"phoneNumber"}
               name="phoneNumber"

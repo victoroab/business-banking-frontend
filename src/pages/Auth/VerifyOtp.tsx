@@ -1,29 +1,49 @@
 import AuthLayout from "../../layout/AuthLayout";
 import Otp from "../../components/OTP/Otp";
 import { useState } from "react";
-import { useVerfifyPhoneMutation } from "../../service/auth";
-import { useAppSelector } from "../../hooks";
+import {
+  useVerfifyExistingAccountMutation,
+  useVerfifyPhoneMutation,
+} from "../../service/auth";
+import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import { selectGlobal } from "../../store/slice/globalSlice";
-import { selectAuth } from "../../store/slice/authSlice";
+import {
+  selectAuth,
+  setExistingVerificationOTP,
+} from "../../store/slice/authSlice";
 import Spinner from "../../components/Spinner/Spinner";
 
 const VerifyOtp = () => {
   const navigate = useNavigate();
   const [otpCode, setOtpCode] = useState<string>("");
-  const [verifyPhone, { isLoading }] = useVerfifyPhoneMutation();
+  const [verifyPhone, phoneMutation] = useVerfifyPhoneMutation();
+  const [verifyAccount, accountMutation] = useVerfifyExistingAccountMutation();
   const { havePersonalAccount } = useAppSelector(selectGlobal);
   const { phoneNumber } = useAppSelector(selectAuth);
+  const dispatch = useAppDispatch();
+  const isLoading = havePersonalAccount
+    ? accountMutation?.isLoading
+    : phoneMutation?.isLoading;
 
   const handleSubmit = async () => {
     const requiredData = {
       phoneNumber: phoneNumber,
       otp: otpCode,
     };
+
+    const requiredExistingData = {
+      accountNumber: phoneNumber,
+      otp: otpCode,
+    };
+
     try {
-      const response = await verifyPhone(requiredData).unwrap();
+      const response = havePersonalAccount
+        ? await verifyAccount(requiredExistingData).unwrap()
+        : await verifyPhone(requiredData);
       toast.success(response?.message);
+      havePersonalAccount && dispatch(setExistingVerificationOTP(otpCode));
       navigate(
         `${havePersonalAccount === true ? "/passcode" : "/email-address"}`
       );

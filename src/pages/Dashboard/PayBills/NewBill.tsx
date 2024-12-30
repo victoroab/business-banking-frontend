@@ -18,7 +18,7 @@ import Confirmation from "./NewBill/Confirmation";
 const NewBill = () => {
   const { billCategory } = useSelector(selectGlobal);
 
-  console.log(billCategory, "sodiq");
+
 
   const Provider =
     billCategory === "Electricity"

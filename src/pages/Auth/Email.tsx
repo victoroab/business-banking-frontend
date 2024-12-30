@@ -20,7 +20,7 @@ const EmailAddress = () => {
   };
 
   const onSubmit = async (formData: { email: string }) => {
-    console.log(formData);
+
 
     try {
       const requiredData = {

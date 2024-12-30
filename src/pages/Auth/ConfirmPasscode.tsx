@@ -5,7 +5,10 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { saveUserInfo, selectAuth } from "../../store/slice/authSlice";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
-import { useSetPasscodeMutation } from "../../service/auth";
+import {
+  useSetExistingPasscodeMutation,
+  useSetPasscodeMutation,
+} from "../../service/auth";
 import { selectGlobal } from "../../store/slice/globalSlice";
 import { useGlobalHooks } from "../../hooks/globalHooks";
 import Spinner from "../../components/Spinner/Spinner";
@@ -17,10 +20,16 @@ const ConfirmPasscode = () => {
   const [otpCode, setOtpCode] = useState<string>("");
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const { passcode, phoneNumber } = useAppSelector(selectAuth);
-  const [setPasscode, { isLoading }] = useSetPasscodeMutation();
+  const { passcode, phoneNumber, verificationOTP } = useAppSelector(selectAuth);
+  const [setPasscode, newMutation] = useSetPasscodeMutation();
+  const [setExistingPasscode, existingMutation] =
+    useSetExistingPasscodeMutation();
   const [responseMessage, setResponseMessage] = useState("");
+  const { havePersonalAccount } = useAppSelector(selectGlobal);
 
+  const isLoading = havePersonalAccount
+    ? existingMutation?.isLoading
+    : newMutation?.isLoading;
   const handleSubmit = async () => {
     try {
       if (passcode !== otpCode) {
@@ -31,8 +40,15 @@ const ConfirmPasscode = () => {
           passcode: passcode,
           confirmPasscode: otpCode,
         };
-
-        const response = await setPasscode(requiredData).unwrap();
+        const requiredExistingData = {
+          accountNumber: phoneNumber,
+          passcode: passcode,
+          confirmPasscode: otpCode,
+          otp: verificationOTP,
+        };
+        const response = havePersonalAccount
+          ? await setExistingPasscode(requiredExistingData).unwrap()
+          : await setPasscode(requiredData).unwrap();
 
         dispatch(saveUserInfo(response.data));
         setResponseMessage(response?.message);

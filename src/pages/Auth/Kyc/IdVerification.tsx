@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { IDOption, KYCPageProps } from "../../../interfaces/Global";
+import { useState } from "react";
+import { IDOption } from "../../../interfaces/Global";
 import { accountOptions } from "../../../utils";
 import { ArrowRightIcon } from "../../../assets/svg/CustomSVGs";
 import IdentityDetails from "./Identity/IdentityDetails";
@@ -8,7 +8,7 @@ import { selectGlobal } from "../../../store/slice/globalSlice";
 import NIN from "./Identity/NIN";
 import BVN from "./Identity/BVN";
 
-const IdVerification: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
+const IdVerification = () => {
   const [itentityType, setIdentityType] = useState<string>("default");
   const { havePersonalAccount } = useAppSelector(selectGlobal);
 
@@ -62,10 +62,7 @@ const IdVerification: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
       {(itentityType === "NIN" || itentityType === "BVN") && (
         <>
           {havePersonalAccount ? (
-            <IdentityDetails
-              identityType={itentityType}
-              setCurrentStep={setCurrentStep}
-            /> // to fetch either nin or bvn details
+            <IdentityDetails identityType={itentityType} /> // to fetch either nin or bvn details
           ) : (
             <>{itentityType === "NIN" ? <NIN /> : <BVN />}</>
           )}
