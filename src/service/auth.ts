@@ -105,6 +105,31 @@ export const authApi = createApi({
 
       invalidatesTags: [{ type: "Auth", id: "Auth" }],
     }),
+
+    //signin
+    signIn: builder.mutation<any, { phoneNumber: string; passcode: string }>({
+      query: (body) => ({
+        url: "/auth/signin",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Auth", id: "Auth" }],
+    }),
+
+    //signin-verify
+    signInVerify: builder.mutation<
+      any,
+      { phoneNumber: string; otp: string; passcode: string }
+    >({
+      query: (body) => ({
+        url: "/auth/signin/verify-otp",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Auth", id: "Auth" }],
+    }),
   }),
 });
 
@@ -116,4 +141,6 @@ export const {
   useSetPasscodeMutation,
   useVerfifyExistingAccountMutation,
   useSetExistingPasscodeMutation,
+  useSignInMutation,
+  useSignInVerifyMutation,
 } = authApi;

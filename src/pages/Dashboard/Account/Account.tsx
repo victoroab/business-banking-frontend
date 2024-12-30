@@ -2,8 +2,9 @@ import { useState } from "react";
 import Navbar from "../../../components/Navbar/Navbar";
 import { accountSettingsSteps } from "../../../utils";
 import Profile from "./Profile";
-import TransactionLimit from "./TransactionLimit";
+import TransactionLimit from "./TransactionLimit/TransactionLimit";
 import Verification from "./Verification";
+import NotificationPreference from "./NotificationPreference";
 
 const Account = () => {
   const [currentTab, setCurrentTab] = useState<number>(1);
@@ -34,6 +35,7 @@ const Account = () => {
           {currentTab === 2 && <Verification />}
 
           {currentTab === 3 && <TransactionLimit />}
+          {currentTab === 4 && <NotificationPreference />}
         </div>
       </div>
     </div>

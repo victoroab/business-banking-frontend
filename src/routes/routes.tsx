@@ -7,7 +7,7 @@ import ConfirmPasscode from "../pages/Auth/ConfirmPasscode";
 import VerifyOtp from "../pages/Auth/VerifyOtp";
 import ConfirmTransactionPin from "../pages/Auth/ConfirmTransactionPin";
 import KYC from "../pages/Auth/KYC";
-import SignIn from "../pages/Auth/SignIn";
+import SignIn from "../pages/Auth/SignIn/SignIn";
 import SendMoney from "../pages/Dashboard/SendMoney/SendMoney";
 import Transaction from "../pages/Dashboard/Transaction/Transaction";
 import DashboardHome from "../pages/Dashboard/Home/Home";
@@ -22,6 +22,7 @@ import Pos from "../pages/Dashboard/POS/Pos";
 import EmailAddress from "../pages/Auth/Email";
 import VerifyEmail from "../pages/Auth/VerifyEmail";
 import Profile from "../pages/Auth/Profile";
+import LoginPasscode from "../pages/Auth/SignIn/Passcode";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -30,6 +31,7 @@ const authRoutes: RouteProps[] = [
   { path: "/email-address", name: "Email", element: <EmailAddress /> },
   { path: "/verify-email", name: "Passcode", element: <VerifyEmail /> },
   { path: "/passcode", name: "Passcode", element: <Passcode /> },
+  { path: "/signin-passcode", name: "Passcode", element: <LoginPasscode /> },
   {
     path: "/confirm-passcode",
     name: "Confirm Passcode",
