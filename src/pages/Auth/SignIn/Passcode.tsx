@@ -86,7 +86,7 @@ const LoginPasscode = () => {
           Forgot Passcode?{" "}
           <span className="font-bold cursor-pointer text-pryColor">
             {" "}
-            Resent Passcode
+            Reset Passcode
           </span>
         </p>
       </div>
