@@ -5,6 +5,8 @@ import Profile from "./Profile";
 import TransactionLimit from "./TransactionLimit/TransactionLimit";
 import Verification from "./Verification";
 import NotificationPreference from "./NotificationPreference";
+import ResetPasscode from "./ResetPasscode";
+import SecurityQuestion from "./SecurityQuestion";
 
 const Account = () => {
   const [currentTab, setCurrentTab] = useState<number>(1);
@@ -36,6 +38,8 @@ const Account = () => {
 
           {currentTab === 3 && <TransactionLimit />}
           {currentTab === 4 && <NotificationPreference />}
+          {currentTab === 5 && <ResetPasscode />}
+          {currentTab === 7 && <SecurityQuestion />}
         </div>
       </div>
     </div>

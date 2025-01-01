@@ -646,31 +646,26 @@ export const accountSettingsSteps: ProgressStepsProps[] = [
   },
   {
     id: 8,
-    title: "Enable Face ID",
-  },
-
-  {
-    id: 9,
     title: "Bank Statement",
   },
   {
-    id: 10,
+    id: 9,
     title: "Manage Beneficiaries",
   },
   {
-    id: 11,
+    id: 10,
     title: "Device Management",
   },
   {
-    id: 12,
+    id: 11,
     title: "Contact US",
   },
   {
-    id: 13,
+    id: 12,
     title: "Terms and Conditions",
   },
   {
-    id: 14,
+    id: 13,
     title: "Visit our Website",
   },
 ];
