@@ -1,7 +1,10 @@
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import toast from "react-hot-toast";
-import { setKycCurrentStep } from "../../../../store/slice/authSlice";
+import {
+  setKycCurrentStep,
+  setKYCIdentityStep,
+} from "../../../../store/slice/authSlice";
 import { useAppDispatch } from "../../../../hooks";
 import FormInput from "../../../../components/FormInput";
 import Spinner from "../../../../components/Spinner/Spinner";
@@ -22,6 +25,7 @@ const NIN = () => {
       const response = await verifyNIN(formData).unwrap();
       toast.success(response?.message);
       dispatch(setKycCurrentStep(3));
+      dispatch(setKYCIdentityStep("DEFAULT"));
     } catch (error: any) {
       toast.error(error.data.message);
     }

@@ -13,6 +13,7 @@ interface AuthState {
   verificationOTP: string;
   transactionPin: string;
   kycCurrentStep: number;
+  kycIdentityStep: string;
   userInfo: UserInfo | undefined;
 }
 
@@ -23,6 +24,7 @@ const initialState: AuthState = {
   verificationOTP: "",
   transactionPin: "",
   kycCurrentStep: 1,
+  kycIdentityStep: "DEFAULT",
   userInfo: undefined,
 };
 
@@ -46,6 +48,9 @@ export const authSlice = createSlice({
     setKycCurrentStep: (state, action) => {
       state.kycCurrentStep = action.payload;
     },
+    setKYCIdentityStep: (state, action) => {
+      state.kycIdentityStep = action.payload;
+    },
     setTransactionPin: (state, action) => {
       state.transactionPin = action.payload;
     },
@@ -63,6 +68,7 @@ export const {
   setExistingVerificationOTP,
   saveUserInfo,
   setKycCurrentStep,
+  setKYCIdentityStep,
 } = authSlice.actions;
 
 export const selectAuth = (state: RootState) => state.auth;

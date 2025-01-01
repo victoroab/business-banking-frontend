@@ -1,15 +1,15 @@
-import React from "react";
 import { useGetBVNDetailsQuery } from "../../../../service/kyb";
-
 import Spinner from "../../../../components/Spinner/Spinner";
-import { setKycCurrentStep } from "../../../../store/slice/authSlice";
-import { useAppDispatch } from "../../../../hooks";
+import {
+  selectAuth,
+  setKycCurrentStep,
+} from "../../../../store/slice/authSlice";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
 import { PhoneIcon } from "../../../../assets/svg/Auth";
 
-const IdentityDetails: React.FC<{ identityType: string }> = ({
-  identityType,
-}) => {
+const IdentityDetails = () => {
   const { data, isLoading } = useGetBVNDetailsQuery({});
+  const { kycIdentityStep } = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
   const handleConfirmation = () => {
     dispatch(setKycCurrentStep(3));
@@ -25,10 +25,10 @@ const IdentityDetails: React.FC<{ identityType: string }> = ({
         <div className=" flex flex-col w-full justify-center items-center gap-6">
           <div className="flex flex-col gap-4 justify-center items-center w-[80%]">
             <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-              Is this {identityType} Yours?
+              Is this {kycIdentityStep} Yours?
             </h3>
             <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-              Confirm the {identityType} shown below belongs to you.
+              Confirm the {kycIdentityStep} shown below belongs to you.
             </p>
           </div>
 

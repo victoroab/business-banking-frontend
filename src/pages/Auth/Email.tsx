@@ -20,8 +20,6 @@ const EmailAddress = () => {
   };
 
   const onSubmit = async (formData: { email: string }) => {
-
-
     try {
       const requiredData = {
         phoneNumber: phoneNumber,
@@ -51,7 +49,7 @@ const EmailAddress = () => {
     <div>
       {" "}
       <AuthLayout loginBtn={false} terms>
-        <div className="text-center flex justify-center items-center flex-col mt-48 w-full">
+        <div className="text-center flex justify-center items-center flex-col mt-48 w-full px-14">
           <form
             className="flex px-8 flex-col gap-8 w-full"
             onSubmit={handleSubmit}

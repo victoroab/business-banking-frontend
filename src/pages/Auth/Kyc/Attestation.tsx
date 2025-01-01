@@ -1,16 +1,18 @@
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import { selectGlobal } from "../../../store/slice/globalSlice";
-import { useAppSelector } from "../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 import PopUp from "../../../components/PopUps/PopUp";
 import { CopyIcon, SuccessIcon } from "../../../assets/svg/CustomSVGs";
 import { useNavigate } from "react-router-dom";
 import { attestation } from "../../../utils";
 import { KYCPageProps } from "../../../interfaces/Global";
 import { FolderIcon } from "../../../assets/svg/Auth";
+import { setKycCurrentStep } from "../../../store/slice/authSlice";
 
-const Attestation: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
+const Attestation: React.FC<KYCPageProps> = () => {
   const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
+  const dispatch = useAppDispatch();
   const handleSubmit = () => {
     handleShow("submit");
   };
@@ -38,7 +40,7 @@ const Attestation: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
             <p className="title font-medium font-workSans">{attest.title}</p>
             <p
               className="text-positive font-workSans cursor-pointer font-medium"
-              onClick={() => setCurrentStep(attest.navigate)}
+              onClick={() => dispatch(setKycCurrentStep(attest.navigate))}
             >
               Edit
             </p>

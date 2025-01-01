@@ -53,7 +53,7 @@ const ResidentialAddress = () => {
       onSubmit={handleSubmit}
       className="flex flex-col gap-6 justify-center items-center px-14"
     >
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 w-full">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
           Residential Address
         </h3>
@@ -62,7 +62,7 @@ const ResidentialAddress = () => {
         </p>
       </div>
 
-      <div className="flex flex-col gap-4 w-[100%]">
+      <div className="flex flex-col gap-4 w-full">
         <FormInput
           id={""}
           placeholder="Enter your address"
