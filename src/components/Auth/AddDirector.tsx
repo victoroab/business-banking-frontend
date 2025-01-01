@@ -44,7 +44,7 @@ const AddDirector = ({
   const onSubmit = () => {
     try {
       const newDirector = {
-        id: new Date(),
+        id: Date.now(),
         firstName: values.firstName,
         lastName: values.lastName,
         idNo: values.idNo,

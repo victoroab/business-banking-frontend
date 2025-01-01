@@ -600,6 +600,15 @@ export const companySize = [
   { id: 3, size: "201-300" },
 ];
 
+export const companyEntity = [
+  { id: 1, entity: "Sole Proprietorship" },
+  { id: 2, entity: "Partnership" },
+  { id: 3, entity: "Corporation" },
+  { id: 4, entity: "Limited Liability Company (LLC)" },
+  { id: 5, entity: "Cooperative" },
+  { id: 6, entity: "Nonprofit Organization" },
+];
+
 export const annualIncome = [
   { id: 1, income: "100,000-1,000,000" },
   { id: 2, income: "1,000,000-10,000,000" },

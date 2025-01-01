@@ -10,7 +10,12 @@ import { useFormik } from "formik";
 import Spinner from "../../../components/Spinner/Spinner";
 import toast from "react-hot-toast";
 import { useVerifyBusinesDetailsMutation } from "../../../service/kyb";
-import { annualIncome, companySize, industries } from "../../../utils";
+import {
+  annualIncome,
+  companyEntity,
+  companySize,
+  industries,
+} from "../../../utils";
 import { Director } from "../../../interfaces/service/kyb";
 import { ArrowDownIcon } from "../../../assets/svg/Auth";
 
@@ -26,6 +31,7 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
   const initialValues = {
     name: "",
     phone: "",
+    entity: "",
     companyType: "",
     rcNumber: "",
     industry: "",
@@ -39,6 +45,7 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
         logo: logo,
         name: formData?.name,
         phone: formData?.phone,
+        entity: formData?.entity,
         companyType: formData?.companyType,
         rcNumber: formData?.rcNumber,
         industry: formData?.industry,
@@ -51,6 +58,8 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
       toast.success(response?.message);
       dispatch(setKycCurrentStep(6));
       setLogo("logo");
+
+      console.log(requiredData);
     } catch (error: any) {
       toast.error(error.data.message);
     }
@@ -58,6 +67,7 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
 
   const businessDetailsSchema = Yup.object().shape({
     name: Yup.string().required("Business Name is required"),
+    entity: Yup.string().required("Business Entity is required"),
     phone: Yup.string().required("Phone is required"),
     companyType: Yup.string().required("Company Type is required"),
     rcNumber: Yup.string().required("RC Number is required"),
@@ -116,13 +126,13 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
             placeholder="Business Entity"
             id={"entity"}
             name="entity"
-            error={touched.size ? errors.size : undefined}
+            error={touched.entity ? errors.entity : undefined}
             type="cSelect"
-            selectOptions={companySize}
-            keyPropertyName="size"
-            valuePropertyName="size"
-            itemPropertyName="size"
-            defaultValue={values?.size}
+            selectOptions={companyEntity}
+            keyPropertyName="entity"
+            valuePropertyName="entity"
+            itemPropertyName="entity"
+            defaultValue={values?.entity}
             onChange={handleChange}
             onBlur={handleBlur}
           />
