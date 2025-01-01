@@ -29,7 +29,7 @@ const Account = () => {
           ))}
         </div>
 
-        <div className="flex flex-col gap-6 bg-white w-full p-14">
+        <div className="flex flex-col gap-6 bg-white w-full px-20 py-11">
           {currentTab === 1 && <Profile />}
 
           {currentTab === 2 && <Verification />}

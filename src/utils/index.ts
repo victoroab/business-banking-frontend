@@ -695,3 +695,27 @@ export const accountVerificationOptions: IDOption[] = [
     title: "Address Verification",
   },
 ];
+
+export const creditPreference = [
+  {
+    id: 1,
+    title: "Payment (Credit)",
+    subText: "Notifications for credits into you account from transfers, etc",
+  },
+  { id: 2, title: "Email" },
+  { id: 3, title: "Push" },
+  { id: 4, title: "Whatsapp" },
+  { id: 5, title: "SMS", subText: "*Charges apply - Each SMMS alert costs" },
+];
+
+export const debitPreference = [
+  {
+    id: 1,
+    title: "Payment (Debit)",
+    subText: "Notifications for debits into you account from transfers, etc",
+  },
+  { id: 2, title: "Email" },
+  { id: 3, title: "Push" },
+  { id: 4, title: "Whatsapp" },
+  { id: 5, title: "SMS", subText: "*Charges apply - Each SMMS alert costs" },
+];

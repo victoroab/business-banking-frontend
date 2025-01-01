@@ -9,7 +9,7 @@ const TransactionLimit = () => {
     setEditLimit(true);
   };
   return (
-    <div className="flex px-8 flex-col gap-8 w-full">
+    <div className="flex flex-col gap-8 w-full">
       <div className="flex flex-col gap-2">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
           Transaction Limits
