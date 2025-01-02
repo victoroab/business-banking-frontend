@@ -40,6 +40,14 @@ export const documentFormats = [
   },
 ];
 
+export const securityQuestions = [
+  { id: 1, question: "What was the name of your first pet?" },
+  { id: 2, question: "What is your mother's maiden name?" },
+  { id: 3, question: "What was the make and model of your first car?" },
+  { id: 4, question: "What is the name of the town where you were born?" },
+  { id: 5, question: "What was your childhood best friend's name?" },
+];
+
 export const KYCProgressSteps: ProgressStepsProps[] = [
   {
     id: 1,

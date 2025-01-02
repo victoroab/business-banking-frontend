@@ -9,6 +9,9 @@ import ResetPasscode from "./ResetPasscode";
 import SecurityQuestion from "./SecurityQuestion";
 import BankStatement from "./BankStatement";
 import ContactUs from "./ContactUs";
+import DeviceMgt from "./DeviceMgt";
+import ManageBeneficiary from "./ManageBeneficiary";
+import TransactionPin from "./TransactionPin";
 
 const Account = () => {
   const [currentTab, setCurrentTab] = useState<number>(1);
@@ -41,8 +44,11 @@ const Account = () => {
           {currentTab === 3 && <TransactionLimit />}
           {currentTab === 4 && <NotificationPreference />}
           {currentTab === 5 && <ResetPasscode />}
+          {currentTab === 6 && <TransactionPin />}
           {currentTab === 7 && <SecurityQuestion />}
           {currentTab === 8 && <BankStatement />}
+          {currentTab === 9 && <ManageBeneficiary />}
+          {currentTab === 10 && <DeviceMgt />}
           {currentTab === 11 && <ContactUs />}
         </div>
       </div>

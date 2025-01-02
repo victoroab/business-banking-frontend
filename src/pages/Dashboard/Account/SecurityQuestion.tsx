@@ -2,11 +2,12 @@ import toast from "react-hot-toast";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import FormInput from "../../../components/FormInput";
+import { securityQuestions } from "../../../utils";
 
 const SecurityQuestion = () => {
   const initialValues = {
-    address: "",
-    city: "",
+    question: "",
+    answer: "",
   };
 
   const onSubmit = async (formData: any) => {
@@ -18,8 +19,8 @@ const SecurityQuestion = () => {
   };
 
   const businessAddressSchema = Yup.object().shape({
-    address: Yup.string().required("Address is required"),
-    city: Yup.string().required("City is required"),
+    question: Yup.string().required("Question is required"),
+    answer: Yup.string().required("Answer is required"),
   });
 
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
@@ -45,22 +46,27 @@ const SecurityQuestion = () => {
 
       <div className="flex flex-col gap-4 w-full">
         <FormInput
-          id={""}
           placeholder="Security Question"
-          name="address"
-          error={touched.address ? errors.address : undefined}
-          onBlur={handleBlur}
+          id={"question"}
+          name="question"
+          error={touched.question ? errors.question : undefined}
+          type="cSelect"
+          selectOptions={securityQuestions}
+          keyPropertyName="question"
+          valuePropertyName="question"
+          itemPropertyName="question"
+          defaultValue={values?.question}
           onChange={handleChange}
-          defaultValue={values?.address}
+          onBlur={handleBlur}
         />
         <FormInput
-          id={""}
+          id={"answer"}
           placeholder="Answer"
-          name="city"
-          error={touched.city ? errors.city : undefined}
+          name="answer"
+          error={touched.answer ? errors.answer : undefined}
           onBlur={handleBlur}
           onChange={handleChange}
-          defaultValue={values?.city}
+          defaultValue={values?.answer}
         />
       </div>
 
