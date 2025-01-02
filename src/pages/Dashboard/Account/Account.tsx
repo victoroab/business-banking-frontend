@@ -10,7 +10,7 @@ import SecurityQuestion from "./SecurityQuestion";
 import BankStatement from "./BankStatement";
 import ContactUs from "./ContactUs";
 import DeviceMgt from "./DeviceMgt";
-import ManageBeneficiary from "./ManageBeneficiary";
+import ManageBeneficiary from "./ManagementBeneficiary/ManageBeneficiary";
 import TransactionPin from "./TransactionPin";
 
 const Account = () => {
@@ -38,9 +38,7 @@ const Account = () => {
 
         <div className="flex flex-col gap-6 bg-white w-full px-20 py-11">
           {currentTab === 1 && <Profile />}
-
           {currentTab === 2 && <Verification />}
-
           {currentTab === 3 && <TransactionLimit />}
           {currentTab === 4 && <NotificationPreference />}
           {currentTab === 5 && <ResetPasscode />}

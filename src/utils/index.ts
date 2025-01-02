@@ -16,6 +16,12 @@ import {
 } from "../interfaces/Global";
 import { BettingIcon, CableIcon, ElectricityIcon } from "../assets/svg/PayBill";
 
+export const manageBeneficiaryHeader = [
+  { id: 1, title: "Transfer" },
+  { id: 2, title: "Airtime & Data" },
+  { id: 3, title: "Bills" },
+];
+
 export const documentFormats = [
   { id: 1, format: "PDF", logoImage: "https://example.com/logos/pdf-logo.png" },
   {
