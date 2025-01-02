@@ -20,9 +20,9 @@
 }
 
 .selectText.focused {
-  border: solid 2px var(--pryColor);
+  border: solid 1px var(--pryColor);
   outline: 0;
-  border-radius: 16px;
+  border-radius: 12px;
 }
 
 .customSelect .options {

@@ -2,11 +2,15 @@ import toast from "react-hot-toast";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import FormInput from "../../../components/FormInput";
+import Calender from "../../../components/Calendar/DatePicker";
+import { useState } from "react";
+import { documentFormats } from "../../../utils";
 
-const SecurityQuestion = () => {
+const BankStatement = () => {
+  const [startDob, setStartDob] = useState(new Date());
+  const [endDob, setEndDob] = useState(new Date());
   const initialValues = {
-    address: "",
-    city: "",
+    format: "",
   };
 
   const onSubmit = async (formData: any) => {
@@ -18,8 +22,7 @@ const SecurityQuestion = () => {
   };
 
   const businessAddressSchema = Yup.object().shape({
-    address: Yup.string().required("Address is required"),
-    city: Yup.string().required("City is required"),
+    format: Yup.string().required("format is required"),
   });
 
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
@@ -36,31 +39,26 @@ const SecurityQuestion = () => {
     >
       <div className="flex flex-col gap-4 w-full">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-          Security Question
+          Bank Statement
         </h3>
-        <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-          Enhance the security of your account by setting a security question.
-        </p>
       </div>
 
       <div className="flex flex-col gap-4 w-full">
+        <Calender setSelectedDate={setStartDob} selectedDate={startDob} />
+        <Calender setSelectedDate={setEndDob} selectedDate={endDob} />
         <FormInput
-          id={""}
-          placeholder="Security Question"
-          name="address"
-          error={touched.address ? errors.address : undefined}
-          onBlur={handleBlur}
+          placeholder="PDF"
+          id={"format"}
+          name="format"
+          error={touched.format ? errors.format : undefined}
+          type="cSelect"
+          selectOptions={documentFormats}
+          keyPropertyName="format"
+          valuePropertyName="format"
+          itemPropertyName="format"
+          defaultValue={values?.format}
           onChange={handleChange}
-          defaultValue={values?.address}
-        />
-        <FormInput
-          id={""}
-          placeholder="Answer"
-          name="city"
-          error={touched.city ? errors.city : undefined}
           onBlur={handleBlur}
-          onChange={handleChange}
-          defaultValue={values?.city}
         />
       </div>
 
@@ -73,4 +71,4 @@ const SecurityQuestion = () => {
   );
 };
 
-export default SecurityQuestion;
+export default BankStatement;

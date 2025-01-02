@@ -7,6 +7,8 @@ import Verification from "./Verification";
 import NotificationPreference from "./NotificationPreference";
 import ResetPasscode from "./ResetPasscode";
 import SecurityQuestion from "./SecurityQuestion";
+import BankStatement from "./BankStatement";
+import ContactUs from "./ContactUs";
 
 const Account = () => {
   const [currentTab, setCurrentTab] = useState<number>(1);
@@ -40,6 +42,8 @@ const Account = () => {
           {currentTab === 4 && <NotificationPreference />}
           {currentTab === 5 && <ResetPasscode />}
           {currentTab === 7 && <SecurityQuestion />}
+          {currentTab === 8 && <BankStatement />}
+          {currentTab === 11 && <ContactUs />}
         </div>
       </div>
     </div>

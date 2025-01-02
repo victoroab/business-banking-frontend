@@ -16,6 +16,30 @@ import {
 } from "../interfaces/Global";
 import { BettingIcon, CableIcon, ElectricityIcon } from "../assets/svg/PayBill";
 
+export const documentFormats = [
+  { id: 1, format: "PDF", logoImage: "https://example.com/logos/pdf-logo.png" },
+  {
+    id: 2,
+    format: "Word",
+    logoImage: "https://example.com/logos/word-logo.png",
+  },
+  {
+    id: 3,
+    format: "Excel",
+    logoImage: "https://example.com/logos/excel-logo.png",
+  },
+  {
+    id: 4,
+    format: "PowerPoint",
+    logoImage: "https://example.com/logos/powerpoint-logo.png",
+  },
+  {
+    id: 5,
+    format: "Text",
+    logoImage: "https://example.com/logos/text-logo.png",
+  },
+];
+
 export const KYCProgressSteps: ProgressStepsProps[] = [
   {
     id: 1,
