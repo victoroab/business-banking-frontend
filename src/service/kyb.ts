@@ -23,7 +23,7 @@ const customBaseQuery: BaseQueryFn<
     prepareHeaders: (headers, { getState }) => {
       const userToken = (getState() as RootState)?.auth?.userInfo
         ?.refresh_token;
-      console.log(userToken);
+
       if (userToken) {
         headers.set("Authorization", `Bearer ${userToken}`);
       }

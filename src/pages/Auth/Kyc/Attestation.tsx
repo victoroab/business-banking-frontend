@@ -7,7 +7,10 @@ import { useNavigate } from "react-router-dom";
 import { attestation } from "../../../utils";
 import { KYCPageProps } from "../../../interfaces/Global";
 import { FolderIcon } from "../../../assets/svg/Auth";
-import { setKycCurrentStep } from "../../../store/slice/authSlice";
+import {
+  setKycCurrentStep,
+  setKYCIdentityStep,
+} from "../../../store/slice/authSlice";
 import Checkbox from "../../../components/FormInput/Checkbox";
 import { useState } from "react";
 import { useAttestationMutation } from "../../../service/kyb";
@@ -31,6 +34,7 @@ const Attestation: React.FC<KYCPageProps> = () => {
       attest: isChecked,
     };
     await attest(requiredData).unwrap();
+    dispatch(setKYCIdentityStep(1));
     handleShow("submit");
   };
 

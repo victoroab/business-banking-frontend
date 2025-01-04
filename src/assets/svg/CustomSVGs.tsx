@@ -354,7 +354,7 @@ export const BankIcon = (props: SVGProps<SVGSVGElement>) => (
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
-    <g clip-path="url(#clip0_567_3586)">
+    <g clipPath="url(#clip0_567_3586)">
       <path
         d="M4 10V17H7V10H4ZM10 10V17H13V10H10ZM2 22H21V19H2V22ZM16 10V17H19V10H16ZM11.5 1L2 6V8H21V6L11.5 1Z"
         fill="#0E0C60"

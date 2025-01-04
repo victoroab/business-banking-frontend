@@ -1,20 +1,16 @@
 import { IDOption } from "../../../interfaces/Global";
 import { accountOptions } from "../../../utils";
-import IdentityDetails from "./Identity/IdentityDetails";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { selectGlobal } from "../../../store/slice/globalSlice";
 import { selectAuth, setKYCIdentityStep } from "../../../store/slice/authSlice";
-
 import BVN from "./Identity/BVN";
 
 const IdVerification = () => {
   const { kycIdentityStep } = useAppSelector(selectAuth);
-  const { havePersonalAccount } = useAppSelector(selectGlobal);
   const dispatch = useAppDispatch();
 
   return (
     <>
-      {kycIdentityStep === "DEFAULT" && (
+      {kycIdentityStep === "DEFAULT" ? (
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-4">
             <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
@@ -61,8 +57,9 @@ const IdVerification = () => {
             </button>
           </div>
         </div>
+      ) : (
+        <BVN />
       )}
-      {havePersonalAccount ? <IdentityDetails /> : <BVN />}
     </>
   );
 };
