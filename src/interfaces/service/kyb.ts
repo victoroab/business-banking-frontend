@@ -25,7 +25,7 @@ export type Director = {
   id?: number;
   firstName: string;
   lastName: string;
-  idNo: string;
+  idNumber: string;
   idType: string;
   email: string;
   phone: string;

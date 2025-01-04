@@ -147,6 +147,7 @@ const EditDirector = () => {
           />
 
           <ImageUpload
+            isBase64={true}
             title="Upload Director's ID Card"
             setDocument={setDocument}
           />

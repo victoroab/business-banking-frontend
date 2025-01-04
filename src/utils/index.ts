@@ -633,6 +633,14 @@ export const industries = [
   { id: 5, industry: "Technology" },
 ];
 
+export const companyType = [
+  { id: 1, type: "COMPANY" },
+  { id: 2, type: "BUSINESS_NAME" },
+  { id: 3, type: "INCORPORATED_TRUSTESS" },
+  { id: 4, type: "LIMITED_PARTNERSHIP" },
+  { id: 5, type: "LIMITED_LIABILITY_PARTNERSHIP" },
+];
+
 export const companySize = [
   { id: 1, size: "1-100" },
   { id: 2, size: "101-200" },

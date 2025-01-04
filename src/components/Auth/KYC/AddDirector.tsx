@@ -11,7 +11,7 @@ interface AddDirector {
     id: any;
     firstName: string;
     lastName: string;
-    idNo: string;
+    idNumber: string;
     idType: string;
     email: string;
     phone: string;
@@ -29,7 +29,7 @@ const AddDirector = ({
   const initialValues = {
     firstName: "",
     lastName: "",
-    idNo: "",
+    idNumber: "",
     idType: "",
     email: "",
     phone: "",
@@ -38,7 +38,7 @@ const AddDirector = ({
   const formSchema = Yup.object().shape({
     firstName: Yup.string().required("First name is required"),
     lastName: Yup.string().required("Last name is required"),
-    idNo: Yup.string().required("ID No is required"),
+    idNumber: Yup.string().required("ID No is required"),
     idType: Yup.string().required("ID Type is required"),
     email: Yup.string().required("Email is required"),
     phone: Yup.string().required("Phone is required"),
@@ -50,7 +50,7 @@ const AddDirector = ({
         id: Date.now(),
         firstName: values.firstName,
         lastName: values.lastName,
-        idNo: values.idNo,
+        idNumber: values.idNumber,
         idType: values.idType,
         email: values.email,
         phone: values.phone,
@@ -123,12 +123,12 @@ const AddDirector = ({
           <FormInput
             placeholder="Identification Number"
             type="text"
-            id={"idNo"}
-            name="idNo"
-            error={touched.idNo ? errors.idNo : undefined}
+            id={"idNumber"}
+            name="idNumber"
+            error={touched.idNumber ? errors.idNumber : undefined}
             onBlur={handleBlur}
             onChange={handleChange}
-            defaultValue={values?.idNo}
+            defaultValue={values?.idNumber}
           />
           <FormInput
             placeholder="Email Address"
@@ -152,6 +152,7 @@ const AddDirector = ({
           />
 
           <ImageUpload
+            isBase64={true}
             title="Upload Director's ID Card"
             setDocument={setDocument}
           />

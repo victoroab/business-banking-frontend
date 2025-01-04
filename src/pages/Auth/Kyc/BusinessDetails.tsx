@@ -56,7 +56,7 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
       idCard: director.idCard,
       firstName: director.firstName,
       lastName: director.lastName,
-      idNo: director.idNo,
+      idNumber: director.idNumber,
       idType: director.idType,
       email: director.email,
       phone: director.phone,
@@ -67,7 +67,7 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
         logo: logo,
         name: formData?.name,
         phone: formData?.phone,
-        businessEntity: formData?.entity,
+        businessEntity: formData?.businessEntity,
         companyType: formData?.companyType,
         rcNumber: formData?.rcNumber,
         industry: formData?.industry,
@@ -75,7 +75,7 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
         annualIncome: formData?.annualIncome,
         directors: updateDirectorList,
       };
-
+      console.log(requiredData);
       const response = await verifyBusinessDetails(requiredData).unwrap();
       toast.success(response?.message);
       dispatch(setKycCurrentStep(6));
@@ -218,13 +218,17 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
           />
           <FormInput
             placeholder="Business Type"
-            type="text"
+            type="cSelect"
             id={"companyType"}
             name="companyType"
             error={touched.companyType ? errors.companyType : undefined}
             onBlur={handleBlur}
             onChange={handleChange}
             defaultValue={values?.companyType}
+            selectOptions={industries}
+            keyPropertyName="type"
+            valuePropertyName="type"
+            itemPropertyName="type"
           />
           <FormInput
             placeholder="RC Number"

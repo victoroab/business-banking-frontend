@@ -5,11 +5,13 @@ interface ImageUploadProps {
   title: string;
   required?: boolean;
   setDocument: Dispatch<SetStateAction<any>>;
+  isBase64: boolean;
 }
 const ImageUpload: React.FC<ImageUploadProps> = ({
   title,
   required,
   setDocument,
+  isBase64,
 }) => {
   const [file, setFile] = useState<File | null>(null);
 
@@ -17,9 +19,21 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
     if (event.target.files && event.target.files[0]) {
       const selectedFile = event.target.files[0];
       setFile(selectedFile);
-      const formdata = new FormData();
-      formdata.append("file", selectedFile);
-      setDocument(formdata);
+
+      if (isBase64) {
+        const reader = new FileReader();
+
+        reader.onloadend = () => {
+          const base64String = reader.result as string;
+          setDocument(base64String);
+        };
+
+        reader.readAsDataURL(selectedFile);
+      } else {
+        const formdata = new FormData();
+        formdata.append("file", selectedFile);
+        setDocument(formdata);
+      }
     }
   };
 

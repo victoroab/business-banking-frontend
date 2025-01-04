@@ -28,7 +28,6 @@ const BusinessDocument: React.FC<KYCPageProps> = () => {
       toast.success(response?.message);
       dispatch(setKycCurrentStep(7));
     } catch (error: any) {}
-
   };
 
   return (
@@ -43,21 +42,25 @@ const BusinessDocument: React.FC<KYCPageProps> = () => {
       </div>
       <div className="flex flex-col gap-4 w-full px-4">
         <ImageUpload
+          isBase64={false}
           title="CAC Certificate of your business"
           required
           setDocument={setCACDocument}
         />
         <ImageUpload
+          isBase64={false}
           title="Memorandum of Incorporation"
           required
           setDocument={setMemorandumDocument}
         />
         <ImageUpload
+          isBase64={false}
           title="SCUML Document"
           required
           setDocument={setScumlDocument}
         />
         <ImageUpload
+          isBase64={false}
           title="Utility Bill (Valid bill within the last 90 datys)"
           required
           setDocument={setUtilityDocument}
