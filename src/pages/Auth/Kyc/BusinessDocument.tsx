@@ -1,14 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
 import { KYCPageProps } from "../../../interfaces/Global";
 import ImageUpload from "../../../components/Upload/ImageUpload";
 import { setKycCurrentStep } from "../../../store/slice/authSlice";
 import { useAppDispatch } from "../../../hooks";
+import { useVerifyBusinessDocumentsMutation } from "../../../service/kyb";
+import toast from "react-hot-toast";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const BusinessDocument: React.FC<KYCPageProps> = () => {
+  const [cacDocument, setCACDocument] = useState<string>("");
+  const [memorandumDocument, setMemorandumDocument] = useState<string>("");
+  const [scumlDocument, setScumlDocument] = useState<string>("");
+  const [utilityDocument, setUtilityDocument] = useState<string>("");
+  const [businessDocument, { isLoading }] =
+    useVerifyBusinessDocumentsMutation();
   const dispatch = useAppDispatch();
 
-  const handleSubmit = () => {
-    dispatch(setKycCurrentStep(7));
+  const handleSubmit = async () => {
+    try {
+      const requiredData = {
+        cac: cacDocument,
+        memorandum: memorandumDocument,
+        scuml: scumlDocument,
+        utilityBill: utilityDocument,
+      };
+      const response = await businessDocument(requiredData).unwrap();
+      toast.success(response?.message);
+      dispatch(setKycCurrentStep(7));
+    } catch (error: any) {}
+
   };
 
   return (
@@ -22,12 +42,25 @@ const BusinessDocument: React.FC<KYCPageProps> = () => {
         </p>
       </div>
       <div className="flex flex-col gap-4 w-full px-4">
-        <ImageUpload title="CAC Certificate of your business" required />
-        <ImageUpload title="Memorandum of Incorporation" required />
-        <ImageUpload title="SCUML Document" required />
+        <ImageUpload
+          title="CAC Certificate of your business"
+          required
+          setDocument={setCACDocument}
+        />
+        <ImageUpload
+          title="Memorandum of Incorporation"
+          required
+          setDocument={setMemorandumDocument}
+        />
+        <ImageUpload
+          title="SCUML Document"
+          required
+          setDocument={setScumlDocument}
+        />
         <ImageUpload
           title="Utility Bill (Valid bill within the last 90 datys)"
           required
+          setDocument={setUtilityDocument}
         />
       </div>
       <div className="flex justify-center w-full gap-6 px-4">
@@ -36,7 +69,7 @@ const BusinessDocument: React.FC<KYCPageProps> = () => {
           type="submit"
           onClick={handleSubmit}
         >
-          Continue
+          {isLoading ? <Spinner /> : "Continue"}
         </button>
       </div>
     </div>

@@ -6,7 +6,11 @@ import {
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store/store";
-import { AddressProps, BusinessInfo } from "../interfaces/service/kyb";
+import {
+  AddressProps,
+  BusinessDocument,
+  BusinessInfo,
+} from "../interfaces/service/kyb";
 const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 
 const customBaseQuery: BaseQueryFn<
@@ -175,7 +179,7 @@ export const kybApi = createApi({
       invalidatesTags: [{ type: "KYB", id: "KYB" }],
     }),
     //verify-business-documents
-    verifyBusinessDocuments: builder.mutation<any, any>({
+    verifyBusinessDocuments: builder.mutation<any, BusinessDocument>({
       query: (body) => ({
         url: "/kyb/verify-busines-documents",
         method: "POST",

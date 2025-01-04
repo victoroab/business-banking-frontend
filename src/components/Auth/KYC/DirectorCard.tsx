@@ -28,8 +28,8 @@ const AddedDirector: React.FC<EventLineUpProps> = ({ onEdit, onDelete }) => {
                 <div className="flex items-center gap-4">
                   <div className="flex items-center justify-center w-[40px] h-[40px] bg-[#f1f2f3] p-4 rounded-full">
                     <h3 className="text-pryColor font-semibold text-lg font-bricolage leading-6">
-                      {director.firstName.slice(0, 1) +
-                        director.lastName.slice(0, 1)}
+                      {director.firstName.slice(0, 1)?.toUpperCase() +
+                        director.lastName.slice(0, 1)?.toUpperCase()}
                     </h3>
                   </div>
                   <div className="flex flex-col gap-2">

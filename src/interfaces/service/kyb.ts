@@ -11,6 +11,7 @@ export type BusinessInfo = {
   logo: string;
   name: string;
   phone: string;
+  businessEntity: string;
   companyType: "COMPANY" | "SOLE_PROPRIETORSHIP" | "PARTNERSHIP";
   rcNumber: string;
   industry: string;
@@ -28,4 +29,11 @@ export type Director = {
   idType: string;
   email: string;
   phone: string;
+};
+
+export type BusinessDocument = {
+  cac: string;
+  memorandum: string;
+  scuml: string;
+  utilityBill: string;
 };
