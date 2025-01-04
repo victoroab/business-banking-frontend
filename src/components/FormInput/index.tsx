@@ -54,6 +54,21 @@ const FormInput = ({
             itemPropertyName={itemPropertyName}
             valuePropertyName={valuePropertyName}
           />
+        ) : type === "checkbox" ? (
+          <div className="flex items-center w-full gap-2">
+            <input
+              id={id}
+              name={name}
+              type={type}
+              onChange={onChange}
+              onBlur={onBlur}
+              className={error ? "errors  !m-0" : "!m-0"}
+              placeholder={placeholder}
+              disabled={disabled}
+              // checked={defaultCheck}
+            />
+            <small className="">{label} </small>
+          </div>
         ) : (
           <>
             <input

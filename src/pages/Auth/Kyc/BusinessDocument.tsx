@@ -3,29 +3,29 @@ import { KYCPageProps } from "../../../interfaces/Global";
 import ImageUpload from "../../../components/Upload/ImageUpload";
 import { setKycCurrentStep } from "../../../store/slice/authSlice";
 import { useAppDispatch } from "../../../hooks";
-import { useVerifyBusinessDocumentsMutation } from "../../../service/kyb";
-import toast from "react-hot-toast";
-import Spinner from "../../../components/Spinner/Spinner";
+// import { useVerifyBusinessDocumentsMutation } from "../../../service/kyb";
+// import toast from "react-hot-toast";
+// import Spinner from "../../../components/Spinner/Spinner";
 
 const BusinessDocument: React.FC<KYCPageProps> = () => {
   const [cacDocument, setCACDocument] = useState<string>("");
   const [memorandumDocument, setMemorandumDocument] = useState<string>("");
   const [scumlDocument, setScumlDocument] = useState<string>("");
   const [utilityDocument, setUtilityDocument] = useState<string>("");
-  const [businessDocument, { isLoading }] =
-    useVerifyBusinessDocumentsMutation();
+  // const [businessDocument, { isLoading }] =
+  //   useVerifyBusinessDocumentsMutation();
   const dispatch = useAppDispatch();
-
+  console.log(cacDocument, memorandumDocument, scumlDocument, utilityDocument);
   const handleSubmit = async () => {
     try {
-      const requiredData = {
-        cac: cacDocument,
-        memorandum: memorandumDocument,
-        scuml: scumlDocument,
-        utilityBill: utilityDocument,
-      };
-      const response = await businessDocument(requiredData).unwrap();
-      toast.success(response?.message);
+      // const requiredData = {
+      //   cac: cacDocument,
+      //   memorandum: memorandumDocument,
+      //   scuml: scumlDocument,
+      //   utilityBill: utilityDocument,
+      // };
+      // const response = await businessDocument(requiredData).unwrap();
+      // toast.success(response?.message);
       dispatch(setKycCurrentStep(7));
     } catch (error: any) {}
   };
@@ -72,7 +72,8 @@ const BusinessDocument: React.FC<KYCPageProps> = () => {
           type="submit"
           onClick={handleSubmit}
         >
-          {isLoading ? <Spinner /> : "Continue"}
+          Continue
+          {/* {isLoading ? <Spinner /> : "Continue"} */}
         </button>
       </div>
     </div>

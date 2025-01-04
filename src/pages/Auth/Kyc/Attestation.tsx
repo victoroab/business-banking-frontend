@@ -8,15 +8,32 @@ import { attestation } from "../../../utils";
 import { KYCPageProps } from "../../../interfaces/Global";
 import { FolderIcon } from "../../../assets/svg/Auth";
 import { setKycCurrentStep } from "../../../store/slice/authSlice";
+import Checkbox from "../../../components/FormInput/Checkbox";
+import { useState } from "react";
+import { useAttestationMutation } from "../../../service/kyb";
+
+import Spinner from "../../../components/Spinner/Spinner";
 
 const Attestation: React.FC<KYCPageProps> = () => {
   const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
   const dispatch = useAppDispatch();
-  const handleSubmit = () => {
+  const [isChecked, setIsChecked] = useState(false);
+  const [attest, { isLoading }] = useAttestationMutation();
+  const navigate = useNavigate();
+
+  const handleCheckboxChange = () => {
+    setIsChecked((prev) => !prev);
+  };
+
+  const handleSubmit = async () => {
+    const requiredData = {
+      attest: isChecked,
+    };
+    await attest(requiredData).unwrap();
     handleShow("submit");
   };
-  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col gap-6 justify-center items-center px-6">
       <div className="flex flex-col gap-4">
@@ -52,10 +69,11 @@ const Attestation: React.FC<KYCPageProps> = () => {
         className="p-4 gap-4 rounded-md items-center flex w-full"
         style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
       >
-        <input type="checkbox" />
-        <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-          I Attest that all the information provided above is correct
-        </p>
+        <Checkbox
+          checked={isChecked}
+          onChange={handleCheckboxChange}
+          label="I Attest that all the information provided above is correct"
+        />
       </div>
 
       <div className="flex justify-center  w-full gap-6">
@@ -64,7 +82,7 @@ const Attestation: React.FC<KYCPageProps> = () => {
           type="submit"
           onClick={handleSubmit}
         >
-          Continue
+          {isLoading ? <Spinner /> : "Continue"}
         </button>
       </div>
 
