@@ -3,11 +3,7 @@ import PopUp from "../../PopUps/PopUp";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import {
-  editDirector,
-  selectAuth,
-  setSelectedDirector,
-} from "../../../store/slice/authSlice";
+import { editDirector, selectAuth } from "../../../store/slice/authSlice";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import FormInput from "../../FormInput";
 import { AccountTypes } from "../../../utils";
@@ -39,7 +35,7 @@ const EditDirector = () => {
   const onSubmit = () => {
     try {
       const newDirector = {
-        id: Date.now(),
+        id: selectedDirector?.id,
         firstName: values.firstName,
         lastName: values.lastName,
         idNo: values.idNo,
@@ -48,6 +44,7 @@ const EditDirector = () => {
         phone: values.phone,
         idCard: document,
       };
+      console.log(newDirector);
       dispatch(editDirector(newDirector));
       resetForm();
       handleShow("edit-director");

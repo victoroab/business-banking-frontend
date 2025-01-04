@@ -33,7 +33,6 @@ import EditDirector from "../../../components/Auth/KYC/EditDirector";
 const BusinessDetails: React.FC<KYCPageProps> = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const [addNewDirector, setAddNewDirector] = useState<boolean>(true);
-  const [directors, setDirectors] = useState<Director[]>([]);
   const toggle = useAppSelector(selectGlobal);
   const dispatch = useAppDispatch();
   const [logo, setLogo] = useState<string>("");
@@ -53,7 +52,7 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
   };
 
   const onSubmit = async (formData: any) => {
-    const updateDirectorList = directors.map((director: any) => ({
+    const updateDirectorList = businessDirector.map((director: any) => ({
       idCard: director.idCard,
       firstName: director.firstName,
       lastName: director.lastName,
@@ -77,9 +76,9 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
         directors: updateDirectorList,
       };
 
-      // const response = await verifyBusinessDetails(requiredData).unwrap();
-      // toast.success(response?.message);
-      // dispatch(setKycCurrentStep(6));
+      const response = await verifyBusinessDetails(requiredData).unwrap();
+      toast.success(response?.message);
+      dispatch(setKycCurrentStep(6));
     } catch (error: any) {
       toast.error(error.data.message);
     }
@@ -104,7 +103,6 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
     });
 
   const handleAddDirector = (newDirector: Director) => {
-    setDirectors([...directors, newDirector]);
     dispatch(addToDirector(newDirector));
   };
 
@@ -113,7 +111,6 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
   };
 
   const handleDeleteDirector = (id: number) => {
-    setDirectors(directors.filter((director) => director.id !== id));
     dispatch(removeDirector(id));
   };
 

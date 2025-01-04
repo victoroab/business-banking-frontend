@@ -67,19 +67,19 @@ export const authSlice = createSlice({
       state.businessDirector?.push({ ...action.payload });
     },
     editDirector: (state, action) => {
-      const existingDirector = state.businessDirector?.find(
-        (item: Director) => item.id === action.payload.id
-      );
       console.log(action.payload);
-      if (existingDirector) {
-        existingDirector.firstName = action.payload.firstName;
-        existingDirector.lastName = action.payload.lastName;
-        existingDirector.idNo = action.payload.idNo;
-        existingDirector.idType = action.payload.idType;
-        existingDirector.email = action.payload.email;
-        existingDirector.phone = action.payload.phone;
-        existingDirector.idCard = action.payload.idCard;
-      }
+      const existingDirector = state.businessDirector?.map((item: Director) => {
+        if (item.id === action.payload.id) {
+          return {
+            ...item,
+            ...action.payload,
+          };
+        }
+        return item;
+      });
+      state.businessDirector = existingDirector;
+
+      console.log(state.businessDirector);
     },
 
     removeDirector: (state, action) => {
