@@ -17,7 +17,7 @@ const EditDirector = () => {
   const initialValues = {
     firstName: selectedDirector?.firstName || "",
     lastName: selectedDirector?.lastName || "",
-    idNo: selectedDirector?.idNo || "",
+    idNo: selectedDirector?.idNumber || "",
     idType: selectedDirector?.idType || "",
     email: selectedDirector?.email || "",
     phone: selectedDirector?.phone || "",
