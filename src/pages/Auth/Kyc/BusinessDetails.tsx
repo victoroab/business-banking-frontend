@@ -2,9 +2,15 @@ import React, { useRef, useState } from "react";
 import { KYCPageProps } from "../../../interfaces/Global";
 import FormInput from "../../../components/FormInput";
 import { CautionIcon, UploadIcon } from "../../../assets/svg/CustomSVGs";
-import AddDirector from "../../../components/Auth/AddDirector";
-import { setKycCurrentStep } from "../../../store/slice/authSlice";
-import { useAppDispatch } from "../../../hooks";
+import AddDirector from "../../../components/Auth/KYC/AddDirector";
+import {
+  addToDirector,
+  removeDirector,
+  selectAuth,
+  setKycCurrentStep,
+  setSelectedDirector,
+} from "../../../store/slice/authSlice";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import Spinner from "../../../components/Spinner/Spinner";
@@ -14,24 +20,31 @@ import {
   annualIncome,
   companyEntity,
   companySize,
+  handleFileUpload,
   industries,
 } from "../../../utils";
 import { Director } from "../../../interfaces/service/kyb";
 import { ArrowDownIcon } from "../../../assets/svg/Auth";
+import AddedDirector from "../../../components/Auth/KYC/DirectorCard";
+import { useGlobalHooks } from "../../../hooks/globalHooks";
+import { selectGlobal } from "../../../store/slice/globalSlice";
+import EditDirector from "../../../components/Auth/KYC/EditDirector";
 
 const BusinessDetails: React.FC<KYCPageProps> = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const [addNewDirector, setAddNewDirector] = useState<boolean>(true);
   const [directors, setDirectors] = useState<Director[]>([]);
+  const toggle = useAppSelector(selectGlobal);
   const dispatch = useAppDispatch();
   const [logo, setLogo] = useState<string>("");
   const [verifyBusinessDetails, { isLoading }] =
     useVerifyBusinesDetailsMutation();
-
+  const { businessDirector } = useAppSelector(selectAuth);
+  const { handleShow } = useGlobalHooks();
   const initialValues = {
     name: "",
     phone: "",
-    entity: "",
+    businessEntity: "",
     companyType: "",
     rcNumber: "",
     industry: "",
@@ -40,26 +53,33 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
   };
 
   const onSubmit = async (formData: any) => {
+    const updateDirectorList = directors.map((director: any) => ({
+      idCard: director.idCard,
+      firstName: director.firstName,
+      lastName: director.lastName,
+      idNo: director.idNo,
+      idType: director.idType,
+      email: director.email,
+      phone: director.phone,
+    }));
+
     try {
       const requiredData = {
         logo: logo,
         name: formData?.name,
         phone: formData?.phone,
-        entity: formData?.entity,
+        businessEntity: formData?.entity,
         companyType: formData?.companyType,
         rcNumber: formData?.rcNumber,
         industry: formData?.industry,
         size: formData?.size,
         annualIncome: formData?.annualIncome,
-        directors: directors,
+        directors: updateDirectorList,
       };
 
-      const response = await verifyBusinessDetails(requiredData).unwrap();
-      toast.success(response?.message);
-      dispatch(setKycCurrentStep(6));
-      setLogo("logo");
-
-      console.log(requiredData);
+      // const response = await verifyBusinessDetails(requiredData).unwrap();
+      // toast.success(response?.message);
+      // dispatch(setKycCurrentStep(6));
     } catch (error: any) {
       toast.error(error.data.message);
     }
@@ -67,7 +87,7 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
 
   const businessDetailsSchema = Yup.object().shape({
     name: Yup.string().required("Business Name is required"),
-    entity: Yup.string().required("Business Entity is required"),
+    businessEntity: Yup.string().required("Business Entity is required"),
     phone: Yup.string().required("Phone is required"),
     companyType: Yup.string().required("Company Type is required"),
     rcNumber: Yup.string().required("RC Number is required"),
@@ -85,12 +105,25 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
 
   const handleAddDirector = (newDirector: Director) => {
     setDirectors([...directors, newDirector]);
+    dispatch(addToDirector(newDirector));
   };
 
   const scrollToBottom = () => {
     formRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  const handleDeleteDirector = (id: number) => {
+    setDirectors(directors.filter((director) => director.id !== id));
+    dispatch(removeDirector(id));
+  };
+
+  const handleEditDirector = (director: Director) => {
+    console.log(director);
+    console.log("edit");
+    dispatch(setSelectedDirector(director));
+    handleShow("edit-director");
+  };
+  console.log("redux director", businessDirector);
   return (
     <form
       onSubmit={handleSubmit}
@@ -110,29 +143,49 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
           className="py-6 px-10 gap-4 rounded-md items-center flex w-full"
           style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
         >
-          <UploadIcon />
-          <div className="flex flex-col gap-2">
-            <p className="text-greyColr font-workSans leading-4 font-medium text-sm">
-              Upload your business logo
-            </p>
-            <p className="text-[#8E949A] font-workSans leading-4 font-normal text-sm">
-              JPG, PDF, GIF, PNG null:20MB
-            </p>
-          </div>
+          <label
+            htmlFor="logo-upload"
+            className="flex w-full items-center gap-4 rounded-md cursor-pointer"
+          >
+            <div className="">
+              {logo.startsWith("data:image") ? (
+                <img src={logo} alt="Uploaded Logo" className="w-12 h-12" />
+              ) : (
+                <UploadIcon />
+              )}
+            </div>
+
+            <div className="flex flex-col gap-2">
+              <p className="text-greyColr font-workSans leading-4 font-medium text-sm">
+                Upload your business logo
+              </p>
+              <p className="text-[#8E949A] font-workSans leading-4 font-normal text-sm">
+                JPG, PDF, GIF, PNG null:20MB
+              </p>
+            </div>
+
+            <input
+              type="file"
+              accept="image/*,.pdf"
+              onChange={(e) => handleFileUpload(setLogo, e)}
+              className="hidden"
+              id="logo-upload"
+            />
+          </label>
         </div>
 
         <div className="flex flex-col gap-4 w-[100%]">
           <FormInput
             placeholder="Business Entity"
-            id={"entity"}
-            name="entity"
-            error={touched.entity ? errors.entity : undefined}
+            id={"businessEntity"}
+            name="businessEntity"
+            error={touched.businessEntity ? errors.businessEntity : undefined}
             type="cSelect"
             selectOptions={companyEntity}
             keyPropertyName="entity"
             valuePropertyName="entity"
             itemPropertyName="entity"
-            defaultValue={values?.entity}
+            defaultValue={values?.businessEntity}
             onChange={handleChange}
             onBlur={handleBlur}
           />
@@ -241,6 +294,11 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
             </p>
           </div>
 
+          <AddedDirector
+            onEdit={handleEditDirector}
+            onDelete={handleDeleteDirector}
+          />
+
           <AddDirector
             addNewDirector={addNewDirector}
             setAddNewDirector={setAddNewDirector}
@@ -263,6 +321,8 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
         Scroll Down
       </div>
       <div ref={formRef}></div>
+
+      {toggle["edit-director"] && <EditDirector />}
     </form>
   );
 };

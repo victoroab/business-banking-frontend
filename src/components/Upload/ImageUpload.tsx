@@ -1,19 +1,25 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import { UploadBulkIcon } from "../../assets/svg/Auth";
 
 interface ImageUploadProps {
   title: string;
   required?: boolean;
+  setDocument: Dispatch<SetStateAction<any>>;
 }
-const ImageUpload: React.FC<ImageUploadProps> = ({ title, required }) => {
+const ImageUpload: React.FC<ImageUploadProps> = ({
+  title,
+  required,
+  setDocument,
+}) => {
   const [file, setFile] = useState<File | null>(null);
 
-  const handleFileChange = async (
-    event: React.ChangeEvent<HTMLInputElement>
-  ) => {
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.files && event.target.files[0]) {
       const selectedFile = event.target.files[0];
       setFile(selectedFile);
+      const formdata = new FormData();
+      formdata.append("file", selectedFile);
+      setDocument(formdata);
     }
   };
 
@@ -55,7 +61,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({ title, required }) => {
         <input
           id="file-upload"
           type="file"
-          accept=".csv, .pdf"
+          accept="*"
           className="hidden"
           onChange={handleFileChange}
         />

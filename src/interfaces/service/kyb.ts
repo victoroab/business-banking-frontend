@@ -20,6 +20,8 @@ export type BusinessInfo = {
 };
 
 export type Director = {
+  idCard: string;
+  id?: number;
   firstName: string;
   lastName: string;
   idNo: string;

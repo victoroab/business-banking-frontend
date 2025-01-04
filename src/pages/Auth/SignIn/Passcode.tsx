@@ -50,7 +50,13 @@ const LoginPasscode = () => {
       console.log(response);
       toast.success(response?.message);
       dispatch(saveUserInfo(response?.data));
-      navigate("/dashboard");
+
+      if (response?.data?.kyc?.attestation === true) {
+        navigate("/dashboard");
+      } else {
+        navigate("/kyc");
+      }
+    
     } catch (error: any) {
       toast.error(error.data.message);
     }

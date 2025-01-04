@@ -15,6 +15,7 @@ import {
   RowDataProps,
 } from "../interfaces/Global";
 import { BettingIcon, CableIcon, ElectricityIcon } from "../assets/svg/PayBill";
+import { Dispatch, SetStateAction } from "react";
 
 export const manageBeneficiaryHeader = [
   { id: 1, title: "Transfer" },
@@ -752,3 +753,20 @@ export const debitPreference = [
   { id: 4, title: "Whatsapp" },
   { id: 5, title: "SMS", subText: "*Charges apply - Each SMMS alert costs" },
 ];
+
+export const handleFileUpload = (
+  setBase64Document: Dispatch<SetStateAction<string>>,
+  event: React.ChangeEvent<HTMLInputElement>
+) => {
+  const file = event.target.files?.[0];
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onloadend = () => {
+    const base64String = reader.result as string;
+    setBase64Document(base64String);
+  };
+
+  reader.readAsDataURL(file);
+};

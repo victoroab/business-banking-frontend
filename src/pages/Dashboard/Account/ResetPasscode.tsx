@@ -37,7 +37,7 @@ const ResetPasscode = () => {
       </div>
 
       <div
-        className="py-10 px-20 gap-4 rounded-xl flex flex-col w-full justify-center items-center"
+        className="py-10 px-28 gap-4 rounded-xl flex flex-col w-full justify-center items-center"
         style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
       >
         <form className="flex flex-col gap-8 w-full" onSubmit={handleSubmit}>
