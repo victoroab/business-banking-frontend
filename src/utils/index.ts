@@ -140,18 +140,21 @@ export const quickActions = [
     icon: TransferActionIcon,
     title: "Transfer",
     desc: "Send money to anyone",
+    navigation: "/send-money",
   },
   {
     id: 2,
     icon: AirtimeActionIcon,
     title: "Airtime and Data",
     desc: "Recharge your mobile lines",
+    navigation: "/airtime-data",
   },
   {
     id: 3,
     icon: PayBillActionIcon,
     title: "Pay Bills",
     desc: "Renew your DSTV subscription",
+    navigation: "/pay-bills",
   },
 ];
 
