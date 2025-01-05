@@ -18,6 +18,7 @@ interface AuthState {
   userInfo: UserInfo | undefined;
   businessDirector: Director[];
   selectedDirector: Director | undefined;
+  userDetails: any | undefined;
 }
 
 const initialState: AuthState = {
@@ -31,6 +32,7 @@ const initialState: AuthState = {
   userInfo: undefined,
   businessDirector: [],
   selectedDirector: undefined,
+  userDetails: undefined,
 };
 
 export const authSlice = createSlice({
@@ -91,6 +93,10 @@ export const authSlice = createSlice({
     setSelectedDirector: (state, action) => {
       state.selectedDirector = action.payload;
     },
+
+    setUserProfileDetails: (state, action) => {
+      state.userDetails = action.payload;
+    },
   },
 });
 
@@ -107,6 +113,7 @@ export const {
   editDirector,
   removeDirector,
   setSelectedDirector,
+  setUserProfileDetails,
 } = authSlice.actions;
 
 export const selectAuth = (state: RootState) => state.auth;

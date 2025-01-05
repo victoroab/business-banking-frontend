@@ -23,7 +23,7 @@ const customBaseQuery: BaseQueryFn<
     prepareHeaders: (headers, { getState }) => {
       const userToken = (getState() as RootState)?.auth?.userInfo
         ?.refresh_token;
-
+      console.log(userToken);
       if (userToken) {
         headers.set("Authorization", `Bearer ${userToken}`);
       }
@@ -200,7 +200,7 @@ export const kybApi = createApi({
 
       invalidatesTags: [{ type: "KYB", id: "KYB" }],
     }),
-    //ve
+    //attestation
     attestation: builder.mutation<any, { attest: boolean }>({
       query: (body) => ({
         url: "/kyb/attestation",
@@ -209,6 +209,12 @@ export const kybApi = createApi({
       }),
 
       invalidatesTags: [{ type: "KYB", id: "KYB" }],
+    }),
+
+    //kyb
+    kybDetails: builder.query({
+      query: () => "/user/me",
+      providesTags: [{ type: "KYB", id: "KYB" }],
     }),
   }),
 });
@@ -229,4 +235,5 @@ export const {
   useVerifyTinMutation,
   useVerifyBusinesDetailsMutation,
   useGetBVNDetailsQuery,
+  useKybDetailsQuery,
 } = kybApi;

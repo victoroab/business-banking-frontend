@@ -97,6 +97,7 @@ export type StepComponentProps = {
 export interface ProgressProps {
   stepsComponents: StepComponentProps[];
   progressSteps: ProgressStepsProps[];
+  updateProgressStep: any;
 }
 
 type TransactionType = "debit" | "credit" | "transfer";

@@ -1,6 +1,6 @@
 import FormInput from "../../../components/FormInput";
-import { setKycCurrentStep } from "../../../store/slice/authSlice";
-import { useAppDispatch } from "../../../hooks";
+import { selectAuth, setKycCurrentStep } from "../../../store/slice/authSlice";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 import Spinner from "../../../components/Spinner/Spinner";
 import { useVerifyResidentialAddressMutation } from "../../../service/kyb";
 import toast from "react-hot-toast";
@@ -12,14 +12,15 @@ const ResidentialAddress = () => {
   const [setBusinessAddress, { isLoading }] =
     useVerifyResidentialAddressMutation();
   const dispatch = useAppDispatch();
+  const { userDetails } = useAppSelector(selectAuth);
 
   const initialValues = {
-    address: "",
-    city: "",
-    state: "",
-    zipcode: "",
-    landmark: "",
-    lga: "",
+    address: userDetails?.address || "",
+    city: userDetails?.city || "",
+    state: userDetails?.state || "",
+    zipcode: userDetails?.zipcode || "",
+    landmark: userDetails?.landmark || "",
+    lga: userDetails?.lga || "",
   };
 
   const onSubmit = async (formData: AddressProps) => {
@@ -67,7 +68,7 @@ const ResidentialAddress = () => {
           id={""}
           placeholder="Enter your address"
           name="address"
-          error={touched.address ? errors.address : undefined}
+          error={touched.address ? (errors.address as string) : undefined}
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.address}
@@ -76,7 +77,7 @@ const ResidentialAddress = () => {
           id={""}
           placeholder="City"
           name="city"
-          error={touched.city ? errors.city : undefined}
+          error={touched.city ? (errors.city as string) : undefined}
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.city}
@@ -85,7 +86,7 @@ const ResidentialAddress = () => {
           id={""}
           placeholder="State"
           name="state"
-          error={touched.state ? errors.state : undefined}
+          error={touched.state ? (errors.state as string) : undefined}
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.state}
@@ -94,7 +95,7 @@ const ResidentialAddress = () => {
           id={"zipcode"}
           placeholder="Zip Code"
           name="zipcode"
-          error={touched.zipcode ? errors.zipcode : undefined}
+          error={touched.zipcode ? (errors.zipcode as string) : undefined}
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.zipcode}
@@ -103,7 +104,7 @@ const ResidentialAddress = () => {
           id={"landmark"}
           placeholder="Landmark"
           name="landmark"
-          error={touched.landmark ? errors.landmark : undefined}
+          error={touched.landmark ? (errors.landmark as string) : undefined}
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.landmark}
@@ -112,7 +113,7 @@ const ResidentialAddress = () => {
           id={""}
           placeholder="LGA"
           name="lga"
-          error={touched.lga ? errors.lga : undefined}
+          error={touched.lga ? (errors.lga as string) : undefined}
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.lga}

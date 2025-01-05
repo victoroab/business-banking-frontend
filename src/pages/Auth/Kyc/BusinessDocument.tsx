@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import { KYCPageProps } from "../../../interfaces/Global";
 import ImageUpload from "../../../components/Upload/ImageUpload";
 import { setKycCurrentStep } from "../../../store/slice/authSlice";
 import { useAppDispatch } from "../../../hooks";
+import { ArrowDownIcon } from "../../../assets/svg/Auth";
 // import { useVerifyBusinessDocumentsMutation } from "../../../service/kyb";
 // import toast from "react-hot-toast";
 // import Spinner from "../../../components/Spinner/Spinner";
 
 const BusinessDocument: React.FC<KYCPageProps> = () => {
+  const formRef = useRef<HTMLDivElement>(null);
   const [cacDocument, setCACDocument] = useState<string>("");
   const [memorandumDocument, setMemorandumDocument] = useState<string>("");
   const [scumlDocument, setScumlDocument] = useState<string>("");
@@ -30,9 +32,13 @@ const BusinessDocument: React.FC<KYCPageProps> = () => {
     } catch (error: any) {}
   };
 
+  const scrollToBottom = () => {
+    formRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="flex flex-col gap-6 justify-center items-center px-4">
-      <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-6 justify-center items-center px-4 relative">
+      <div className="flex flex-col gap-4 w-full px-4">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
           Business Document
         </h3>
@@ -76,6 +82,16 @@ const BusinessDocument: React.FC<KYCPageProps> = () => {
           {/* {isLoading ? <Spinner /> : "Continue"} */}
         </button>
       </div>
+
+      <div
+        className="flex bg-white rounded-3xl text-pryColor font-bricolage items-center gap-2 fixed bottom-[100px] px-6 py-3 font-semibold cursor-pointer"
+        style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
+        onClick={scrollToBottom}
+      >
+        <ArrowDownIcon />
+        Scroll Down
+      </div>
+      <div ref={formRef}></div>
     </div>
   );
 };

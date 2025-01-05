@@ -4,15 +4,16 @@ import { useSetNationalityMutation } from "../../../service/kyb";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import Spinner from "../../../components/Spinner/Spinner";
-import { useAppDispatch } from "../../../hooks";
-import { setKycCurrentStep } from "../../../store/slice/authSlice";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { selectAuth, setKycCurrentStep } from "../../../store/slice/authSlice";
 
 const Nationality = () => {
   const [setNationality, { isLoading }] = useSetNationalityMutation();
+  const { userDetails } = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
-
+  console.log(userDetails);
   const initialValues = {
-    country: "",
+    country: userDetails?.country || "",
   };
 
   const onSubmit = async (formData: { country: string }) => {
@@ -54,7 +55,7 @@ const Nationality = () => {
             id={""}
             placeholder="Nigeria"
             name="country"
-            error={touched.country ? errors.country : undefined}
+            error={touched.country ? (errors.country as string) : undefined}
             onBlur={handleBlur}
             onChange={handleChange}
             defaultValue={values?.country}

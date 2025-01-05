@@ -11,6 +11,13 @@ import BusinessAddress from "./Kyc/BusinessAddress";
 import BusinessDocument from "./Kyc/BusinessDocument";
 import ProgressLayout from "../../layout/ProgressLayout";
 import { KYCProgressSteps } from "../../utils";
+import {
+  setKycCurrentStep,
+  setUserProfileDetails,
+} from "../../store/slice/authSlice";
+import { useKybDetailsQuery } from "../../service/kyb";
+import { useEffect } from "react";
+import { useAppDispatch } from "../../hooks";
 
 const stepsComponents: StepComponentProps[] = [
   { step: 1, component: Nationality },
@@ -24,12 +31,19 @@ const stepsComponents: StepComponentProps[] = [
 ];
 
 const KYC = () => {
+  const { data } = useKybDetailsQuery({});
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(setUserProfileDetails(data?.data));
+  }, [data]);
+  console.log(data);
   return (
     <div className="bg-pryColor-Light w-full border flex flex-col gap-10 justify-center items-center py-6 px-32 h-screen">
       <KBrandIcon />
       <ProgressLayout
         stepsComponents={stepsComponents}
         progressSteps={KYCProgressSteps}
+        updateProgressStep={setKycCurrentStep}
       />
     </div>
   );
