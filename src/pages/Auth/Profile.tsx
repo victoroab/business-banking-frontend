@@ -33,7 +33,7 @@ const Profile = () => {
       const response = await setName(requiredData).unwrap();
       toast.success(response?.message);
 
-      navigate("/kyc");
+      navigate("/kyb/nationality");
     } catch (error: any) {
       toast.error(error.data.message);
     }

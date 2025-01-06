@@ -1,30 +1,23 @@
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import { selectGlobal } from "../../../store/slice/globalSlice";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { useAppSelector } from "../../../hooks";
 import PopUp from "../../../components/PopUps/PopUp";
 import { CopyIcon, SuccessIcon } from "../../../assets/svg/CustomSVGs";
 import { useNavigate } from "react-router-dom";
 import { attestation } from "../../../utils";
-import { KYCPageProps } from "../../../interfaces/Global";
 import { FolderIcon } from "../../../assets/svg/Auth";
-import {
-  setKycCurrentStep,
-  setKYCIdentityStep,
-} from "../../../store/slice/authSlice";
 import Checkbox from "../../../components/FormInput/Checkbox";
 import { useState } from "react";
 import { useAttestationMutation } from "../../../service/kyb";
 
 import Spinner from "../../../components/Spinner/Spinner";
 
-const Attestation: React.FC<KYCPageProps> = () => {
+const Attestation = () => {
   const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
-  const dispatch = useAppDispatch();
   const [isChecked, setIsChecked] = useState(false);
   const [attest, { isLoading }] = useAttestationMutation();
   const navigate = useNavigate();
-
   const handleCheckboxChange = () => {
     setIsChecked((prev) => !prev);
   };
@@ -34,7 +27,6 @@ const Attestation: React.FC<KYCPageProps> = () => {
       attest: isChecked,
     };
     await attest(requiredData).unwrap();
-    dispatch(setKYCIdentityStep(1));
     handleShow("submit");
   };
 
@@ -61,7 +53,7 @@ const Attestation: React.FC<KYCPageProps> = () => {
             <p className="title font-medium font-workSans">{attest.title}</p>
             <p
               className="text-positive font-workSans cursor-pointer font-medium"
-              onClick={() => dispatch(setKycCurrentStep(attest.navigate))}
+              onClick={() => navigate(attest.navigate)}
             >
               Edit
             </p>

@@ -5,6 +5,7 @@ import { Director } from "../../interfaces/service/kyb";
 interface UserInfo {
   access_token: string;
   refresh_token: string;
+  kyc: any;
 }
 
 interface AuthState {
@@ -18,7 +19,7 @@ interface AuthState {
   userInfo: UserInfo | undefined;
   businessDirector: Director[];
   selectedDirector: Director | undefined;
-  userDetails: any | undefined;
+  kybDetails: any | undefined;
 }
 
 const initialState: AuthState = {
@@ -32,7 +33,7 @@ const initialState: AuthState = {
   userInfo: undefined,
   businessDirector: [],
   selectedDirector: undefined,
-  userDetails: undefined,
+  kybDetails: undefined,
 };
 
 export const authSlice = createSlice({
@@ -94,8 +95,8 @@ export const authSlice = createSlice({
       state.selectedDirector = action.payload;
     },
 
-    setUserProfileDetails: (state, action) => {
-      state.userDetails = action.payload;
+    setKYBDetails: (state, action) => {
+      state.kybDetails = action.payload;
     },
   },
 });
@@ -113,7 +114,7 @@ export const {
   editDirector,
   removeDirector,
   setSelectedDirector,
-  setUserProfileDetails,
+  setKYBDetails,
 } = authSlice.actions;
 
 export const selectAuth = (state: RootState) => state.auth;

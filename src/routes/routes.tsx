@@ -23,6 +23,14 @@ import EmailAddress from "../pages/Auth/Email";
 import VerifyEmail from "../pages/Auth/VerifyEmail";
 import Profile from "../pages/Auth/Profile";
 import LoginPasscode from "../pages/Auth/SignIn/Passcode";
+import Nationality from "../pages/Auth/Kyc/Nationality";
+import IdVerification from "../pages/Auth/Kyc/IdVerification";
+import FaceVerification from "../pages/Auth/Kyc/FaceRecognition";
+import ResidentialAddress from "../pages/Auth/Kyc/ResidentialAddress";
+import BusinessDetails from "../pages/Auth/Kyc/BusinessDetails";
+import BusinessDocument from "../pages/Auth/Kyc/BusinessDocument";
+import BusinessAddress from "../pages/Auth/Kyc/BusinessAddress";
+import Attestation from "../pages/Auth/Kyc/Attestation";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -83,4 +91,47 @@ const dashboardRoutes: RouteProps[] = [
   },
 ];
 
-export { authRoutes, dashboardRoutes };
+const kybRoutes: RouteProps[] = [
+  {
+    path: "nationality",
+    name: "Nationality",
+    element: <Nationality />,
+  },
+  {
+    path: "identity",
+    name: "BVN & NIN",
+    element: <IdVerification />,
+  },
+  {
+    path: "face-verification",
+    name: "Face Verification",
+    element: <FaceVerification />,
+  },
+  {
+    path: "residential-address",
+    name: "Residential Address",
+    element: <ResidentialAddress />,
+  },
+  {
+    path: "business-details",
+    name: "Business Details",
+    element: <BusinessDetails />,
+  },
+  {
+    path: "business-documents",
+    name: "Business Document",
+    element: <BusinessDocument />,
+  },
+  {
+    path: "business-address",
+    name: "Business Address",
+    element: <BusinessAddress />,
+  },
+  {
+    path: "attestation",
+    name: "Attestation",
+    element: <Attestation />,
+  },
+];
+
+export { authRoutes, dashboardRoutes, kybRoutes };

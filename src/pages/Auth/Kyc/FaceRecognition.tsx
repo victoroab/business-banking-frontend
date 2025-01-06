@@ -3,14 +3,14 @@ import {
   GlassesIcon,
   LightIcon,
 } from "../../../assets/svg/CustomSVGs";
-import { setKycCurrentStep } from "../../../store/slice/authSlice";
-import { useAppDispatch } from "../../../hooks";
+
+import { useNavigate } from "react-router-dom";
 
 const FaceVerification = () => {
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = () => {
-    dispatch(setKycCurrentStep(4));
+    navigate("/kyb/residential-address");
   };
   return (
     <div className="flex flex-col gap-6 justify-center items-center ">

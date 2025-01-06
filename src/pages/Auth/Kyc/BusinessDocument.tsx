@@ -1,22 +1,21 @@
-import React, { useRef, useState } from "react";
-import { KYCPageProps } from "../../../interfaces/Global";
+import { useRef, useState } from "react";
 import ImageUpload from "../../../components/Upload/ImageUpload";
-import { setKycCurrentStep } from "../../../store/slice/authSlice";
-import { useAppDispatch } from "../../../hooks";
 import { ArrowDownIcon } from "../../../assets/svg/Auth";
+import { useNavigate } from "react-router-dom";
 // import { useVerifyBusinessDocumentsMutation } from "../../../service/kyb";
 // import toast from "react-hot-toast";
 // import Spinner from "../../../components/Spinner/Spinner";
 
-const BusinessDocument: React.FC<KYCPageProps> = () => {
+const BusinessDocument = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const [cacDocument, setCACDocument] = useState<string>("");
   const [memorandumDocument, setMemorandumDocument] = useState<string>("");
   const [scumlDocument, setScumlDocument] = useState<string>("");
   const [utilityDocument, setUtilityDocument] = useState<string>("");
+  const navigate = useNavigate();
   // const [businessDocument, { isLoading }] =
   //   useVerifyBusinessDocumentsMutation();
-  const dispatch = useAppDispatch();
+
   console.log(cacDocument, memorandumDocument, scumlDocument, utilityDocument);
   const handleSubmit = async () => {
     try {
@@ -28,7 +27,7 @@ const BusinessDocument: React.FC<KYCPageProps> = () => {
       // };
       // const response = await businessDocument(requiredData).unwrap();
       // toast.success(response?.message);
-      dispatch(setKycCurrentStep(7));
+      navigate("/kyb/business-address");
     } catch (error: any) {}
   };
 
@@ -67,7 +66,7 @@ const BusinessDocument: React.FC<KYCPageProps> = () => {
         />
         <ImageUpload
           isBase64={false}
-          title="Utility Bill (Valid bill within the last 90 datys)"
+          title="Utility Bill (Valid bill within the last 90 days)"
           required
           setDocument={setUtilityDocument}
         />

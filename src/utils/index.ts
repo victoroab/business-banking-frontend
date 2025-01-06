@@ -58,34 +58,42 @@ export const securityQuestions = [
 export const KYCProgressSteps: ProgressStepsProps[] = [
   {
     id: 1,
+    link: "nationality",
     title: "Nationality",
   },
   {
     id: 2,
+    link: "identity",
     title: "BVN & NIN",
   },
   {
     id: 3,
+    link: "face-verification",
     title: "Face Verification",
   },
   {
     id: 4,
+    link: "residential-address",
     title: "Residential Address",
   },
   {
     id: 5,
+    link: "business-details",
     title: "Business Details",
   },
   {
     id: 6,
+    link: "business-documents",
     title: "Business Document",
   },
   {
     id: 7,
+    link: "business-address",
     title: "Business Address",
   },
   {
     id: 8,
+    link: "attestation",
     title: "Attestation",
   },
 ];
@@ -304,9 +312,9 @@ export const typeList = [
 ];
 
 export const attestation = [
-  { id: 1, title: "Business Details", navigate: 5 },
-  { id: 2, title: "Business Documents", navigate: 6 },
-  { id: 3, title: "Business Address", navigate: 7 },
+  { id: 1, title: "Business Details", navigate: "/kyb/business-details" },
+  { id: 2, title: "Business Documents", navigate: "/kyb/business-documents" },
+  { id: 3, title: "Business Address", navigate: "/kyb/business-address" },
 ];
 
 export const newBillProgressSteps: ProgressStepsProps[] = [

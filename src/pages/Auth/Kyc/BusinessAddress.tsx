@@ -1,18 +1,19 @@
 import FormInput from "../../../components/FormInput";
 import { useVerifyBusinessAddressMutation } from "../../../service/kyb";
-import { useAppDispatch } from "../../../hooks";
-import { setKycCurrentStep } from "../../../store/slice/authSlice";
+import { useAppSelector } from "../../../hooks";
+import { selectAuth } from "../../../store/slice/authSlice";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import toast from "react-hot-toast";
 import Spinner from "../../../components/Spinner/Spinner";
 import { AddressProps } from "../../../interfaces/service/kyb";
+import { useNavigate } from "react-router-dom";
 
 const BusinessAddress = () => {
   const [setBusinessAddress, { isLoading }] =
     useVerifyBusinessAddressMutation();
-  const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
+  const { kybDetails } = useAppSelector(selectAuth);
   const initialValues = {
     address: "",
     city: "",
@@ -23,14 +24,16 @@ const BusinessAddress = () => {
   };
 
   const onSubmit = async (formData: AddressProps) => {
-    try {
-      const response = await setBusinessAddress(formData).unwrap();
-      toast.success(response?.message);
-      dispatch(setKycCurrentStep(8));
-
-      //
-    } catch (error: any) {
-      toast.error(error.data.message);
+    if (kybDetails?.kybStatus?.businessAddressStatus) {
+      navigate("/kyb/attestation");
+    } else {
+      try {
+        const response = await setBusinessAddress(formData).unwrap();
+        toast.success(response?.message);
+        navigate("/kyb/attestation");
+      } catch (error: any) {
+        toast.error(error.data.message);
+      }
     }
   };
 

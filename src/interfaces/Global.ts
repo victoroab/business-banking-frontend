@@ -15,8 +15,9 @@ export interface NavbarProps {
 }
 
 export interface ProgressStepsProps {
-  id: number;
+  id: number | string;
   title: string;
+  link?: string;
 }
 export interface AddProps {
   setActiveTab: any;
@@ -95,9 +96,9 @@ export type StepComponentProps = {
 };
 
 export interface ProgressProps {
-  stepsComponents: StepComponentProps[];
+  stepsComponents?: StepComponentProps[];
   progressSteps: ProgressStepsProps[];
-  updateProgressStep?: any;
+  currentStep?: number;
 }
 
 type TransactionType = "debit" | "credit" | "transfer";

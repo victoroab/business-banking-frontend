@@ -22,7 +22,7 @@ const Account = () => {
         <div className="flex border-r p-6 flex-col gap-4 bg-white w-[35%]">
           {accountSettingsSteps?.map((step) => (
             <div
-              onClick={() => setCurrentTab(step.id)}
+              onClick={() => setCurrentTab(step.id as number)}
               className={` p-3 cursor-pointer font-workSans
             ${
               currentTab === step.id

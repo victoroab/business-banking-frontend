@@ -212,8 +212,14 @@ export const kybApi = createApi({
     }),
 
     //kyb
-    kybDetails: builder.query({
+    userProfile: builder.query({
       query: () => "/user/me",
+      providesTags: [{ type: "KYB", id: "KYB" }],
+    }),
+
+    //kyb
+    kybDetails: builder.query({
+      query: () => "/kyb",
       providesTags: [{ type: "KYB", id: "KYB" }],
     }),
   }),
@@ -236,4 +242,5 @@ export const {
   useVerifyBusinesDetailsMutation,
   useGetBVNDetailsQuery,
   useKybDetailsQuery,
+  useUserProfileQuery,
 } = kybApi;

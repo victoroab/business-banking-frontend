@@ -41,7 +41,9 @@ const ConfirmTransactionPin = () => {
     }
   };
   const handleNavigate = () => {
-    navigate(`${havePersonalAccount === true ? "/kyc" : "/profile"}`);
+    navigate(
+      `${havePersonalAccount === true ? "/kyb/nationality" : "/profile"}`
+    );
   };
   return (
     <AuthLayout loginBtn={false} terms>

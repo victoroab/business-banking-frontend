@@ -10,9 +10,14 @@ import {
 import { selectGlobal } from "../../../store/slice/globalSlice";
 import toast from "react-hot-toast";
 import Spinner from "../../../components/Spinner/Spinner";
-import { saveUserInfo, selectAuth } from "../../../store/slice/authSlice";
+import {
+  saveUserInfo,
+  selectAuth,
+  setKYBDetails,
+} from "../../../store/slice/authSlice";
 import PopUp from "../../../components/PopUps/PopUp";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
+import { useKybDetailsQuery } from "../../../service/kyb";
 
 const LoginPasscode = () => {
   const [signIn, { isLoading }] = useSignInMutation();
@@ -24,6 +29,8 @@ const LoginPasscode = () => {
   const [verifyOtpCode, setVerifyOtpCode] = useState<string>("");
   const { phoneNumber } = useAppSelector(selectAuth);
   const { handleShow } = useGlobalHooks();
+  const { data, refetch } = useKybDetailsQuery({});
+
   const handleSubmit = async () => {
     const requiredData = {
       phoneNumber: phoneNumber as string,
@@ -54,9 +61,10 @@ const LoginPasscode = () => {
       if (response?.data?.kyc?.attestation === true) {
         navigate("/dashboard");
       } else {
-        navigate("/kyc");
+        refetch();
+        dispatch(setKYBDetails(data?.data));
+        navigate("/kyb/nationality");
       }
-    
     } catch (error: any) {
       toast.error(error.data.message);
     }

@@ -1,5 +1,4 @@
-import React, { useRef, useState } from "react";
-import { KYCPageProps } from "../../../interfaces/Global";
+import { useRef, useState } from "react";
 import FormInput from "../../../components/FormInput";
 import { CautionIcon, UploadIcon } from "../../../assets/svg/CustomSVGs";
 import AddDirector from "../../../components/Auth/KYC/AddDirector";
@@ -7,7 +6,6 @@ import {
   addToDirector,
   removeDirector,
   selectAuth,
-  setKycCurrentStep,
   setSelectedDirector,
 } from "../../../store/slice/authSlice";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
@@ -20,6 +18,7 @@ import {
   annualIncome,
   companyEntity,
   companySize,
+  companyType,
   handleFileUpload,
   industries,
 } from "../../../utils";
@@ -29,58 +28,65 @@ import AddedDirector from "../../../components/Auth/KYC/DirectorCard";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import { selectGlobal } from "../../../store/slice/globalSlice";
 import EditDirector from "../../../components/Auth/KYC/EditDirector";
+import { useNavigate } from "react-router-dom";
 
-const BusinessDetails: React.FC<KYCPageProps> = () => {
+const BusinessDetails = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const [addNewDirector, setAddNewDirector] = useState<boolean>(true);
   const toggle = useAppSelector(selectGlobal);
+  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const [logo, setLogo] = useState<string>("");
   const [verifyBusinessDetails, { isLoading }] =
     useVerifyBusinesDetailsMutation();
-  const { businessDirector } = useAppSelector(selectAuth);
+  const { businessDirector, kybDetails } = useAppSelector(selectAuth);
   const { handleShow } = useGlobalHooks();
   const initialValues = {
-    name: "",
-    phone: "",
-    businessEntity: "",
-    companyType: "",
-    rcNumber: "",
-    industry: "",
-    size: "",
-    annualIncome: "",
+    name: kybDetails?.businessDetails?.businessName || "",
+    phone: kybDetails?.businessDetails?.businessPhone || "",
+    businessEntity: kybDetails?.businessDetails?.businessEntity || "",
+    companyType: kybDetails?.businessDetails?.companyType || "",
+    rcNumber: kybDetails?.businessDetails?.cacNumber || "",
+    industry: kybDetails?.businessDetails?.industry || "",
+    size: kybDetails?.businessDetails?.size || "",
+    annualIncome: kybDetails?.businessDetails?.income || "",
   };
 
+  console.log(kybDetails, "www");
   const onSubmit = async (formData: any) => {
-    const updateDirectorList = businessDirector.map((director: any) => ({
-      idCard: director.idCard,
-      firstName: director.firstName,
-      lastName: director.lastName,
-      idNumber: director.idNumber,
-      idType: director.idType,
-      email: director.email,
-      phone: director.phone,
-    }));
+    if (kybDetails?.kybStatus?.businessDetailsStatus) {
+      navigate("/kyb/business-documents");
+    } else {
+      const updateDirectorList = businessDirector.map((director: any) => ({
+        idCard: director.idCard,
+        firstName: director.firstName,
+        lastName: director.lastName,
+        idNumber: director.idNumber,
+        idType: director.idType,
+        email: director.email,
+        phone: director.phone,
+      }));
 
-    try {
-      const requiredData = {
-        logo: logo,
-        name: formData?.name,
-        phone: formData?.phone,
-        businessEntity: formData?.businessEntity,
-        companyType: formData?.companyType,
-        rcNumber: formData?.rcNumber,
-        industry: formData?.industry,
-        size: formData?.size,
-        annualIncome: formData?.annualIncome,
-        directors: updateDirectorList,
-      };
-      console.log(requiredData);
-      const response = await verifyBusinessDetails(requiredData).unwrap();
-      toast.success(response?.message);
-      dispatch(setKycCurrentStep(6));
-    } catch (error: any) {
-      toast.error(error.data.message);
+      try {
+        const requiredData = {
+          logo: logo,
+          name: formData?.name,
+          phone: formData?.phone,
+          businessEntity: formData?.businessEntity,
+          companyType: formData?.companyType,
+          rcNumber: formData?.rcNumber,
+          industry: formData?.industry,
+          size: formData?.size,
+          annualIncome: formData?.annualIncome,
+          directors: updateDirectorList,
+        };
+
+        const response = await verifyBusinessDetails(requiredData).unwrap();
+        toast.success(response?.message);
+        navigate("/kyb/business-documents");
+      } catch (error: any) {
+        toast.error(error.data.message);
+      }
     }
   };
 
@@ -115,12 +121,10 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
   };
 
   const handleEditDirector = (director: Director) => {
-    console.log(director);
-    console.log("edit");
     dispatch(setSelectedDirector(director));
     handleShow("edit-director");
   };
-  console.log("redux director", businessDirector);
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -176,7 +180,11 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
             placeholder="Business Entity"
             id={"businessEntity"}
             name="businessEntity"
-            error={touched.businessEntity ? errors.businessEntity : undefined}
+            error={
+              touched.businessEntity
+                ? (errors.businessEntity as string)
+                : undefined
+            }
             type="cSelect"
             selectOptions={companyEntity}
             keyPropertyName="entity"
@@ -191,7 +199,7 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
             type="text"
             id={"name"}
             name="name"
-            error={touched.name ? errors.name : undefined}
+            error={touched.name ? (errors.name as string) : undefined}
             onBlur={handleBlur}
             onChange={handleChange}
             defaultValue={values?.name}
@@ -211,7 +219,7 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
             type="text"
             id={"phone"}
             name="phone"
-            error={touched.phone ? errors.phone : undefined}
+            error={touched.phone ? (errors.phone as string) : undefined}
             onBlur={handleBlur}
             onChange={handleChange}
             defaultValue={values?.phone}
@@ -221,11 +229,13 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
             type="cSelect"
             id={"companyType"}
             name="companyType"
-            error={touched.companyType ? errors.companyType : undefined}
+            error={
+              touched.companyType ? (errors.companyType as string) : undefined
+            }
             onBlur={handleBlur}
             onChange={handleChange}
             defaultValue={values?.companyType}
-            selectOptions={industries}
+            selectOptions={companyType}
             keyPropertyName="type"
             valuePropertyName="type"
             itemPropertyName="type"
@@ -235,7 +245,7 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
             type="text"
             id={"rcNumber"}
             name="rcNumber"
-            error={touched.rcNumber ? errors.rcNumber : undefined}
+            error={touched.rcNumber ? (errors.rcNumber as string) : undefined}
             onBlur={handleBlur}
             onChange={handleChange}
             defaultValue={values?.rcNumber}
@@ -245,7 +255,7 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
             type="cSelect"
             id={"industry"}
             name="industry"
-            error={touched.industry ? errors.industry : undefined}
+            error={touched.industry ? (errors.industry as string) : undefined}
             selectOptions={industries}
             keyPropertyName="industry"
             valuePropertyName="industry"
@@ -258,7 +268,7 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
             placeholder="Business Size"
             id={"size"}
             name="size"
-            error={touched.size ? errors.size : undefined}
+            error={touched.size ? (errors.size as string) : undefined}
             type="cSelect"
             selectOptions={companySize}
             keyPropertyName="size"
@@ -273,7 +283,9 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
             type="cSelect"
             id={"annualIncome"}
             name="annualIncome"
-            error={touched.annualIncome ? errors.annualIncome : undefined}
+            error={
+              touched.annualIncome ? (errors.annualIncome as string) : undefined
+            }
             selectOptions={annualIncome}
             keyPropertyName="income"
             valuePropertyName="income"
@@ -314,7 +326,7 @@ const BusinessDetails: React.FC<KYCPageProps> = () => {
         </div>
       </div>
       <div
-        className="flex bg-white rounded-3xl text-pryColor font-bricolage items-center gap-2 fixed bottom-[100px] px-6 py-3 font-semibold cursor-pointer"
+        className="flex bg-white rounded-3xl text-pryColor font-bricolage items-center gap-2 fixed bottom-[60px] px-6 py-3 font-semibold  cursor-pointer"
         style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
         onClick={scrollToBottom}
       >

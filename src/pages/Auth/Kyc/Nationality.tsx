@@ -4,27 +4,30 @@ import { useSetNationalityMutation } from "../../../service/kyb";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import Spinner from "../../../components/Spinner/Spinner";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { selectAuth, setKycCurrentStep } from "../../../store/slice/authSlice";
+import { useAppSelector } from "../../../hooks";
+import { selectAuth } from "../../../store/slice/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Nationality = () => {
   const [setNationality, { isLoading }] = useSetNationalityMutation();
-  const { userDetails } = useAppSelector(selectAuth);
-  const dispatch = useAppDispatch();
-  console.log(userDetails);
+  const { kybDetails } = useAppSelector(selectAuth);
+  const navigate = useNavigate();
+
   const initialValues = {
-    country: userDetails?.country || "",
+    country: kybDetails?.country || "",
   };
 
   const onSubmit = async (formData: { country: string }) => {
-    try {
-      const response = await setNationality(formData).unwrap();
-      toast.success(response?.message);
-      dispatch(setKycCurrentStep(2));
-
-      //
-    } catch (error: any) {
-      toast.error(error.data.message);
+    if (kybDetails?.kybStatus?.nationalityStatus) {
+      navigate("/kyb/identity");
+    } else {
+      try {
+        const response = await setNationality(formData).unwrap();
+        toast.success(response?.message);
+        navigate("/kyb/identity");
+      } catch (error: any) {
+        toast.error(error.data.message);
+      }
     }
   };
 

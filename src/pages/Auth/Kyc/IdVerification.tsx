@@ -3,11 +3,23 @@ import { accountOptions } from "../../../utils";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { selectAuth, setKYCIdentityStep } from "../../../store/slice/authSlice";
 import BVN from "./Identity/BVN";
+import { useNavigate } from "react-router-dom";
 
 const IdVerification = () => {
-  const { kycIdentityStep } = useAppSelector(selectAuth);
-  const dispatch = useAppDispatch();
+  const { kycIdentityStep, userInfo } = useAppSelector(selectAuth);
 
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  console.log(userInfo);
+  const handleVerify = () => {
+    if (userInfo?.kyc?.bvnStatus && !userInfo?.kyc?.ninStatus) {
+      dispatch(setKYCIdentityStep("NIN"));
+    } else if (userInfo?.kyc?.bvnStatus && userInfo?.kyc?.ninStatus) {
+      navigate("/kyb/face-verification");
+    } else {
+      dispatch(setKYCIdentityStep("BVN"));
+    }
+  };
   return (
     <>
       {kycIdentityStep === "DEFAULT" ? (
@@ -51,9 +63,11 @@ const IdVerification = () => {
             <button
               className="main-btn w-full"
               type="submit"
-              onClick={() => dispatch(setKYCIdentityStep("BVN"))}
+              onClick={handleVerify}
             >
-              Verify Identity
+              {userInfo?.kyc?.bvnStatus && userInfo?.kyc?.ninStatus
+                ? "Proceed to Face Verification"
+                : "Verify Identity"}
             </button>
           </div>
         </div>

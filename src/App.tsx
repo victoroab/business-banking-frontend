@@ -1,9 +1,11 @@
 import { Toaster } from "react-hot-toast";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
-import { authRoutes, dashboardRoutes } from "./routes/routes";
+import { authRoutes, dashboardRoutes, kybRoutes } from "./routes/routes";
 import DashboardLayout from "./layout/Dashboard";
 import { RouteProps } from "./interfaces/Global";
+import ProgressLayout from "./layout/ProgressLayout";
+import { KYCProgressSteps } from "./utils";
 
 function App() {
   return (
@@ -21,6 +23,14 @@ function App() {
             element={<DashboardLayout>{route.element}</DashboardLayout>}
           />
         ))}
+        <Route
+          path="/kyb"
+          element={<ProgressLayout progressSteps={KYCProgressSteps} />}
+        >
+          {kybRoutes.map((route, idx: number) => (
+            <Route key={idx} path={route.path} element={route.element} />
+          ))}
+        </Route>
       </Routes>
     </main>
   );

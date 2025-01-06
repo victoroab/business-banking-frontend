@@ -1,35 +1,40 @@
 import FormInput from "../../../components/FormInput";
-import { selectAuth, setKycCurrentStep } from "../../../store/slice/authSlice";
-import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { selectAuth } from "../../../store/slice/authSlice";
+import { useAppSelector } from "../../../hooks";
 import Spinner from "../../../components/Spinner/Spinner";
 import { useVerifyResidentialAddressMutation } from "../../../service/kyb";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { AddressProps } from "../../../interfaces/service/kyb";
+import { useNavigate } from "react-router-dom";
 
 const ResidentialAddress = () => {
   const [setBusinessAddress, { isLoading }] =
     useVerifyResidentialAddressMutation();
-  const dispatch = useAppDispatch();
-  const { userDetails } = useAppSelector(selectAuth);
+  const navigate = useNavigate();
+  const { kybDetails } = useAppSelector(selectAuth);
 
   const initialValues = {
-    address: userDetails?.address || "",
-    city: userDetails?.city || "",
-    state: userDetails?.state || "",
-    zipcode: userDetails?.zipcode || "",
-    landmark: userDetails?.landmark || "",
-    lga: userDetails?.lga || "",
+    address: kybDetails?.residendialAddress?.address || "",
+    city: kybDetails?.residendialAddress?.city || "",
+    state: kybDetails?.residendialAddress?.state || "",
+    zipcode: kybDetails?.residendialAddress?.zipcode || "",
+    landmark: kybDetails?.residendialAddress?.landmark || "",
+    lga: kybDetails?.residendialAddress?.lga || "",
   };
 
   const onSubmit = async (formData: AddressProps) => {
-    try {
-      const response = await setBusinessAddress(formData).unwrap();
-      toast.success(response?.message);
-      dispatch(setKycCurrentStep(5));
-    } catch (error: any) {
-      toast.error(error.data.message);
+    if (kybDetails?.kybStatus?.residentialAddressSubmitted) {
+      navigate("/kyb/business-details");
+    } else {
+      try {
+        const response = await setBusinessAddress(formData).unwrap();
+        toast.success(response?.message);
+        navigate("/kyb/business-details");
+      } catch (error: any) {
+        toast.error(error.data.message);
+      }
     }
   };
 

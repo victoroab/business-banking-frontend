@@ -1,19 +1,17 @@
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import toast from "react-hot-toast";
-import {
-  setKycCurrentStep,
-  setKYCIdentityStep,
-} from "../../../../store/slice/authSlice";
+import { setKYCIdentityStep } from "../../../../store/slice/authSlice";
 import { useAppDispatch } from "../../../../hooks";
 import FormInput from "../../../../components/FormInput";
 import Spinner from "../../../../components/Spinner/Spinner";
 import { CautionIcon } from "../../../../assets/svg/CustomSVGs";
 import { useVerifyNINMutation } from "../../../../service/kyb";
+import { useNavigate } from "react-router-dom";
 
 const NIN = () => {
   const dispatch = useAppDispatch();
-
+  const navigate = useNavigate();
   const [verifyNIN, { isLoading }] = useVerifyNINMutation();
 
   const initialValues = {
@@ -24,7 +22,7 @@ const NIN = () => {
     try {
       const response = await verifyNIN(formData).unwrap();
       toast.success(response?.message);
-      dispatch(setKycCurrentStep(3));
+      navigate("/kyb/face-verification");
       dispatch(setKYCIdentityStep("DEFAULT"));
     } catch (error: any) {
       toast.error(error.data.message);
