@@ -22,6 +22,7 @@ const BusinessAddress = () => {
     landmark: "",
     lga: "",
   };
+  console.log(kybDetails);
 
   const onSubmit = async (formData: AddressProps) => {
     // if (kybDetails?.kybStatus?.businessAddressStatus) {
