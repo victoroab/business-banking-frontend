@@ -24,17 +24,17 @@ const BusinessAddress = () => {
   };
 
   const onSubmit = async (formData: AddressProps) => {
-    if (kybDetails?.kybStatus?.businessAddressStatus) {
+    // if (kybDetails?.kybStatus?.businessAddressStatus) {
+    // navigate("/kyb/attestation");
+    // } else {
+    try {
+      const response = await setBusinessAddress(formData).unwrap();
+      toast.success(response?.message);
       navigate("/kyb/attestation");
-    } else {
-      try {
-        const response = await setBusinessAddress(formData).unwrap();
-        toast.success(response?.message);
-        navigate("/kyb/attestation");
-      } catch (error: any) {
-        toast.error(error.data.message);
-      }
+    } catch (error: any) {
+      toast.error(error.data.message);
     }
+    // }
   };
 
   const businessAddressSchema = Yup.object().shape({
