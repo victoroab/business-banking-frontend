@@ -79,7 +79,13 @@ export const kybApi = createApi({
     //set-name-dob
     setName: builder.mutation<
       any,
-      { firstName: string; lastName: string; otherName: string; dob: string }
+      {
+        firstName: string;
+        lastName: string;
+        otherName: string;
+        dob: string;
+        phoneNumber: string;
+      }
     >({
       query: (body) => ({
         url: "auth/signup/set-name-dob",

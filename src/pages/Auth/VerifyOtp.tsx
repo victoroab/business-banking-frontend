@@ -45,9 +45,7 @@ const VerifyOtp = () => {
       console.log(response);
       toast.success(response?.data?.message);
       havePersonalAccount && dispatch(setExistingVerificationOTP(otpCode));
-      navigate(
-        `${havePersonalAccount === true ? "/passcode" : "/email-address"}`
-      );
+      navigate(`${havePersonalAccount === true ? "/passcode" : "/profile"}`);
     } catch (error: any) {
       toast.error(error.data.message);
     }

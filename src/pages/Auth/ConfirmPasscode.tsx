@@ -59,7 +59,7 @@ const ConfirmPasscode = () => {
     }
   };
   const handleNavigate = () => {
-    navigate("/transaction-pin");
+    navigate("/kyb/identity");
   };
   return (
     <AuthLayout loginBtn={false} terms>

@@ -59,7 +59,9 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
         <div className={loginBtn ? "" : "h-[100%] flex justify-end flex-col"}>
           <div
             className={
-              loginBtn ? "" : "h-[90%] flex items-center flex-col shadow-lg"
+              loginBtn
+                ? ""
+                : "h-[90%] flex items-center flex-col shadow-default"
             }
           >
             {children}

@@ -63,7 +63,7 @@ const LoginPasscode = () => {
       } else {
         refetch();
         dispatch(setKYBDetails(data?.data));
-        navigate("/kyb/nationality");
+        navigate("/kyb/identify");
       }
     } catch (error: any) {
       toast.error(error.data.message);

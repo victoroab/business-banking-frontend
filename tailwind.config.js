@@ -15,6 +15,9 @@ export default {
         amount: "#162458",
         statusBlue: "#1C7CD5",
       },
+      boxShadow: {
+        default: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)",
+      },
       fontFamily: {
         bricolage: ['"Bricolage Grotesque"', "sans-serif"],
         workSans: ['"Work Sans"', "sans-serif"],

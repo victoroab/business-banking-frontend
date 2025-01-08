@@ -1,16 +1,20 @@
 import PopUp from "./PopUp";
 import { SuccessIcon } from "../../assets/svg/CustomSVGs";
+import { useNavigate } from "react-router-dom";
 
 interface SuccessMessageProps {
   responseMessage: string;
   paragraph: string;
   handleNavigate: () => void;
+  auth?: boolean;
 }
 const SuccessMessage = ({
   responseMessage,
   paragraph,
   handleNavigate,
+  auth,
 }: SuccessMessageProps) => {
+  const navigate = useNavigate();
   return (
     <PopUp id={"success"}>
       <div className="bg-white rounded-lg flex flex-col items-center justify-center p-10 gap-10 w-[650px]">
@@ -30,14 +34,23 @@ const SuccessMessage = ({
           </p>
         </div>
 
-        <div className="flex justify-center  w-[80%] gap-6">
+        <div className="flex justify-center flex-col w-[80%] gap-6">
           <button
             className="main-btn w-full"
             type="submit"
             onClick={handleNavigate}
           >
-            Continue
+            Continue To Know Your Business(KYB) Verification
           </button>
+          {auth && (
+            <button
+              className="yellow-frame-btn w-full"
+              type="submit"
+              onClick={() => navigate("/dashboard")}
+            >
+              Proceed To Dashboard
+            </button>
+          )}
         </div>
       </div>
     </PopUp>

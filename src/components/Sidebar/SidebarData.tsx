@@ -62,7 +62,7 @@ export const SidebarData = [
   {
     id: "tab9",
     icon: <SidebarUserIcon />,
-    title: "Account",
+    title: "Account Settings",
     url: "/account",
   },
 ];
