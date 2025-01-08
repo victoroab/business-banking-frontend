@@ -66,7 +66,7 @@ const Profile = () => {
           >
             <div className="flex flex-col gap-2">
               <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-                Enter your legal name
+                Enter Your Legal Name
               </h3>
               <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
                 Please provide your full legal name as it appears on your official documents. This helps us ensure secure and accurate account setup, especially for verification purposes. Make sure it’s spelled correctly
