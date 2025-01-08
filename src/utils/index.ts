@@ -56,43 +56,43 @@ export const securityQuestions = [
 ];
 
 export const KYCProgressSteps: ProgressStepsProps[] = [
+  // {
+  //   id: 1,
+  //   link: "nationality",
+  //   title: "Nationality",
+  // },
   {
     id: 1,
-    link: "nationality",
-    title: "Nationality",
-  },
-  {
-    id: 2,
     link: "identity",
     title: "BVN & NIN",
   },
   {
-    id: 3,
+    id: 2,
     link: "face-verification",
     title: "Face Verification",
   },
   {
-    id: 4,
+    id: 3,
     link: "residential-address",
     title: "Residential Address",
   },
   {
-    id: 5,
+    id: 4,
     link: "business-details",
     title: "Business Details",
   },
   {
-    id: 6,
+    id: 5,
     link: "business-documents",
     title: "Business Document",
   },
   {
-    id: 7,
+    id: 6,
     link: "business-address",
     title: "Business Address",
   },
   {
-    id: 8,
+    id: 7,
     link: "attestation",
     title: "Attestation",
   },

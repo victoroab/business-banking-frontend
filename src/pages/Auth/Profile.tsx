@@ -69,13 +69,7 @@ const Profile = () => {
                 Enter your legal name
               </h3>
               <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-                Please provide your full legal name as it appears on your
-                official
-                <br /> documents. This helps us ensure secure and accurate
-                account
-                <br /> setup, especially for verification purposes. Make sure
-                it’s spelled
-                <br /> correctly
+                Please provide your full legal name as it appears on your official documents. This helps us ensure secure and accurate account setup, especially for verification purposes. Make sure it’s spelled correctly
               </p>
             </div>
 
