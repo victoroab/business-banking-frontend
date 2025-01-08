@@ -3,7 +3,7 @@ import React from "react";
 import { SidebarData } from "./SidebarData";
 import { NavLink } from "react-router-dom";
 import { LogoutIcon } from "../../assets/svg/CustomSVGs";
-import { AlertLogoIcon } from "../../assets/svg/Sidebar";
+import { AlertLogoIcon, DashboardIcon } from "../../assets/svg/Sidebar";
 
 const Sidebar = () => {
   return (
@@ -17,21 +17,23 @@ const Sidebar = () => {
         </div>
         <section className=" w-full mx-auto flex flex-col h-[80%]">
           <ul className="flex flex-col gap-6 h-full">
-            {SidebarData.map(({ id, url, title, icon }) => (
-              <React.Fragment key={id}>
+            {SidebarData.map((link) => (
+              <React.Fragment key={link.id}>
                 <NavLink
-                  key={id}
-                  to={url}
+                  key={link.id}
+                  to={link.url}
                   className={({ isActive }) =>
                     isActive
-                      ? "bg-gray-50 border border-gray-200 font-normal text-[var(--secColor)] rounded-xl"
-                      : "text-[#8E949A] font-normal"
+                      ? "bg-pryColor font-normal text-white rounded-xl"
+                      : "text-greyColr font-normal"
                   }
                 >
+                    {({ isActive }) => (
                   <hgroup className=" flex gap-4 items-center p-3">
-                    <h4>{icon} </h4>
-                    <p className="font-workSans">{title}</p>
+       { <link.icon fillColor={isActive ? "white" : "#352F36"} />}
+                    <p className="font-workSans">{link.title}</p>
                   </hgroup>
+                    )}
                 </NavLink>
               </React.Fragment>
             ))}

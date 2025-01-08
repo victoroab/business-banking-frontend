@@ -5,11 +5,12 @@ import { useKybDetailsQuery } from "../service/kyb";
 import { setKYBDetails } from "../store/slice/authSlice";
 import { useEffect } from "react";
 import { useAppDispatch } from "../hooks";
+import {useNavigate} from "react-router-dom"
 
 const ProgressLayout = ({ progressSteps }: ProgressProps) => {
   const location = useLocation();
   const currentStep = location.pathname.split("/")[2];
-
+const navigate = useNavigate()
   const { data } = useKybDetailsQuery({});
   const dispatch = useAppDispatch();
   useEffect(() => {
@@ -18,8 +19,9 @@ const ProgressLayout = ({ progressSteps }: ProgressProps) => {
   console.log(data);
 
   return (
-    <div className="bg-pryColor-Light w-full border flex flex-col gap-10 justify-center items-center py-6 px-32 h-screen">
+    <div className="bg-pryColor-Light w-full border flex flex-col gap-5 justify-center items-center py-6 px-32 h-screen">
       <KBrandIcon />
+      <p className="text-secColor font-semibold cursor-pointer text-bricolage text-lg" onClick={() => navigate("/dashboard")}>Click Here To Go To Dashboard</p>
       <div className="border px-24 py-14 bg-white w-full flex relative h-[80vh]">
         <div className="w-[30%] flex flex-col gap-10 fixed">
           {progressSteps.map((progress: ProgressStepsProps) => (
@@ -42,7 +44,7 @@ const ProgressLayout = ({ progressSteps }: ProgressProps) => {
                 >
                   <p className="text-sm">{progress.id}</p>
                 </div>
-                <p className="font-workSans font-normal">{progress.title}</p>
+                <p className={`font-workSans font-normal ${currentStep === progress.link && "text-pryColor font-semibold"}`}>{progress.title}</p>
               </NavLink>
             </div>
           ))}
@@ -50,7 +52,9 @@ const ProgressLayout = ({ progressSteps }: ProgressProps) => {
 
         <div className="w-[65%] overflow-y-auto ml-[50%] h-full px-6">
           <Outlet />
+      
         </div>
+
       </div>
     </div>
   );

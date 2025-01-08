@@ -52,7 +52,7 @@ const SignUp = () => {
     <div>
       {" "}
       <AuthLayout loginBtn={false} terms>
-        <div className="text-center flex justify-center items-center flex-col mt-48">
+        <div className="text-center flex justify-center items-center flex-col mt-32">
           <form className="flex px-6 flex-col gap-8" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-4">
               <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">

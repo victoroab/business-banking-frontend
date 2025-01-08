@@ -59,7 +59,7 @@ const Profile = () => {
     <div>
       {" "}
       <AuthLayout loginBtn={false} terms>
-        <div className="text-center flex justify-center items-center flex-col mt-28 w-full">
+        <div className="text-center flex justify-center items-center flex-col mt-24 w-full">
           <form
             className="flex px-14 flex-col gap-8 w-full"
             onSubmit={handleSubmit}

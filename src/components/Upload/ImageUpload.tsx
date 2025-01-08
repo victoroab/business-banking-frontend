@@ -42,7 +42,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       <div className="flex justify-between items-center">
         <p className="font-medium font-workSans text-[#15191E] text-sm flex gap-2 items-center">
           {title}
-          {required ? <em className="required"> * </em> : ""}{" "}
+          {required ? <em className="required text-xl"> * </em> : ""}{" "}
         </p>
         <p className="font-workSans font-normal text-pryColor text-sm cursor-pointer">
           See sample file
