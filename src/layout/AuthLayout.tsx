@@ -8,7 +8,7 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
   const navigate = useNavigate();
   return (
     <main className="h-screen w-full flex">
-      <section className="flex flex-col w-1/2 bg-pryColor-Light px-20 py-6 justify-between h-[100vh] fixed">
+      <section className="flex flex-col w-1/2 bg-pryColor-Light px-20 py-6 justify-between">
         <div className="flex gap-2 item-center ">
           <AlertLogoIcon />
           <h1 className="font-bold text-base text-pryColor font-bricolage m-0 p-1">
@@ -44,7 +44,7 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
           </p>
         </div>
       </section>
-      <section className="w-1/2 ml-[50%] bg-white px-20 pt-4 h-full">
+      <section className="w-1/2 bg-white px-20 pt-4">
         {loginBtn && (
           <div className="flex justify-end">
             <button

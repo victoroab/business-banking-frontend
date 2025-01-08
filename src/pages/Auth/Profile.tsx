@@ -59,7 +59,7 @@ const Profile = () => {
     <div>
       {" "}
       <AuthLayout loginBtn={false} terms>
-        <div className="text-center flex justify-center items-center flex-col mt-48 w-full">
+        <div className="text-center flex justify-center items-center flex-col mt-28 w-full">
           <form
             className="flex px-14 flex-col gap-8 w-full"
             onSubmit={handleSubmit}
@@ -84,18 +84,8 @@ const Profile = () => {
                 onChange={handleChange}
                 defaultValue={values?.firstName}
               />
-              <FormInput
-                placeholder="Last name"
-                type="text"
-                id={"lastName"}
-                name="lastName"
-                error={touched.lastName ? errors.lastName : undefined}
-                onBlur={handleBlur}
-                onChange={handleChange}
-                defaultValue={values?.lastName}
-              />
-              <FormInput
-                placeholder="Other names"
+                     <FormInput
+                placeholder="Other Name (Optional)"
                 type="text"
                 id={"otherName"}
                 name="otherName"
@@ -104,6 +94,17 @@ const Profile = () => {
                 onChange={handleChange}
                 defaultValue={values?.otherName}
               />
+              <FormInput
+                placeholder="Last Name"
+                type="text"
+                id={"lastName"}
+                name="lastName"
+                error={touched.lastName ? errors.lastName : undefined}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                defaultValue={values?.lastName}
+              />
+       
               <Calender setSelectedDate={setDob} selectedDate={dob} />
             </div>
             <div className="flex justify-center  w-full gap-6">
