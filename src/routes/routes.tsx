@@ -31,6 +31,10 @@ import BusinessDetails from "../pages/Auth/Kyc/BusinessDetails";
 import BusinessDocument from "../pages/Auth/Kyc/BusinessDocument";
 import BusinessAddress from "../pages/Auth/Kyc/BusinessAddress";
 import Attestation from "../pages/Auth/Kyc/Attestation";
+import Beneficiaries from "../pages/Dashboard/Beneficiaries/Beneficiaries";
+import Approvals from "../pages/Dashboard/Approvals/Approvals";
+import NewBeneficiary from "../pages/Dashboard/Beneficiaries/NewBeneficiary";
+import RequestCard from "../pages/Dashboard/Cards/RequestCard";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -80,14 +84,22 @@ const dashboardRoutes: RouteProps[] = [
   { path: "/pay-bills", name: "Home", element: <PayBills /> },
   { path: "/pay-new-bill", name: "Home", element: <NewBill /> },
   { path: "/card", name: "Home", element: <Cards /> },
+  { path: "/request-card", name: "Card", element: <RequestCard /> },
   { path: "/support", name: "Home", element: <Support /> },
   { path: "/account", name: "Account", element: <Account /> },
   { path: "/pos", name: "Account", element: <Pos /> },
   { path: "/airtime-data", name: "Account", element: <AirtimeData /> },
+  { path: "/approval", name: "Approval", element: <Approvals /> },
+  { path: "/beneficiaries", name: "Beneficiaries", element: <Beneficiaries /> },
   {
     path: "/new-transaction",
     name: "Transaction",
     element: <NewTransaction />,
+  },
+  {
+    path: "/new-beneficiary",
+    name: "Beneficiary",
+    element: <NewBeneficiary />,
   },
 ];
 

@@ -8,6 +8,8 @@ import {
   SidebarUserIcon,
   SidebarAirtimeIcon,
   SidebarPOSIcon,
+  SidebarBeneficiaryIcon,
+  SidebarApprovalIcon,
 } from "../../assets/svg/Sidebar";
 
 export const SidebarData = [
@@ -64,5 +66,17 @@ export const SidebarData = [
     icon: SidebarUserIcon,
     title: "Account Settings",
     url: "/account",
+  },
+  {
+    id: "tab10",
+    icon: SidebarApprovalIcon,
+    title: "Approval",
+    url: "/approval",
+  },
+  {
+    id: "tab11",
+    icon: SidebarBeneficiaryIcon,
+    title: "Beneficiaries",
+    url: "/beneficiaries",
   },
 ];
