@@ -50,6 +50,7 @@ const NewBill = () => {
           <ProgressLayout
             stepsComponents={stepsComponents}
             progressSteps={newBillProgressSteps}
+            isDashboard
           />
         </div>
       </div>
