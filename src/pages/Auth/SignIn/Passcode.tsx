@@ -38,7 +38,7 @@ const LoginPasscode = () => {
     };
     try {
       const response = await signIn(requiredData).unwrap();
-      console.log(response);
+
       toast.success(response?.data?.message);
       handleShow("success");
     } catch (error: any) {
@@ -54,7 +54,7 @@ const LoginPasscode = () => {
     };
     try {
       const response = await verify(requiredData).unwrap();
-      console.log(response);
+
       toast.success(response?.message);
       dispatch(saveUserInfo(response?.data));
 
