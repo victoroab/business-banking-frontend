@@ -3,7 +3,7 @@ import { SVGProps } from "react";
 interface DashboardIconProps extends SVGProps<SVGSVGElement> {
   fillColor?: string;
 }
-export const DashboardIcon = ({fillColor, ...props}) => (
+export const DashboardIcon = ({ fillColor, ...props }: DashboardIconProps) => (
   <svg
     {...props}
     width="24"
@@ -19,7 +19,10 @@ export const DashboardIcon = ({fillColor, ...props}) => (
   </svg>
 );
 
-export const TransactionIcon = ({fillColor, ...props}) => (
+export const TransactionIcon = ({
+  fillColor,
+  ...props
+}: DashboardIconProps) => (
   <svg
     width="16"
     {...props}
@@ -35,7 +38,7 @@ export const TransactionIcon = ({fillColor, ...props}) => (
   </svg>
 );
 
-export const SendMoneyIcon = ({fillColor, ...props}) => (
+export const SendMoneyIcon = ({ fillColor, ...props }: DashboardIconProps) => (
   <svg
     width="20"
     {...props}
@@ -51,7 +54,7 @@ export const SendMoneyIcon = ({fillColor, ...props}) => (
   </svg>
 );
 
-export const PayBillIcons = ({fillColor, ...props}) => (
+export const PayBillIcons = ({ fillColor, ...props }: DashboardIconProps) => (
   <svg
     {...props}
     width="24"
@@ -71,7 +74,7 @@ export const PayBillIcons = ({fillColor, ...props}) => (
   </svg>
 );
 
-export const CardIcon = ({fillColor, ...props}) => (
+export const CardIcon = ({ fillColor, ...props }: DashboardIconProps) => (
   <svg
     {...props}
     width="24"
@@ -91,7 +94,7 @@ export const CardIcon = ({fillColor, ...props}) => (
   </svg>
 );
 
-export const SupportIcon = ({fillColor, ...props}) => (
+export const SupportIcon = ({ fillColor, ...props }: DashboardIconProps) => (
   <svg
     width="20"
     {...props}
@@ -107,7 +110,10 @@ export const SupportIcon = ({fillColor, ...props}) => (
   </svg>
 );
 
-export const SidebarUserIcon = ({fillColor, ...props}) => (
+export const SidebarUserIcon = ({
+  fillColor,
+  ...props
+}: DashboardIconProps) => (
   <svg
     {...props}
     width="24"
@@ -123,7 +129,7 @@ export const SidebarUserIcon = ({fillColor, ...props}) => (
   </svg>
 );
 
-export const SidebarPOSIcon = ({fillColor, ...props}) => (
+export const SidebarPOSIcon = ({ fillColor, ...props }: DashboardIconProps) => (
   <svg
     {...props}
     width="24"
@@ -141,7 +147,10 @@ export const SidebarPOSIcon = ({fillColor, ...props}) => (
   </svg>
 );
 
-export const SidebarAirtimeIcon = ({fillColor, ...props}) => (
+export const SidebarAirtimeIcon = ({
+  fillColor,
+  ...props
+}: DashboardIconProps) => (
   <svg
     {...props}
     width="20"
