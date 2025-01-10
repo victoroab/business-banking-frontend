@@ -26,7 +26,7 @@ const ProgressLayout = ({ progressSteps }: ProgressProps) => {
       >
         Click Here To Go To Dashboard
       </p>
-      <div className="border px-24 py-14 bg-white w-full flex relative h-[80vh]">
+      <div className="px-24 py-14 bg-white w-full flex relative h-[80vh]">
         <div className="w-[30%] flex flex-col gap-10 fixed">
           {progressSteps.map((progress: ProgressStepsProps) => (
             <div className="flex" key={progress.id}>
@@ -61,7 +61,7 @@ const ProgressLayout = ({ progressSteps }: ProgressProps) => {
           ))}
         </div>
 
-        <div className="w-[65%] overflow-y-auto ml-[50%] h-full px-6">
+        <div className="w-[70%] overflow-y-auto ml-[50%] h-full px-4">
           <Outlet />
         </div>
       </div>
