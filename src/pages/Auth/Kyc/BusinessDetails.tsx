@@ -128,7 +128,7 @@ const BusinessDetails = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-6 justify-center items-center px-10 relative"
+      className="flex flex-col gap-6 justify-center items-center relative"
     >
       <div className="flex flex-col gap-6">
         <div className="flex flex-col gap-4">

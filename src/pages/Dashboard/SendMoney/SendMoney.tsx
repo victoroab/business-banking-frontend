@@ -38,7 +38,7 @@ const SendMoney = () => {
         <div className="flex justify-end px-10">
           <button
             className="main-btn w-40 font-bricolage"
-            onClick={() => navigate("/new-transaction")}
+            onClick={() => navigate("/send-money/debit-account")}
           >
             Send Money
           </button>

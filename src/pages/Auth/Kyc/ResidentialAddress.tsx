@@ -57,7 +57,7 @@ const ResidentialAddress = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="flex flex-col gap-6 justify-center items-center px-14"
+      className="flex flex-col gap-6 justify-center items-center"
     >
       <div className="flex flex-col gap-4 w-full">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">

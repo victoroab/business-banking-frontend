@@ -482,19 +482,23 @@ export const cableProvider: IDOption[] = [
 export const newTransaction: ProgressStepsProps[] = [
   {
     id: 1,
+    link: "debit-account",
     title: "Select Debit Account",
   },
   {
     id: 2,
+    link: "bank-details",
     title: "Bank Details",
   },
   {
     id: 3,
+    link: "amount",
     title: "Amount",
   },
 
   {
     id: 4,
+    link: "confirmation",
     title: "Confirmation",
   },
 ];

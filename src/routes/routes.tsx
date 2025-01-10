@@ -37,6 +37,10 @@ import NewBeneficiary from "../pages/Dashboard/Beneficiaries/NewBeneficiary";
 import RequestCard from "../pages/Dashboard/Cards/RequestCard";
 import VirtualCard from "../pages/Dashboard/Cards/VirtualCard";
 import RequestPhysicalCard from "../pages/Dashboard/Cards/RequestPhysicalCard";
+import DebitAccount from "../pages/Dashboard/SendMoney/DebitAccount";
+import BankDetails from "../pages/Dashboard/SendMoney/BankDetails";
+import Amount from "../pages/Dashboard/SendMoney/Amount";
+import Confirmation from "../pages/Dashboard/SendMoney/Confirmation";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -154,4 +158,27 @@ const kybRoutes: RouteProps[] = [
   },
 ];
 
-export { authRoutes, dashboardRoutes, kybRoutes };
+const sendMoneyRoutes: RouteProps[] = [
+  {
+    path: "debit-account",
+    name: "Debit Account",
+    element: <DebitAccount />,
+  },
+  {
+    path: "bank-details",
+    name: "Bank Details",
+    element: <BankDetails />,
+  },
+  {
+    path: "amount",
+    name: "Amount",
+    element: <Amount />,
+  },
+  {
+    path: "confirmation",
+    name: "Confirmation",
+    element: <Confirmation />,
+  },
+];
+
+export { authRoutes, dashboardRoutes, kybRoutes, sendMoneyRoutes };

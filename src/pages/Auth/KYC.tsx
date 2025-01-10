@@ -12,7 +12,7 @@ const KYC = () => {
   return (
     <div className="bg-pryColor-Light w-full border flex flex-col gap-10 justify-center items-center py-6 px-32 h-screen">
       <KBrandIcon />
-      <ProgressLayout progressSteps={KYCProgressSteps} />
+      <ProgressLayout progressSteps={KYCProgressSteps} isDashboard />
     </div>
   );
 };

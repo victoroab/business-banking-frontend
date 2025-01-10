@@ -36,7 +36,7 @@ const BusinessDocument = () => {
   };
 
   return (
-    <div className="flex flex-col gap-6 justify-center items-center px-4 relative">
+    <div className="flex flex-col gap-6 justify-center items-center relative">
       <div className="flex flex-col gap-4 w-full px-4">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
           Business Document
