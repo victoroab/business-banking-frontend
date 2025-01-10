@@ -1,4 +1,4 @@
-import FormInput from "../../../components/FormInput";
+import FormInput from "../../../../components/FormInput";
 import { useNavigate } from "react-router-dom";
 
 const Amount = () => {
