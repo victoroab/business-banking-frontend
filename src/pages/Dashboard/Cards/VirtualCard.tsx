@@ -1,16 +1,16 @@
 import { useNavigate } from "react-router-dom";
-import { ForwardIcon, YellowCardImage } from "../../../assets/svg/RequestCards";
+import { ForwardIcon, GreenCardImage } from "../../../assets/svg/RequestCards";
 import BackNavigation from "../../../components/ArrowBack/Back";
 import Navbar from "../../../components/Navbar/Navbar";
 import { useState } from "react";
 
-const RequestCard = () => {
+const VirtualCard = () => {
   const navigate = useNavigate();
-  const [activeSlide, setActiveSlide] = useState(0); // 0 for physical card, 1 for virtual card
+  const [activeSlide, setActiveSlide] = useState(1); // 0 for physical card, 1 for virtual card
 
   const handleNextSlide = () => {
-    setActiveSlide(1);
-    navigate("/virtual-card");
+    setActiveSlide(0);
+    navigate("/request-card");
   };
   return (
     <>
@@ -26,13 +26,13 @@ const RequestCard = () => {
         <div className="bg-pryColor-Light ">
           <div className="flex items-center justify-center gap-8 bg-white w-[90%] mx-auto px-20 py-20">
             <div className="flex flex-col items-center justify-center gap-6">
-              <YellowCardImage />
+              <GreenCardImage />
               <div className="flex flex-col gap-2 text-center">
                 <h1 className="font-bricolage font-semibold text-xl text-[#0E0C60]">
-                  Request Your Physical Card Today
+                  Request Your Virtual Card Today
                 </h1>
                 <p className="font-workSans">
-                  Withdraw from ATMs, pay on POS machines and pay online.
+                  Use your virtual card to pay for online transactions.
                 </p>
                 <div className="flex items-center gap-2 w-full justify-center my-2">
                   <div
@@ -70,9 +70,9 @@ const RequestCard = () => {
               </div>
               <button
                 className="main-btn w-[362px]"
-                onClick={() => navigate("/request-physical-card")}
+                onClick={() => navigate("/request-card")}
               >
-                Get A Physical Card
+                Get A Virtual Card
               </button>
             </div>
             <div
@@ -88,4 +88,4 @@ const RequestCard = () => {
   );
 };
 
-export default RequestCard;
+export default VirtualCard;

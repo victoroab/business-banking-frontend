@@ -35,6 +35,8 @@ import Beneficiaries from "../pages/Dashboard/Beneficiaries/Beneficiaries";
 import Approvals from "../pages/Dashboard/Approvals/Approvals";
 import NewBeneficiary from "../pages/Dashboard/Beneficiaries/NewBeneficiary";
 import RequestCard from "../pages/Dashboard/Cards/RequestCard";
+import VirtualCard from "../pages/Dashboard/Cards/VirtualCard";
+import RequestPhysicalCard from "../pages/Dashboard/Cards/RequestPhysicalCard";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -85,6 +87,12 @@ const dashboardRoutes: RouteProps[] = [
   { path: "/pay-new-bill", name: "Home", element: <NewBill /> },
   { path: "/card", name: "Home", element: <Cards /> },
   { path: "/request-card", name: "Card", element: <RequestCard /> },
+  { path: "/virtual-card", name: "Card", element: <VirtualCard /> },
+  {
+    path: "/request-physical-card",
+    name: "Card",
+    element: <RequestPhysicalCard />,
+  },
   { path: "/support", name: "Home", element: <Support /> },
   { path: "/account", name: "Account", element: <Account /> },
   { path: "/pos", name: "Account", element: <Pos /> },
