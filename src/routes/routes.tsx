@@ -41,6 +41,7 @@ import DebitAccount from "../pages/Dashboard/SendMoney/DebitAccount";
 import BankDetails from "../pages/Dashboard/SendMoney/BankDetails";
 import Amount from "../pages/Dashboard/SendMoney/Amount";
 import Confirmation from "../pages/Dashboard/SendMoney/Confirmation";
+import Provider from "../pages/Dashboard/AirtimeData/NewTransaction/Provider";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -181,4 +182,38 @@ const sendMoneyRoutes: RouteProps[] = [
   },
 ];
 
-export { authRoutes, dashboardRoutes, kybRoutes, sendMoneyRoutes };
+const airtimeDataRoutes: RouteProps[] = [
+  {
+    path: "debit-account",
+    name: "Debit Account",
+    element: <DebitAccount />,
+  },
+  {
+    path: "bank-details",
+    name: "Bank Details",
+    element: <BankDetails />,
+  },
+  {
+    path: "provider",
+    name: "Provider",
+    element: <Provider />,
+  },
+  {
+    path: "amount",
+    name: "Amount",
+    element: <Amount />,
+  },
+  {
+    path: "confirmation",
+    name: "Confirmation",
+    element: <Confirmation />,
+  },
+];
+
+export {
+  authRoutes,
+  dashboardRoutes,
+  kybRoutes,
+  sendMoneyRoutes,
+  airtimeDataRoutes,
+};

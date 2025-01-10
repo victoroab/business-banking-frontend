@@ -1,25 +1,20 @@
 import FormInput from "../../../components/FormInput";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../../hooks";
-import { selectDashboard } from "../../../store/slice/dashboardSlice";
 
-const DebitAccount = () => {
-  const navigate = useNavigate();
-  const { airtimeDataAction } = useAppSelector(selectDashboard);
+const Amount = () => {
   const handleSubmit = () => {
-    airtimeDataAction === "AIRTIME"
-      ? navigate("/airtime-data/amount")
-      : navigate("/airtime-data/provider");
+    const navigate = useNavigate();
+    navigate("/send-money/confirmation");
   };
 
   return (
     <div className="flex flex-col gap-14">
       <div className="gap-4 flex flex-col">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-          Debit Account
+          Amount
         </h3>
         <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-          Select Debit account e.g POS Balance or Account Balance
+          Please input how much electricity you wish to purchase
         </p>
       </div>
 
@@ -27,9 +22,10 @@ const DebitAccount = () => {
         <form action="#" className="flex gap-8 flex-col">
           <FormInput
             id={""}
-            placeholder="Debit Account"
+            placeholder="Amount"
             className="flex flex-col gap-4"
           />
+
           <div className="flex justify-center  w-full gap-6">
             <button
               className="main-btn w-full"
@@ -45,4 +41,4 @@ const DebitAccount = () => {
   );
 };
 
-export default DebitAccount;
+export default Amount;

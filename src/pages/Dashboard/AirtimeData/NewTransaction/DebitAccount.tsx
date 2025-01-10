@@ -1,15 +1,10 @@
-import FormInput from "../../../components/FormInput";
+import FormInput from "../../../../components/FormInput";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../../hooks";
-import { selectDashboard } from "../../../store/slice/dashboardSlice";
 
 const DebitAccount = () => {
   const navigate = useNavigate();
-  const { airtimeDataAction } = useAppSelector(selectDashboard);
   const handleSubmit = () => {
-    airtimeDataAction === "AIRTIME"
-      ? navigate("/airtime-data/amount")
-      : navigate("/airtime-data/provider");
+    navigate("/send-money/bank-details");
   };
 
   return (

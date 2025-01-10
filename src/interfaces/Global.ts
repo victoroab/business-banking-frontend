@@ -100,6 +100,8 @@ export interface ProgressProps {
   progressSteps: ProgressStepsProps[];
   currentStep?: number;
   isDashboard: boolean;
+  navTitle?: string;
+  navDesc?: string;
 }
 
 type TransactionType = "debit" | "credit" | "transfer";

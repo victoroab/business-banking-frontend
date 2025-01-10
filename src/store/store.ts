@@ -16,10 +16,12 @@ import { globalSlice } from "./slice/globalSlice";
 import { authApi } from "../service/auth";
 import { authSlice } from "./slice/authSlice";
 import { kybApi } from "../service/kyb";
+import { dashboardSlice } from "./slice/dashboardSlice";
 
 const rootReducers = combineReducers({
   global: globalSlice.reducer,
   auth: authSlice.reducer,
+  dashboard: dashboardSlice.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [kybApi.reducerPath]: kybApi.reducer,
 });
