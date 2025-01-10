@@ -1,15 +1,10 @@
-import FormInput from "../../../components/FormInput";
+import FormInput from "../../../../components/FormInput";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../../hooks";
-import { selectDashboard } from "../../../store/slice/dashboardSlice";
 
 const DebitAccount = () => {
   const navigate = useNavigate();
-  const { airtimeDataAction } = useAppSelector(selectDashboard);
   const handleSubmit = () => {
-    airtimeDataAction === "AIRTIME"
-      ? navigate("/airtime-data/amount")
-      : navigate("/airtime-data/provider");
+    navigate("/send-money/bank-details");
   };
 
   return (
@@ -31,11 +26,7 @@ const DebitAccount = () => {
             className="flex flex-col gap-4"
           />
           <div className="flex justify-center  w-full gap-6">
-            <button
-              className="main-btn w-full"
-              type="submit"
-              onClick={handleSubmit}
-            >
+            <button className="main-btn w-full" onClick={handleSubmit}>
               Continue
             </button>
           </div>

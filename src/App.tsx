@@ -2,6 +2,7 @@ import { Toaster } from "react-hot-toast";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import {
+  airtimeDataRoutes,
   authRoutes,
   dashboardRoutes,
   kybRoutes,
@@ -10,9 +11,17 @@ import {
 import DashboardLayout from "./layout/Dashboard";
 import { RouteProps } from "./interfaces/Global";
 import ProgressLayout from "./layout/ProgressLayout";
-import { KYCProgressSteps, newTransaction } from "./utils";
+import {
+  airtimeStep,
+  dataStep,
+  KYCProgressSteps,
+  newTransaction,
+} from "./utils";
+import { useAppSelector } from "./hooks";
+import { selectDashboard } from "./store/slice/dashboardSlice";
 
 function App() {
+  const { airtimeDataAction } = useAppSelector(selectDashboard);
   return (
     <main className="App">
       <Toaster position="top-center" />
@@ -54,6 +63,24 @@ function App() {
           }
         >
           {sendMoneyRoutes.map((route, idx: number) => (
+            <Route key={idx} path={route.path} element={route.element} />
+          ))}
+        </Route>
+
+        <Route
+          path="/airtime-data"
+          element={
+            <DashboardLayout>
+              <ProgressLayout
+                progressSteps={
+                  airtimeDataAction === "AIRTIME" ? airtimeStep : dataStep
+                }
+                isDashboard={true}
+              />
+            </DashboardLayout>
+          }
+        >
+          {airtimeDataRoutes.map((route, idx: number) => (
             <Route key={idx} path={route.path} element={route.element} />
           ))}
         </Route>

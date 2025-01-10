@@ -7,11 +7,14 @@ import DataTable from "react-data-table-component";
 import { tableCustomStyles, transactionsData } from "../../../utils";
 import { columnsData } from "../../../utils/table";
 import { RowDataProps } from "../../../interfaces/Global";
+import { useAppDispatch } from "../../../hooks";
+import { setAirtimeDataAction } from "../../../store/slice/dashboardSlice";
 
 const AirtimeData = () => {
   const { handleSearch, handleShow } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [selectedRow, setSelectedRow] = useState<RowDataProps>();
+  const dispatch = useAppDispatch();
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
@@ -36,13 +39,19 @@ const AirtimeData = () => {
         <div className="flex justify-end px-10 gap-6">
           <button
             className="main-btn w-40 font-bricolage"
-            onClick={() => navigate("/new-transaction")}
+            onClick={() => {
+              navigate("/airtime-data/debit-account");
+              dispatch(setAirtimeDataAction("AIRTIME"));
+            }}
           >
             Buy Airtime
           </button>
           <button
             className="yellow-frame-btn w-40 font-bricolage"
-            onClick={() => navigate("/new-transaction")}
+            onClick={() => {
+              navigate("/airtime-data/debit-account");
+              dispatch(setAirtimeDataAction("DATA"));
+            }}
           >
             Buy Data
           </button>

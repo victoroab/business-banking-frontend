@@ -16,6 +16,12 @@ import {
 } from "../interfaces/Global";
 import { BettingIcon, CableIcon, ElectricityIcon } from "../assets/svg/PayBill";
 import { Dispatch, SetStateAction } from "react";
+import {
+  AirtelIcon,
+  GLOIcon,
+  MobileIcon,
+  MTNIcon,
+} from "../assets/svg/Airtime";
 
 export const manageBeneficiaryHeader = [
   { id: 1, title: "Transfer" },
@@ -503,6 +509,61 @@ export const newTransaction: ProgressStepsProps[] = [
   },
 ];
 
+export const airtimeStep: ProgressStepsProps[] = [
+  {
+    id: 1,
+    link: "debit-account",
+    title: "Select Debit Account",
+  },
+
+  {
+    id: 2,
+    link: "amount",
+    title: "Amount",
+  },
+  {
+    id: 3,
+    link: "provider",
+    title: "Select Provider",
+  },
+  {
+    id: 4,
+    link: "beneficiary",
+    title: "Add Beneficiary",
+  },
+  {
+    id: 4,
+    link: "confirmation",
+    title: "Confirmation",
+  },
+];
+export const dataStep: ProgressStepsProps[] = [
+  {
+    id: 1,
+    link: "debit-account",
+    title: "Select Debit Account",
+  },
+  {
+    id: 2,
+    link: "provider",
+    title: "Select Provider",
+  },
+  {
+    id: 3,
+    link: "package",
+    title: "Select Packge",
+  },
+  {
+    id: 4,
+    link: "beneficiary",
+    title: "Add Beneficiary",
+  },
+  {
+    id: 5,
+    link: "confirmation",
+    title: "Confirmation",
+  },
+];
 export const tableCustomStyles = {
   headCells: {
     style: {
@@ -793,3 +854,26 @@ export const handleFileUpload = (
 
   reader.readAsDataURL(file);
 };
+
+export const dataProvider: IDOption[] = [
+  {
+    icon: MTNIcon,
+    iconBg: "#f5f5f9",
+    title: "MTN",
+  },
+  {
+    icon: GLOIcon,
+    iconBg: "#f6fcf9",
+    title: "Glo",
+  },
+  {
+    icon: MobileIcon,
+    iconBg: "#f6fcf9",
+    title: "9Mobile",
+  },
+  {
+    icon: AirtelIcon,
+    iconBg: "#f6fcf9",
+    title: "Airtel",
+  },
+];
