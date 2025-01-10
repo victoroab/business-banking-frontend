@@ -26,11 +26,7 @@ const DebitAccount = () => {
             className="flex flex-col gap-4"
           />
           <div className="flex justify-center  w-full gap-6">
-            <button
-              className="main-btn w-full"
-              type="submit"
-              onClick={handleSubmit}
-            >
+            <button className="main-btn w-full" onClick={handleSubmit}>
               Continue
             </button>
           </div>

@@ -14,7 +14,7 @@ const Provider = () => {
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-          Electricity Provider
+          Provider
         </h3>
         <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
           Select the provider you want to buy from
@@ -31,6 +31,7 @@ const Provider = () => {
           >
             <div className="flex items-center justify-between">
               <div className="flex gap-2 items-center">
+                <option.icon />
                 <h2 className="text-base font-medium text-lightGreyColor m-0 font-workSans">
                   {option?.title}
                 </h2>

@@ -42,6 +42,9 @@ import BankDetails from "../pages/Dashboard/SendMoney/BankDetails";
 import Amount from "../pages/Dashboard/SendMoney/Amount";
 import Confirmation from "../pages/Dashboard/SendMoney/Confirmation";
 import Provider from "../pages/Dashboard/AirtimeData/NewTransaction/Provider";
+import AddBeneficiary from "../pages/Dashboard/AirtimeData/NewTransaction/AddBeneficiary";
+import AirtimeConfirmation from "../pages/Dashboard/AirtimeData/NewTransaction/Confirmation";
+import AirtimePackage from "../pages/Dashboard/AirtimeData/NewTransaction/Package";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -204,9 +207,19 @@ const airtimeDataRoutes: RouteProps[] = [
     element: <Amount />,
   },
   {
+    path: "beneficiary",
+    name: "Add beneficiary",
+    element: <AddBeneficiary />,
+  },
+  {
+    path: "package",
+    name: "Select Package",
+    element: <AirtimePackage />,
+  },
+  {
     path: "confirmation",
     name: "Confirmation",
-    element: <Confirmation />,
+    element: <AirtimeConfirmation />,
   },
 ];
 

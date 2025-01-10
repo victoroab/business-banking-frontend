@@ -1,20 +1,21 @@
 import FormInput from "../../../../components/FormInput";
+import { BeneficiaryIcon } from "../../../../assets/svg/PayBill";
 import { useNavigate } from "react-router-dom";
 
-const Amount = () => {
+const AddBeneficiary = () => {
+  const navigate = useNavigate();
   const handleSubmit = () => {
-    const navigate = useNavigate();
-    navigate("/send-money/provider");
+    navigate("/airtime-data/confirmation");
   };
 
   return (
-    <div className="flex flex-col gap-14">
+    <div className="flex flex-col gap-14 pr-6">
       <div className="gap-4 flex flex-col">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-          Amount
+          Add Beneficiary
         </h3>
         <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-          Please input how much electricity you wish to purchase
+          Enter beneficiary details
         </p>
       </div>
 
@@ -22,12 +23,22 @@ const Amount = () => {
         <form action="#" className="flex gap-8 flex-col">
           <FormInput
             id={""}
-            placeholder="Amount"
+            placeholder="Meter Number"
             className="flex flex-col gap-4"
           />
 
+          <div className="flex justify-center flex-col w-full items-center">
+            <div className="tex-[20px] font-workSans text-lightGreyColor">
+              OR
+            </div>
+            <BeneficiaryIcon className="cursor-pointer" />
+          </div>
           <div className="flex justify-center  w-full gap-6">
-            <button className="main-btn w-full" onClick={handleSubmit}>
+            <button
+              className="main-btn w-full"
+              type="submit"
+              onClick={handleSubmit}
+            >
               Continue
             </button>
           </div>
@@ -37,4 +48,4 @@ const Amount = () => {
   );
 };
 
-export default Amount;
+export default AddBeneficiary;

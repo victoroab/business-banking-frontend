@@ -16,6 +16,12 @@ import {
 } from "../interfaces/Global";
 import { BettingIcon, CableIcon, ElectricityIcon } from "../assets/svg/PayBill";
 import { Dispatch, SetStateAction } from "react";
+import {
+  AirtelIcon,
+  GLOIcon,
+  MobileIcon,
+  MTNIcon,
+} from "../assets/svg/Airtime";
 
 export const manageBeneficiaryHeader = [
   { id: 1, title: "Transfer" },
@@ -851,22 +857,22 @@ export const handleFileUpload = (
 
 export const dataProvider: IDOption[] = [
   {
-    icon: ElectricityIcon,
+    icon: MTNIcon,
     iconBg: "#f5f5f9",
     title: "MTN",
   },
   {
-    icon: CableIcon,
+    icon: GLOIcon,
     iconBg: "#f6fcf9",
     title: "Glo",
   },
   {
-    icon: BettingIcon,
+    icon: MobileIcon,
     iconBg: "#f6fcf9",
     title: "9Mobile",
   },
   {
-    icon: BettingIcon,
+    icon: AirtelIcon,
     iconBg: "#f6fcf9",
     title: "Airtel",
   },
