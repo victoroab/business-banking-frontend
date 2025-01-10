@@ -32,6 +32,7 @@ const NewTransaction = () => {
           <ProgressLayout
             stepsComponents={stepsComponents}
             progressSteps={newTransaction}
+            isDashboard
           />
         </div>
       </div>

@@ -14,7 +14,7 @@ const Confirmation = () => {
   };
 
   return (
-    <div className="flex flex-col gap-10 pr-6 ">
+    <div className="flex flex-col gap-10">
       <div className="gap-4 flex flex-col justify-center items-center">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
           Confirmation

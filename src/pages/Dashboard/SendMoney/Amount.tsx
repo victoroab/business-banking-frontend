@@ -1,14 +1,14 @@
-import React from "react";
-import { KYCPageProps } from "../../../interfaces/Global";
 import FormInput from "../../../components/FormInput";
+import { useNavigate } from "react-router-dom";
 
-const Amount: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
+const Amount = () => {
   const handleSubmit = () => {
-    setCurrentStep(4);
+    const navigate = useNavigate();
+    navigate("/send-money/confirmation");
   };
 
   return (
-    <div className="flex flex-col gap-14 pr-6">
+    <div className="flex flex-col gap-14">
       <div className="gap-4 flex flex-col">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
           Amount
