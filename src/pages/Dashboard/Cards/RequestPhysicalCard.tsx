@@ -78,7 +78,7 @@ const RequestPhysicalCard = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-center gap-10 bg-white px-20 py-20 font-workSans">
+          <div className="flex flex-col justify-center gap-10 bg-white w-full px-20 py-20 font-workSans">
             <div className="flex flex-col gap-4">
               <h1 className="font-bricolage font-semibold text-xl text-[#0E0C60]">
                 Get Physical Card
@@ -151,7 +151,7 @@ const RequestPhysicalCard = () => {
             )}
 
             {deliveryOption === "homeDelivery" && (
-              <div className="flex flex-col gap-4 w-[362px]">
+              <div className="flex flex-col gap-4 w-full">
                 <FormInput
                   type="text"
                   id="account"
