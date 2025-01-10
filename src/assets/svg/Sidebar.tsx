@@ -129,7 +129,7 @@ export const SidebarUserIcon = ({
   </svg>
 );
 
-export const SidebarPOSIcon = ({ fillColor, ...props }) => (
+export const SidebarPOSIcon = ({ fillColor, ...props }: DashboardIconProps) => (
   <svg
     {...props}
     width="24"
