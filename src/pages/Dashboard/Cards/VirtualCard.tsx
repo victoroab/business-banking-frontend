@@ -3,9 +3,12 @@ import { ForwardIcon, GreenCardImage } from "../../../assets/svg/RequestCards";
 import BackNavigation from "../../../components/ArrowBack/Back";
 import Navbar from "../../../components/Navbar/Navbar";
 import { useState } from "react";
+import GetVirtualCard from "../../../components/Card/GetVirtualCard";
+import { useGlobalHooks } from "../../../hooks/globalHooks";
 
 const VirtualCard = () => {
   const navigate = useNavigate();
+  const { handleShow } = useGlobalHooks();
   const [activeSlide, setActiveSlide] = useState(1); // 0 for physical card, 1 for virtual card
 
   const handleNextSlide = () => {
@@ -70,10 +73,11 @@ const VirtualCard = () => {
               </div>
               <button
                 className="main-btn w-[362px]"
-                onClick={() => navigate("/request-card")}
+                onClick={() => handleShow("debitCardTerms")}
               >
                 Get A Virtual Card
               </button>
+              <GetVirtualCard />
             </div>
             <div
               className="w-48 hover:scale-105 transition-transform"

@@ -5,10 +5,24 @@ import Navbar from "../../../components/Navbar/Navbar";
 import { useState } from "react";
 import Select from "../../../components/Select/Select";
 import FormInput from "../../../components/FormInput";
+import { ExclamationIcon } from "../../../assets/svg/Card";
+import { useAppSelector } from "../../../hooks";
+import { selectGlobal } from "../../../store/slice/globalSlice";
+import { useGlobalHooks } from "../../../hooks/globalHooks";
+import CardIssuance from "../../../components/Card/CardIssuance";
+// import PopUp from "../../../components/PopUps/PopUp";
+// import Otp from "../../../components/OTP/Otp";
+import CardRequest from "../../../components/Card/CardRequest";
 
 const RequestPhysicalCard = () => {
   //   const navigate = useNavigate();
   const [deliveryOption, setDeliveryOption] = useState("selfPickUp"); // "selfPickUp" or "homeDelivery"
+  const toggle = useAppSelector(selectGlobal);
+  const { handleShow } = useGlobalHooks();
+  // const [otpCode, setOtpCode] = useState<string>("");
+  const handleViewDetails = () => {
+    handleShow("card-issuance");
+  };
   const [formData, setFormData] = useState({
     account: "",
     cardType: "",
@@ -33,10 +47,10 @@ const RequestPhysicalCard = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    // Handle form submission logic
-    console.log(formData);
-  };
+  // const handleSubmit = () => {
+  //   // Handle form submission logic
+  //   console.log(formData);
+  // };
 
   return (
     <>
@@ -44,12 +58,12 @@ const RequestPhysicalCard = () => {
         title="Cards"
         subtitle="Easily apply for a debit or credit card tailored to your needs."
       />
-      <div className="flex flex-col  gap-10">
+      <div className="flex flex-col gap-10">
         <div className="flex justify-start w-48">
           <BackNavigation />
         </div>
 
-        <div className="flex gap-4 bg-pryColor-Light w-[90%] mx-auto">
+        <div className="flex gap-4 bg-pryColor-Light w-[90%]  mx-auto">
           <div className="flex flex-col items-center justify-center gap-6 h-[600px] bg-white px-20 py-20">
             <YellowCardImage />
             <div className="flex flex-col gap-2 text-center">
@@ -78,7 +92,7 @@ const RequestPhysicalCard = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-center gap-10 bg-white w-full px-20 py-20 font-workSans">
+          <div className="flex flex-col justify-center gap-10 bg-white w-full h-fit px-20 py-20 font-workSans">
             <div className="flex flex-col gap-4">
               <h1 className="font-bricolage font-semibold text-xl text-[#0E0C60]">
                 Get Physical Card
@@ -96,7 +110,7 @@ const RequestPhysicalCard = () => {
                     value="selfPickUp"
                     checked={deliveryOption === "selfPickUp"}
                     onChange={handleDeliveryOptionChange}
-                    className="mr-2 w-4 h-4 "
+                    className="mr-2 w-4 h-4"
                   />
                   Self Pickup
                 </label>
@@ -107,16 +121,19 @@ const RequestPhysicalCard = () => {
                     value="homeDelivery"
                     checked={deliveryOption === "homeDelivery"}
                     onChange={handleDeliveryOptionChange}
-                    className="mr-2"
+                    className="mr-2 w-4 h-4"
                   />
                   Home Delivery
+                  <div className="ml-2 bg-positive-Light text-positive uppercase text-xs p-1 tracking-tightest">
+                    Coming Soon
+                  </div>
                 </label>
               </div>
             </div>
 
             {/* Form fields based on selected delivery option */}
             {deliveryOption === "selfPickUp" && (
-              <div className="flex flex-col gap-4 w-[362px]">
+              <div className="flex flex-col gap-4 w-[472px]">
                 <FormInput
                   type="text"
                   id="account"
@@ -127,31 +144,41 @@ const RequestPhysicalCard = () => {
                   className="input-field"
                 />
                 {/* Card Type Select */}
-                <Select
+                <FormInput
+                  type="cSelect"
+                  placeholder="Card Type"
                   id="cardType"
-                  options={["Mastercard", "Visa"]}
-                  selectedOption={formData.cardType}
-                  setSelectedOption={(option) =>
-                    setFormData({ ...formData, cardType: option })
-                  }
-                  placeholder="Select Card Type"
+                  selectOptions={["Mastercard", "Visa"]}
+                  //   selectedOption={formData.cardType}
+                  //   setSelectedOption={(option) =>
+                  //     setFormData({ ...formData, cardType: option })
+                  //   }
                 />
 
                 {/* Pickup Branch Select */}
-                <Select
+                <FormInput
+                  type="cSelect"
                   id="pickupBranch"
-                  options={["Yaba", "VI", "Trade Fair", "Lekki"]}
-                  selectedOption={formData.pickupBranch}
-                  setSelectedOption={(option) =>
-                    setFormData({ ...formData, pickupBranch: option })
-                  }
-                  placeholder="Select Pickup Branch"
+                  selectOptions={["Yaba", "VI", "Trade Fair", "Lekki"]}
+                  //   selectedOption={formData.pickupBranch}
+                  //   setSelectedOption={(option) =>
+                  //     setFormData({ ...formData, pickupBranch: option })
+                  //   }
+                  placeholder="Pickup Branch"
                 />
+                {/* Submit button */}
+                <button
+                  className="main-btn mt-4 w-[472px]"
+                  onClick={() => handleShow("otpVerification")}
+                >
+                  Continue
+                </button>
               </div>
             )}
+            <CardRequest />
 
             {deliveryOption === "homeDelivery" && (
-              <div className="flex flex-col gap-4 w-full">
+              <div className="flex flex-col gap-4 w-[472px]">
                 <FormInput
                   type="text"
                   id="account"
@@ -189,7 +216,6 @@ const RequestPhysicalCard = () => {
                   onChange={handleInputChange}
                 />
                 <FormInput
-                  //   label="State"
                   type="text"
                   id="state"
                   name="state"
@@ -198,7 +224,6 @@ const RequestPhysicalCard = () => {
                   onChange={handleInputChange}
                 />
                 <FormInput
-                  //   label="Zip Code"
                   type="text"
                   id="zipCode"
                   name="zipCode"
@@ -206,13 +231,26 @@ const RequestPhysicalCard = () => {
                   defaultValue={formData.zipCode}
                   onChange={handleInputChange}
                 />
+                <div
+                  className="flex items-center justify-center gap-2 text-center w-[472px] mx-auto py-5 rounded-xl my-4"
+                  style={{
+                    boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)",
+                  }}
+                >
+                  <ExclamationIcon /> Delivery takes between 5 - 7 business
+                  working days.
+                </div>
+                {/* Submit button */}
+                <button
+                  className="main-btn mt-4 w-[472px]"
+                  onClick={handleViewDetails}
+                >
+                  Continue
+                </button>
+
+                {toggle["card-issuance"] && <CardIssuance />}
               </div>
             )}
-
-            {/* Submit button */}
-            <button className="main-btn w-[362px]" onClick={handleSubmit}>
-              Continue
-            </button>
           </div>
         </div>
       </div>

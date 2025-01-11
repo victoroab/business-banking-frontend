@@ -28,6 +28,13 @@ export const globalSlice = createSlice({
         [id]: !state[id],
       };
     },
+    resetAllShows: (state) => {
+      Object.keys(state).forEach((key) => {
+        if (typeof state[key] === "boolean") {
+          state[key] = false;
+        }
+      });
+    },
     saveAccountStatus: (state, action) => {
       state.accountStatus = action.payload;
     },
@@ -48,6 +55,7 @@ export const globalSlice = createSlice({
 
 export const {
   toggleShow,
+  resetAllShows,
   setSearchQuery,
   saveAccountStatus,
   saveBillCategory,
