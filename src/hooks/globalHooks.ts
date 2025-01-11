@@ -1,10 +1,11 @@
 import { useDispatch } from "react-redux";
-import { toggleShow } from "../store/slice/globalSlice";
+import { resetAllShows, toggleShow } from "../store/slice/globalSlice";
 
 export const useGlobalHooks = () => {
   const dispatch = useDispatch();
 
   const handleShow = (id: string | number) => {
+    dispatch(resetAllShows());
     dispatch(toggleShow(id));
   };
 

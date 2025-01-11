@@ -6,8 +6,10 @@ import { useAppSelector } from "../../hooks";
 import { useGlobalHooks } from "../../hooks/globalHooks";
 import { selectGlobal } from "../../store/slice/globalSlice";
 import { GreenCardImage } from "../../assets/svg/RequestCards";
+import { useNavigate } from "react-router-dom";
 
 const GetVirtualCard = () => {
+  const navigate = useNavigate();
   const toggle = useAppSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
   return (
@@ -208,7 +210,7 @@ const GetVirtualCard = () => {
       {/* Success Popup from original CardRequest */}
       {toggle["cardRequestSuccessful"] && (
         <PopUp id="cardRequestSuccessful">
-          <div className="bg-pryColor rounded-lg flex flex-col items-center justify-center p-10 gap-8 w-[650px]">
+          <div className="bg-pryColor rounded-lg flex flex-col items-center justify-center py-[120px] px-24 w-[650px]">
             <div className="flex flex-col justify-center items-center gap-6">
               <div
                 className="bg-white p-4 gap-4 rounded-full flex items-center justify-center w-[122px] h-[122px]"
@@ -227,12 +229,14 @@ const GetVirtualCard = () => {
                 </p>
               </div>
             </div>
-            <div className="flex justify-center w-full gap-6">
-              <button className="yellow-frame-btn w-1/2">Share Receipt</button>
-              <button className="main-btn w-1/2">Download Receipt</button>
-            </div>
-            <div className="flex justify-center w-[80%]">
-              <button className="main-btn w-full">Back to Dashboard</button>
+
+            <div className="flex justify-center w-full mt-[200px]">
+              <button
+                className="yellow-btn w-[472px] text-sm"
+                onClick={() => navigate("/card")}
+              >
+                Okay
+              </button>
             </div>
           </div>
         </PopUp>
