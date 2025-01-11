@@ -877,3 +877,22 @@ export const dataProvider: IDOption[] = [
     title: "Airtel",
   },
 ];
+
+export const dataPackage: IDOption[] = [
+  {
+    shortCode: "1",
+    title: "2.5GB for 2 Days NGN 600.00",
+  },
+  {
+    shortCode: "2",
+    title: "2.5GB for 2 Days NGN 600.00",
+  },
+  {
+    shortCode: "3",
+    title: "2.5GB for 2 Days NGN 600.00",
+  },
+  {
+    shortCode: "4",
+    title: "2.5GB for 2 Days NGN 600.00",
+  },
+];

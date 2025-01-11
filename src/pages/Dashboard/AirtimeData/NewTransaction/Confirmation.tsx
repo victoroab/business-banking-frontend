@@ -4,8 +4,11 @@ import { useGlobalHooks } from "../../../../hooks/globalHooks";
 import { useAppSelector } from "../../../../hooks";
 import { selectGlobal } from "../../../../store/slice/globalSlice";
 import { AlertLogoIcon } from "../../../../assets/svg/Sidebar";
+import { useRef } from "react";
+import { ArrowDownIcon } from "../../../../assets/svg/PayBill";
 
 const AirtimeConfirmation = () => {
+  const formRef = useRef<HTMLDivElement>(null);
   const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
 
@@ -13,8 +16,12 @@ const AirtimeConfirmation = () => {
     handleShow("submit-bill");
   };
 
+  const scrollToBottom = () => {
+    formRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="flex flex-col gap-10 pr-6 ">
+    <div className="flex flex-col gap-10 pr-6 relative">
       <div className="gap-4 flex flex-col justify-center items-center">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
           Confirmation
@@ -147,6 +154,15 @@ const AirtimeConfirmation = () => {
             Next
           </button>
         </div>
+        <div
+          className="flex bg-white rounded-3xl text-pryColor font-bricolage items-center gap-2 fixed bottom-[60px] px-6 py-3 font-semibold right-[320px] cursor-pointer"
+          style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
+          onClick={scrollToBottom}
+        >
+          <ArrowDownIcon />
+          Scroll Down
+        </div>
+        <div ref={formRef}></div>
       </div>
 
       {toggle["submit-bill"] && (

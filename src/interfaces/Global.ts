@@ -67,7 +67,7 @@ export interface KYCPageProps {
 }
 
 export interface IDOption {
-  icon: any;
+  icon?: any;
   title: string;
   iconBg?: string;
   status?: string;

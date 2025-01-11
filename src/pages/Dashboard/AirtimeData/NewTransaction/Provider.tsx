@@ -1,13 +1,13 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { ArrowRightIcon } from "../../../../assets/svg/CustomSVGs";
 import { IDOption } from "../../../../interfaces/Global";
 import { dataProvider } from "../../../../utils";
 
 const Provider = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleNavigate = (title: string) => {
-    navigate(title);
+    console.log(title);
   };
 
   return (
