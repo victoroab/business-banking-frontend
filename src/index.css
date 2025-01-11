@@ -53,6 +53,28 @@
   font-weight: 500;
   color: var(--secColor);
 }
+.yellow-frame-outline-btn {
+  border: solid 1px var(--secColor);
+  border-radius: 12px;
+  background-color: transparent;
+  padding: 12px 9px;
+  font-size: 18px;
+  font-family: "Bricolage Grotesque", serif;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--secColor);
+}
+.yellow-btn {
+  border: solid 1px var(--secColor);
+  border-radius: 12px;
+  background-color: var(--secColor);
+  padding: 12px 9px;
+  font-size: 18px;
+  font-family: "Bricolage Grotesque", serif;
+  cursor: pointer;
+  font-weight: 500;
+  /* color: var(--secColor); */
+}
 .red-frame-btn {
   border-radius: 12px;
   color: white;
