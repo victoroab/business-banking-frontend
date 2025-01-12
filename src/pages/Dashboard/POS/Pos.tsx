@@ -32,8 +32,8 @@ const Pos = () => {
       <div className="flex flex-col gap-10">
         <div className="flex justify-end px-10">
           <button
-            className="main-btn w-40 font-bricolage"
-            onClick={() => navigate("/new-transaction")}
+            className="main-btn w-52 font-bricolage"
+            onClick={() => navigate("/request-pos/debit-account")}
           >
             Request Another POS
           </button>

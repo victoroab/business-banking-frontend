@@ -45,9 +45,13 @@ import Provider from "../pages/Dashboard/AirtimeData/NewTransaction/Provider";
 import AddBeneficiary from "../pages/Dashboard/AirtimeData/NewTransaction/AddBeneficiary";
 import AirtimeConfirmation from "../pages/Dashboard/AirtimeData/NewTransaction/Confirmation";
 import AirtimePackage from "../pages/Dashboard/AirtimeData/NewTransaction/Package";
-import UserCards from "../pages/Dashboard/Cards/UserCards";
-import PhysicalCardDetails from "../pages/Dashboard/Cards/PhysicalCardDetails";
-import VirtualCardDetails from "../pages/Dashboard/Cards/VirtualCardDetails";
+import Category from "../pages/Dashboard/PayBills/NewBill/Category";
+import BillDebitAccount from "../pages/Dashboard/PayBills/NewBill/DebitAccount";
+import PosDebitAccount from "../pages/Dashboard/POS/New/PosDebitAccount";
+import DeviceType from "../pages/Dashboard/POS/New/DeviceType";
+import Details from "../pages/Dashboard/POS/New/Details";
+import DeliveryOption from "../pages/Dashboard/POS/New/DeliveryOption";
+import PosConfirmation from "../pages/Dashboard/POS/New/PosConfirmation";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -237,10 +241,78 @@ const airtimeDataRoutes: RouteProps[] = [
   },
 ];
 
+const posRoutes: RouteProps[] = [
+  {
+    path: "debit-account",
+    name: "Debit Account",
+    element: <PosDebitAccount />,
+  },
+  {
+    path: "device-type",
+    name: "Select Device Type",
+    element: <DeviceType />,
+  },
+  {
+    path: "pos-details",
+    name: "POS Details",
+    element: <Details />,
+  },
+  {
+    path: "delivery-option",
+    name: "Delivery Option",
+    element: <DeliveryOption />,
+  },
+  {
+    path: "confirmation",
+    name: "Confirmation",
+    element: <PosConfirmation />,
+  },
+];
+
+const payBillDataRoutes: RouteProps[] = [
+  {
+    path: "debit-account",
+    name: "Debit Account",
+    element: <BillDebitAccount />,
+  },
+  {
+    path: "category",
+    name: "Select Category",
+    element: <Category />,
+  },
+  {
+    path: "provider",
+    name: "Provider",
+    element: <Provider />,
+  },
+  {
+    path: "amount",
+    name: "Amount",
+    element: <Amount />,
+  },
+  {
+    path: "beneficiary",
+    name: "Add beneficiary",
+    element: <AddBeneficiary />,
+  },
+  {
+    path: "package",
+    name: "Select Package",
+    element: <AirtimePackage />,
+  },
+  {
+    path: "confirmation",
+    name: "Confirmation",
+    element: <AirtimeConfirmation />,
+  },
+];
+
 export {
   authRoutes,
   dashboardRoutes,
   kybRoutes,
   sendMoneyRoutes,
+  posRoutes,
   airtimeDataRoutes,
+  payBillDataRoutes,
 };

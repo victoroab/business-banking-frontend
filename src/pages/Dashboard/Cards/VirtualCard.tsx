@@ -9,7 +9,7 @@ import { useGlobalHooks } from "../../../hooks/globalHooks";
 const VirtualCard = () => {
   const navigate = useNavigate();
   const { handleShow } = useGlobalHooks();
-  const [activeSlide, setActiveSlide] = useState(1); // 0 for physical card, 1 for virtual card
+  const [activeSlide, setActiveSlide] = useState(1);
 
   const handleNextSlide = () => {
     setActiveSlide(0);

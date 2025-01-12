@@ -326,30 +326,37 @@ export const attestation = [
 export const newBillProgressSteps: ProgressStepsProps[] = [
   {
     id: 1,
+    link: "debit-account",
     title: "Select Debit Account",
   },
   {
     id: 2,
+    link: "category",
     title: "Select a Category",
   },
   {
     id: 3,
+    link: "business-details",
     title: "Select Provider",
   },
   {
     id: 4,
+    link: "business-details",
     title: "Select Package",
   },
   {
     id: 5,
+    link: "business-details",
     title: "Add Beneficiary",
   },
   {
     id: 6,
+    link: "business-details",
     title: "Amount",
   },
   {
     id: 7,
+    link: "business-details",
     title: "Confirmation",
   },
 ];
@@ -564,6 +571,56 @@ export const dataStep: ProgressStepsProps[] = [
     title: "Confirmation",
   },
 ];
+
+export const androidStep: ProgressStepsProps[] = [
+  {
+    id: 1,
+    link: "debit-account",
+    title: "Select Debit Account",
+  },
+  {
+    id: 2,
+    link: "device-type",
+    title: "Select Device Type",
+  },
+  {
+    id: 3,
+    link: "pos-details",
+    title: "Enter POS Details",
+  },
+  {
+    id: 4,
+    link: "delivery-option",
+    title: "Select Delivery Option",
+  },
+  {
+    id: 5,
+    link: "confirmation",
+    title: "Confirmation",
+  },
+];
+// export const analogStep: ProgressStepsProps[] = [
+//   {
+//     id: 1,
+//     link: "debit-account",
+//     title: "Select Debit Account",
+//   },
+//   {
+//     id: 2,
+//     link: "pos-details",
+//     title: "Enter POS Details",
+//   },
+//   {
+//     id: 3,
+//     link: "delivery-package",
+//     title: "Select Delivery Option",
+//   },
+//   {
+//     id: 4,
+//     link: "confirmation",
+//     title: "Confirmation",
+//   },
+// ];
 export const tableCustomStyles = {
   headCells: {
     style: {
@@ -894,5 +951,16 @@ export const dataPackage: IDOption[] = [
   {
     shortCode: "4",
     title: "2.5GB for 2 Days NGN 600.00",
+  },
+];
+
+export const posDevice: IDOption[] = [
+  {
+    shortCode: "Free",
+    title: "Android",
+  },
+  {
+    shortCode: "Free",
+    title: "Analog",
   },
 ];

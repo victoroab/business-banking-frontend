@@ -6,6 +6,8 @@ import {
   authRoutes,
   dashboardRoutes,
   kybRoutes,
+  payBillDataRoutes,
+  posRoutes,
   sendMoneyRoutes,
 } from "./routes/routes";
 import DashboardLayout from "./layout/Dashboard";
@@ -13,8 +15,10 @@ import { RouteProps } from "./interfaces/Global";
 import ProgressLayout from "./layout/ProgressLayout";
 import {
   airtimeStep,
+  androidStep,
   dataStep,
   KYCProgressSteps,
+  newBillProgressSteps,
   newTransaction,
 } from "./utils";
 import { useAppSelector } from "./hooks";
@@ -58,6 +62,8 @@ function App() {
               <ProgressLayout
                 progressSteps={newTransaction}
                 isDashboard={true}
+                navTitle="Send Money"
+                navDesc="Sending money has never been easier. ."
               />
             </DashboardLayout>
           }
@@ -76,11 +82,48 @@ function App() {
                   airtimeDataAction === "AIRTIME" ? airtimeStep : dataStep
                 }
                 isDashboard={true}
+                navTitle="Airtime & Data"
+                navDesc="Easily recharge you phone or prchase data bundles in just a few clicks"
               />
             </DashboardLayout>
           }
         >
           {airtimeDataRoutes.map((route, idx: number) => (
+            <Route key={idx} path={route.path} element={route.element} />
+          ))}
+        </Route>
+
+        <Route
+          path="/pay-new-bill"
+          element={
+            <DashboardLayout>
+              <ProgressLayout
+                progressSteps={newBillProgressSteps}
+                isDashboard={true}
+                navTitle="Pay Bill"
+                navDesc="Settle your bills for utilities, subscriptions, and more—all in one place!"
+              />
+            </DashboardLayout>
+          }
+        >
+          {payBillDataRoutes.map((route, idx: number) => (
+            <Route key={idx} path={route.path} element={route.element} />
+          ))}
+        </Route>
+        <Route
+          path="/request-pos"
+          element={
+            <DashboardLayout>
+              <ProgressLayout
+                progressSteps={androidStep}
+                isDashboard={true}
+                navTitle="POS"
+                navDesc="Here's your your POS Terminals"
+              />
+            </DashboardLayout>
+          }
+        >
+          {posRoutes.map((route, idx: number) => (
             <Route key={idx} path={route.path} element={route.element} />
           ))}
         </Route>
