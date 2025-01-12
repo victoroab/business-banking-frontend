@@ -2,20 +2,20 @@ import { useNavigate } from "react-router-dom";
 import FormInput from "../../../../components/FormInput";
 import { industries } from "../../../../utils";
 
-const BillDebitAccount = () => {
+const DeliveryOption = () => {
   const navigate = useNavigate();
   const handleSubmit = () => {
-    navigate("/pay-new-bill/category");
+    navigate("/request-pos/confirmation");
   };
 
   return (
     <div className="flex flex-col gap-14 pr-6">
       <div className="gap-4 flex flex-col">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-          Debit Account
+          Select Delivery Option
         </h3>
         <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-          Select Debit account e.g POS Balance or Account Balance
+          Select your preferred deliver option
         </p>
       </div>
 
@@ -24,10 +24,10 @@ const BillDebitAccount = () => {
           <FormInput
             id="debitAccount"
             name="debitAccount"
-            label="Debit Account"
+            // label=""
             type="cSelect"
             selectOptions={industries}
-            placeholder="Select industry"
+            placeholder="Pick up branch"
             keyPropertyName="industry"
             valuePropertyName="industry"
             itemPropertyName="industry"
@@ -50,4 +50,4 @@ const BillDebitAccount = () => {
   );
 };
 
-export default BillDebitAccount;
+export default DeliveryOption;

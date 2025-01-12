@@ -2,10 +2,10 @@ import { useNavigate } from "react-router-dom";
 import FormInput from "../../../../components/FormInput";
 import { industries } from "../../../../utils";
 
-const BillDebitAccount = () => {
+const PosDebitAccount = () => {
   const navigate = useNavigate();
   const handleSubmit = () => {
-    navigate("/pay-new-bill/category");
+    navigate("/request-pos/device-type");
   };
 
   return (
@@ -50,4 +50,4 @@ const BillDebitAccount = () => {
   );
 };
 
-export default BillDebitAccount;
+export default PosDebitAccount;

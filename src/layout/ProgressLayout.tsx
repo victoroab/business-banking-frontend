@@ -9,7 +9,12 @@ import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar/Navbar";
 import BackNavigation from "../components/ArrowBack/Back";
 
-const ProgressLayout = ({ progressSteps, isDashboard }: ProgressProps) => {
+const ProgressLayout = ({
+  progressSteps,
+  isDashboard,
+  navTitle,
+  navDesc,
+}: ProgressProps) => {
   const location = useLocation();
   const currentStep = location.pathname.split("/")[2];
   const navigate = useNavigate();
@@ -23,10 +28,7 @@ const ProgressLayout = ({ progressSteps, isDashboard }: ProgressProps) => {
     <>
       {isDashboard ? (
         <>
-          <Navbar
-            title="Send Money"
-            subtitle="Sending money has never been easier. ."
-          />
+          <Navbar title={navTitle as string} subtitle={navDesc as string} />
           <div className="flex w-[20%] justify-start items-start left">
             <BackNavigation />
           </div>
@@ -41,8 +43,8 @@ const ProgressLayout = ({ progressSteps, isDashboard }: ProgressProps) => {
                       to={progress.link as string}
                       className={({ isActive }) =>
                         isActive
-                          ? "w-[200px] items-center gap-2 border-b-2 flex pb-2  border-secColor"
-                          : "w-[200px] items-center gap-2 border-b-2 flex pb-2  border-[#e8e9eb]"
+                          ? "w-[210px] items-center gap-2 border-b-2 flex pb-2  border-secColor"
+                          : "w-[210px] items-center gap-2 border-b-2 flex pb-2  border-[#e8e9eb]"
                       }
                     >
                       <div
