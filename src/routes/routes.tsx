@@ -45,6 +45,9 @@ import Provider from "../pages/Dashboard/AirtimeData/NewTransaction/Provider";
 import AddBeneficiary from "../pages/Dashboard/AirtimeData/NewTransaction/AddBeneficiary";
 import AirtimeConfirmation from "../pages/Dashboard/AirtimeData/NewTransaction/Confirmation";
 import AirtimePackage from "../pages/Dashboard/AirtimeData/NewTransaction/Package";
+import UserCards from "../pages/Dashboard/Cards/UserCards";
+import PhysicalCardDetails from "../pages/Dashboard/Cards/PhysicalCardDetails";
+import VirtualCardDetails from "../pages/Dashboard/Cards/VirtualCardDetails";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -96,6 +99,17 @@ const dashboardRoutes: RouteProps[] = [
   { path: "/card", name: "Home", element: <Cards /> },
   { path: "/request-card", name: "Card", element: <RequestCard /> },
   { path: "/virtual-card", name: "Card", element: <VirtualCard /> },
+  { path: "/cards", name: "Cards", element: <UserCards /> },
+  {
+    path: "/physical-card-details",
+    name: "Cards",
+    element: <PhysicalCardDetails />,
+  },
+  {
+    path: "/virtual-card-details",
+    name: "Cards",
+    element: <VirtualCardDetails />,
+  },
   {
     path: "/request-physical-card",
     name: "Card",
