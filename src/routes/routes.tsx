@@ -52,6 +52,9 @@ import DeviceType from "../pages/Dashboard/POS/New/DeviceType";
 import Details from "../pages/Dashboard/POS/New/Details";
 import DeliveryOption from "../pages/Dashboard/POS/New/DeliveryOption";
 import PosConfirmation from "../pages/Dashboard/POS/New/PosConfirmation";
+import UserCards from "../pages/Dashboard/Cards/UserCards";
+import PhysicalCardDetails from "../pages/Dashboard/Cards/PhysicalCardDetails";
+import VirtualCardDetails from "../pages/Dashboard/Cards/VirtualCardDetails";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },

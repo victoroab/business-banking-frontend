@@ -69,7 +69,7 @@ const VirtualCardDetails = () => {
               <div>
                 <button
                   className="main-card-btn"
-                  onClick={() => navigate("/cards")}
+                  onClick={() => navigate("/card")}
                 >
                   Hide Details
                 </button>

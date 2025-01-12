@@ -68,7 +68,7 @@ const PhysicalCardDetails = () => {
               <div>
                 <button
                   className="main-card-btn"
-                  onClick={() => navigate("/cards")}
+                  onClick={() => navigate("/card")}
                 >
                   Hide Details
                 </button>
@@ -78,7 +78,7 @@ const PhysicalCardDetails = () => {
           <div className="py-8 flex flex-col justify-center items-center gap-6">
             <div
               className="bg-white rounded-xl flex items-center justify-between py-6 px-6 w-[1012px] mx-auto"
-              onClick={() => handleShow("createCardPin")}
+              onClick={() => handleShow("inputCardPinBlockPhysical")}
               style={{
                 boxShadow: "0px 0px 40px 0px rgba(0, 0, 0, 0.04)",
               }}

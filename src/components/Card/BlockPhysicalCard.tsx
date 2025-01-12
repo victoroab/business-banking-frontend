@@ -14,8 +14,8 @@ const BlockPhysicalCard = () => {
   return (
     <>
       {/* Show OTP Pop-Up when user clicks "Show Details" */}
-      {toggle["createCardPin"] && (
-        <PopUp id="createCardPin">
+      {toggle["inputCardPinBlockPhysical"] && (
+        <PopUp id="inputCardPinBlockPhysical">
           <div className="bg-white rounded-lg flex flex-col text-center items-center justify-center px-24 py-16 gap-8 w-[664px] border">
             <Otp
               otpCode={""}
