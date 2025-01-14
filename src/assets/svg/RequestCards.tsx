@@ -212,3 +212,20 @@ export const ForwardIcon = (props: SVGProps<SVGSVGElement>) => (
     />
   </svg>
 );
+
+export const BackwardIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    {...props}
+    width="40"
+    height="41"
+    viewBox="0 0 40 41"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <circle cx="20" cy="20.5" r="20" fill="#456EFE" fill-opacity="0.05" />
+    <path
+      d="M21.2929 14.793L15.5859 20.5L21.2929 26.207L22.7069 24.793L18.4139 20.5L22.7069 16.207L21.2929 14.793Z"
+      fill="#0E0C60"
+    />
+  </svg>
+);

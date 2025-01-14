@@ -55,7 +55,7 @@ export const globalSlice = createSlice({
 
 export const {
   toggleShow,
-  resetAllShows,
+  // resetAllShows,
   setSearchQuery,
   saveAccountStatus,
   saveBillCategory,

@@ -32,6 +32,16 @@
   font-weight: 500;
   color: var(--white);
 }
+.main-card-btn {
+  background: var(--pryColor);
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-family: "Bricolage Grotesque", serif;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--white);
+}
 .white-btn {
   background: var(--white);
   border-radius: 8px;
