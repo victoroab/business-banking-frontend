@@ -33,7 +33,6 @@ import BusinessAddress from "../pages/Auth/Kyc/BusinessAddress";
 import Attestation from "../pages/Auth/Kyc/Attestation";
 import Beneficiaries from "../pages/Dashboard/Beneficiaries/Beneficiaries";
 import Approvals from "../pages/Dashboard/Approvals/Approvals";
-import NewBeneficiary from "../pages/Dashboard/Beneficiaries/NewBeneficiary";
 import RequestCard from "../pages/Dashboard/Cards/RequestCard";
 import VirtualCard from "../pages/Dashboard/Cards/VirtualCard";
 import RequestPhysicalCard from "../pages/Dashboard/Cards/RequestPhysicalCard";
@@ -132,11 +131,6 @@ const dashboardRoutes: RouteProps[] = [
     path: "/new-transaction",
     name: "Transaction",
     element: <NewTransaction />,
-  },
-  {
-    path: "/new-beneficiary",
-    name: "Beneficiary",
-    element: <NewBeneficiary />,
   },
 ];
 

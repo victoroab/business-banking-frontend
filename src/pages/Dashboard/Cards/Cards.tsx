@@ -11,8 +11,8 @@ const Cards = () => {
         title="Cards"
         subtitle="Easily apply for a debit or credit card tailored to your needs."
       />
-      <div className="bg-pryColor-Light ">
-        <div className="flex flex-col items-center justify-center gap-6 bg-white w-[90%] mx-auto px-20 py-11">
+      <div className="bg-pryColor-Light pt-16">
+        <div className="flex flex-col items-center justify-center gap-6 bg-white w-[90%] mx-auto px-20 py-20">
           <CardsImage />
           <h1 className="font-bricolage font-semibold text-xl text-[#0E0C60]">
             Dependable and Effective
