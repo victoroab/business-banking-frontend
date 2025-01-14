@@ -4,6 +4,7 @@ import {
   SendMoneyIcon,
   PayBillIcons,
   SupportIcon,
+  UploadIcon,
   CardIcon,
   SidebarUserIcon,
   SidebarAirtimeIcon,
@@ -78,5 +79,11 @@ export const SidebarData = [
     icon: SidebarBeneficiaryIcon,
     title: "Beneficiaries",
     url: "/beneficiaries",
+  },
+  {
+    id: "tab12",
+    icon: UploadIcon,
+    title: "Uploads",
+    url: "/uploads",
   },
 ];
