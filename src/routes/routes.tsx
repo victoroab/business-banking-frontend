@@ -54,6 +54,7 @@ import PosConfirmation from "../pages/Dashboard/POS/New/PosConfirmation";
 import UserCards from "../pages/Dashboard/Cards/UserCards";
 import PhysicalCardDetails from "../pages/Dashboard/Cards/PhysicalCardDetails";
 import VirtualCardDetails from "../pages/Dashboard/Cards/VirtualCardDetails";
+import Upload from "../pages/Dashboard/Upload/Upload";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -106,6 +107,7 @@ const dashboardRoutes: RouteProps[] = [
   { path: "/request-card", name: "Card", element: <RequestCard /> },
   { path: "/virtual-card", name: "Card", element: <VirtualCard /> },
   { path: "/cards", name: "Cards", element: <UserCards /> },
+  { path: "/uploads", name: "Upload", element: <Upload /> },
   {
     path: "/physical-card-details",
     name: "Cards",
