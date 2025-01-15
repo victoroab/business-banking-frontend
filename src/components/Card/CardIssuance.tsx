@@ -1,8 +1,10 @@
+import { useNavigate } from "react-router-dom";
 import { YellowCardImage } from "../../assets/svg/RequestCards";
 import BackNavigation from "../ArrowBack/Back";
 import PopUp from "../PopUps/PopUp";
 
 const CardIssuance = () => {
+  const navigate = useNavigate();
   return (
     <PopUp id={"card-issuance"}>
       <div className="bg-white rounded-lg flex flex-col py-10 px-20 gap-10 w-[650px] font-workSans">
@@ -51,7 +53,12 @@ const CardIssuance = () => {
           </div>
           <span>*Payment for card is non-refundable</span>
         </div>
-        <button className="main-btn w-[472px]">Confirm</button>
+        <button
+          className="main-btn w-[472px]"
+          onClick={() => navigate("/cards")}
+        >
+          Confirm
+        </button>
         <div className="flex justify-center">
           <BackNavigation />
         </div>

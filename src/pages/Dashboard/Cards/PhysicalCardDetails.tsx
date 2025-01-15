@@ -1,15 +1,21 @@
 import { useNavigate } from "react-router-dom";
-import { BlockIcon, ResetIcon, RightArrow } from "../../../assets/svg/Card";
-import { BlueHorizontalCardImage } from "../../../assets/svg/CardsImage";
+import {
+  BlockIcon,
+  ResetIcon,
+  RightArrow,
+  TrackCard,
+} from "../../../assets/svg/Card";
 import { CopyIcon } from "../../../assets/svg/CustomSVGs";
 import BackNavigation from "../../../components/ArrowBack/Back";
 import Navbar from "../../../components/Navbar/Navbar";
 import BlockPhysicalCard from "../../../components/Card/BlockPhysicalCard";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
+import Card from "../../../components/Card/ATMCard";
 
 const PhysicalCardDetails = () => {
   const navigate = useNavigate();
   const { handleShow } = useGlobalHooks();
+  const physicalCardNumber = "1234567812345678";
   return (
     <>
       <Navbar
@@ -23,7 +29,7 @@ const PhysicalCardDetails = () => {
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-10">
             <div className="flex items-center justify-center gap-12 w-[1012px] mx-auto font-workSans">
-              <BlueHorizontalCardImage />
+              <Card type="physical" cardNumber={physicalCardNumber} />
               <div
                 className="flex-1 flex flex-col rounded-xl py-5 px-5"
                 style={{
@@ -33,7 +39,9 @@ const PhysicalCardDetails = () => {
                 <div className="flex items-center justify-between border-dashed border rounded-lg py-3 px-20 border-lightGreyColor">
                   <div className="flex flex-col">
                     <span className="text-xs">Card Number</span>
-                    <span className="font-medium">1234 5678 9901 2343</span>
+                    <span className="font-medium">
+                      {physicalCardNumber.replace(/(\d{4})/g, "$1 ").trim()}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     COPY <CopyIcon />
@@ -77,7 +85,20 @@ const PhysicalCardDetails = () => {
           </div>
           <div className="py-8 flex flex-col justify-center items-center gap-6">
             <div
-              className="bg-white rounded-xl flex items-center justify-between py-6 px-6 w-[1012px] mx-auto"
+              className="bg-white rounded-xl flex items-center justify-between py-6 px-6 w-[1012px] mx-auto cursor-pointer"
+              onClick={() => navigate("/track-card")}
+              style={{
+                boxShadow: "0px 0px 40px 0px rgba(0, 0, 0, 0.04)",
+              }}
+            >
+              <div className="flex items-center gap-2">
+                <TrackCard />
+                Track Card
+              </div>
+              <RightArrow />
+            </div>
+            <div
+              className="bg-white rounded-xl flex items-center justify-between py-6 px-6 w-[1012px] mx-auto cursor-pointer"
               onClick={() => handleShow("inputCardPinBlockPhysical")}
               style={{
                 boxShadow: "0px 0px 40px 0px rgba(0, 0, 0, 0.04)",

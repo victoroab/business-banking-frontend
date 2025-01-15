@@ -12,6 +12,7 @@ import { selectGlobal } from "../../../store/slice/globalSlice";
 import FormInput from "../../../components/FormInput";
 
 const Beneficiaries = () => {
+  const [beneficiaryType, setBeneficiaryType] = useState<string>("");
   const toggle = useAppSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
   const { handleSearch } = useGlobalHooks();
@@ -97,29 +98,133 @@ const Beneficiaries = () => {
             <div className="flex flex-col gap-4 w-full">
               <FormInput
                 type="cSelect"
+                selectOptions={[
+                  "Money Transfer",
+                  "Cable TV",
+                  "Betting",
+                  "Airtime and Data",
+                  "Electricity",
+                ]}
                 placeholder="Beneficiary Type"
-                id=""
+                id="beneficiaryType"
                 className="w-full"
+                onChange={(e) => setBeneficiaryType(e.target.value)}
               />
-              <FormInput
-                type="text"
-                placeholder="Beneficiary Name"
-                id=""
-                className="w-full"
-              />
-              <FormInput
-                type="text"
-                placeholder="Account Number"
-                id=""
-                className="w-full"
-              />
-              <FormInput
-                type="cSelect"
-                placeholder="Beneficiary Bank"
-                id=""
-                className="w-full"
-              />
+
+              {/* Conditionally render additional fields based on beneficiaryType */}
+              {beneficiaryType === "Money Transfer" && (
+                <>
+                  <FormInput
+                    type="text"
+                    placeholder="Beneficiary Name"
+                    id="beneficiaryName"
+                    className="w-full"
+                  />
+                  <FormInput
+                    type="text"
+                    placeholder="Account Number"
+                    id="accountNumber"
+                    className="w-full"
+                  />
+                  <FormInput
+                    type="cSelect"
+                    placeholder="Beneficiary Bank"
+                    id="beneficiaryBank"
+                    className="w-full"
+                  />
+                </>
+              )}
+
+              {beneficiaryType === "Betting" && (
+                <>
+                  <FormInput
+                    type="text"
+                    placeholder="Wallet Name"
+                    id="walletName"
+                    className="w-full"
+                  />
+                  <FormInput
+                    type="text"
+                    placeholder="User ID"
+                    id="userId"
+                    className="w-full"
+                  />
+                  <FormInput
+                    type="text"
+                    placeholder="Service Provider"
+                    id="serviceProvider"
+                    className="w-full"
+                  />
+                </>
+              )}
+
+              {beneficiaryType === "Airtime and Data" && (
+                <>
+                  <FormInput
+                    type="text"
+                    placeholder="Phone Number"
+                    id="phoneNumber"
+                    className="w-full"
+                  />
+                  <FormInput
+                    type="text"
+                    placeholder="Network Provider"
+                    id="networkProvider"
+                    className="w-full"
+                  />
+                </>
+              )}
+
+              {beneficiaryType === "Betting" && (
+                <>
+                  <FormInput
+                    type="text"
+                    placeholder="Wallet Name"
+                    id="walletName"
+                    className="w-full"
+                  />
+                  <FormInput
+                    type="text"
+                    placeholder="User ID"
+                    id="userId"
+                    className="w-full"
+                  />
+                  <FormInput
+                    type="text"
+                    placeholder="Service Provider"
+                    id="serviceProvider"
+                    className="w-full"
+                  />
+                </>
+              )}
+
+              {beneficiaryType === "Electricity" && (
+                <>
+                  <FormInput
+                    type="text"
+                    placeholder="Meter Number"
+                    id="meterNumber"
+                    className="w-full"
+                  />
+                  <FormInput
+                    type="cSelect"
+                    selectOptions={["Prepaid", "Postpaid"]}
+                    placeholder="Meter Type"
+                    id="meterType"
+                    className="w-full"
+                  />
+                  <FormInput
+                    type="text"
+                    placeholder="Disco (Electricity Provider)"
+                    id="discoProvider"
+                    className="w-full"
+                  />
+                </>
+              )}
+
+              {/* More fields for other types */}
             </div>
+
             <div className="flex justify-center w-full">
               <button className="main-btn w-full">Add Beneficiary</button>
             </div>

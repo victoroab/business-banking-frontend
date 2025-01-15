@@ -6,8 +6,10 @@ import BackNavigation from "../ArrowBack/Back";
 import Otp from "../OTP/Otp";
 import PopUp from "../PopUps/PopUp";
 import { SuccessIcon } from "../../assets/svg/CustomSVGs";
+import { useNavigate } from "react-router-dom";
 
 const ResetVirtualCard = () => {
+  const navigate = useNavigate();
   const toggle = useAppSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
   return (
@@ -134,7 +136,12 @@ const ResetVirtualCard = () => {
               </p>
             </div>
             <div className="flex justify-center w-full">
-              <button className="yellow-btn w-full">Go Back</button>
+              <button
+                className="yellow-btn w-full"
+                onClick={() => navigate("/cards")}
+              >
+                Go Back
+              </button>
             </div>
           </div>
         </PopUp>

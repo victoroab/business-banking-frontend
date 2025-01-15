@@ -6,9 +6,9 @@ import { useGlobalHooks } from "../../hooks/globalHooks";
 import { selectGlobal } from "../../store/slice/globalSlice";
 import { BlockIcon } from "../../assets/svg/Card";
 import { SuccessIcon } from "../../assets/svg/CustomSVGs";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 const BlockVirtualCard = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const toggle = useAppSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
   return (
@@ -132,7 +132,12 @@ const BlockVirtualCard = () => {
               </p>
             </div>
             <div className="flex justify-center w-full">
-              <button className="yellow-btn w-full">Go Back</button>
+              <button
+                className="yellow-btn w-full"
+                onClick={() => navigate("/cards")}
+              >
+                Go Back
+              </button>
             </div>
           </div>
         </PopUp>

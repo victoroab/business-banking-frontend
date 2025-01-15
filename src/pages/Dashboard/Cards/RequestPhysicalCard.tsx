@@ -6,8 +6,8 @@ import { useState } from "react";
 // import Select from "../../../components/Select/Select";
 import FormInput from "../../../components/FormInput";
 import { ExclamationIcon } from "../../../assets/svg/Card";
-import { useAppSelector } from "../../../hooks";
-import { selectGlobal } from "../../../store/slice/globalSlice";
+// import { useAppSelector } from "../../../hooks";
+// import { selectGlobal } from "../../../store/slice/globalSlice";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import CardIssuance from "../../../components/Card/CardIssuance";
 // import PopUp from "../../../components/PopUps/PopUp";
@@ -17,7 +17,7 @@ import CardRequest from "../../../components/Card/CardRequest";
 const RequestPhysicalCard = () => {
   //   const navigate = useNavigate();
   const [deliveryOption, setDeliveryOption] = useState("selfPickUp"); // "selfPickUp" or "homeDelivery"
-  const toggle = useAppSelector(selectGlobal);
+  // const toggle = useAppSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
   // const [otpCode, setOtpCode] = useState<string>("");
   const handleViewDetails = () => {
@@ -249,7 +249,7 @@ const RequestPhysicalCard = () => {
                   Continue
                 </button>
 
-                {toggle["card-issuance"] && <CardIssuance />}
+                <CardIssuance />
               </div>
             )}
           </div>
