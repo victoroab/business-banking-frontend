@@ -55,7 +55,11 @@ import UserCards from "../pages/Dashboard/Cards/UserCards";
 import PhysicalCardDetails from "../pages/Dashboard/Cards/PhysicalCardDetails";
 import VirtualCardDetails from "../pages/Dashboard/Cards/VirtualCardDetails";
 import Upload from "../pages/Dashboard/Upload/Upload";
-import TrackCard from "../pages/Dashboard/Cards/TrackCard";
+import BillProvider from "../pages/Dashboard/PayBills/NewBill/Provider";
+import BillPackage from "../pages/Dashboard/PayBills/NewBill/Package";
+import AddBillBeneficiary from "../pages/Dashboard/PayBills/NewBill/AddBeneficiary";
+import BillAmount from "../pages/Dashboard/PayBills/NewBill/Amount";
+import BillConfirmation from "../pages/Dashboard/PayBills/NewBill/Confirmation";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -284,27 +288,27 @@ const payBillDataRoutes: RouteProps[] = [
   {
     path: "provider",
     name: "Provider",
-    element: <Provider />,
+    element: <BillProvider />,
   },
   {
     path: "amount",
     name: "Amount",
-    element: <Amount />,
+    element: <BillAmount />,
   },
   {
     path: "beneficiary",
     name: "Add beneficiary",
-    element: <AddBeneficiary />,
+    element: <AddBillBeneficiary />,
   },
   {
     path: "package",
     name: "Select Package",
-    element: <AirtimePackage />,
+    element: <BillPackage />,
   },
   {
     path: "confirmation",
     name: "Confirmation",
-    element: <AirtimeConfirmation />,
+    element: <BillConfirmation />,
   },
 ];
 

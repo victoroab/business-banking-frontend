@@ -336,27 +336,27 @@ export const newBillProgressSteps: ProgressStepsProps[] = [
   },
   {
     id: 3,
-    link: "business-details",
+    link: "provider",
     title: "Select Provider",
   },
   {
     id: 4,
-    link: "business-details",
+    link: "package",
     title: "Select Package",
   },
   {
     id: 5,
-    link: "business-details",
+    link: "beneficiary",
     title: "Add Beneficiary",
   },
   {
     id: 6,
-    link: "business-details",
+    link: "amount",
     title: "Amount",
   },
   {
     id: 7,
-    link: "business-details",
+    link: "confirmation",
     title: "Confirmation",
   },
 ];

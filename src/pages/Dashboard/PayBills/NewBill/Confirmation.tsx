@@ -5,7 +5,7 @@ import { useAppSelector } from "../../../../hooks";
 import { selectGlobal } from "../../../../store/slice/globalSlice";
 import { AlertLogoIcon } from "../../../../assets/svg/Sidebar";
 
-const Confirmation = () => {
+const BillConfirmation = () => {
   const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
 
@@ -212,4 +212,4 @@ const Confirmation = () => {
   );
 };
 
-export default Confirmation;
+export default BillConfirmation;

@@ -1,11 +1,11 @@
-import React from "react";
 import FormInput from "../../../../components/FormInput";
-import { KYCPageProps } from "../../../../interfaces/Global";
+import { useNavigate } from "react-router-dom";
 import { BeneficiaryIcon } from "../../../../assets/svg/PayBill";
 
-const AddBeneficiary: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
+const AddBillBeneficiary = () => {
+  const navigate = useNavigate();
   const handleSubmit = () => {
-    setCurrentStep(6);
+    navigate("/pay-new-bill/amount");
   };
 
   return (
@@ -48,4 +48,4 @@ const AddBeneficiary: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
   );
 };
 
-export default AddBeneficiary;
+export default AddBillBeneficiary;

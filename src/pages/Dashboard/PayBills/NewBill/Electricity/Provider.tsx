@@ -1,20 +1,18 @@
-import { useState } from "react";
 import { ArrowRightIcon } from "../../../../../assets/svg/CustomSVGs";
-import { IDOption, KYCPageProps } from "../../../../../interfaces/Global";
+import { IDOption } from "../../../../../interfaces/Global";
 import { electricityProvider } from "../../../../../utils";
 import { saveElectricityProvider } from "../../../../../store/slice/globalSlice";
 import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
-const Provider: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
+const ElectricityProvider = () => {
   const dispatch = useDispatch();
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const navigate = useNavigate();
   const handleNavigate = (title: string) => {
-    setSelectedCategory(title);
     dispatch(saveElectricityProvider(title));
-    setCurrentStep(4);
+    console.log(title);
+    navigate("/pay-new-bill/package");
   };
-
-  console.log(selectedCategory);
 
   return (
     <div className="flex flex-col gap-10">
@@ -50,4 +48,4 @@ const Provider: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
   );
 };
 
-export default Provider;
+export default ElectricityProvider;

@@ -2,7 +2,7 @@ import { bettingProvider } from "../../../../../utils";
 import { IDOption } from "../../../../../interfaces/Global";
 import { ArrowRightIcon } from "../../../../../assets/svg/CustomSVGs";
 
-const Provider = () => {
+const BetProvider = () => {
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4">
@@ -37,4 +37,4 @@ const Provider = () => {
   );
 };
 
-export default Provider;
+export default BetProvider;

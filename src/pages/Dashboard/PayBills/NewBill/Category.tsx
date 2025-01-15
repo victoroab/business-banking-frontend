@@ -1,18 +1,18 @@
-import { useState } from "react";
 import { payBillOptions } from "../../../../utils";
 import { IDOption } from "../../../../interfaces/Global";
 import { ArrowRightIcon } from "../../../../assets/svg/CustomSVGs";
 import { useDispatch } from "react-redux";
 import { setBillCategoryAction } from "../../../../store/slice/dashboardSlice";
+import { useNavigate } from "react-router-dom";
 
 const Category = () => {
   const dispatch = useDispatch();
-  const [selectedCategory, setSelectedCategory] = useState<string>("");
+  const navigate = useNavigate();
   const handleNavigate = (title: string) => {
-    setSelectedCategory(title);
     dispatch(setBillCategoryAction(title));
+    navigate("/pay-new-bill/provider");
   };
-  console.log(selectedCategory);
+
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4">

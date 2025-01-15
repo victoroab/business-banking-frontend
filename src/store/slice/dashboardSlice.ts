@@ -3,13 +3,13 @@ import { RootState } from "../store";
 
 interface DashboardState {
   airtimeDataAction: string;
-  billCateogry: string;
+  billCategory: string;
   posSelectedCategory: string;
 }
 
 const initialState: DashboardState = {
   airtimeDataAction: "",
-  billCateogry: "",
+  billCategory: "",
   posSelectedCategory: "",
 };
 
@@ -22,7 +22,7 @@ export const dashboardSlice = createSlice({
       state.airtimeDataAction = action.payload;
     },
     setBillCategoryAction: (state, action) => {
-      state.billCateogry = action.payload;
+      state.billCategory = action.payload;
     },
     setPosSelectedCategory: (state, action) => {
       state.posSelectedCategory = action.payload;
