@@ -1,10 +1,9 @@
-import React from "react";
 import FormInput from "../../../../components/FormInput";
-import { KYCPageProps } from "../../../../interfaces/Global";
-
-const Amount: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
+import { useNavigate } from "react-router-dom";
+const BillAmount = () => {
+  const navigate = useNavigate();
   const handleSubmit = () => {
-    setCurrentStep(7);
+    navigate("/pay-new-bill/confirmation");
   };
 
   return (
@@ -41,4 +40,4 @@ const Amount: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
   );
 };
 
-export default Amount;
+export default BillAmount;
