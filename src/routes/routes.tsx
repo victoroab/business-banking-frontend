@@ -60,6 +60,7 @@ import BillPackage from "../pages/Dashboard/PayBills/NewBill/Package";
 import AddBillBeneficiary from "../pages/Dashboard/PayBills/NewBill/AddBeneficiary";
 import BillAmount from "../pages/Dashboard/PayBills/NewBill/Amount";
 import BillConfirmation from "../pages/Dashboard/PayBills/NewBill/Confirmation";
+import TrackCard from "../pages/Dashboard/Cards/TrackCard";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
