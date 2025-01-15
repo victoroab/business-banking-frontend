@@ -2,34 +2,32 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/Navbar/Navbar";
 import BackNavigation from "../../../components/ArrowBack/Back";
-import {
-  BlueHorizontalCardImage,
-  GreenHorizontalCardImage,
-} from "../../../assets/svg/CardsImage";
 import { BackwardIcon, ForwardIcon } from "../../../assets/svg/RequestCards";
-import { BlockIcon, ResetIcon, RightArrow } from "../../../assets/svg/Card";
-import PopUp from "../../../components/PopUps/PopUp";
-import Otp from "../../../components/OTP/Otp";
+import {
+  AddCard,
+  BlockIcon,
+  ResetIcon,
+  RightArrow,
+  TrackCard,
+} from "../../../assets/svg/Card";
+
 import { useGlobalHooks } from "../../../hooks/globalHooks";
-import { useAppSelector } from "../../../hooks";
-import { selectGlobal } from "../../../store/slice/globalSlice";
+// import { useAppSelector } from "../../../hooks";
+// import { selectGlobal } from "../../../store/slice/globalSlice";
+import Card from "../../../components/Card/ATMCard";
+import UserCardPin from "../../../components/Card/UserCardPin";
 
 const UserCards = () => {
   const navigate = useNavigate();
-  const toggle = useAppSelector(selectGlobal);
+
   const { handleShow } = useGlobalHooks();
   const [activeSlide, setActiveSlide] = useState(0); // 0 for physical card, 1 for virtual card
 
   const handleNextSlide = () => setActiveSlide(1);
   const handlePrevSlide = () => setActiveSlide(0);
 
-  const handleShowDetails = () => {
-    if (activeSlide === 0) {
-      navigate("/physical-card-details");
-    } else {
-      navigate("/virtual-card-details");
-    }
-  };
+  const physicalCardNumber = "1234567812345678";
+  const virtualCardNumber = "8765432187654321";
 
   return (
     <>
@@ -47,9 +45,25 @@ const UserCards = () => {
               <div onClick={handlePrevSlide}>
                 <BackwardIcon />
               </div>
-              <BlueHorizontalCardImage />
-              <GreenHorizontalCardImage />
-              <BlueHorizontalCardImage />
+              <Card type="physical" cardNumber={physicalCardNumber} />
+              <Card type="virtual" cardNumber={virtualCardNumber} />
+              {/* New Add Card Div */}
+              <div
+                style={{
+                  width: "300px",
+                  height: "169px",
+                  border: "2px solid #DBB950",
+                }}
+                className="flex justify-center items-center rounded-[10px]"
+              >
+                <div
+                  className="flex flex-col gap-0.5 items-center cursor-pointer"
+                  onClick={() => navigate("/request-card")}
+                >
+                  <AddCard />
+                  <span className="font-workSans text-xs">Add Card</span>
+                </div>
+              </div>
               <div onClick={handleNextSlide}>
                 <ForwardIcon />
               </div>
@@ -92,7 +106,21 @@ const UserCards = () => {
               </div>
             </div>
           </div>
-          <div className="py-8 flex flex-col justify-center items-center gap-6">
+          <div className="py-8 mt-10 flex flex-col justify-center items-center gap-6">
+            {activeSlide === 0 && (
+              <div
+                className="bg-white rounded-xl flex items-center justify-between py-6 px-6 w-[1012px] mx-auto"
+                style={{
+                  boxShadow: "0px 0px 40px 0px rgba(0, 0, 0, 0.04)",
+                }}
+              >
+                <div className="flex items-center gap-2">
+                  <TrackCard />
+                  Track Card
+                </div>
+                <RightArrow />
+              </div>
+            )}
             <div
               className="bg-white rounded-xl flex items-center justify-between py-6 px-6 w-[1012px] mx-auto"
               style={{
@@ -121,35 +149,7 @@ const UserCards = () => {
         </div>
       </div>
 
-      {/* Show OTP Pop-Up when user clicks "Show Details" */}
-      {toggle["createCardPin"] && (
-        <PopUp id="createCardPin">
-          <div className="bg-white rounded-lg flex flex-col text-center items-center justify-center px-24 py-16 gap-8 w-[664px] border">
-            <Otp
-              otpCode={""}
-              setOtpCode={() => {}}
-              inputCount={4}
-              title="Enter Your Transaction PIN"
-              paragraph={
-                <p>
-                  Please input your 4-digit transaction PIN to proceed securely.
-                </p>
-              }
-            />
-            <div className="flex flex-col gap-6 w-full">
-              <button
-                className="main-btn"
-                onClick={() => {
-                  handleShowDetails();
-                }}
-              >
-                Next
-              </button>
-              <BackNavigation />
-            </div>
-          </div>
-        </PopUp>
-      )}
+      <UserCardPin activeSlide={activeSlide} />
     </>
   );
 };

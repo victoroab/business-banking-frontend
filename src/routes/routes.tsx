@@ -33,7 +33,6 @@ import BusinessAddress from "../pages/Auth/Kyc/BusinessAddress";
 import Attestation from "../pages/Auth/Kyc/Attestation";
 import Beneficiaries from "../pages/Dashboard/Beneficiaries/Beneficiaries";
 import Approvals from "../pages/Dashboard/Approvals/Approvals";
-import NewBeneficiary from "../pages/Dashboard/Beneficiaries/NewBeneficiary";
 import RequestCard from "../pages/Dashboard/Cards/RequestCard";
 import VirtualCard from "../pages/Dashboard/Cards/VirtualCard";
 import RequestPhysicalCard from "../pages/Dashboard/Cards/RequestPhysicalCard";
@@ -61,6 +60,7 @@ import BillPackage from "../pages/Dashboard/PayBills/NewBill/Package";
 import AddBillBeneficiary from "../pages/Dashboard/PayBills/NewBill/AddBeneficiary";
 import BillAmount from "../pages/Dashboard/PayBills/NewBill/Amount";
 import BillConfirmation from "../pages/Dashboard/PayBills/NewBill/Confirmation";
+import TrackCard from "../pages/Dashboard/Cards/TrackCard";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -113,6 +113,7 @@ const dashboardRoutes: RouteProps[] = [
   { path: "/request-card", name: "Card", element: <RequestCard /> },
   { path: "/virtual-card", name: "Card", element: <VirtualCard /> },
   { path: "/cards", name: "Cards", element: <UserCards /> },
+  { path: "/track-card", name: "Card", element: <TrackCard /> },
   { path: "/uploads", name: "Upload", element: <Upload /> },
   {
     path: "/physical-card-details",
@@ -139,11 +140,6 @@ const dashboardRoutes: RouteProps[] = [
     path: "/new-transaction",
     name: "Transaction",
     element: <NewTransaction />,
-  },
-  {
-    path: "/new-beneficiary",
-    name: "Beneficiary",
-    element: <NewBeneficiary />,
   },
 ];
 

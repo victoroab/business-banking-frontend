@@ -3,11 +3,11 @@ import { YellowCardImage } from "../../../assets/svg/RequestCards";
 import BackNavigation from "../../../components/ArrowBack/Back";
 import Navbar from "../../../components/Navbar/Navbar";
 import { useState } from "react";
-import Select from "../../../components/Select/Select";
+// import Select from "../../../components/Select/Select";
 import FormInput from "../../../components/FormInput";
 import { ExclamationIcon } from "../../../assets/svg/Card";
-import { useAppSelector } from "../../../hooks";
-import { selectGlobal } from "../../../store/slice/globalSlice";
+// import { useAppSelector } from "../../../hooks";
+// import { selectGlobal } from "../../../store/slice/globalSlice";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import CardIssuance from "../../../components/Card/CardIssuance";
 // import PopUp from "../../../components/PopUps/PopUp";
@@ -17,7 +17,7 @@ import CardRequest from "../../../components/Card/CardRequest";
 const RequestPhysicalCard = () => {
   //   const navigate = useNavigate();
   const [deliveryOption, setDeliveryOption] = useState("selfPickUp"); // "selfPickUp" or "homeDelivery"
-  const toggle = useAppSelector(selectGlobal);
+  // const toggle = useAppSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
   // const [otpCode, setOtpCode] = useState<string>("");
   const handleViewDetails = () => {
@@ -63,7 +63,7 @@ const RequestPhysicalCard = () => {
           <BackNavigation />
         </div>
 
-        <div className="flex gap-4 bg-pryColor-Light w-[90%]  mx-auto">
+        <div className="flex gap-4 bg-pryColor-Light mx-auto p-6 rounded-lg">
           <div className="flex flex-col items-center justify-center gap-6 h-[600px] bg-white px-20 py-20">
             <YellowCardImage />
             <div className="flex flex-col gap-2 text-center">
@@ -92,7 +92,7 @@ const RequestPhysicalCard = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-center gap-10 bg-white w-full h-fit px-20 py-20 font-workSans">
+          <div className="flex flex-col justify-center gap-10 bg-white px-20 py-20 font-workSans">
             <div className="flex flex-col gap-4">
               <h1 className="font-bricolage font-semibold text-xl text-[#0E0C60]">
                 Get Physical Card
@@ -102,29 +102,29 @@ const RequestPhysicalCard = () => {
             {/* Radio buttons for delivery option */}
             <div className="flex flex-col gap-6">
               <h2>Delivery Option</h2>
-              <div className="flex items-center gap-5">
-                <label className="flex items-center">
+              <div className="flex items-center gap-6">
+                <label className="flex items-center gap-2">
                   <input
                     type="radio"
                     name="deliveryOption"
                     value="selfPickUp"
                     checked={deliveryOption === "selfPickUp"}
                     onChange={handleDeliveryOptionChange}
-                    className="mr-2 w-4 h-4"
+                    className="w-4 h-4"
                   />
                   Self Pickup
                 </label>
-                <label className="flex items-center">
+                <label className="flex items-center gap-2">
                   <input
                     type="radio"
                     name="deliveryOption"
                     value="homeDelivery"
                     checked={deliveryOption === "homeDelivery"}
                     onChange={handleDeliveryOptionChange}
-                    className="mr-2 w-4 h-4"
+                    className="w-4 h-4"
                   />
                   Home Delivery
-                  <div className="ml-2 bg-positive-Light text-positive uppercase text-xs p-1 tracking-tightest">
+                  <div className="ml-2 bg-positive-Light text-positive uppercase text-xs p-1">
                     Coming Soon
                   </div>
                 </label>
@@ -133,7 +133,7 @@ const RequestPhysicalCard = () => {
 
             {/* Form fields based on selected delivery option */}
             {deliveryOption === "selfPickUp" && (
-              <div className="flex flex-col gap-4 w-[472px]">
+              <div className="flex flex-col gap-4">
                 <FormInput
                   type="text"
                   id="account"
@@ -178,7 +178,7 @@ const RequestPhysicalCard = () => {
             <CardRequest />
 
             {deliveryOption === "homeDelivery" && (
-              <div className="flex flex-col gap-4 w-[472px]">
+              <div className="flex flex-col gap-4">
                 <FormInput
                   type="text"
                   id="account"
@@ -188,13 +188,14 @@ const RequestPhysicalCard = () => {
                   placeholder="Account"
                   className="input-field"
                 />
-                <Select
+                <FormInput
+                  type="cSelect"
                   id="cardType"
-                  options={["Mastercard", "Visa"]}
-                  selectedOption={formData.cardType}
-                  setSelectedOption={(option) =>
-                    setFormData({ ...formData, cardType: option })
-                  }
+                  selectOptions={["Mastercard", "Visa"]}
+                  // selectedOption={formData.cardType}
+                  // setSelectedOption={(option) =>
+                  //   setFormData({ ...formData, cardType: option })
+                  // }
                   placeholder="Select Card Type"
                 />
                 <FormInput
@@ -248,7 +249,7 @@ const RequestPhysicalCard = () => {
                   Continue
                 </button>
 
-                {toggle["card-issuance"] && <CardIssuance />}
+                <CardIssuance />
               </div>
             )}
           </div>

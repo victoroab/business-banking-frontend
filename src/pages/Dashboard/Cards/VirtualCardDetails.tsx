@@ -1,16 +1,17 @@
 import { useNavigate } from "react-router-dom";
 import { BlockIcon, ResetIcon, RightArrow } from "../../../assets/svg/Card";
-import { GreenHorizontalCardImage } from "../../../assets/svg/CardsImage";
 import { CopyIcon } from "../../../assets/svg/CustomSVGs";
 import BackNavigation from "../../../components/ArrowBack/Back";
 import Navbar from "../../../components/Navbar/Navbar";
 import BlockVirtualCard from "../../../components/Card/BlockVirtualCard";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import ResetVirtualCard from "../../../components/Card/ResetVirtualCard";
+import Card from "../../../components/Card/ATMCard";
 
 const VirtualCardDetails = () => {
   const navigate = useNavigate();
   const { handleShow } = useGlobalHooks();
+  const virtualCardNumber = "8765432187654321";
   return (
     <>
       <Navbar
@@ -24,7 +25,7 @@ const VirtualCardDetails = () => {
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-10">
             <div className="flex items-center justify-center gap-12 w-[1012px] mx-auto font-workSans">
-              <GreenHorizontalCardImage />
+              <Card type="virtual" cardNumber={virtualCardNumber} />
               <div
                 className="flex-1 flex flex-col rounded-xl py-5 px-5"
                 style={{
@@ -34,7 +35,9 @@ const VirtualCardDetails = () => {
                 <div className="flex items-center justify-between border-dashed border rounded-lg py-3 px-20 border-lightGreyColor">
                   <div className="flex flex-col">
                     <span className="text-xs">Card Number</span>
-                    <span className="font-medium">1234 5678 9901 2343</span>
+                    <span className="font-medium">
+                      {virtualCardNumber.replace(/(\d{4})/g, "$1 ").trim()}
+                    </span>
                   </div>
                   <div className="flex items-center gap-2">
                     COPY <CopyIcon />
