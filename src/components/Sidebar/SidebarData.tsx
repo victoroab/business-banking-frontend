@@ -46,40 +46,41 @@ export const SidebarData = [
   },
   {
     id: "tab6",
-    icon: CardIcon,
-    title: "Cards",
-    url: "/card",
-  },
-  {
-    id: "tab7",
-    icon: SidebarPOSIcon,
-    title: "POS",
-    url: "/pos",
-  },
-  {
-    id: "tab8",
-    icon: SupportIcon,
-    title: "Support",
-    url: "/support",
-  },
-  {
-    id: "tab9",
-    icon: SidebarUserIcon,
-    title: "Account Settings",
-    url: "/account",
-  },
-  {
-    id: "tab10",
     icon: SidebarApprovalIcon,
     title: "Approval",
     url: "/approval",
   },
   {
-    id: "tab11",
+    id: "tab7",
+    icon: CardIcon,
+    title: "Cards",
+    url: "/card",
+  },
+  {
+    id: "tab8",
+    icon: SidebarPOSIcon,
+    title: "POS",
+    url: "/pos",
+  },
+  {
+    id: "tab9",
     icon: SidebarBeneficiaryIcon,
     title: "Beneficiaries",
     url: "/beneficiaries",
   },
+  {
+    id: "tab10",
+    icon: SupportIcon,
+    title: "Support",
+    url: "/support",
+  },
+  {
+    id: "tab11",
+    icon: SidebarUserIcon,
+    title: "Account Settings",
+    url: "/account",
+  },
+
   {
     id: "tab12",
     icon: UploadIcon,
