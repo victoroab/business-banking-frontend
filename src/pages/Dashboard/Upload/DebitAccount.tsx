@@ -8,7 +8,9 @@ const UploadDebitAccount = () => {
   const navigate = useNavigate();
   const { activeUploadTab } = useAppSelector(selectDashboard);
   const link =
-    activeUploadTab === 2 ? "/uploads/payment-date" : "/uploads/payment-mode";
+    activeUploadTab === 2 || activeUploadTab === 3
+      ? "/uploads/payment-date"
+      : "/uploads/payment-mode";
   const handleSubmit = () => {
     navigate(link);
   };

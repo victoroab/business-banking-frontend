@@ -65,6 +65,8 @@ import UploadDebitAccount from "../pages/Dashboard/Upload/DebitAccount";
 import UploadPaymentMode from "../pages/Dashboard/Upload/PaymentMethod";
 import UploadPaymentDate from "../pages/Dashboard/Upload/PaymentDate";
 import UploadBulkFile from "../pages/Dashboard/Upload/UploadFile";
+import UploadEmployerDetails from "../pages/Dashboard/Upload/EmployerDetails";
+import UploadPaymentPeriod from "../pages/Dashboard/Upload/PaymentPeriod";
 
 const authRoutes: RouteProps[] = [
   { path: "/", name: "Home", element: <Home /> },
@@ -341,7 +343,12 @@ const bulkUploadRoutes: RouteProps[] = [
   {
     path: "employer-details",
     name: "Add beneficiary",
-    element: <AddBillBeneficiary />,
+    element: <UploadEmployerDetails />,
+  },
+  {
+    path: "payment-period",
+    name: "Payment Period",
+    element: <UploadPaymentPeriod />,
   },
 ];
 

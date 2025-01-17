@@ -966,11 +966,11 @@ export const posDevice: IDOption[] = [
 ];
 
 export const uploadHeader = [
-  { id: 1, title: "Bulk Payment" },
-  { id: 2, title: "Bulk Airtime" },
-  { id: 3, title: "Bulk Data" },
-  { id: 4, title: "Pension Upload" },
-  { id: 5, title: "Beneficiaries List" },
+  { id: 1, title: "Bulk Payment", link: "/uploads/debit-account" },
+  { id: 2, title: "Bulk Airtime", link: "/uploads/debit-account" },
+  { id: 3, title: "Bulk Data", link: "/uploads/debit-account" },
+  { id: 4, title: "Pension Upload", link: "/uploads/employer-details" },
+  { id: 5, title: "Beneficiaries List", link: "/uploads/upload-file" },
 ];
 
 export const bulkPayment: ProgressStepsProps[] = [
@@ -1022,7 +1022,7 @@ export const bulkData: ProgressStepsProps[] = [
   },
   {
     id: 2,
-    link: "package",
+    link: "payment-date",
     title: "Add Payment Due Date",
   },
   {
