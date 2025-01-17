@@ -1,8 +1,8 @@
 import {
   DashboardIcon,
-  TransactionIcon,
+  // TransactionIcon,
   SendMoneyIcon,
-  PayBillIcons,
+  // PayBillIcons,
   SupportIcon,
   UploadIcon,
   CardIcon,
@@ -20,12 +20,12 @@ export const SidebarData = [
     title: "Dashboard",
     url: "/dashboard",
   },
-  {
-    id: "tab2",
-    icon: TransactionIcon,
-    title: "Transactions",
-    url: "/transactions",
-  },
+  // {
+  //   id: "tab2",
+  //   icon: TransactionIcon,
+  //   title: "Transactions",
+  //   url: "/transactions",
+  // },
   {
     id: "tab3",
     icon: SendMoneyIcon,
@@ -38,12 +38,12 @@ export const SidebarData = [
     title: "Airtime & Data",
     url: "/airtime-data",
   },
-  {
-    id: "tab5",
-    icon: PayBillIcons,
-    title: "Pay Bills",
-    url: "/pay-bills",
-  },
+  // {
+  //   id: "tab5",
+  //   icon: PayBillIcons,
+  //   title: "Pay Bills",
+  //   url: "/pay-bills",
+  // },
   {
     id: "tab6",
     icon: CardIcon,
