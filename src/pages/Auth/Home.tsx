@@ -14,10 +14,10 @@ const Home = () => {
   };
   return (
     <AuthLayout loginBtn terms={false}>
-      <div className="text-center flex justify-center items-center flex-col mt-10 ">
+      <div className="text-center flex justify-center items-center flex-col mt-10">
         <MobileIcon />
         <div
-          className="flex w-[500px] py-6 p-20 flex-col gap-6 rounded-md"
+          className="flex w-[500px] py-6 p-20 flex-col gap-6 rounded-md mb-8"
           style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
         >
           <div className="flex flex-col gap-1">
@@ -30,7 +30,7 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="flex justify-center  w-full gap-6">
+          <div className="flex justify-center w-full gap-6">
             <button
               className="yellow-frame-btn w-1/2"
               type="submit"
