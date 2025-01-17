@@ -14,6 +14,7 @@ const ProgressLayout = ({
   isDashboard,
   navTitle,
   navDesc,
+  isUpload,
 }: ProgressProps) => {
   const location = useLocation();
   const currentStep = location.pathname.split("/")[2];
@@ -33,6 +34,50 @@ const ProgressLayout = ({
             <BackNavigation />
           </div>
 
+          <div className="bg-pryColor-Light w-full flex flex-col gap-5 justify-center items-center h-[90vh] px-10">
+            <div className="px-24 py-14 bg-white w-full flex relative h-[80vh]">
+              <div className="w-[40%] flex flex-col gap-10">
+                {progressSteps.map((progress: ProgressStepsProps) => (
+                  <div className="flex" key={progress.id}>
+                    <NavLink
+                      key={progress.id}
+                      to={progress.link as string}
+                      className={({ isActive }) =>
+                        isActive
+                          ? "w-[210px] items-center gap-2 border-b-2 flex pb-2  border-secColor"
+                          : "w-[210px] items-center gap-2 border-b-2 flex pb-2  border-[#e8e9eb]"
+                      }
+                    >
+                      <div
+                        className={`rounded-full px-1 w-[18px] h-[18px] flex items-center justify-center ${
+                          currentStep === progress.link
+                            ? "bg-secColor text-white"
+                            : "bg-[#e8e9eb]"
+                        }`}
+                      >
+                        <p className="text-sm">{progress.id}</p>
+                      </div>
+                      <p
+                        className={`font-workSans font-normal ${
+                          currentStep === progress.link &&
+                          "text-pryColor font-semibold"
+                        }`}
+                      >
+                        {progress.title}
+                      </p>
+                    </NavLink>
+                  </div>
+                ))}
+              </div>
+
+              <div className="w-[60%] overflow-y-auto h-full px-4">
+                <Outlet />
+              </div>
+            </div>
+          </div>
+        </>
+      ) : isUpload ? (
+        <>
           <div className="bg-pryColor-Light w-full flex flex-col gap-5 justify-center items-center h-[90vh] px-10">
             <div className="px-24 py-14 bg-white w-full flex relative h-[80vh]">
               <div className="w-[40%] flex flex-col gap-10">

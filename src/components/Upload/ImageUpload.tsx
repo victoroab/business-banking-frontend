@@ -2,16 +2,18 @@ import React, { Dispatch, SetStateAction, useState } from "react";
 import { UploadBulkIcon } from "../../assets/svg/Auth";
 
 interface ImageUploadProps {
-  title: string;
+  title?: string;
   required?: boolean;
   setDocument: Dispatch<SetStateAction<any>>;
   isBase64: boolean;
+  bulkUpload?: boolean;
 }
 const ImageUpload: React.FC<ImageUploadProps> = ({
   title,
   required,
   setDocument,
   isBase64,
+  bulkUpload,
 }) => {
   const [file, setFile] = useState<File | null>(null);
 
@@ -39,15 +41,19 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="flex justify-between items-center">
-        <p className="font-medium font-workSans text-[#15191E] text-sm flex gap-2 items-center">
-          {title}
-          {required ? <em className="required text-xl"> * </em> : ""}{" "}
-        </p>
-        <p className="font-workSans font-normal text-pryColor text-sm cursor-pointer">
-          See sample file
-        </p>
-      </div>
+      {bulkUpload ? (
+        <></>
+      ) : (
+        <div className="flex justify-between items-center">
+          <p className="font-medium font-workSans text-[#15191E] text-sm flex gap-2 items-center">
+            {title}
+            {required ? <em className="required text-xl"> * </em> : ""}{" "}
+          </p>
+          <p className="font-workSans font-normal text-pryColor text-sm cursor-pointer">
+            See sample file
+          </p>
+        </div>
+      )}
 
       <label
         htmlFor="file-upload"

@@ -84,6 +84,6 @@ export const SidebarData = [
     id: "tab12",
     icon: UploadIcon,
     title: "Uploads",
-    url: "/uploads",
+    url: "/uploads/debit-account",
   },
 ];

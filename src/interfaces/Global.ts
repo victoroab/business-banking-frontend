@@ -102,6 +102,7 @@ export interface ProgressProps {
   isDashboard: boolean;
   navTitle?: string;
   navDesc?: string;
+  isUpload?: boolean;
 }
 
 type TransactionType = "debit" | "credit" | "transfer";

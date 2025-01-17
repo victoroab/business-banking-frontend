@@ -964,3 +964,96 @@ export const posDevice: IDOption[] = [
     title: "Analog",
   },
 ];
+
+export const uploadHeader = [
+  { id: 1, title: "Bulk Payment" },
+  { id: 2, title: "Bulk Airtime" },
+  { id: 3, title: "Bulk Data" },
+  { id: 4, title: "Pension Upload" },
+  { id: 5, title: "Beneficiaries List" },
+];
+
+export const bulkPayment: ProgressStepsProps[] = [
+  {
+    id: 1,
+    link: "debit-account",
+    title: "Select Debit Account",
+  },
+  {
+    id: 2,
+    link: "payment-mode",
+    title: "Select Payment Mode",
+  },
+  {
+    id: 3,
+    link: "payment-date",
+    title: "Add Payment Due Date",
+  },
+  {
+    id: 4,
+    link: "upload-file",
+    title: "Upload File",
+  },
+];
+
+export const bulkAirtime: ProgressStepsProps[] = [
+  {
+    id: 1,
+    link: "debit-account",
+    title: "Select Debit Account",
+  },
+  {
+    id: 2,
+    link: "payment-date",
+    title: "Add Payment Due Date",
+  },
+  {
+    id: 3,
+    link: "upload-file",
+    title: "Upload File",
+  },
+];
+
+export const bulkData: ProgressStepsProps[] = [
+  {
+    id: 1,
+    link: "debit-account",
+    title: "Select Debit Account",
+  },
+  {
+    id: 2,
+    link: "package",
+    title: "Add Payment Due Date",
+  },
+  {
+    id: 3,
+    link: "upload-file",
+    title: "Upload File",
+  },
+];
+
+export const pensionUpload: ProgressStepsProps[] = [
+  {
+    id: 1,
+    link: "employer-details",
+    title: "Enter Employer Details",
+  },
+  {
+    id: 2,
+    link: "payment-period",
+    title: "Select Payment Period",
+  },
+  {
+    id: 3,
+    link: "upload-file",
+    title: "Upload File",
+  },
+];
+
+export const UploadBeneficiaryList: ProgressStepsProps[] = [
+  {
+    id: 1,
+    link: "upload-file",
+    title: "Upload Beneficiary File",
+  },
+];

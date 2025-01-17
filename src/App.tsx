@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import {
   airtimeDataRoutes,
   authRoutes,
+  bulkUploadRoutes,
   dashboardRoutes,
   kybRoutes,
   payBillDataRoutes,
@@ -23,9 +24,11 @@ import {
 } from "./utils";
 import { useAppSelector } from "./hooks";
 import { selectDashboard } from "./store/slice/dashboardSlice";
+import Upload from "./pages/Dashboard/Upload/Upload";
 
 function App() {
   const { airtimeDataAction } = useAppSelector(selectDashboard);
+
   return (
     <main className="App">
       <Toaster position="top-center" />
@@ -124,6 +127,19 @@ function App() {
           }
         >
           {posRoutes.map((route, idx: number) => (
+            <Route key={idx} path={route.path} element={route.element} />
+          ))}
+        </Route>
+
+        <Route
+          path="/uploads"
+          element={
+            <DashboardLayout>
+              <Upload />
+            </DashboardLayout>
+          }
+        >
+          {bulkUploadRoutes.map((route, idx: number) => (
             <Route key={idx} path={route.path} element={route.element} />
           ))}
         </Route>
