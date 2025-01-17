@@ -60,7 +60,7 @@ const SignUp = () => {
               </h3>
               <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
                 To sign up, please enter the phone number linked to your
-                personal <br /> Alert account
+                personal Alert account
               </p>
             </div>
 
