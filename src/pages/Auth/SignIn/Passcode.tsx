@@ -59,7 +59,7 @@ const LoginPasscode = () => {
       dispatch(saveUserInfo(response?.data));
 
       if (response?.data?.kyc?.attestation === true) {
-        navigate("/dashboard");
+        navigate("/");
       } else {
         refetch();
         dispatch(setKYBDetails(data?.data));

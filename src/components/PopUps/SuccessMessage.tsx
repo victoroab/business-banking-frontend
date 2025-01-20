@@ -46,7 +46,7 @@ const SuccessMessage = ({
             <button
               className="yellow-frame-btn w-full"
               type="submit"
-              onClick={() => navigate("/dashboard")}
+              onClick={() => navigate("/")}
             >
               Proceed To Dashboard
             </button>

@@ -126,7 +126,7 @@ const ProgressLayout = ({
             <KBrandIcon />
             <p
               className="text-secColor font-semibold cursor-pointer text-bricolage text-lg"
-              onClick={() => navigate("/dashboard")}
+              onClick={() => navigate("/")}
             >
               Click Here To Go To Dashboard
             </p>

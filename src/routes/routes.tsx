@@ -69,7 +69,7 @@ import UploadEmployerDetails from "../pages/Dashboard/Upload/EmployerDetails";
 import UploadPaymentPeriod from "../pages/Dashboard/Upload/PaymentPeriod";
 
 const authRoutes: RouteProps[] = [
-  { path: "/", name: "Home", element: <Home /> },
+  { path: "/welcome", name: "Home", element: <Home /> },
   { path: "/signup", name: "SignUp", element: <SignUp /> },
   { path: "/verify-otp", name: "VerifyOTP", element: <VerifyOtp /> },
   { path: "/email-address", name: "Email", element: <EmailAddress /> },
@@ -110,7 +110,7 @@ const authRoutes: RouteProps[] = [
 ];
 
 const dashboardRoutes: RouteProps[] = [
-  { path: "/dashboard", name: "Home", element: <DashboardHome /> },
+  { path: "/", name: "Home", element: <DashboardHome /> },
   { path: "/transactions", name: "Transactions", element: <Transaction /> },
   { path: "/send-money", name: "Send Money", element: <SendMoney /> },
   { path: "/pay-bills", name: "Home", element: <PayBills /> },

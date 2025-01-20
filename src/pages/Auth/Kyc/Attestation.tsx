@@ -119,7 +119,7 @@ const Attestation = () => {
               <button
                 className="main-btn w-full"
                 type="submit"
-                onClick={() => navigate("/dashboard")}
+                onClick={() => navigate("/")}
               >
                 Proceed To Dashboard
               </button>

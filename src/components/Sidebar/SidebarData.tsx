@@ -18,7 +18,7 @@ export const SidebarData = [
     id: "tab1",
     icon: DashboardIcon,
     title: "Dashboard",
-    url: "/dashboard",
+    url: "/",
   },
   // {
   //   id: "tab2",

@@ -181,7 +181,7 @@ const Confirmation = () => {
               <button
                 className="main-btn w-full"
                 type="submit"
-                // onClick={() => navigate("/dashboard")}
+                // onClick={() => navigate("/")}
               >
                 Download Receipt
               </button>

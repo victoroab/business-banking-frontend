@@ -25,6 +25,7 @@ import {
 import { useAppSelector } from "./hooks";
 import { selectDashboard } from "./store/slice/dashboardSlice";
 import Upload from "./pages/Dashboard/Upload/Upload";
+import Guard from "./routes/Guard";
 
 function App() {
   const { airtimeDataAction } = useAppSelector(selectDashboard);
@@ -41,16 +42,23 @@ function App() {
           <Route
             key={idx}
             path={route.path}
-            element={<DashboardLayout>{route.element}</DashboardLayout>}
+            element={
+              <Guard>
+                <DashboardLayout>{route.element}</DashboardLayout>
+              </Guard>
+            }
           />
         ))}
+
         <Route
           path="/kyb"
           element={
-            <ProgressLayout
-              progressSteps={KYCProgressSteps}
-              isDashboard={false}
-            />
+            <Guard>
+              <ProgressLayout
+                progressSteps={KYCProgressSteps}
+                isDashboard={false}
+              />
+            </Guard>
           }
         >
           {kybRoutes.map((route, idx: number) => (
@@ -61,14 +69,16 @@ function App() {
         <Route
           path="/send-money"
           element={
-            <DashboardLayout>
-              <ProgressLayout
-                progressSteps={newTransaction}
-                isDashboard={true}
-                navTitle="Send Money"
-                navDesc="Sending money has never been easier. ."
-              />
-            </DashboardLayout>
+            <Guard>
+              <DashboardLayout>
+                <ProgressLayout
+                  progressSteps={newTransaction}
+                  isDashboard={true}
+                  navTitle="Send Money"
+                  navDesc="Sending money has never been easier. ."
+                />
+              </DashboardLayout>
+            </Guard>
           }
         >
           {sendMoneyRoutes.map((route, idx: number) => (
@@ -79,16 +89,18 @@ function App() {
         <Route
           path="/airtime-data"
           element={
-            <DashboardLayout>
-              <ProgressLayout
-                progressSteps={
-                  airtimeDataAction === "AIRTIME" ? airtimeStep : dataStep
-                }
-                isDashboard={true}
-                navTitle="Airtime & Data"
-                navDesc="Easily recharge you phone or prchase data bundles in just a few clicks"
-              />
-            </DashboardLayout>
+            <Guard>
+              <DashboardLayout>
+                <ProgressLayout
+                  progressSteps={
+                    airtimeDataAction === "AIRTIME" ? airtimeStep : dataStep
+                  }
+                  isDashboard={true}
+                  navTitle="Airtime & Data"
+                  navDesc="Easily recharge you phone or prchase data bundles in just a few clicks"
+                />
+              </DashboardLayout>
+            </Guard>
           }
         >
           {airtimeDataRoutes.map((route, idx: number) => (
@@ -99,14 +111,16 @@ function App() {
         <Route
           path="/pay-new-bill"
           element={
-            <DashboardLayout>
-              <ProgressLayout
-                progressSteps={newBillProgressSteps}
-                isDashboard={true}
-                navTitle="Pay Bill"
-                navDesc="Settle your bills for utilities, subscriptions, and more—all in one place!"
-              />
-            </DashboardLayout>
+            <Guard>
+              <DashboardLayout>
+                <ProgressLayout
+                  progressSteps={newBillProgressSteps}
+                  isDashboard={true}
+                  navTitle="Pay Bill"
+                  navDesc="Settle your bills for utilities, subscriptions, and more—all in one place!"
+                />
+              </DashboardLayout>
+            </Guard>
           }
         >
           {payBillDataRoutes.map((route, idx: number) => (
@@ -116,14 +130,16 @@ function App() {
         <Route
           path="/request-pos"
           element={
-            <DashboardLayout>
-              <ProgressLayout
-                progressSteps={androidStep}
-                isDashboard={true}
-                navTitle="POS"
-                navDesc="Here's your your POS Terminals"
-              />
-            </DashboardLayout>
+            <Guard>
+              <DashboardLayout>
+                <ProgressLayout
+                  progressSteps={androidStep}
+                  isDashboard={true}
+                  navTitle="POS"
+                  navDesc="Here's your your POS Terminals"
+                />
+              </DashboardLayout>
+            </Guard>
           }
         >
           {posRoutes.map((route, idx: number) => (
@@ -134,9 +150,11 @@ function App() {
         <Route
           path="/uploads"
           element={
-            <DashboardLayout>
-              <Upload />
-            </DashboardLayout>
+            <Guard>
+              <DashboardLayout>
+                <Upload />
+              </DashboardLayout>
+            </Guard>
           }
         >
           {bulkUploadRoutes.map((route, idx: number) => (
