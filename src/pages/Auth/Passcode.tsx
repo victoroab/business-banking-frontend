@@ -74,9 +74,9 @@ const Passcode = () => {
 
   return (
     <AuthLayout loginBtn={false} terms>
-      <div className="text-center flex justify-center items-center flex-col w-full mt-32 px-14 gap-8">
+      <div className="text-center flex justify-center items-center flex-col w-full mt-20 px-12 gap-8">
         <div className="flex flex-col gap-8 w-full">
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col gap-4">
             <h3 className="text-pryColor font-semibold text-2xl text-left font-bricolage leading-6">
               Set Up your business account passcode
             </h3>

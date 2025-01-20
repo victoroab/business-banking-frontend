@@ -15,27 +15,26 @@ const BusinessAddress = () => {
   const navigate = useNavigate();
   const { kybDetails } = useAppSelector(selectAuth);
   const initialValues = {
-    address: "",
-    city: "",
-    state: "",
-    zipcode: "",
-    landmark: "",
-    lga: "",
+    address: kybDetails?.businessDetails?.address || "",
+    city: kybDetails?.businessDetails?.city || "",
+    state: kybDetails?.businessDetails?.state || "",
+    zipcode: kybDetails?.businessDetails?.zipcode || "",
+    landmark: kybDetails?.businessDetails?.landmark || "",
+    lga: kybDetails?.businessDetails?.lga || "",
   };
-  console.log(kybDetails);
 
   const onSubmit = async (formData: AddressProps) => {
-    // if (kybDetails?.kybStatus?.businessAddressStatus) {
-    // navigate("/kyb/attestation");
-    // } else {
-    try {
-      const response = await setBusinessAddress(formData).unwrap();
-      toast.success(response?.message);
+    if (kybDetails?.kybStatus?.businessAddressStatus) {
       navigate("/kyb/attestation");
-    } catch (error: any) {
-      toast.error(error.data.message);
+    } else {
+      try {
+        const response = await setBusinessAddress(formData).unwrap();
+        toast.success(response?.message);
+        navigate("/kyb/attestation");
+      } catch (error: any) {
+        toast.error(error.data.message);
+      }
     }
-    // }
   };
 
   const businessAddressSchema = Yup.object().shape({
@@ -73,7 +72,7 @@ const BusinessAddress = () => {
           id={""}
           placeholder="Enter your address"
           name="address"
-          error={touched.address ? errors.address : undefined}
+          error={touched.address ? (errors.address as string) : undefined}
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.address}
@@ -82,7 +81,7 @@ const BusinessAddress = () => {
           id={""}
           placeholder="City"
           name="city"
-          error={touched.city ? errors.city : undefined}
+          error={touched.city ? (errors.city as string) : undefined}
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.city}
@@ -91,7 +90,7 @@ const BusinessAddress = () => {
           id={""}
           placeholder="State"
           name="state"
-          error={touched.state ? errors.state : undefined}
+          error={touched.state ? (errors.state as string) : undefined}
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.state}
@@ -100,7 +99,7 @@ const BusinessAddress = () => {
           id={"zipcode"}
           placeholder="Zip Code"
           name="zipcode"
-          error={touched.zipcode ? errors.zipcode : undefined}
+          error={touched.zipcode ? (errors.zipcode as string) : undefined}
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.zipcode}
@@ -109,7 +108,7 @@ const BusinessAddress = () => {
           id={"landmark"}
           placeholder="Landmark"
           name="landmark"
-          error={touched.landmark ? errors.landmark : undefined}
+          error={touched.landmark ? (errors.landmark as string) : undefined}
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.landmark}
@@ -118,7 +117,7 @@ const BusinessAddress = () => {
           id={""}
           placeholder="LGA"
           name="lga"
-          error={touched.lga ? errors.lga : undefined}
+          error={touched.lga ? (errors.lga as string) : undefined}
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.lga}
