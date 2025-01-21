@@ -26,6 +26,7 @@ import { useAppSelector } from "./hooks";
 import { selectDashboard } from "./store/slice/dashboardSlice";
 import Upload from "./pages/Dashboard/Upload/Upload";
 import Guard from "./routes/Guard";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   const { airtimeDataAction } = useAppSelector(selectDashboard);
@@ -161,6 +162,8 @@ function App() {
             <Route key={idx} path={route.path} element={route.element} />
           ))}
         </Route>
+
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </main>
   );
