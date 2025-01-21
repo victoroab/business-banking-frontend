@@ -70,7 +70,6 @@ export const authSlice = createSlice({
       state.businessDirector?.push({ ...action.payload });
     },
     editDirector: (state, action) => {
-      console.log(action.payload);
       const existingDirector = state.businessDirector?.map((item: Director) => {
         if (item.id === action.payload.id) {
           return {
@@ -81,8 +80,6 @@ export const authSlice = createSlice({
         return item;
       });
       state.businessDirector = existingDirector;
-
-      console.log(state.businessDirector);
     },
 
     removeDirector: (state, action) => {

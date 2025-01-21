@@ -10,7 +10,7 @@ const IdVerification = () => {
 
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  console.log(userInfo);
+
   const handleVerify = () => {
     if (userInfo?.kyc?.bvnStatus && !userInfo?.kyc?.ninStatus) {
       dispatch(setKYCIdentityStep("NIN"));

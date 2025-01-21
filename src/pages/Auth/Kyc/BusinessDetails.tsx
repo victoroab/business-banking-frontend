@@ -52,7 +52,6 @@ const BusinessDetails = () => {
     annualIncome: kybDetails?.businessDetails?.income || "",
   };
 
-  console.log(kybDetails, "www");
   const onSubmit = async (formData: any) => {
     if (kybDetails?.kybStatus?.businessDetailsStatus) {
       navigate("/kyb/business-documents");

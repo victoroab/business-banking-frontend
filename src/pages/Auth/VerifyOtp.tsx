@@ -42,8 +42,8 @@ const VerifyOtp = () => {
       const response = havePersonalAccount
         ? await verifyAccount(requiredExistingData).unwrap()
         : await verifyPhone(requiredData);
-      console.log(response);
-      toast.success(response?.data?.message);
+
+      toast.success(response?.data?.message || response?.message);
       havePersonalAccount && dispatch(setExistingVerificationOTP(otpCode));
       navigate(`${havePersonalAccount === true ? "/passcode" : "/profile"}`);
     } catch (error: any) {
