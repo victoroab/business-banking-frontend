@@ -1,6 +1,6 @@
 import DataTable from "react-data-table-component";
 import Navbar from "../../../components/Navbar/Navbar";
-import { tableCustomStyles, transactionsData } from "../../../utils";
+import { dataProvider, tableCustomStyles, transactionsData } from "../../../utils";
 import { columnsData } from "../../../utils/table";
 import { RowDataProps } from "../../../interfaces/Global";
 import Paginate from "../../../components/Paginate";
@@ -54,15 +54,25 @@ const Beneficiaries = () => {
 
   const onSubmit = async (formData: any) => {
     try {
-      const requiredData = {
-        beneficiaryType: formData?.beneficiaryType,
-        accountName: formData?.accountName,
-        bankName: formData?.bankName,
-        bankCode: formData?.bankCode,
-        accountNumber: formData?.accountNumber,
-        // phoneNumber: formData?.phoneNumber,
-        // networkProvider: formData?.networkProvider,
-      };
+
+      let requiredData = {};
+
+      if (formData?.beneficiary === "TRANSFER") {
+        requiredData = {
+          beneficiaryType: formData?.beneficiaryType,
+          accountName: formData?.accountName,
+          bankName: formData?.bankName,
+          bankCode: formData?.bankCode,
+          accountNumber: formData?.accountNumber,
+        };
+      } else if (formData?.beneficiary === "AIRTIME" || formData?.beneficiary === "DATA") {
+        requiredData = {
+          beneficiaryType: formData?.beneficiaryType,
+          phoneNumber: formData?.phoneNumber,
+          networkProvider: formData?.networkProvider,
+        };
+      }
+    
       const response = await addBeneficiary(requiredData).unwrap();
       console.log(response);
       toast.success(response?.message);
@@ -178,7 +188,7 @@ const Beneficiaries = () => {
                 name="beneficiaryType"
               />
 
-              {/* Conditionally render additional fields based on beneficiaryType */}
+          
               {values?.beneficiaryType === "TRANSFER" && (
                 <>
                   <FormInput
@@ -234,94 +244,39 @@ const Beneficiaries = () => {
                 </>
               )}
 
-              {beneficiaryType === "Betting" && (
-                <>
-                  <FormInput
-                    type="text"
-                    placeholder="Wallet Name"
-                    id="walletName"
-                    className="w-full"
-                  />
-                  <FormInput
-                    type="text"
-                    placeholder="User ID"
-                    id="userId"
-                    className="w-full"
-                  />
-                  <FormInput
-                    type="text"
-                    placeholder="Service Provider"
-                    id="serviceProvider"
-                    className="w-full"
-                  />
-                </>
-              )}
 
-              {beneficiaryType === "Airtime and Data" && (
+              {(values?.beneficiaryType === "AIRTIME" || values?.beneficiaryType === "DATA") && (
                 <>
-                  <FormInput
+                   <FormInput
                     type="text"
                     placeholder="Phone Number"
                     id="phoneNumber"
                     className="w-full"
+                    name="phoneNumber"
+                    error={touched.phoneNumber ? errors.phoneNumber : undefined}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    defaultValue={values?.phoneNumber}
                   />
-                  <FormInput
-                    type="text"
+                   <FormInput
+                    type="cSelect"
                     placeholder="Network Provider"
                     id="networkProvider"
                     className="w-full"
+                    name="networkProvider"
+                    selectOptions={dataProvider}
+                    keyPropertyName="title"
+                    valuePropertyName="title"
+                    itemPropertyName="title"
+                    error={touched.networkProvider ? errors.networkProvider : undefined}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    defaultValue={values?.networkProvider}
                   />
                 </>
               )}
 
-              {beneficiaryType === "Betting" && (
-                <>
-                  <FormInput
-                    type="text"
-                    placeholder="Wallet Name"
-                    id="walletName"
-                    className="w-full"
-                  />
-                  <FormInput
-                    type="text"
-                    placeholder="User ID"
-                    id="userId"
-                    className="w-full"
-                  />
-                  <FormInput
-                    type="text"
-                    placeholder="Service Provider"
-                    id="serviceProvider"
-                    className="w-full"
-                  />
-                </>
-              )}
-
-              {beneficiaryType === "Electricity" && (
-                <>
-                  <FormInput
-                    type="text"
-                    placeholder="Meter Number"
-                    id="meterNumber"
-                    className="w-full"
-                  />
-                  <FormInput
-                    type="cSelect"
-                    selectOptions={["Prepaid", "Postpaid"]}
-                    placeholder="Meter Type"
-                    id="meterType"
-                    className="w-full"
-                  />
-                  <FormInput
-                    type="text"
-                    placeholder="Disco (Electricity Provider)"
-                    id="discoProvider"
-                    className="w-full"
-                  />
-                </>
-              )}
-
-              {/* More fields for other types */}
+          
             </div>
 
             <div className="flex justify-center w-full">

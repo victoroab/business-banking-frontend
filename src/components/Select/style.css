@@ -39,6 +39,10 @@
   border-radius: 12px;
   max-height: 50vh;
 }
+.options{
+  height: 300px;
+  overflow-y: scroll;
+}
 
 .customSelect .placeholder {
   color: #676869;
