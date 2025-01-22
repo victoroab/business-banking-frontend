@@ -7,6 +7,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store/store";
 import { AddBeneficary } from "../interfaces/service/beneficiary";
+import { queryBuilder } from "../utils";
 
 const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 
@@ -20,7 +21,7 @@ const customBaseQuery: BaseQueryFn<
     prepareHeaders: (headers, { getState }) => {
       const userToken = (getState() as RootState)?.auth?.userInfo
         ?.refresh_token;
-
+console.log(userToken)
       if (userToken) {
         headers.set("Authorization", `Bearer ${userToken}`);
       }
@@ -62,7 +63,7 @@ export const beneficiaryApi = createApi({
 
     //beneficiary
     getAllBeneficiaries: builder.query({
-      query: () => "/beneficiary",
+      query: (params) => `/beneficiary?${queryBuilder(params)}`,
       providesTags: [{ type: "Beneficiary", id: "Beneficiary" }],
     }),
 

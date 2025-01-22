@@ -119,6 +119,17 @@ export interface RowDataProps {
   createdAt: string;
 }
 
+export interface AirtimeRowDataProps {
+  id: number;
+  sender: string;
+  beneficiaryType: string;
+  phoneNumber: string;
+  networkProvider: string;
+  transactionType: TransactionType;
+  status: TransactionStatus;
+  createdAt: string;
+}
+
 export interface IColData {
   selector?: (row: any) => string;
   cell?: (row: any) => ReactNode;

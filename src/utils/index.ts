@@ -1057,3 +1057,17 @@ export const UploadBeneficiaryList: ProgressStepsProps[] = [
     title: "Upload Beneficiary File",
   },
 ];
+
+
+export const queryBuilder = (params: {[key: string]: string}) => {
+  const filteredParams = Object.entries(params)
+  .filter(([_, value]) => value !== null && value != undefined && value !== "")
+  .reduce((acc, [key, value]) => {
+    acc[key] = value;
+    return acc;
+  }, 
+{} as {[key: string] : string})
+
+const query = new URLSearchParams(filteredParams)
+return query
+}

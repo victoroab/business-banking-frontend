@@ -1,8 +1,8 @@
 import DataTable from "react-data-table-component";
 import Navbar from "../../../components/Navbar/Navbar";
 import { dataProvider, tableCustomStyles, transactionsData } from "../../../utils";
-import { columnsData } from "../../../utils/table";
-import { RowDataProps } from "../../../interfaces/Global";
+import { airtimeColumnsData, columnsData, transferColumnsData } from "../../../utils/table";
+import { AirtimeRowDataProps, RowDataProps } from "../../../interfaces/Global";
 import Paginate from "../../../components/Paginate";
 import { useState } from "react";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
@@ -13,30 +13,30 @@ import FormInput from "../../../components/FormInput";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { useAddBeneficiaryMutation } from "../../../service/beneficiary";
+import { useAddBeneficiaryMutation, useGetAllBeneficiariesQuery } from "../../../service/beneficiary";
 import Spinner from "../../../components/Spinner/Spinner";
 import { useGetAllBanksQuery } from "../../../service/transaction";
+import Search from "../../../components/Search/Search";
 
 const Beneficiaries = () => {
-  const [beneficiaryType, setBeneficiaryType] = useState<string>(
-    "TRANSFER | AIRTIME | DATA| TV_BILL| ELECTRICITY"
-  );
   const toggle = useAppSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
   const { handleSearch } = useGlobalHooks();
-  const [addBeneficiary, { isLoading }] = useAddBeneficiaryMutation();
-  const { data } = useGetAllBanksQuery({});
-  const [filteredData, setFilteredData] = useState<RowDataProps[]>([]);
-  const [selectedRow, setSelectedRow] = useState<RowDataProps>();
-  const [openAction, IsOpenAction] = useState<boolean>(false);
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
-    terminal: "",
+    beneficiaryType: "",
     pageNumber: 1,
     pageSize: 10,
   });
-  const handleOpenModal = (row: RowDataProps) => {
+  const [addBeneficiary, { isLoading }] = useAddBeneficiaryMutation();
+  const { data } = useGetAllBanksQuery({});
+  const {data: allBeneficiaries} = useGetAllBeneficiariesQuery(queryData)
+  const [filteredData, setFilteredData] = useState<RowDataProps[]>([]);
+  const [selectedRow, setSelectedRow] = useState<RowDataProps>();
+  const [openAction, IsOpenAction] = useState<boolean>(false);
+
+  const handleOpenModal = (row: any) => {
     // handleShow("show-action");
     setSelectedRow(row);
     IsOpenAction((prev) => !prev);
@@ -55,28 +55,26 @@ const Beneficiaries = () => {
   const onSubmit = async (formData: any) => {
     try {
 
-      let requiredData = {};
-
-      if (formData?.beneficiary === "TRANSFER") {
-        requiredData = {
+      
+      const  transferRequiredData = {
           beneficiaryType: formData?.beneficiaryType,
           accountName: formData?.accountName,
           bankName: formData?.bankName,
           bankCode: formData?.bankCode,
           accountNumber: formData?.accountNumber,
-        };
-      } else if (formData?.beneficiary === "AIRTIME" || formData?.beneficiary === "DATA") {
-        requiredData = {
+        }
+
+        const otherPayload = {
           beneficiaryType: formData?.beneficiaryType,
           phoneNumber: formData?.phoneNumber,
           networkProvider: formData?.networkProvider,
         };
-      }
-    
-      const response = await addBeneficiary(requiredData).unwrap();
-      console.log(response);
+        const payload = formData?.beneficiary === "TRANSFER" ? transferRequiredData : otherPayload
+      
+ 
+      const response = await addBeneficiary(payload).unwrap();
       toast.success(response?.message);
-      IsOpenAction(false);
+      handleShow("addBeneficiary")
     } catch (error: any) {
       toast.error(error.data.message);
     }
@@ -98,8 +96,8 @@ const Beneficiaries = () => {
       validationSchema: formSchema,
       onSubmit,
     });
-  console.log(data);
 
+console.log(queryData, "remi")
   return (
     <div className="border">
       <Navbar
@@ -107,6 +105,30 @@ const Beneficiaries = () => {
         subtitle="Add beneficiaries and managing all your saved recipients here."
       />
       <div className="flex flex-col gap-10">
+      <div className="flex justify-end px-10">
+         <Search placeholder="search beneficiary" setQueryData={setQueryData}/>
+         <FormInput
+                type="cSelect"
+                selectOptions={[
+                  "TRANSFER",
+                  "AIRTIME",
+                  "DATA",
+                  "TV_BILL",
+                  "ELECTRICITY",
+                ]}
+                placeholder="Beneficiary Type"
+                id="beneficiaryType"
+               
+                onChange={(e)=>  {
+                  
+                  setQueryData((prev) => ({
+                  ...prev, beneficiaryType: e.target.value
+                }))}}
+               
+                className="w-full"
+                name="beneficiaryType"
+              />
+        </div>
         <div className="flex justify-end px-10">
           <button
             className="main-btn w-60 font-bricolage"
@@ -129,16 +151,32 @@ const Beneficiaries = () => {
             style={{ boxShadow: "0px 1px 7px 4px rgba(216, 216, 216, 0.2)" }}
           >
             <div className="">
-              <DataTable
-                columns={columnsData(
+
+              { queryData?.beneficiaryType === "TRANSFER" ? ( 
+                
+                <DataTable
+  columns={transferColumnsData(
+    handleOpenModal,
+    selectedRow as RowDataProps,
+    openAction
+  )}
+  data={transactionsData}
+  customStyles={tableCustomStyles}
+  className=""
+/> ) : (<DataTable
+                columns={ airtimeColumnsData(
                   handleOpenModal,
-                  selectedRow as RowDataProps,
+                  selectedRow as AirtimeRowDataProps,
                   openAction
                 )}
                 data={transactionsData}
                 customStyles={tableCustomStyles}
                 className=""
-              />
+              />)}
+             
+
+
+
             </div>
 
             <div className="">
@@ -264,10 +302,7 @@ const Beneficiaries = () => {
                     id="networkProvider"
                     className="w-full"
                     name="networkProvider"
-                    selectOptions={dataProvider}
-                    keyPropertyName="title"
-                    valuePropertyName="title"
-                    itemPropertyName="title"
+                    selectOptions={["MTN", "GLO", "AIRTEL", "NINE_MOBILE"]}
                     error={touched.networkProvider ? errors.networkProvider : undefined}
                     onBlur={handleBlur}
                     onChange={handleChange}

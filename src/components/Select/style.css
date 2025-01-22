@@ -40,7 +40,7 @@
   max-height: 50vh;
 }
 .options{
-  height: 300px;
+  max-height: 50vh;
   overflow-y: scroll;
 }
 
