@@ -32,16 +32,16 @@ const customBaseQuery: BaseQueryFn<
     },
   })(args, api, extraOptions);
 
-  // const newResponse: any = {
-  //   ...baseResult,
-  // };
+  const newResponse: any = {
+    ...baseResult,
+  };
 
-  // const errorCode = newResponse?.error?.status;
+  const errorCode = newResponse?.error?.status;
 
-  // if (errorCode === 401) {
-  //   localStorage.clear();
-  //   window.location.href = "/";
-  // }
+  if (errorCode === 401) {
+    localStorage.clear();
+    window.location.href = "/";
+  }
   return baseResult;
 };
 
@@ -217,7 +217,7 @@ export const kybApi = createApi({
       invalidatesTags: [{ type: "KYB", id: "KYB" }],
     }),
 
-    //kyb
+    //userprofile
     userProfile: builder.query({
       query: () => "/user/me",
       providesTags: [{ type: "KYB", id: "KYB" }],

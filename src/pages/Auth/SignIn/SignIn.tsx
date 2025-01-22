@@ -49,7 +49,7 @@ const SignIn = () => {
             </div>
 
             <FormInput
-              placeholder={"phoneNumber/Account Number"}
+              placeholder={"Phone number/Email address"}
               type="text"
               id={"phoneNumber"}
               name="phoneNumber"

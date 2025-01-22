@@ -9,7 +9,10 @@ const Otp: React.FC<OTPProps> = ({
   otpCode,
 }) => {
   const handleChange = (otp: string) => {
-    setOtpCode(otp);
+    const isNumeric = /^\d*$/.test(otp);
+    if (isNumeric && otp.length <= inputCount) {
+      setOtpCode(otp);
+    }
   };
 
   return (
@@ -43,7 +46,9 @@ const Otp: React.FC<OTPProps> = ({
             minWidth: "55px",
             minHeight: "60px",
           }}
-          renderInput={(props) => <input {...props} />}
+          renderInput={(props) => (
+            <input {...props} inputMode="numeric" pattern="\d*" />
+          )}
         />
       </div>
     </div>

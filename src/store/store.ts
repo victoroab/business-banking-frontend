@@ -17,6 +17,8 @@ import { authApi } from "../service/auth";
 import { authSlice } from "./slice/authSlice";
 import { kybApi } from "../service/kyb";
 import { dashboardSlice } from "./slice/dashboardSlice";
+import { beneficiaryApi } from "../service/beneficiary";
+import { transactionApi } from "../service/transaction";
 
 const rootReducers = combineReducers({
   global: globalSlice.reducer,
@@ -24,6 +26,8 @@ const rootReducers = combineReducers({
   dashboard: dashboardSlice.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [kybApi.reducerPath]: kybApi.reducer,
+  [beneficiaryApi.reducerPath]: beneficiaryApi.reducer,
+  [transactionApi.reducerPath]: transactionApi.reducer,
 });
 
 const persistConfig = {
@@ -45,7 +49,12 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(authApi.middleware, kybApi.middleware),
+    }).concat(
+      authApi.middleware,
+      kybApi.middleware,
+      beneficiaryApi.middleware,
+      transactionApi.middleware
+    ),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
