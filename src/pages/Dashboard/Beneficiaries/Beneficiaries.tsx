@@ -50,7 +50,6 @@ const Beneficiaries = () => {
     accountNumber: "",
     phoneNumber: "",
     networkProvider: "",
-    isBeneficiary: true,
   };
 
   const onSubmit = async (formData: any) => {
@@ -60,14 +59,14 @@ const Beneficiaries = () => {
         accountName: formData?.accountName,
         bankName: formData?.bankName,
         bankCode: formData?.bankCode,
-        accountNumber: formData?.phoneNumber,
-        phoneNumber: formData?.phoneNumber,
-        networkProvider: formData?.networkProvider,
-        isBeneficiary: false,
+        accountNumber: formData?.accountNumber,
+        // phoneNumber: formData?.phoneNumber,
+        // networkProvider: formData?.networkProvider,
       };
       const response = await addBeneficiary(requiredData).unwrap();
       console.log(response);
       toast.success(response?.message);
+      IsOpenAction(false);
     } catch (error: any) {
       toast.error(error.data.message);
     }
@@ -90,6 +89,7 @@ const Beneficiaries = () => {
       onSubmit,
     });
   console.log(data);
+
   return (
     <div className="border">
       <Navbar
@@ -198,6 +198,10 @@ const Beneficiaries = () => {
                     id="bankCode"
                     className="w-full"
                     name="bankCode"
+                    selectOptions={data?.data}
+                    keyPropertyName="Name"
+                    valuePropertyName="Code"
+                    itemPropertyName="Name"
                     error={touched.bankCode ? errors.bankCode : undefined}
                     onBlur={handleBlur}
                     onChange={handleChange}

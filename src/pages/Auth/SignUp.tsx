@@ -65,7 +65,7 @@ const SignUp = () => {
             </div>
 
             <FormInput
-              placeholder={"Phone number / Email address"}
+              placeholder={"Phone number"}
               type="text"
               id={"phoneNumber"}
               name="phoneNumber"

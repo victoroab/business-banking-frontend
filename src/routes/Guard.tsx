@@ -11,7 +11,7 @@ const Guard = ({ children }: ProtectedRouteProps) => {
   const { userInfo } = useAppSelector(selectAuth);
 
   if (!userInfo?.access_token) {
-    return <Navigate to="/login" replace />;
+    return <Navigate to="/welcome" replace />;
   }
 
   return children;
