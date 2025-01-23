@@ -1,6 +1,10 @@
 import { IoMdMore } from "react-icons/io";
 import ActionMenu from "../components/Dashboard/ActionMenu";
-import { AirtimeRowDataProps, IColData, RowDataProps } from "../interfaces/Global";
+import {
+  AirtimeRowDataProps,
+  IColData,
+  RowDataProps,
+} from "../interfaces/Global";
 
 export const columnsData = (
   handleOpenModal: (row: RowDataProps) => void,
@@ -99,9 +103,6 @@ export const columnsData = (
   ];
 };
 
-
-
-
 export const transferColumnsData = (
   handleOpenModal: (row: RowDataProps) => void,
   selectedRow: RowDataProps,
@@ -109,60 +110,36 @@ export const transferColumnsData = (
 ): IColData[] => {
   return [
     {
-      name: "Sender",
-      id: "sender",
-      selector: ({ sender }) => sender,
-      cell: ({ sender }) => <div className="left-box">{sender}</div>,
+      name: "Bank Name",
+      id: "Bank Name",
+      selector: ({ bankName }) => bankName,
+      cell: ({ bankName }) => <div className="left-box">{bankName}</div>,
     },
     {
-      name: "Beneficiary",
-      selector: ({ beneficiary }) => beneficiary,
-      cell: ({ beneficiary }) => (
-        <div className="centered-box">{beneficiary}</div>
+      name: "Beneficiary Type",
+      selector: ({ beneficiaryType }) => beneficiaryType,
+      cell: ({ beneficiaryType }) => (
+        <div className="centered-box">{beneficiaryType}</div>
       ),
     },
     {
-      name: "Bank",
+      name: "Account Name",
       grow: 1.2,
-      selector: ({ bank }) => bank,
-      cell: ({ bank }) => <div className="centered-box">{bank}</div>,
+      selector: ({ accountName }) => accountName,
+      cell: ({ accountName }) => (
+        <div className="centered-box">{accountName}</div>
+      ),
     },
     {
-      name: "Amount (NGN)",
+      name: "Account Number",
       grow: 1.2,
-      selector: ({ amount }) => new Intl.NumberFormat().format(amount),
-      cell: ({ amount }) => (
-        <div className="centered-box">
-          NGN {new Intl.NumberFormat().format(amount)}
-        </div>
+      selector: ({ accountNumber }) => accountNumber,
+      cell: ({ accountNumber }) => (
+        <div className="centered-box">{accountNumber}</div>
       ),
     },
     {
-      name: "Status",
-      selector: ({ status }) => status,
-      cell: ({ status }) => (
-        <div className="centered-box">
-          <span
-            className={`rounded-2xl flex items-center py-2 px-4 text-center ${
-              status === "successful"
-                ? "text-positive bg-[#f3fbf8]"
-                : "text-nagative bg-[#fff7f5]"
-            }`}
-          >
-            {status}
-          </span>
-        </div>
-      ),
-    },
-    {
-      name: "Transaction Type",
-      selector: ({ transactionType }) => transactionType,
-      cell: ({ transactionType }) => (
-        <div className="centered-box">{transactionType}</div>
-      ),
-    },
-    {
-      name: "Transaction Date",
+      name: "Date Added",
       selector: ({ createdAt }) => createdAt.slice(0, 10),
       cell: ({ createdAt }) => (
         <div className="centered-box">{createdAt.slice(0, 10)}</div>
@@ -197,8 +174,6 @@ export const transferColumnsData = (
     },
   ];
 };
-
-
 
 export const airtimeColumnsData = (
   handleOpenModal: (row: AirtimeRowDataProps) => void,
@@ -207,32 +182,31 @@ export const airtimeColumnsData = (
 ): IColData[] => {
   return [
     {
-      name: "id",
-      id: "id",
-      selector: ({ id }) => id,
-      cell: ({ id }) => <div className="left-box">{id}</div>,
+      name: "Beneficiary",
+      grow: 1.2,
+      selector: ({ phoneNumber }) => phoneNumber,
+      cell: ({ phoneNumber }) => (
+        <div className="centered-box">{phoneNumber}</div>
+      ),
     },
     {
-      name: "networkProvider",
+      name: "Network　Provider",
       id: "networkProvider",
       selector: ({ networkProvider }) => networkProvider,
-      cell: ({ networkProvider }) => <div className="left-box">{networkProvider}</div>,
+      cell: ({ networkProvider }) => (
+        <div className="left-box">{networkProvider}</div>
+      ),
     },
     {
-      name: "beneficiaryType",
+      name: "Beneficiary　Type",
       selector: ({ beneficiaryType }) => beneficiaryType,
       cell: ({ beneficiaryType }) => (
         <div className="centered-box">{beneficiaryType}</div>
       ),
     },
+
     {
-      name: "phoneNumber",
-      grow: 1.2,
-      selector: ({ phoneNumber }) => phoneNumber,
-      cell: ({ phoneNumber }) => <div className="centered-box">{phoneNumber}</div>,
-    },
-    {
-      name: "Transaction Date",
+      name: "Date　Added",
       selector: ({ createdAt }) => createdAt.slice(0, 10),
       cell: ({ createdAt }) => (
         <div className="centered-box">{createdAt.slice(0, 10)}</div>
@@ -267,5 +241,3 @@ export const airtimeColumnsData = (
     },
   ];
 };
-
-

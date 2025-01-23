@@ -28,6 +28,7 @@ export interface IFormInputProps {
   placeholder?: string;
   id: string;
   name?: string;
+  filter?: boolean;
   shortP?: string;
   error?: string | undefined;
   defaultValue?: string | number;

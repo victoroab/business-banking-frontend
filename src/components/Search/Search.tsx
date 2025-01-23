@@ -6,18 +6,21 @@ function Search({
   placeholder,
   className,
   setQueryData,
+  label,
 }: {
   placeholder: string;
   className?: string;
-  setQueryData?: Dispatch<SetStateAction<{[key: string] : string | number} >>
+  label: string;
+  setQueryData?: Dispatch<SetStateAction<{ [key: string]: string | number }>>;
 }) {
   const dispatch = useDispatch();
 
   const handleSearchInputChange = (e: ChangeEvent<HTMLInputElement>) => {
     const query = e.target.value;
     setQueryData((prev) => ({
-      ...prev, keyword: query
-    }))
+      ...prev,
+      keyword: query,
+    }));
     dispatch(setSearchQuery(query));
   };
 
@@ -26,7 +29,8 @@ function Search({
   }, [dispatch]);
 
   return (
-    <div className="search flex items-center w-full ">
+    <div className="search flex flex-col">
+      <p className="font-workSans font-medium text-greyColr">{label}</p>
       <input
         type="text"
         placeholder={placeholder}

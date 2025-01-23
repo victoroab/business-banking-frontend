@@ -21,6 +21,7 @@ const FormInput = ({
   keyPropertyName,
   itemPropertyName,
   valuePropertyName,
+  filter,
 }: IFormInputProps) => {
   return (
     <div className={`${error ? "" : ""} ${className}`}>
@@ -38,6 +39,7 @@ const FormInput = ({
           <Select
             id={id}
             options={selectOptions}
+            filter={filter}
             selectedOption={defaultValue}
             setSelectedOption={(option: any) =>
               onChange &&

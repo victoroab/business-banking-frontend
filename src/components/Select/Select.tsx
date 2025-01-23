@@ -14,6 +14,7 @@ interface SelectProps {
   itemPropertyName?: string | number;
   valuePropertyName?: string | number;
   placeholder?: string;
+  filter?: boolean;
 }
 
 const Select: FC<SelectProps> = ({
@@ -25,6 +26,7 @@ const Select: FC<SelectProps> = ({
   placeholder,
   itemPropertyName,
   valuePropertyName,
+  filter,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -56,7 +58,11 @@ const Select: FC<SelectProps> = ({
   );
 
   return (
-    <div id={id} className="customSelect" ref={popupRef}>
+    <div
+      id={id}
+      className={`${filter && "shadow-md rounded-xl"} customSelect`}
+      ref={popupRef}
+    >
       <p
         className={`selectText ${isOpen ? "focused" : ""}`}
         onClick={toggleDropdown}
