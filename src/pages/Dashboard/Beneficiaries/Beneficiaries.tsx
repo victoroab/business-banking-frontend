@@ -1,10 +1,18 @@
 import DataTable from "react-data-table-component";
 import Navbar from "../../../components/Navbar/Navbar";
-import { tableCustomStyles, transactionsData } from "../../../utils";
-import { airtimeColumnsData, transferColumnsData } from "../../../utils/table";
-import { AirtimeRowDataProps, RowDataProps } from "../../../interfaces/Global";
+import { tableCustomStyles } from "../../../utils";
+import {
+  airtimeColumnsData,
+  transferColumnsData,
+  tvColumnsData,
+} from "../../../utils/table";
+import {
+  AirtimeRowDataProps,
+  RowDataProps,
+  TVRowDataProps,
+} from "../../../interfaces/Global";
 import Paginate from "../../../components/Paginate";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import PopUp from "../../../components/PopUps/PopUp";
 import { useAppSelector } from "../../../hooks";
@@ -40,6 +48,7 @@ const Beneficiaries = () => {
   const { data: allBeneficiaries, refetch } =
     useGetAllBeneficiariesQuery(queryData);
   const [filteredData, setFilteredData] = useState<RowDataProps[]>([]);
+  const [bankName, setBankName] = useState<string>("");
   const [selectedRow, setSelectedRow] = useState<RowDataProps>();
   const [openAction, IsOpenAction] = useState<boolean>(false);
 
@@ -57,6 +66,9 @@ const Beneficiaries = () => {
     accountNumber: "",
     phoneNumber: "",
     networkProvider: "",
+    tvCardName: "",
+    tvCardNumber: "",
+    tvProvider: "",
   };
 
   const onSubmit = async (formData: any) => {
@@ -64,20 +76,29 @@ const Beneficiaries = () => {
       const transferRequiredData = {
         beneficiaryType: formData?.beneficiaryType,
         accountName: formData?.accountName,
-        bankName: formData?.bankName,
+        bankName: bankName,
         bankCode: formData?.bankCode,
         accountNumber: formData?.accountNumber,
       };
 
-      const otherPayload = {
+      const airtimeDataPayload = {
         beneficiaryType: formData?.beneficiaryType,
         phoneNumber: formData?.phoneNumber,
         networkProvider: formData?.networkProvider,
       };
+
+      const tvPayload = {
+        beneficiaryType: formData?.beneficiaryType,
+        tvCardName: formData?.tvCardName,
+        tvCardNumber: formData?.tvCardNumber,
+        tvProvider: formData?.tvProvider,
+      };
       const payload =
         formData?.beneficiaryType === "TRANSFER"
           ? transferRequiredData
-          : otherPayload;
+          : formData?.beneficiaryType === "TV_BILL"
+          ? tvPayload
+          : airtimeDataPayload;
 
       const response = await addBeneficiary(payload).unwrap();
       toast.success(response?.message);
@@ -105,7 +126,14 @@ const Beneficiaries = () => {
       onSubmit,
     });
 
-  console.log(allBeneficiaries?.data, "remi");
+  useEffect(() => {
+    const getBankName = data?.data?.find(
+      (row: any) => row?.Code === values?.bankCode
+    );
+
+    setBankName(getBankName?.Name);
+  }, [data?.data, values?.bankCode]);
+
   return (
     <div className="border">
       <Navbar
@@ -132,7 +160,11 @@ const Beneficiaries = () => {
             placeholder="Beneficiary Type"
             label="Beneficiary Type"
             filter
-            defaultValue={"TRANSFER"}
+            defaultValue={
+              queryData?.beneficiaryType !== ""
+                ? queryData?.beneficiaryType
+                : "TRANSFER"
+            }
             id="beneficiaryType"
             onChange={(e) => {
               setQueryData((prev) => ({
@@ -236,6 +268,32 @@ const Beneficiaries = () => {
                     />
                   </div>
                 </>
+              ) : queryData?.beneficiaryType === "TV_BILL" ? (
+                <>
+                  <DataTable
+                    columns={tvColumnsData(
+                      handleOpenModal,
+                      selectedRow as TVRowDataProps,
+                      openAction
+                    )}
+                    data={allBeneficiaries?.data}
+                    customStyles={tableCustomStyles}
+                    className=""
+                  />
+
+                  <div className="">
+                    <Paginate
+                      data={allBeneficiaries?.data}
+                      handleSearch={handleSearch}
+                      currentPage={filteredData}
+                      setCurrentPage={setFilteredData}
+                      searchParams="networkProvider"
+                      itemsPerPage={queryData?.pageSize as number}
+                      setQueryData={setQueryData}
+                      totalItemsCount={allBeneficiaries?.data?.length}
+                    />
+                  </div>
+                </>
               ) : (
                 <>
                   <DataTable
@@ -306,19 +364,8 @@ const Beneficiaries = () => {
               {values?.beneficiaryType === "TRANSFER" && (
                 <>
                   <FormInput
-                    type="text"
-                    placeholder="Bank Name"
-                    id="bankName"
-                    className="w-full"
-                    name="bankName"
-                    error={touched.bankName ? errors.bankName : undefined}
-                    onBlur={handleBlur}
-                    onChange={handleChange}
-                    defaultValue={values?.bankName}
-                  />
-                  <FormInput
                     type="cSelect"
-                    placeholder="Bank Code"
+                    placeholder="Bank"
                     id="bankCode"
                     className="w-full"
                     name="bankCode"
@@ -354,6 +401,46 @@ const Beneficiaries = () => {
                     onBlur={handleBlur}
                     onChange={handleChange}
                     defaultValue={values?.accountNumber}
+                  />
+                </>
+              )}
+
+              {values?.beneficiaryType === "TV_BILL" && (
+                <>
+                  <FormInput
+                    type="text"
+                    placeholder="TV Card Name"
+                    id="tvCardName"
+                    className="w-full"
+                    name="tvCardName"
+                    error={touched.tvCardName ? errors.tvCardName : undefined}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    defaultValue={values?.tvCardName}
+                  />
+                  <FormInput
+                    type="text"
+                    placeholder="TV Card Number"
+                    id="tvCardNumber"
+                    className="w-full"
+                    name="tvCardNumber"
+                    error={
+                      touched.tvCardNumber ? errors.tvCardNumber : undefined
+                    }
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    defaultValue={values?.tvCardNumber}
+                  />
+                  <FormInput
+                    type="text"
+                    placeholder="TV Provider"
+                    id="tvProvider"
+                    className="w-full"
+                    name="tvProvider"
+                    error={touched.tvProvider ? errors.tvProvider : undefined}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    defaultValue={values?.tvProvider}
                   />
                 </>
               )}

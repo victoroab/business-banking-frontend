@@ -7,4 +7,7 @@ export interface AddBeneficary {
   phoneNumber?: string;
   networkProvider?: string;
   isBeneficiary?: boolean;
+  tvCardName?: string;
+  tvCardNumber?: string;
+  tvProvider?: string;
 }

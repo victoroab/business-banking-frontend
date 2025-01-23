@@ -177,3 +177,17 @@
   display: flex;
   justify-content: start;
 }
+
+[data-column-id="bankName"].rdt_TableCol {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}
+
+[data-column-id="beneficiary"].rdt_TableCol {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}

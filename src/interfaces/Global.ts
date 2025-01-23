@@ -131,6 +131,14 @@ export interface AirtimeRowDataProps {
   createdAt: string;
 }
 
+export interface TVRowDataProps {
+  tvCardName?: string;
+  tvCardNumber?: string;
+  tvProvider?: string;
+  transactionType: TransactionType;
+  status: TransactionStatus;
+  createdAt: string;
+}
 export interface IColData {
   selector?: (row: any) => string;
   cell?: (row: any) => ReactNode;
