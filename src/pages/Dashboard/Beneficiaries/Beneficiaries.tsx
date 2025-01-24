@@ -2,11 +2,6 @@ import DataTable from "react-data-table-component";
 import Navbar from "../../../components/Navbar/Navbar";
 import { errorHandler, tableCustomStyles } from "../../../utils";
 import {
-  airtimeColumnsData,
-  electricityColumnsData,
-  tvColumnsData,
-} from "../../../utils/table";
-import {
   AirtimeRowDataProps,
   TransferDataProps,
   TVRowDataProps,
@@ -38,6 +33,8 @@ import {
   BeneficiaryProps,
 } from "../../../interfaces/service/beneficiary";
 import { airtimeDataColumnsData } from "../../../components/Dashboard/Beneficiary/AirtimeData/Table";
+import { electricityColumnsData } from "../../../components/Dashboard/Beneficiary/Electricity/Table";
+import { tvColumnsData } from "../../../components/Dashboard/Beneficiary/TV/Table";
 
 const Beneficiaries = () => {
   const toggle = useAppSelector(selectGlobal);
@@ -294,7 +291,8 @@ const Beneficiaries = () => {
                       columns={tvColumnsData(
                         handleOpenModal,
                         selectedRow as TVRowDataProps,
-                        openAction
+                        openAction,
+                        refetch
                       )}
                       data={allBeneficiaries?.data}
                       noDataComponent={<NoData />}
@@ -320,8 +318,9 @@ const Beneficiaries = () => {
                     <DataTable
                       columns={electricityColumnsData(
                         handleOpenModal,
-                        selectedRow as TVRowDataProps,
-                        openAction
+                        selectedRow as TransferDataProps,
+                        openAction,
+                        refetch
                       )}
                       data={allBeneficiaries?.data}
                       noDataComponent={<NoData />}

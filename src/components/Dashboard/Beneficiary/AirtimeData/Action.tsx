@@ -1,14 +1,13 @@
 import { useAppSelector } from "../../../../hooks";
 import { useGlobalHooks } from "../../../../hooks/globalHooks";
 import { AirtimeRowDataProps } from "../../../../interfaces/Global";
-import { BeneficiaryData } from "../../../../interfaces/service/beneficiary";
 import { selectGlobal } from "../../../../store/slice/globalSlice";
 import AirtimeDataDetails from "./TransferDetails";
 
 interface AirtimeActionProps {
   id: string;
   row: AirtimeRowDataProps;
-  refetch: () => Promise<{ data?: BeneficiaryData[]; error?: unknown }>;
+  refetch: any;
 }
 
 const AirtimeDataActionMenu = ({ row, refetch }: AirtimeActionProps) => {

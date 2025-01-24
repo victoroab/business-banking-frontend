@@ -1,10 +1,11 @@
 import { IoMdMore } from "react-icons/io";
-import { AirtimeRowDataProps, IColData } from "../../../../interfaces/Global";
-import AirtimeDataActionMenu from "./Action";
+import { IColData, TVRowDataProps } from "../../../../interfaces/Global";
+import { formatTimestamp } from "../../../../utils";
+import TVActionMenu from "./Action";
 
-export const airtimeDataColumnsData = (
-  handleOpenModal: (row: AirtimeRowDataProps) => void,
-  selectedRow: AirtimeRowDataProps,
+export const tvColumnsData = (
+  handleOpenModal: (row: TVRowDataProps) => void,
+  selectedRow: TVRowDataProps,
   openAction: boolean,
   refetch: any
 ): IColData[] => {
@@ -16,11 +17,11 @@ export const airtimeDataColumnsData = (
       cell: ({ phoneNumber }) => <div className="left-box">{phoneNumber}</div>,
     },
     {
-      name: "Network Provider",
-      id: "networkProvider",
-      selector: ({ networkProvider }) => networkProvider,
-      cell: ({ networkProvider }) => (
-        <div className="centered-box">{networkProvider}</div>
+      name: "Card Name Provider",
+      id: "tvCardName",
+      selector: ({ tvCardName }) => tvCardName,
+      cell: ({ tvCardName }) => (
+        <div className="centered-box">{tvCardName}</div>
       ),
     },
     {
@@ -35,13 +36,13 @@ export const airtimeDataColumnsData = (
       name: "Date Added",
       selector: ({ createdAt }) => createdAt.slice(0, 10),
       cell: ({ createdAt }) => (
-        <div className="centered-box">{createdAt.slice(0, 10)}</div>
+        <div className="centered-box">{formatTimestamp(createdAt, false)}</div>
       ),
     },
 
     {
       name: "Action",
-      cell: (row: AirtimeRowDataProps) => (
+      cell: (row: TVRowDataProps) => (
         <div className="centered-box">
           <button>
             {" "}
@@ -51,10 +52,15 @@ export const airtimeDataColumnsData = (
               onClick={() => handleOpenModal(row)}
             />
           </button>
+          {/* {toggle["show-action"] && selectedRow?.id === row?.id && (
+            <div className="absolute z-[1000] right-[500px] bottom-[-18px] border border-red-400">
+              <ActionMenu id={row?.id} row={row} />
+            </div>
+          )} */}
 
           {openAction && selectedRow?.id === row?.id && (
             <div className="absolute z-[1000] right-[70px] bottom-[-18px] ">
-              <AirtimeDataActionMenu id={row?.id} row={row} refetch={refetch} />
+              <TVActionMenu id={row?.id} row={row} refetch={refetch} />
             </div>
           )}
         </div>

@@ -11,7 +11,7 @@ function Search({
   placeholder: string;
   className?: string;
   label: string;
-  setQueryData?: Dispatch<SetStateAction<{ [key: string]: string | number }>>;
+  setQueryData: Dispatch<SetStateAction<{ [key: string]: string | number }>>;
 }) {
   const dispatch = useDispatch();
 

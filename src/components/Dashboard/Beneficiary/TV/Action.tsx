@@ -1,16 +1,16 @@
 import TransferDetails from "./TransferDetails";
 import { useAppSelector } from "../../../../hooks";
 import { useGlobalHooks } from "../../../../hooks/globalHooks";
-import { TransferDataProps } from "../../../../interfaces/Global";
 import { selectGlobal } from "../../../../store/slice/globalSlice";
+import { TVRowDataProps } from "../../../../interfaces/Global";
 
 interface TransferActionProps {
   id: string;
-  row: TransferDataProps;
+  row: TVRowDataProps;
   refetch: any;
 }
 
-const TransferActionMenu = ({ row, refetch }: TransferActionProps) => {
+const TVActionMenu = ({ row, refetch }: TransferActionProps) => {
   const toggle = useAppSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
 
@@ -43,4 +43,4 @@ const TransferActionMenu = ({ row, refetch }: TransferActionProps) => {
   );
 };
 
-export default TransferActionMenu;
+export default TVActionMenu;

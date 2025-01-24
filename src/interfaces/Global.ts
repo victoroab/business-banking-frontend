@@ -141,8 +141,10 @@ export interface AirtimeRowDataProps {
 }
 
 export interface TVRowDataProps {
+  id: string;
   tvCardName?: string;
   tvCardNumber?: string;
+  beneficiaryType: string;
   tvProvider?: string;
   transactionType: TransactionType;
   status: TransactionStatus;

@@ -3,7 +3,7 @@ import { TransferDataProps, IColData } from "../../../../interfaces/Global";
 import TransferActionMenu from "./Action";
 import { formatTimestamp } from "../../../../utils";
 
-export const transferColumnsData = (
+export const electricityColumnsData = (
   handleOpenModal: (row: TransferDataProps) => void,
   selectedRow: TransferDataProps,
   openAction: boolean,

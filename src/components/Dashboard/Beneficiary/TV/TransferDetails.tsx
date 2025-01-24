@@ -1,16 +1,16 @@
 import { CloseIcon } from "../../../../assets/svg/Auth";
 import { useGlobalHooks } from "../../../../hooks/globalHooks";
-import { AirtimeRowDataProps } from "../../../../interfaces/Global";
+import { TVRowDataProps } from "../../../../interfaces/Global";
 import { useDeleteBeneficiaryMutation } from "../../../../service/beneficiary";
 import { errorHandler, formatTimestamp } from "../../../../utils";
 import PopUp from "../../../PopUps/PopUp";
 import Spinner from "../../../Spinner/Spinner";
 
 interface DetailsProps {
-  selectedRow: AirtimeRowDataProps;
+  selectedRow: TVRowDataProps;
   refetch: any;
 }
-const AirtimeDataDetails = ({ selectedRow, refetch }: DetailsProps) => {
+const TransferDetails = ({ selectedRow, refetch }: DetailsProps) => {
   const { handleShow } = useGlobalHooks();
   const [deleteBeneficiary, { isLoading }] = useDeleteBeneficiaryMutation();
   const handleClose = () => {
@@ -40,18 +40,37 @@ const AirtimeDataDetails = ({ selectedRow, refetch }: DetailsProps) => {
           <div className="column flex justify-between items-center">
             <div className="flex flex-col items-start justify-start">
               <p className="tit text-sm text-lightGreyColor font-workSans">
-                Phone Number
+                Card Name
               </p>
               <p className="text-base text-greyColr font-workSans">
-                {selectedRow?.phoneNumber}
+                {selectedRow?.tvCardName}
               </p>
             </div>
             <div className="flex flex-col justify-end items-end">
               <p className="tit text-sm text-lightGreyColor font-workSans">
-                Network Provider
+                Card Provider
               </p>
               <p className="text-base text-greyColr font-workSans">
-                {selectedRow?.networkProvider}
+                {selectedRow?.tvProvider}
+              </p>
+            </div>
+          </div>
+
+          <div className="column flex justify-between items-center">
+            <div className="flex flex-col items-start justify-start">
+              <p className="tit text-sm text-lightGreyColor font-workSans">
+                Card Number
+              </p>
+              <p className="text-base text-greyColr font-workSans">
+                {selectedRow?.tvCardNumber}
+              </p>
+            </div>
+            <div className="flex flex-col justify-end items-end">
+              <p className="tit text-sm text-lightGreyColor font-workSans">
+                Date Added
+              </p>
+              <p className="text-base text-greyColr font-workSans">
+                {formatTimestamp(selectedRow?.createdAt, true)}
               </p>
             </div>
           </div>
@@ -63,14 +82,6 @@ const AirtimeDataDetails = ({ selectedRow, refetch }: DetailsProps) => {
               </p>
               <p className="text-sm  bg-[#f7f8ff] text-statusBlue p-1 font-workSans">
                 {selectedRow?.beneficiaryType?.toLocaleUpperCase()}
-              </p>
-            </div>
-            <div className="flex flex-col justify-end items-end">
-              <p className="tit text-sm text-lightGreyColor font-workSans">
-                Date Added
-              </p>
-              <p className="text-base text-greyColr font-workSans">
-                {formatTimestamp(selectedRow?.createdAt, true)}
               </p>
             </div>
           </div>
@@ -97,4 +108,4 @@ const AirtimeDataDetails = ({ selectedRow, refetch }: DetailsProps) => {
   );
 };
 
-export default AirtimeDataDetails;
+export default TransferDetails;
