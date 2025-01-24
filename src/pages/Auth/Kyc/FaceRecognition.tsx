@@ -6,56 +6,14 @@ import {
 
 import { useNavigate } from "react-router-dom";
 
-interface Window {
-  dojah: {
-    init: (config: {
-      widget_id: string;
-      user_data?: Record<string, string>;
-      gov_data?: Record<string, string>;
-      onSuccess?: (data: any) => void;
-      onClose?: () => void;
-      onError?: (error: any) => void;
-    }) => { open: () => void };
-  };
-}
+const FaceVerification = () => {
+  const navigate = useNavigate();
 
-const FaceVerification: React.FC = () => {
-  // const navigate = useNavigate();
-
-  const handleButtonClick = () => {
-    if (typeof window.dojah === "undefined") {
-      alert(
-        "The Dojah widget failed to load. Please refresh the page and try again."
-      );
-      return;
-    }
-
-    const widget = window.dojah.init({
-      widget_id: "67935812ab804ca5b9037717",
-      user_data: {
-        first_name: "test",
-        last_name: "test",
-        dob: "1889-04-04",
-      },
-      gov_data: {
-        nin: "1223445555",
-        bvn: "2222222222",
-      },
-      onSuccess: (data) => {
-        console.log("Success:", data);
-      },
-      onClose: () => {
-        console.log("Widget closed");
-      },
-      onError: (error) => {
-        console.error("Error:", error);
-      },
-    });
-
-    widget.open();
+  const handleSubmit = () => {
+    navigate("/kyb/residential-address");
   };
   return (
-    <div className="flex flex-col gap-6 justify-center items-center">
+    <div className="flex flex-col gap-6 justify-center items-center ">
       <div className="rounded-full p-6 w-[138px] h-[138px] bg-[#fdfbf6] flex justify-center items-center">
         <CameraIcon />
       </div>
@@ -87,12 +45,11 @@ const FaceVerification: React.FC = () => {
         </div>
       </div>
 
-      <div className="flex justify-center w-full gap-6">
+      <div className="flex justify-center  w-full gap-6">
         <button
           className="main-btn w-full"
           type="submit"
-          aria-label="Continue to face verification"
-          onClick={handleButtonClick}
+          onClick={handleSubmit}
         >
           Continue
         </button>
