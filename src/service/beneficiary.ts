@@ -21,7 +21,7 @@ const customBaseQuery: BaseQueryFn<
     prepareHeaders: (headers, { getState }) => {
       const userToken = (getState() as RootState)?.auth?.userInfo
         ?.refresh_token;
-console.log(userToken)
+      console.log(userToken);
       if (userToken) {
         headers.set("Authorization", `Bearer ${userToken}`);
       }
@@ -68,7 +68,7 @@ export const beneficiaryApi = createApi({
     }),
 
     //deleteBeneficiary
-    deleteBeneficiary: builder.mutation<any, void>({
+    deleteBeneficiary: builder.mutation<any, string>({
       query: (id) => ({
         url: `/beneficiary/${id}`,
         method: "DELETE",

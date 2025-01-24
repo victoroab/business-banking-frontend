@@ -1,15 +1,14 @@
 import DataTable from "react-data-table-component";
 import Navbar from "../../../components/Navbar/Navbar";
-import { tableCustomStyles } from "../../../utils";
+import { errorHandler, tableCustomStyles } from "../../../utils";
 import {
   airtimeColumnsData,
   electricityColumnsData,
-  transferColumnsData,
   tvColumnsData,
 } from "../../../utils/table";
 import {
   AirtimeRowDataProps,
-  RowDataProps,
+  TransferDataProps,
   TVRowDataProps,
 } from "../../../interfaces/Global";
 import Paginate from "../../../components/Paginate";
@@ -32,6 +31,13 @@ import Search from "../../../components/Search/Search";
 import Calender from "../../../components/Calendar/DatePicker";
 import { FilterIcon } from "../../../assets/svg/dashboard";
 import NoData from "../../../components/NoData/NoData";
+import { transferColumnsData } from "../../../components/Dashboard/Beneficiary/Transfer/Table";
+import {
+  Bank,
+  BeneficiaryData,
+  BeneficiaryProps,
+} from "../../../interfaces/service/beneficiary";
+import { airtimeDataColumnsData } from "../../../components/Dashboard/Beneficiary/AirtimeData/Table";
 
 const Beneficiaries = () => {
   const toggle = useAppSelector(selectGlobal);
@@ -47,14 +53,17 @@ const Beneficiaries = () => {
   });
   const [addBeneficiary, { isLoading }] = useAddBeneficiaryMutation();
   const { data } = useGetAllBanksQuery({});
-  const { data: allBeneficiaries, refetch } =
-    useGetAllBeneficiariesQuery(queryData);
-  const [filteredData, setFilteredData] = useState<RowDataProps[]>([]);
+  const {
+    data: allBeneficiaries,
+    refetch,
+    isLoading: beneficiariesLoading,
+  } = useGetAllBeneficiariesQuery(queryData);
+  const [filteredData, setFilteredData] = useState<unknown[]>([]);
   const [bankName, setBankName] = useState<string>("");
-  const [selectedRow, setSelectedRow] = useState<RowDataProps>();
+  const [selectedRow, setSelectedRow] = useState<unknown>();
   const [openAction, IsOpenAction] = useState<boolean>(false);
 
-  const handleOpenModal = (row: any) => {
+  const handleOpenModal = (row: unknown) => {
     // handleShow("show-action");
     setSelectedRow(row);
     IsOpenAction((prev) => !prev);
@@ -73,7 +82,7 @@ const Beneficiaries = () => {
     tvProvider: "",
   };
 
-  const onSubmit = async (formData: any) => {
+  const onSubmit = async (formData: BeneficiaryProps) => {
     try {
       const transferRequiredData = {
         beneficiaryType: formData?.beneficiaryType,
@@ -106,8 +115,8 @@ const Beneficiaries = () => {
       toast.success(response?.message);
       handleShow("addBeneficiary");
       refetch();
-    } catch (error: any) {
-      toast.error(error.data.message);
+    } catch (error: unknown) {
+      errorHandler(error);
     }
   };
 
@@ -130,7 +139,7 @@ const Beneficiaries = () => {
 
   useEffect(() => {
     const getBankName = data?.data?.find(
-      (row: any) => row?.Code === values?.bankCode
+      (row: Bank) => row?.Code === values?.bankCode
     );
 
     setBankName(getBankName?.Name);
@@ -216,149 +225,160 @@ const Beneficiaries = () => {
             className="relative px-10 font-workSans"
             style={{ boxShadow: "0px 1px 7px 4px rgba(216, 216, 216, 0.2)" }}
           >
-            <div className="">
-              {queryData?.beneficiaryType === "TRANSFER" ? (
-                <>
-                  <DataTable
-                    columns={transferColumnsData(
-                      handleOpenModal,
-                      selectedRow as RowDataProps,
-                      openAction
-                    )}
-                    data={allBeneficiaries?.data}
-                    noDataComponent={<NoData />}
-                    customStyles={tableCustomStyles}
-                    className=""
-                  />
-
-                  <div className="">
-                    <Paginate
-                      data={allBeneficiaries?.data}
-                      handleSearch={handleSearch}
-                      currentPage={filteredData}
-                      setCurrentPage={setFilteredData}
-                      searchParams="accountName"
-                      itemsPerPage={queryData?.pageSize as number}
-                      setQueryData={setQueryData}
-                      totalItemsCount={allBeneficiaries?.data?.length}
-                    />
-                  </div>
-                </>
-              ) : queryData?.beneficiaryType === "AIRTIME" ||
-                queryData?.beneficiaryType === "DATA" ? (
-                <>
-                  <DataTable
-                    columns={airtimeColumnsData(
-                      handleOpenModal,
-                      selectedRow as AirtimeRowDataProps,
-                      openAction
-                    )}
-                    data={allBeneficiaries?.data}
-                    customStyles={tableCustomStyles}
-                    noDataComponent={<NoData />}
-                    className=""
-                  />
-
-                  <div className="">
-                    <Paginate
-                      data={allBeneficiaries?.data}
-                      handleSearch={handleSearch}
-                      currentPage={filteredData}
-                      setCurrentPage={setFilteredData}
-                      searchParams="networkProvider"
-                      itemsPerPage={queryData?.pageSize as number}
-                      setQueryData={setQueryData}
-                      totalItemsCount={allBeneficiaries?.data?.length}
-                    />
-                  </div>
-                </>
-              ) : queryData?.beneficiaryType === "TV_BILL" ? (
-                <>
-                  <DataTable
-                    columns={tvColumnsData(
-                      handleOpenModal,
-                      selectedRow as TVRowDataProps,
-                      openAction
-                    )}
-                    data={allBeneficiaries?.data}
-                    noDataComponent={<NoData />}
-                    customStyles={tableCustomStyles}
-                    className=""
-                  />
-
-                  <div className="">
-                    <Paginate
-                      data={allBeneficiaries?.data}
-                      handleSearch={handleSearch}
-                      currentPage={filteredData}
-                      setCurrentPage={setFilteredData}
-                      searchParams="networkProvider"
-                      itemsPerPage={queryData?.pageSize as number}
-                      setQueryData={setQueryData}
-                      totalItemsCount={allBeneficiaries?.data?.length}
-                    />
-                  </div>
-                </>
-              ) : queryData?.beneficiaryType === "ELECTRICITY" ? (
-                <>
-                  <DataTable
-                    columns={electricityColumnsData(
-                      handleOpenModal,
-                      selectedRow as TVRowDataProps,
-                      openAction
-                    )}
-                    data={allBeneficiaries?.data}
-                    noDataComponent={<NoData />}
-                    customStyles={tableCustomStyles}
-                    className=""
-                  />
-
-                  <div className="">
-                    <Paginate
-                      data={allBeneficiaries?.data}
-                      handleSearch={handleSearch}
-                      currentPage={filteredData}
-                      setCurrentPage={setFilteredData}
-                      searchParams="networkProvider"
-                      itemsPerPage={queryData?.pageSize as number}
-                      setQueryData={setQueryData}
-                      totalItemsCount={allBeneficiaries?.data?.length}
-                    />
-                  </div>
-                </>
-              ) : (
-                <>
-                  <DataTable
-                    columns={transferColumnsData(
-                      handleOpenModal,
-                      selectedRow as RowDataProps,
-                      openAction
-                    )}
-                    noDataComponent={<NoData />}
-                    data={allBeneficiaries?.data?.filter(
-                      (item: any) => item.beneficiaryType === "TRANSFER"
-                    )}
-                    customStyles={tableCustomStyles}
-                    className=""
-                  />
-
-                  <div className="">
-                    <Paginate
-                      data={allBeneficiaries?.data?.filter(
-                        (item: any) => item.beneficiaryType === "TRANSFER"
+            {beneficiariesLoading ? (
+              <div className="flex justify-center items-center">
+                <Spinner />
+              </div>
+            ) : (
+              <div className="">
+                {queryData?.beneficiaryType === "TRANSFER" ? (
+                  <>
+                    <DataTable
+                      columns={transferColumnsData(
+                        handleOpenModal,
+                        selectedRow as TransferDataProps,
+                        openAction,
+                        refetch
                       )}
-                      handleSearch={handleSearch}
-                      currentPage={filteredData}
-                      setCurrentPage={setFilteredData}
-                      searchParams="accountName"
-                      itemsPerPage={queryData?.pageSize as number}
-                      setQueryData={setQueryData}
-                      totalItemsCount={allBeneficiaries?.data?.length}
+                      data={allBeneficiaries?.data}
+                      noDataComponent={<NoData />}
+                      customStyles={tableCustomStyles}
+                      className=""
                     />
-                  </div>
-                </>
-              )}
-            </div>
+
+                    <div className="">
+                      <Paginate
+                        data={allBeneficiaries?.data}
+                        handleSearch={handleSearch}
+                        currentPage={filteredData}
+                        setCurrentPage={setFilteredData}
+                        searchParams="accountName"
+                        itemsPerPage={queryData?.pageSize as number}
+                        setQueryData={setQueryData}
+                        totalItemsCount={allBeneficiaries?.data?.length}
+                      />
+                    </div>
+                  </>
+                ) : queryData?.beneficiaryType === "AIRTIME" ||
+                  queryData?.beneficiaryType === "DATA" ? (
+                  <>
+                    <DataTable
+                      columns={airtimeDataColumnsData(
+                        handleOpenModal,
+                        selectedRow as AirtimeRowDataProps,
+                        openAction,
+                        refetch
+                      )}
+                      data={allBeneficiaries?.data}
+                      customStyles={tableCustomStyles}
+                      noDataComponent={<NoData />}
+                      className=""
+                    />
+
+                    <div className="">
+                      <Paginate
+                        data={allBeneficiaries?.data}
+                        handleSearch={handleSearch}
+                        currentPage={filteredData}
+                        setCurrentPage={setFilteredData}
+                        searchParams="networkProvider"
+                        itemsPerPage={queryData?.pageSize as number}
+                        setQueryData={setQueryData}
+                        totalItemsCount={allBeneficiaries?.data?.length}
+                      />
+                    </div>
+                  </>
+                ) : queryData?.beneficiaryType === "TV_BILL" ? (
+                  <>
+                    <DataTable
+                      columns={tvColumnsData(
+                        handleOpenModal,
+                        selectedRow as TVRowDataProps,
+                        openAction
+                      )}
+                      data={allBeneficiaries?.data}
+                      noDataComponent={<NoData />}
+                      customStyles={tableCustomStyles}
+                      className=""
+                    />
+
+                    <div className="">
+                      <Paginate
+                        data={allBeneficiaries?.data}
+                        handleSearch={handleSearch}
+                        currentPage={filteredData}
+                        setCurrentPage={setFilteredData}
+                        searchParams="networkProvider"
+                        itemsPerPage={queryData?.pageSize as number}
+                        setQueryData={setQueryData}
+                        totalItemsCount={allBeneficiaries?.data?.length}
+                      />
+                    </div>
+                  </>
+                ) : queryData?.beneficiaryType === "ELECTRICITY" ? (
+                  <>
+                    <DataTable
+                      columns={electricityColumnsData(
+                        handleOpenModal,
+                        selectedRow as TVRowDataProps,
+                        openAction
+                      )}
+                      data={allBeneficiaries?.data}
+                      noDataComponent={<NoData />}
+                      customStyles={tableCustomStyles}
+                      className=""
+                    />
+
+                    <div className="">
+                      <Paginate
+                        data={allBeneficiaries?.data}
+                        handleSearch={handleSearch}
+                        currentPage={filteredData}
+                        setCurrentPage={setFilteredData}
+                        searchParams="networkProvider"
+                        itemsPerPage={queryData?.pageSize as number}
+                        setQueryData={setQueryData}
+                        totalItemsCount={allBeneficiaries?.data?.length}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <DataTable
+                      columns={transferColumnsData(
+                        handleOpenModal,
+                        selectedRow as TransferDataProps,
+                        openAction,
+                        refetch
+                      )}
+                      noDataComponent={<NoData />}
+                      data={allBeneficiaries?.data?.filter(
+                        (item: BeneficiaryData) =>
+                          item.beneficiaryType === "TRANSFER"
+                      )}
+                      customStyles={tableCustomStyles}
+                      className=""
+                    />
+
+                    <div className="">
+                      <Paginate
+                        data={allBeneficiaries?.data?.filter(
+                          (item: BeneficiaryData) =>
+                            item.beneficiaryType === "TRANSFER"
+                        )}
+                        handleSearch={handleSearch}
+                        currentPage={filteredData}
+                        setCurrentPage={setFilteredData}
+                        searchParams="accountName"
+                        itemsPerPage={queryData?.pageSize as number}
+                        setQueryData={setQueryData}
+                        totalItemsCount={allBeneficiaries?.data?.length}
+                      />
+                    </div>
+                  </>
+                )}
+              </div>
+            )}
           </section>
         </div>
       </div>

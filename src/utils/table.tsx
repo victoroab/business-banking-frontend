@@ -1,10 +1,6 @@
 import { IoMdMore } from "react-icons/io";
 import ActionMenu from "../components/Dashboard/ActionMenu";
-import {
-  AirtimeRowDataProps,
-  IColData,
-  RowDataProps,
-} from "../interfaces/Global";
+import { IColData, RowDataProps, TVRowDataProps } from "../interfaces/Global";
 
 export const columnsData = (
   handleOpenModal: (row: RowDataProps) => void,
@@ -103,146 +99,9 @@ export const columnsData = (
   ];
 };
 
-export const transferColumnsData = (
-  handleOpenModal: (row: RowDataProps) => void,
-  selectedRow: RowDataProps,
-  openAction?: any
-): IColData[] => {
-  return [
-    {
-      name: "Bank Name",
-      id: "bankName",
-      selector: ({ bankName }) => bankName,
-      cell: ({ bankName }) => <div className="left-box">{bankName}</div>,
-    },
-    {
-      name: "Beneficiary Type",
-      selector: ({ beneficiaryType }) => beneficiaryType,
-      cell: ({ beneficiaryType }) => (
-        <div className="centered-box">{beneficiaryType}</div>
-      ),
-    },
-    {
-      name: "Account Name",
-      grow: 1.2,
-      selector: ({ accountName }) => accountName,
-      cell: ({ accountName }) => (
-        <div className="centered-box">{accountName}</div>
-      ),
-    },
-    {
-      name: "Account Number",
-      grow: 1.2,
-      selector: ({ accountNumber }) => accountNumber,
-      cell: ({ accountNumber }) => (
-        <div className="centered-box">{accountNumber}</div>
-      ),
-    },
-    {
-      name: "Date Added",
-      selector: ({ createdAt }) => createdAt.slice(0, 10),
-      cell: ({ createdAt }) => (
-        <div className="centered-box">{createdAt.slice(0, 10)}</div>
-      ),
-    },
-
-    {
-      name: "Action",
-      cell: (row: RowDataProps) => (
-        <div className="centered-box">
-          <button>
-            {" "}
-            <IoMdMore
-              className="text-[#69728F] cursor-pointer"
-              size={24}
-              onClick={() => handleOpenModal(row)}
-            />
-          </button>
-          {/* {toggle["show-action"] && selectedRow?.id === row?.id && (
-            <div className="absolute z-[1000] right-[500px] bottom-[-18px] border border-red-400">
-              <ActionMenu id={row?.id} row={row} />
-            </div>
-          )} */}
-
-          {openAction && selectedRow?.id === row?.id && (
-            <div className="absolute z-[1000] right-[70px] bottom-[-18px] ">
-              <ActionMenu id={row?.id} row={row} />
-            </div>
-          )}
-        </div>
-      ),
-    },
-  ];
-};
-
-export const airtimeColumnsData = (
-  handleOpenModal: (row: AirtimeRowDataProps) => void,
-  selectedRow: AirtimeRowDataProps,
-  openAction?: any
-): IColData[] => {
-  return [
-    {
-      name: "Beneficiary",
-      id: "beneficiary",
-      selector: ({ phoneNumber }) => phoneNumber,
-      cell: ({ phoneNumber }) => <div className="left-box">{phoneNumber}</div>,
-    },
-    {
-      name: "Network Provider",
-      id: "networkProvider",
-      selector: ({ networkProvider }) => networkProvider,
-      cell: ({ networkProvider }) => (
-        <div className="centered-box">{networkProvider}</div>
-      ),
-    },
-    {
-      name: "Beneficiary Type",
-      selector: ({ beneficiaryType }) => beneficiaryType,
-      cell: ({ beneficiaryType }) => (
-        <div className="centered-box">{beneficiaryType}</div>
-      ),
-    },
-
-    {
-      name: "Date Added",
-      selector: ({ createdAt }) => createdAt.slice(0, 10),
-      cell: ({ createdAt }) => (
-        <div className="centered-box">{createdAt.slice(0, 10)}</div>
-      ),
-    },
-
-    {
-      name: "Action",
-      cell: (row: RowDataProps) => (
-        <div className="centered-box">
-          <button>
-            {" "}
-            <IoMdMore
-              className="text-[#69728F] cursor-pointer"
-              size={24}
-              onClick={() => handleOpenModal(row)}
-            />
-          </button>
-          {/* {toggle["show-action"] && selectedRow?.id === row?.id && (
-            <div className="absolute z-[1000] right-[500px] bottom-[-18px] border border-red-400">
-              <ActionMenu id={row?.id} row={row} />
-            </div>
-          )} */}
-
-          {openAction && selectedRow?.id === row?.id && (
-            <div className="absolute z-[1000] right-[70px] bottom-[-18px] ">
-              <ActionMenu id={row?.id} row={row} />
-            </div>
-          )}
-        </div>
-      ),
-    },
-  ];
-};
-
 export const tvColumnsData = (
-  handleOpenModal: (row: AirtimeRowDataProps) => void,
-  selectedRow: AirtimeRowDataProps,
+  handleOpenModal: (row: TVRowDataProps) => void,
+  selectedRow: TVRowDataProps,
   openAction?: any
 ): IColData[] => {
   return [
@@ -306,8 +165,8 @@ export const tvColumnsData = (
 };
 
 export const electricityColumnsData = (
-  handleOpenModal: (row: AirtimeRowDataProps) => void,
-  selectedRow: AirtimeRowDataProps,
+  handleOpenModal: (row: TVRowDataProps) => void,
+  selectedRow: TVRowDataProps,
   openAction?: any
 ): IColData[] => {
   return [

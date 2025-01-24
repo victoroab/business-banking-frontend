@@ -22,6 +22,7 @@ import {
   MobileIcon,
   MTNIcon,
 } from "../assets/svg/Airtime";
+import toast from "react-hot-toast";
 
 export const manageBeneficiaryHeader = [
   { id: 1, title: "Transfer" },
@@ -1058,16 +1059,56 @@ export const UploadBeneficiaryList: ProgressStepsProps[] = [
   },
 ];
 
-
-export const queryBuilder = (params: {[key: string]: string}) => {
+export const queryBuilder = (params: { [key: string]: string }) => {
   const filteredParams = Object.entries(params)
-  .filter(([_, value]) => value !== null && value != undefined && value !== "")
-  .reduce((acc, [key, value]) => {
-    acc[key] = value;
-    return acc;
-  }, 
-{} as {[key: string] : string})
+    .filter(
+      ([_, value]) => value !== null && value != undefined && value !== ""
+    )
+    .reduce((acc, [key, value]) => {
+      acc[key] = value;
+      return acc;
+    }, {} as { [key: string]: string });
 
-const query = new URLSearchParams(filteredParams)
-return query
-}
+  const query = new URLSearchParams(filteredParams);
+  return query;
+};
+
+export const errorHandler = (error: unknown) => {
+  if (error instanceof Error) {
+    toast.error(error.message);
+  } else if (typeof error === "object" && error && "data" in error) {
+    // Assuming error.data.message exists
+    const apiError = error as { data?: { message?: string } };
+    toast.error(apiError.data?.message || "An unexpected error occurred");
+  } else {
+    toast.error("An unexpected error occurred");
+  }
+};
+
+export const formatTimestamp = (
+  timestamp: string,
+  includeTime: boolean = true
+): string => {
+  const date = new Date(timestamp);
+
+  const dateOptions: Intl.DateTimeFormatOptions = {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  };
+
+  const timeOptions: Intl.DateTimeFormatOptions = {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  };
+
+  const formattedDate = date.toLocaleDateString("en-US", dateOptions);
+
+  if (includeTime) {
+    const formattedTime = date.toLocaleTimeString("en-US", timeOptions);
+    return `${formattedDate} ${formattedTime}`;
+  }
+
+  return formattedDate;
+};

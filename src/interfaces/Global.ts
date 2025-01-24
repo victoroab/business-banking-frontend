@@ -120,8 +120,17 @@ export interface RowDataProps {
   createdAt: string;
 }
 
+export interface TransferDataProps {
+  id: string;
+  bankName: string;
+  beneficiaryType: string;
+  accountName: string;
+  accountNumber: string;
+  createdAt: string;
+}
+
 export interface AirtimeRowDataProps {
-  id: number;
+  id: string;
   sender: string;
   beneficiaryType: string;
   phoneNumber: string;
