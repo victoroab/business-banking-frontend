@@ -130,6 +130,49 @@ export const authApi = createApi({
 
       invalidatesTags: [{ type: "Auth", id: "Auth" }],
     }),
+
+    //request resset code
+    requestResetCode: builder.mutation<any, { emailOrAccountNumber: string }>({
+      query: (body) => ({
+        url: "/auth/passcode/reset/request",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Auth", id: "Auth" }],
+    }),
+
+    //verify resset code
+    verifyResetCode: builder.mutation<
+      any,
+      { emailOrAccountNumber: string; otp: string }
+    >({
+      query: (body) => ({
+        url: "/auth/passcode/reset/verify",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Auth", id: "Auth" }],
+    }),
+    //set new code
+    setCode: builder.mutation<
+      any,
+      {
+        emailOrAccountNumber: string;
+        otp: string;
+        passcode: string;
+        confirmPasscode: string;
+      }
+    >({
+      query: (body) => ({
+        url: "/auth/passcode/reset",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Auth", id: "Auth" }],
+    }),
   }),
 });
 
@@ -143,4 +186,7 @@ export const {
   useSetExistingPasscodeMutation,
   useSignInMutation,
   useSignInVerifyMutation,
+  useRequestResetCodeMutation,
+  useVerifyResetCodeMutation,
+  useSetCodeMutation,
 } = authApi;

@@ -1,5 +1,52 @@
 import { SVGProps } from "react";
 
+export const RequestIcon = (props: SVGProps<SVGSVGElement>) => (
+  <svg
+    width="100"
+    {...props}
+    height="101"
+    viewBox="0 0 100 101"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M87.5 54.6667V33.8333C87.5 29.231 83.7692 25.5 79.1667 25.5H20.8333C16.231 25.5 12.5 29.231 12.5 33.8333V58.8333C12.5 63.4358 16.231 67.1667 20.8333 67.1667H50"
+      stroke="#DBB950"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      fill-rule="evenodd"
+      clip-rule="evenodd"
+      d="M86.9953 70.9893C89.0528 72.2547 88.9261 75.3351 86.8069 75.5755L76.1128 76.7876L71.3161 86.4222C70.3657 88.3314 67.4278 87.3968 66.9419 85.0305L61.7115 59.5472C61.3011 57.5472 63.0986 56.2884 64.8374 57.3584L86.9953 70.9893Z"
+      stroke="#DBB950"
+      strokeWidth="1.5"
+    />
+    <path
+      d="M50 46.3751L50.0417 46.3289"
+      stroke="#DBB950"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M66.668 46.3751L66.7096 46.3289"
+      stroke="#DBB950"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+    <path
+      d="M33.332 46.3751L33.3737 46.3289"
+      stroke="#DBB950"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    />
+  </svg>
+);
+
 export const UploadBulkIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg
     width="40"

@@ -15,9 +15,10 @@ import {
   selectAuth,
   setKYBDetails,
 } from "../../../store/slice/authSlice";
-import PopUp from "../../../components/PopUps/PopUp";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import { useKybDetailsQuery } from "../../../service/kyb";
+import ResetPasscode from "./ResetPasscode";
+import PopUp from "../../../components/PopUps/PopUp";
 
 const LoginPasscode = () => {
   const [signIn, { isLoading }] = useSignInMutation();
@@ -98,7 +99,10 @@ const LoginPasscode = () => {
 
         <p className="text-lightGreyColor font-workSans leading-4 font-normal text-[13px]">
           Forgot Passcode?{" "}
-          <span className="font-bold cursor-pointer text-pryColor">
+          <span
+            className="font-bold cursor-pointer text-pryColor"
+            onClick={() => handleShow("resetPasscode")}
+          >
             {" "}
             Reset Passcode
           </span>
@@ -137,6 +141,8 @@ const LoginPasscode = () => {
           </div>
         </PopUp>
       )}
+
+      {toggle["resetPasscode"] && <ResetPasscode />}
     </AuthLayout>
   );
 };

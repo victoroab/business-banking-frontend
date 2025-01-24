@@ -3,6 +3,7 @@ import Navbar from "../../../components/Navbar/Navbar";
 import { tableCustomStyles } from "../../../utils";
 import {
   airtimeColumnsData,
+  electricityColumnsData,
   transferColumnsData,
   tvColumnsData,
 } from "../../../utils/table";
@@ -30,6 +31,7 @@ import { useGetAllBanksQuery } from "../../../service/transaction";
 import Search from "../../../components/Search/Search";
 import Calender from "../../../components/Calendar/DatePicker";
 import { FilterIcon } from "../../../assets/svg/dashboard";
+import NoData from "../../../components/NoData/NoData";
 
 const Beneficiaries = () => {
   const toggle = useAppSelector(selectGlobal);
@@ -224,6 +226,7 @@ const Beneficiaries = () => {
                       openAction
                     )}
                     data={allBeneficiaries?.data}
+                    noDataComponent={<NoData />}
                     customStyles={tableCustomStyles}
                     className=""
                   />
@@ -252,6 +255,7 @@ const Beneficiaries = () => {
                     )}
                     data={allBeneficiaries?.data}
                     customStyles={tableCustomStyles}
+                    noDataComponent={<NoData />}
                     className=""
                   />
 
@@ -277,6 +281,34 @@ const Beneficiaries = () => {
                       openAction
                     )}
                     data={allBeneficiaries?.data}
+                    noDataComponent={<NoData />}
+                    customStyles={tableCustomStyles}
+                    className=""
+                  />
+
+                  <div className="">
+                    <Paginate
+                      data={allBeneficiaries?.data}
+                      handleSearch={handleSearch}
+                      currentPage={filteredData}
+                      setCurrentPage={setFilteredData}
+                      searchParams="networkProvider"
+                      itemsPerPage={queryData?.pageSize as number}
+                      setQueryData={setQueryData}
+                      totalItemsCount={allBeneficiaries?.data?.length}
+                    />
+                  </div>
+                </>
+              ) : queryData?.beneficiaryType === "ELECTRICITY" ? (
+                <>
+                  <DataTable
+                    columns={electricityColumnsData(
+                      handleOpenModal,
+                      selectedRow as TVRowDataProps,
+                      openAction
+                    )}
+                    data={allBeneficiaries?.data}
+                    noDataComponent={<NoData />}
                     customStyles={tableCustomStyles}
                     className=""
                   />
@@ -302,6 +334,7 @@ const Beneficiaries = () => {
                       selectedRow as RowDataProps,
                       openAction
                     )}
+                    noDataComponent={<NoData />}
                     data={allBeneficiaries?.data?.filter(
                       (item: any) => item.beneficiaryType === "TRANSFER"
                     )}

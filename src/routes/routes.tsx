@@ -67,6 +67,7 @@ import UploadPaymentDate from "../pages/Dashboard/Upload/PaymentDate";
 import UploadBulkFile from "../pages/Dashboard/Upload/UploadFile";
 import UploadEmployerDetails from "../pages/Dashboard/Upload/EmployerDetails";
 import UploadPaymentPeriod from "../pages/Dashboard/Upload/PaymentPeriod";
+import SetPasscode from "../pages/Auth/SignIn/SetPasscode";
 
 const authRoutes: RouteProps[] = [
   { path: "/welcome", name: "Home", element: <Home /> },
@@ -76,6 +77,7 @@ const authRoutes: RouteProps[] = [
   { path: "/verify-email", name: "Passcode", element: <VerifyEmail /> },
   { path: "/passcode", name: "Passcode", element: <Passcode /> },
   { path: "/signin-passcode", name: "Passcode", element: <LoginPasscode /> },
+  { path: "/reset-passcode", name: "Reset Passcode", element: <SetPasscode /> },
   {
     path: "/confirm-passcode",
     name: "Confirm Passcode",
