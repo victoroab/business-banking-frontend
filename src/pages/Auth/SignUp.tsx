@@ -65,7 +65,9 @@ const SignUp = () => {
             </div>
 
             <FormInput
-              placeholder={"Phone number"}
+              placeholder={
+                havePersonalAccount ? "Account number" : "Phone number"
+              }
               type="text"
               id={"phoneNumber"}
               name="phoneNumber"

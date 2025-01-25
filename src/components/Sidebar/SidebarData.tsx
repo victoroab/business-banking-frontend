@@ -11,6 +11,7 @@ import {
   SidebarPOSIcon,
   SidebarBeneficiaryIcon,
   SidebarApprovalIcon,
+  PayBillIcons,
 } from "../../assets/svg/Sidebar";
 
 export const SidebarData = [
@@ -31,24 +32,47 @@ export const SidebarData = [
     icon: SendMoneyIcon,
     title: "Send Money",
     url: "/send-money",
+    subNav: [
+      {
+        id: "tab1",
+        icon: SendMoneyIcon,
+        title: "Send Money",
+        url: "/send-money",
+      },
+      {
+        id: "tab2",
+        icon: UploadIcon,
+        title: "Uploads",
+        url: "/uploads/debit-account",
+      },
+      {
+        id: "tab3",
+        icon: SidebarApprovalIcon,
+        title: "Approval",
+        url: "/approval",
+      },
+    ],
   },
   {
     id: "tab4",
     icon: SidebarAirtimeIcon,
     title: "Airtime & Data",
     url: "/airtime-data",
-  },
-  // {
-  //   id: "tab5",
-  //   icon: PayBillIcons,
-  //   title: "Pay Bills",
-  //   url: "/pay-bills",
-  // },
-  {
-    id: "tab6",
-    icon: SidebarApprovalIcon,
-    title: "Approval",
-    url: "/approval",
+
+    subNav: [
+      {
+        id: "tab1",
+        icon: SidebarAirtimeIcon,
+        title: "Airtime & Data",
+        url: "/airtime-data",
+      },
+      {
+        id: "tab2",
+        icon: PayBillIcons,
+        title: "Pay Bills",
+        url: "/pay-bills",
+      },
+    ],
   },
   {
     id: "tab7",
@@ -79,12 +103,5 @@ export const SidebarData = [
     icon: SidebarUserIcon,
     title: "Account Settings",
     url: "/account",
-  },
-
-  {
-    id: "tab12",
-    icon: UploadIcon,
-    title: "Uploads",
-    url: "/uploads/debit-account",
   },
 ];
