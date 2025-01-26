@@ -8,7 +8,6 @@ import {
 } from "../../assets/svg/PayBill";
 
 const SubMenu = ({ item }: SidebarItemProps) => {
-  console.log(item);
   const [isSubNavOpen, setIsSubNavOpen] = useState<boolean>(false);
   const [selectedTab, setSelectedTab] = useState<string>("tab1");
 

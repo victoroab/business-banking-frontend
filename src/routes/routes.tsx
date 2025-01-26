@@ -68,6 +68,8 @@ import UploadBulkFile from "../pages/Dashboard/Upload/UploadFile";
 import UploadEmployerDetails from "../pages/Dashboard/Upload/EmployerDetails";
 import UploadPaymentPeriod from "../pages/Dashboard/Upload/PaymentPeriod";
 import SetPasscode from "../pages/Auth/SignIn/SetPasscode";
+import Report from "../pages/Dashboard/Report/Report";
+import AuditTrail from "../pages/Dashboard/AuditTrail/Audit";
 
 const authRoutes: RouteProps[] = [
   { path: "/welcome", name: "Home", element: <Home /> },
@@ -144,6 +146,8 @@ const dashboardRoutes: RouteProps[] = [
     element: <RequestPhysicalCard />,
   },
   { path: "/support", name: "Home", element: <Support /> },
+  { path: "/audit-trail", name: "Home", element: <AuditTrail /> },
+  { path: "/reports", name: "Home", element: <Report /> },
   { path: "/account", name: "Account", element: <Account /> },
   { path: "/pos", name: "Account", element: <Pos /> },
   { path: "/utility", name: "Account", element: <AirtimeData /> },

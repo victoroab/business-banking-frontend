@@ -12,6 +12,8 @@ import {
   SidebarBeneficiaryIcon,
   SidebarApprovalIcon,
   PayBillIcons,
+  SidebarAuditTrailIcon,
+  SidebarReportIcon,
 } from "../../assets/svg/Sidebar";
 import { SidebarDataProps } from "../../interfaces/Global";
 
@@ -88,6 +90,21 @@ export const SidebarData: SidebarDataProps[] = [
     title: "Beneficiaries",
     url: "/beneficiaries",
   },
+
+  {
+    id: "tab9",
+    icon: SidebarReportIcon,
+    title: "Reports",
+    url: "/reports",
+  },
+
+  {
+    id: "tab9",
+    icon: SidebarAuditTrailIcon,
+    title: "Audit Trail",
+    url: "/audit-trail",
+  },
+
   {
     id: "tab10",
     icon: SupportIcon,
