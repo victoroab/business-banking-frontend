@@ -6,7 +6,6 @@ import Passcode from "../pages/Auth/Passcode";
 import ConfirmPasscode from "../pages/Auth/ConfirmPasscode";
 import VerifyOtp from "../pages/Auth/VerifyOtp";
 import ConfirmTransactionPin from "../pages/Auth/ConfirmTransactionPin";
-import KYC from "../pages/Auth/KYC";
 import SignIn from "../pages/Auth/SignIn/SignIn";
 import SendMoney from "../pages/Dashboard/SendMoney/SendMoney";
 import Transaction from "../pages/Dashboard/Transaction/Transaction";
@@ -101,11 +100,7 @@ const authRoutes: RouteProps[] = [
     element: <ConfirmTransactionPin />,
   },
   { path: "/profile", name: "Profile", element: <Profile /> },
-  {
-    path: "/kyc",
-    name: "Know Your Customer",
-    element: <KYC />,
-  },
+
   {
     path: "/login",
     name: "Login",

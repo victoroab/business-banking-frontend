@@ -16,9 +16,10 @@ import {
   setKYBDetails,
 } from "../../../store/slice/authSlice";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
-import { useKybDetailsQuery } from "../../../service/kyb";
+import { useGetKybDetailsMutation } from "../../../service/kyb";
 import ResetPasscode from "./ResetPasscode";
 import PopUp from "../../../components/PopUps/PopUp";
+import { errorHandler } from "../../../utils";
 
 const LoginPasscode = () => {
   const [signIn, { isLoading }] = useSignInMutation();
@@ -30,7 +31,7 @@ const LoginPasscode = () => {
   const [verifyOtpCode, setVerifyOtpCode] = useState<string>("");
   const { phoneNumber } = useAppSelector(selectAuth);
   const { handleShow } = useGlobalHooks();
-  const { data, refetch } = useKybDetailsQuery({});
+  const [kybDetails] = useGetKybDetailsMutation();
 
   const handleSubmit = async () => {
     const requiredData = {
@@ -42,8 +43,8 @@ const LoginPasscode = () => {
 
       toast.success(response?.data?.message);
       handleShow("success");
-    } catch (error: any) {
-      toast.error(error.data.message);
+    } catch (error: unknown) {
+      errorHandler(error);
     }
   };
 
@@ -62,12 +63,12 @@ const LoginPasscode = () => {
       if (response?.data?.kyc?.attestation === true) {
         navigate("/");
       } else {
-        refetch();
-        dispatch(setKYBDetails(data?.data));
+        const KYBresponse = await kybDetails().unwrap();
+        dispatch(setKYBDetails(KYBresponse?.data));
         navigate("/kyb/identity");
       }
-    } catch (error: any) {
-      toast.error(error.data.message);
+    } catch (error: unknown) {
+      errorHandler(error);
     }
   };
 

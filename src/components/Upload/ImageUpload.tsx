@@ -7,6 +7,7 @@ interface ImageUploadProps {
   setDocument: Dispatch<SetStateAction<any>>;
   isBase64: boolean;
   bulkUpload?: boolean;
+  name?: string;
 }
 const ImageUpload: React.FC<ImageUploadProps> = ({
   title,
@@ -14,6 +15,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   setDocument,
   isBase64,
   bulkUpload,
+  name,
 }) => {
   const [file, setFile] = useState<File | null>(null);
 
@@ -32,9 +34,8 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
 
         reader.readAsDataURL(selectedFile);
       } else {
-        const formdata = new FormData();
-        formdata.append("file", selectedFile);
-        setDocument(formdata);
+        setFile(selectedFile);
+        setDocument(selectedFile);
       }
     }
   };
@@ -82,6 +83,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           id="file-upload"
           type="file"
           accept="*"
+          name={name}
           className="hidden"
           onChange={handleFileChange}
         />

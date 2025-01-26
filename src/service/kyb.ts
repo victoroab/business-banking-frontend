@@ -6,11 +6,7 @@ import {
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store/store";
-import {
-  AddressProps,
-  BusinessDocument,
-  BusinessInfo,
-} from "../interfaces/service/kyb";
+import { AddressProps, BusinessInfo } from "../interfaces/service/kyb";
 const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 
 const customBaseQuery: BaseQueryFn<
@@ -23,7 +19,7 @@ const customBaseQuery: BaseQueryFn<
     prepareHeaders: (headers, { getState }) => {
       const userToken = (getState() as RootState)?.auth?.userInfo
         ?.refresh_token;
-
+      console.log(userToken);
       if (userToken) {
         headers.set("Authorization", `Bearer ${userToken}`);
       }
@@ -186,7 +182,7 @@ export const kybApi = createApi({
       invalidatesTags: [{ type: "KYB", id: "KYB" }],
     }),
     //verify-business-documents
-    verifyBusinessDocuments: builder.mutation<any, BusinessDocument>({
+    verifyBusinessDocuments: builder.mutation<any, any>({
       query: (body) => ({
         url: "/kyb/verify-business-documents",
         method: "POST",
@@ -228,6 +224,14 @@ export const kybApi = createApi({
       query: () => "/kyb",
       providesTags: [{ type: "KYB", id: "KYB" }],
     }),
+
+    getKybDetails: builder.mutation<any, void>({
+      query: () => ({
+        url: "/kyb",
+        method: "GET",
+      }),
+      invalidatesTags: [{ type: "KYB", id: "KYB" }],
+    }),
   }),
 });
 
@@ -249,4 +253,5 @@ export const {
   useGetBVNDetailsQuery,
   useKybDetailsQuery,
   useUserProfileQuery,
+  useGetKybDetailsMutation,
 } = kybApi;

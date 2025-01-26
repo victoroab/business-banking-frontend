@@ -2,33 +2,43 @@ import { useRef, useState } from "react";
 import ImageUpload from "../../../components/Upload/ImageUpload";
 import { ArrowDownIcon } from "../../../assets/svg/Auth";
 import { useNavigate } from "react-router-dom";
-// import { useVerifyBusinessDocumentsMutation } from "../../../service/kyb";
-// import toast from "react-hot-toast";
-// import Spinner from "../../../components/Spinner/Spinner";
+import { businessDocuments, errorHandler } from "../../../utils";
+import toast from "react-hot-toast";
+import { useVerifyBusinessDocumentsMutation } from "../../../service/kyb";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const BusinessDocument = () => {
   const formRef = useRef<HTMLDivElement>(null);
-  const [cacDocument, setCACDocument] = useState<string>("");
-  const [memorandumDocument, setMemorandumDocument] = useState<string>("");
-  const [scumlDocument, setScumlDocument] = useState<string>("");
-  const [utilityDocument, setUtilityDocument] = useState<string>("");
   const navigate = useNavigate();
-  // const [businessDocument, { isLoading }] =
-  //   useVerifyBusinessDocumentsMutation();
+  const [documents, setDocuments] = useState({
+    cac: undefined as File | undefined,
+    memorandum: undefined as File | undefined,
+    scuml: undefined as File | undefined,
+    utility: undefined as File | undefined,
+  });
+  const [businessDocument, { isLoading }] =
+    useVerifyBusinessDocumentsMutation();
 
-  console.log(cacDocument, memorandumDocument, scumlDocument, utilityDocument);
+  const handleSetDocument = (name: string, value: File) => {
+    console.log(name);
+    setDocuments((prev) => ({ ...prev, [name]: value }));
+  };
+
   const handleSubmit = async () => {
     try {
-      // const requiredData = {
-      //   cac: cacDocument,
-      //   memorandum: memorandumDocument,
-      //   scuml: scumlDocument,
-      //   utilityBill: utilityDocument,
-      // };
-      // const response = await businessDocument(requiredData).unwrap();
-      // toast.success(response?.message);
+      const formData = new FormData();
+
+      formData.append("cac", documents.cac as File);
+      formData.append("memorandum", documents.memorandum as File);
+      formData.append("scuml", documents.scuml as File);
+      formData.append("utilityBill", documents.utility as File);
+
+      const response = await businessDocument(formData).unwrap();
+      toast.success(response?.message);
       navigate("/kyb/business-address");
-    } catch (error: any) {}
+    } catch (error: unknown) {
+      errorHandler(error);
+    }
   };
 
   const scrollToBottom = () => {
@@ -46,30 +56,16 @@ const BusinessDocument = () => {
         </p>
       </div>
       <div className="flex flex-col gap-4 w-full px-4">
-        <ImageUpload
-          isBase64={false}
-          title="CAC Certificate of your business"
-          required
-          setDocument={setCACDocument}
-        />
-        <ImageUpload
-          isBase64={false}
-          title="Memorandum of Incorporation"
-          required
-          setDocument={setMemorandumDocument}
-        />
-        <ImageUpload
-          isBase64={false}
-          title="SCUML Document"
-          required
-          setDocument={setScumlDocument}
-        />
-        <ImageUpload
-          isBase64={false}
-          title="Utility Bill (Valid bill within the last 90 days)"
-          required
-          setDocument={setUtilityDocument}
-        />
+        {businessDocuments.map((document) => (
+          <ImageUpload
+            key={document.name}
+            isBase64={false}
+            title={document.title}
+            required
+            name={document.name}
+            setDocument={(file) => handleSetDocument(`${document.name}`, file)}
+          />
+        ))}
       </div>
       <div className="flex justify-center w-full gap-6 px-4">
         <button
@@ -77,8 +73,7 @@ const BusinessDocument = () => {
           type="submit"
           onClick={handleSubmit}
         >
-          Continue
-          {/* {isLoading ? <Spinner /> : "Continue"} */}
+          {isLoading ? <Spinner /> : "Continue"}
         </button>
       </div>
 

@@ -21,9 +21,9 @@ const Otp: React.FC<OTPProps> = ({
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
           {title}
         </h3>
-        <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
+        <div className="text-greyColr font-workSans leading-4 font-normal text-sm">
           {paragraph}
-        </p>
+        </div>
       </div>
       <div className="flex justify-center items-center flex-col">
         {" "}

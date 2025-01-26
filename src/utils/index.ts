@@ -1120,3 +1120,13 @@ export const formatTimestamp = (
 
   return formattedDate;
 };
+
+export const businessDocuments = [
+  { name: "cac", title: "CAC Certificate of your business" },
+  { name: "memorandum", title: "Memorandum of Incorporation" },
+  { name: "scuml", title: "SCUML Document" },
+  {
+    name: "utilityBill",
+    title: "Utility Bill (Valid bill within the last 90 days)",
+  },
+];
