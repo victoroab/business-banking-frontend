@@ -1,4 +1,45 @@
 import { SVGProps } from "react";
+interface DashboardIconProps extends SVGProps<SVGSVGElement> {
+  fillColor?: string;
+}
+
+export const SidebarArrowDownIcon = ({
+  fillColor,
+  ...props
+}: DashboardIconProps) => (
+  <svg
+    width="18"
+    {...props}
+    height="11"
+    viewBox="0 0 18 11"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M17.7188 0.204102H15.961C15.8415 0.204102 15.729 0.252634 15.6586 0.332227L9.00005 7.93431L2.34146 0.332227C2.27115 0.252634 2.15865 0.204102 2.03912 0.204102H0.281303C0.128959 0.204102 0.0398965 0.347757 0.128959 0.450645L8.39302 9.88725C8.69302 10.2289 9.30708 10.2289 9.60474 9.88725L17.8688 0.450645C17.9602 0.347757 17.8711 0.204102 17.7188 0.204102Z"
+      fill={fillColor}
+    />
+  </svg>
+);
+
+export const WhiteArrowUpIcon = ({
+  fillColor,
+  ...props
+}: DashboardIconProps) => (
+  <svg
+    width="24"
+    {...props}
+    height="21"
+    viewBox="0 0 24 21"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M20.8702 14.897L12.6062 5.46035C12.3062 5.11868 11.6921 5.11868 11.3945 5.46035L3.12806 14.897C3.10771 14.9202 3.09553 14.9476 3.09285 14.9762C3.09017 15.0048 3.0971 15.0334 3.11288 15.059C3.12865 15.0845 3.15265 15.1059 3.18222 15.1208C3.21179 15.1357 3.24577 15.1436 3.2804 15.1435H5.03821C5.15774 15.1435 5.27024 15.095 5.34056 15.0154L11.9992 7.41329L18.6577 15.0154C18.7281 15.095 18.8406 15.1435 18.9601 15.1435H20.7179C20.8702 15.1435 20.9593 14.9998 20.8702 14.897Z"
+      fill={fillColor}
+    />
+  </svg>
+);
 
 export const ElectricityIcon = (props: SVGProps<SVGSVGElement>) => (
   <svg

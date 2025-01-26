@@ -13,8 +13,9 @@ import {
   SidebarApprovalIcon,
   PayBillIcons,
 } from "../../assets/svg/Sidebar";
+import { SidebarDataProps } from "../../interfaces/Global";
 
-export const SidebarData = [
+export const SidebarData: SidebarDataProps[] = [
   {
     id: "tab1",
     icon: DashboardIcon,

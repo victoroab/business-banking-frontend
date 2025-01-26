@@ -155,3 +155,14 @@ export interface IColData {
   cell?: (row: any) => ReactNode;
   [key: string]: string | number | any;
 }
+
+export interface SidebarDataProps {
+  id: string;
+  icon: any;
+  title: string;
+  url: string;
+  subNav?: SidebarDataProps[];
+}
+export interface SidebarItemProps {
+  item: SidebarDataProps;
+}
