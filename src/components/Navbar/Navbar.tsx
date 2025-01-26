@@ -28,11 +28,16 @@ const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
 
         <div className="flex gap-4 items-center">
           <div className="image">
-            <img
+            {/* <img
               src={"https://via.placeholder.com/50"}
-              alt="Uploaded Preview"
+              alt="avatar"
               className="w-12 h-12 rounded-full mr-4"
-            />
+            /> */}
+            <div className="flex items-center justify-center w-[64px] h-[64px] bg-[#f1f2f3] p-4 rounded-full">
+              <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
+                BA
+              </h3>
+            </div>
           </div>
           <div className="flex flex-col">
             <p className=" font-semibold text-sm font-workSans text-greyColr">

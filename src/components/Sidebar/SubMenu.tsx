@@ -8,9 +8,15 @@ import {
 } from "../../assets/svg/PayBill";
 
 const SubMenu = ({ item }: SidebarItemProps) => {
+  console.log(item);
   const [isSubNavOpen, setIsSubNavOpen] = useState<boolean>(false);
-  const showSubnav = () => setIsSubNavOpen(!isSubNavOpen);
-  const [selectedTab, setSelectedTab] = useState<string>("");
+  const [selectedTab, setSelectedTab] = useState<string>("tab1");
+
+  const showSubnav = () => {
+    setIsSubNavOpen(!isSubNavOpen);
+    setSelectedTab("tab1");
+  };
+
   return (
     <React.Fragment key={item.id}>
       <NavLink
