@@ -59,7 +59,7 @@ const LoginPasscode = () => {
 
       toast.success(response?.message);
       dispatch(saveUserInfo(response?.data));
-
+      handleShow("success");
       if (response?.data?.kyc?.attestation === true) {
         navigate("/");
       } else {
