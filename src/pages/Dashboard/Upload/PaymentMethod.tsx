@@ -5,7 +5,7 @@ import { industries } from "../../../utils";
 const UploadPaymentMode = () => {
   const navigate = useNavigate();
   const handleSubmit = () => {
-    navigate("/uploads/payment-date");
+    navigate("/send-money/uploads/payment-date");
   };
 
   return (

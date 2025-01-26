@@ -7,7 +7,7 @@ const UploadBulkFile = () => {
 
   const navigate = useNavigate();
   const handleSubmit = () => {
-    navigate("/uploads/debit-account");
+    navigate("/send-money/uploads/debit-account");
   };
   console.log(bulkFile);
   return (
@@ -17,8 +17,8 @@ const UploadBulkFile = () => {
           Upload File
         </h3>
         <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-          Upload your bulk payment file. Use the template to upload the list of
-          beneficiaries correctly. Click to download bank codes.
+          Upload your bulk payment file. Use the template to upload the list of
+          beneficiaries correctly. Click to download bank codes.
         </p>
       </div>
 

@@ -37,7 +37,7 @@ const PayBills = () => {
           <div className="flex justify-end px-10">
             <button
               className="main-btn w-40 font-bricolage"
-              onClick={() => navigate("/pay-new-bill/debit-account")}
+              onClick={() => navigate("/utility/pay-new-bill/debit-account")}
             >
               Pay New Bill
             </button>

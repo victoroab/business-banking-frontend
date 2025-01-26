@@ -10,7 +10,7 @@ const Category = () => {
   const navigate = useNavigate();
   const handleNavigate = (title: string) => {
     dispatch(setBillCategoryAction(title));
-    navigate("/pay-new-bill/provider");
+    navigate("/utility/pay-new-bill/provider");
   };
 
   return (

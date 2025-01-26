@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 const BillAmount = () => {
   const navigate = useNavigate();
   const handleSubmit = () => {
-    navigate("/pay-new-bill/confirmation");
+    navigate("/utility/pay-new-bill/confirmation");
   };
 
   return (

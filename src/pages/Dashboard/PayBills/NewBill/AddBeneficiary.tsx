@@ -5,7 +5,7 @@ import { BeneficiaryIcon } from "../../../../assets/svg/PayBill";
 const AddBillBeneficiary = () => {
   const navigate = useNavigate();
   const handleSubmit = () => {
-    navigate("/pay-new-bill/amount");
+    navigate("/utility/pay-new-bill/amount");
   };
 
   return (

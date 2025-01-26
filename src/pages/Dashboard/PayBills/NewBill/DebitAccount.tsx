@@ -5,7 +5,7 @@ import { industries } from "../../../../utils";
 const BillDebitAccount = () => {
   const navigate = useNavigate();
   const handleSubmit = () => {
-    navigate("/pay-new-bill/category");
+    navigate("/utility/pay-new-bill/category");
   };
 
   return (

@@ -10,7 +10,7 @@ import {
 const SubMenu = ({ item }: SidebarItemProps) => {
   const [isSubNavOpen, setIsSubNavOpen] = useState<boolean>(false);
   const showSubnav = () => setIsSubNavOpen(!isSubNavOpen);
-
+  const [selectedTab, setSelectedTab] = useState<string>("");
   return (
     <React.Fragment key={item.id}>
       <NavLink
@@ -63,23 +63,22 @@ const SubMenu = ({ item }: SidebarItemProps) => {
                 <NavLink
                   key={item.id}
                   to={item.url}
+                  onClick={() => setSelectedTab(item.id)}
                   className={({ isActive }) =>
                     isActive
                       ? "font-medium text-pryColor rounded-lg"
                       : "text-greyColr font-medium"
                   }
                 >
-                  {({ isActive }) => (
-                    <hgroup
-                      className={` flex gap-4 items-center${
-                        isActive
-                          ? "border bg-[#f7f8ff] rounded-lg py-2 px-3"
-                          : "border px-3 py-2"
-                      }`}
-                    >
-                      <p className="font-workSans text-sm">{item.title}</p>
-                    </hgroup>
-                  )}
+                  <hgroup
+                    className={` flex gap-4 items-center${
+                      selectedTab === item.id
+                        ? "border bg-[#f7f8ff] rounded-lg py-2 px-3"
+                        : "border px-3 py-2"
+                    }`}
+                  >
+                    <p className="font-workSans text-sm">{item.title}</p>
+                  </hgroup>
                 </NavLink>
               </React.Fragment>
             ))}

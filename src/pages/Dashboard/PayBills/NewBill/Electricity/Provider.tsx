@@ -11,7 +11,7 @@ const ElectricityProvider = () => {
   const handleNavigate = (title: string) => {
     dispatch(saveElectricityProvider(title));
     console.log(title);
-    navigate("/pay-new-bill/package");
+    navigate("/utility/pay-new-bill/package");
   };
 
   return (

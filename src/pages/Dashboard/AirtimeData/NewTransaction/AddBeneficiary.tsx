@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 const AddBeneficiary = () => {
   const navigate = useNavigate();
   const handleSubmit = () => {
-    navigate("/airtime-data/confirmation");
+    navigate("/utility/confirmation");
   };
 
   return (

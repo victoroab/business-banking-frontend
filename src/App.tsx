@@ -88,7 +88,7 @@ function App() {
         </Route>
 
         <Route
-          path="/airtime-data"
+          path="/utility"
           element={
             <Guard>
               <DashboardLayout>
@@ -110,7 +110,7 @@ function App() {
         </Route>
 
         <Route
-          path="/pay-new-bill"
+          path="/utility/pay-new-bill"
           element={
             <Guard>
               <DashboardLayout>
@@ -149,7 +149,7 @@ function App() {
         </Route>
 
         <Route
-          path="/uploads"
+          path="send-money/uploads"
           element={
             <Guard>
               <DashboardLayout>

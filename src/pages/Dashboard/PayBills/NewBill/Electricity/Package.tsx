@@ -15,7 +15,7 @@ const ElectricityPackage = () => {
   const handleNavigate = (title: string) => {
     console.log(title);
 
-    navigate("/pay-new-bill/beneficiary");
+    navigate("/utility/pay-new-bill/beneficiary");
   };
 
   return (

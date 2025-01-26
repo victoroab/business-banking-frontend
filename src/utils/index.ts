@@ -162,14 +162,14 @@ export const quickActions = [
     icon: AirtimeActionIcon,
     title: "Airtime and Data",
     desc: "Recharge your mobile lines",
-    navigation: "/airtime-data",
+    navigation: "/utility",
   },
   {
     id: 3,
     icon: PayBillActionIcon,
     title: "Pay Bills",
     desc: "Renew your DSTV subscription",
-    navigation: "/pay-bills",
+    navigation: "/utility/pay-bills",
   },
 ];
 
@@ -967,11 +967,19 @@ export const posDevice: IDOption[] = [
 ];
 
 export const uploadHeader = [
-  { id: 1, title: "Bulk Payment", link: "/uploads/debit-account" },
-  { id: 2, title: "Bulk Airtime", link: "/uploads/debit-account" },
-  { id: 3, title: "Bulk Data", link: "/uploads/debit-account" },
-  { id: 4, title: "Pension Upload", link: "/uploads/employer-details" },
-  { id: 5, title: "Beneficiaries List", link: "/uploads/upload-file" },
+  { id: 1, title: "Bulk Payment", link: "/send-money/uploads/debit-account" },
+  { id: 2, title: "Bulk Airtime", link: "/send-money/uploads/debit-account" },
+  { id: 3, title: "Bulk Data", link: "/send-money/uploads/debit-account" },
+  {
+    id: 4,
+    title: "Pension Upload",
+    link: "/send-money/uploads/employer-details",
+  },
+  {
+    id: 5,
+    title: "Beneficiaries List",
+    link: "/send-money/uploads/upload-file",
+  },
 ];
 
 export const bulkPayment: ProgressStepsProps[] = [

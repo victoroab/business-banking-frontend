@@ -22,12 +22,7 @@ export const SidebarData: SidebarDataProps[] = [
     title: "Dashboard",
     url: "/",
   },
-  // {
-  //   id: "tab2",
-  //   icon: TransactionIcon,
-  //   title: "Transactions",
-  //   url: "/transactions",
-  // },
+
   {
     id: "tab3",
     icon: SendMoneyIcon,
@@ -44,13 +39,13 @@ export const SidebarData: SidebarDataProps[] = [
         id: "tab2",
         icon: UploadIcon,
         title: "Uploads",
-        url: "/uploads/debit-account",
+        url: "/send-money/uploads/debit-account",
       },
       {
         id: "tab3",
         icon: SidebarApprovalIcon,
         title: "Approval",
-        url: "/approval",
+        url: "/send-money/approval",
       },
     ],
   },
@@ -58,20 +53,20 @@ export const SidebarData: SidebarDataProps[] = [
     id: "tab4",
     icon: SidebarAirtimeIcon,
     title: "Airtime & Data",
-    url: "/airtime-data",
+    url: "/utility",
 
     subNav: [
       {
         id: "tab1",
         icon: SidebarAirtimeIcon,
         title: "Airtime & Data",
-        url: "/airtime-data",
+        url: "/utility",
       },
       {
         id: "tab2",
         icon: PayBillIcons,
         title: "Pay Bills",
-        url: "/pay-bills",
+        url: "/utility/pay-bills",
       },
     ],
   },

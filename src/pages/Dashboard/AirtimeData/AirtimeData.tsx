@@ -40,7 +40,7 @@ const AirtimeData = () => {
           <button
             className="main-btn w-40 font-bricolage"
             onClick={() => {
-              navigate("/airtime-data/debit-account");
+              navigate("/utility/debit-account");
               dispatch(setAirtimeDataAction("AIRTIME"));
             }}
           >
@@ -49,7 +49,7 @@ const AirtimeData = () => {
           <button
             className="yellow-frame-btn w-40 font-bricolage"
             onClick={() => {
-              navigate("/airtime-data/debit-account");
+              navigate("/utility/debit-account");
               dispatch(setAirtimeDataAction("DATA"));
             }}
           >

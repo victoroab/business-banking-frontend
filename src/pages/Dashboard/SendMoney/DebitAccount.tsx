@@ -8,8 +8,8 @@ const DebitAccount = () => {
   const { airtimeDataAction } = useAppSelector(selectDashboard);
   const handleSubmit = () => {
     airtimeDataAction === "AIRTIME"
-      ? navigate("/airtime-data/amount")
-      : navigate("/airtime-data/provider");
+      ? navigate("/utility/amount")
+      : navigate("/utility/provider");
   };
 
   return (
