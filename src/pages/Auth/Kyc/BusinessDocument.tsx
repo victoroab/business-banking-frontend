@@ -20,7 +20,6 @@ const BusinessDocument = () => {
     useVerifyBusinessDocumentsMutation();
 
   const handleSetDocument = (name: string, value: File) => {
-    console.log(name);
     setDocuments((prev) => ({ ...prev, [name]: value }));
   };
 
@@ -63,7 +62,7 @@ const BusinessDocument = () => {
             title={document.title}
             required
             name={document.name}
-            setDocument={(file) => handleSetDocument(`${document.name}`, file)}
+            setDocument={(file) => handleSetDocument(document.name, file)}
           />
         ))}
       </div>

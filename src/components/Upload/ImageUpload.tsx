@@ -57,7 +57,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
       )}
 
       <label
-        htmlFor="file-upload"
+        htmlFor={name}
         className="mt-4 flex h-40 w-full cursor-pointer flex-col items-center justify-center rounded-xl border-dashed border-primary border-2"
       >
         <div className="flex justify-center flex-col items-center ">
@@ -80,7 +80,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
           </span>
         </div>
         <input
-          id="file-upload"
+          id={name}
           type="file"
           accept="*"
           name={name}
