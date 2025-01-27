@@ -20,6 +20,7 @@ interface AuthState {
   businessDirector: Director[];
   selectedDirector: Director | undefined;
   kybDetails: any | undefined;
+  userDetails: any | undefined;
 }
 
 const initialState: AuthState = {
@@ -34,6 +35,7 @@ const initialState: AuthState = {
   businessDirector: [],
   selectedDirector: undefined,
   kybDetails: undefined,
+  userDetails: undefined,
 };
 
 export const authSlice = createSlice({
@@ -95,6 +97,10 @@ export const authSlice = createSlice({
     setKYBDetails: (state, action) => {
       state.kybDetails = action.payload;
     },
+
+    setUserDetails: (state, action) => {
+      state.userDetails = action.payload;
+    },
   },
 });
 
@@ -112,6 +118,7 @@ export const {
   removeDirector,
   setSelectedDirector,
   setKYBDetails,
+  setUserDetails,
 } = authSlice.actions;
 
 export const selectAuth = (state: RootState) => state.auth;

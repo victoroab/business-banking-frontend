@@ -1,8 +1,8 @@
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import { ProgressProps, ProgressStepsProps } from "../interfaces/Global";
 import { KBrandIcon } from "../assets/svg/Alert";
-import { useKybDetailsQuery } from "../service/kyb";
-import { setKYBDetails } from "../store/slice/authSlice";
+import { useKybDetailsQuery, useUserProfileQuery } from "../service/kyb";
+import { setKYBDetails, setUserDetails } from "../store/slice/authSlice";
 import { useEffect } from "react";
 import { useAppDispatch } from "../hooks";
 import { useNavigate } from "react-router-dom";
@@ -20,10 +20,12 @@ const ProgressLayout = ({
   const currentStep = location.pathname.split("/")[2];
   const navigate = useNavigate();
   const { data } = useKybDetailsQuery({});
+  const profile = useUserProfileQuery({});
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(setKYBDetails(data?.data));
-  }, [data]);
+    dispatch(setUserDetails(profile?.data?.data));
+  }, [data, profile, dispatch]);
 
   return (
     <>

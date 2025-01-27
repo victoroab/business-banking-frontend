@@ -7,7 +7,8 @@ import {
 
 import { useNavigate } from "react-router-dom";
 import { errorHandler } from "../../../utils";
-import { useUserProfileQuery } from "../../../service/kyb";
+import { useAppSelector } from "../../../hooks";
+import { selectAuth } from "../../../store/slice/authSlice";
 
 declare global {
   interface Window {
@@ -21,7 +22,7 @@ declare global {
 }
 
 const FaceVerification: React.FC = () => {
-  const { data } = useUserProfileQuery({});
+  const { userDetails } = useAppSelector(selectAuth);
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -30,13 +31,13 @@ const FaceVerification: React.FC = () => {
       p_key: import.meta.env.VITE_REACT_APP_P_KEY,
       type: "verification",
       user_data: {
-        first_name: data?.data?.firstName,
-        last_name: data?.data?.lastName,
-        dob: data?.data?.dob,
-        email: data?.data?.email,
+        first_name: userDetails?.firstName,
+        last_name: userDetails?.lastName,
+        dob: userDetails?.dob,
+        email: userDetails?.email,
       },
       metadata: {
-        user_id: data?.data?.id,
+        user_id: userDetails?.id,
       },
       config: {
         widget_id: import.meta.env.VITE_REACT_APP_DOJAH_WIDGET_ID,
@@ -64,7 +65,7 @@ const FaceVerification: React.FC = () => {
         });
       }
     }
-  }, [navigate, data.data]);
+  }, [navigate, userDetails]);
 
   return (
     <div className="flex flex-col gap-6 justify-center items-center ">
