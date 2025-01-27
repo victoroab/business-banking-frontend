@@ -1,18 +1,16 @@
 import { useGetBVNDetailsQuery } from "../../../../service/kyb";
 import Spinner from "../../../../components/Spinner/Spinner";
-import {
-  selectAuth,
-  setKycCurrentStep,
-} from "../../../../store/slice/authSlice";
-import { useAppDispatch, useAppSelector } from "../../../../hooks";
+import { selectAuth } from "../../../../store/slice/authSlice";
+import { useAppSelector } from "../../../../hooks";
 import { PhoneIcon } from "../../../../assets/svg/Auth";
+import { useNavigate } from "react-router-dom";
 
 const IdentityDetails = () => {
   const { data, isLoading } = useGetBVNDetailsQuery({});
   const { kycIdentityStep } = useAppSelector(selectAuth);
-  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const handleConfirmation = () => {
-    dispatch(setKycCurrentStep(3));
+    navigate("/kyb/face-verification");
   };
   const bvnData = data?.data;
   return (

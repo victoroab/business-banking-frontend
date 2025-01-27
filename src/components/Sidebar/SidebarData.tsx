@@ -54,7 +54,7 @@ export const SidebarData: SidebarDataProps[] = [
   {
     id: "tab4",
     icon: SidebarAirtimeIcon,
-    title: "Airtime & Data",
+    title: "Airtime | Data | Bills",
     url: "/utility",
 
     subNav: [

@@ -1,4 +1,7 @@
+import { useUserProfileQuery } from "../../../service/kyb";
+
 const Profile = () => {
+  const { data } = useUserProfileQuery({});
   return (
     <div className="flex flex-col gap-10">
       <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
@@ -13,7 +16,8 @@ const Profile = () => {
         <div className="flex justify-start items-start w-full">
           <div className="flex items-center justify-center w-[64px] h-[64px] bg-[#f1f2f3] p-4 rounded-full">
             <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-              BA
+              {data?.data?.firstName?.charAt(0) +
+                data?.data?.lastName?.charAt(0)}
             </h3>
           </div>
         </div>
@@ -28,17 +32,17 @@ const Profile = () => {
           </div>
           <div className="flex flex-col justify-end items-end">
             <p className="tit text-sm text-lightGreyColor font-workSans font-normal">
-              Last Name
+              {data?.data?.firstName}
             </p>
             <p className="text-base text-greyColr font-workSans font-medium">
-              Akinyemi
+              {data?.data?.lastName}
             </p>
           </div>
         </div>
         <div className="column flex justify-between items-center w-full">
           <div className="flex flex-col items-start justify-start">
             <p className="tit text-sm text-lightGreyColor font-workSans font-normal">
-              Email Address
+              {data?.data?.email}
             </p>
             <p className="text-base text-greyColr font-workSans font-medium">
               bamidele.akinyemi@alertgroup.com.ng
@@ -59,7 +63,7 @@ const Profile = () => {
               Date of Birth
             </p>
             <p className="text-base text-greyColr font-workSans font-medium">
-              15/12/2024
+              {data?.data?.dob}
             </p>
           </div>
           <div className="flex flex-col justify-end items-end">

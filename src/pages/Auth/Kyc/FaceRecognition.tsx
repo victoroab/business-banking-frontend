@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import {
   CameraIcon,
   GlassesIcon,
@@ -5,13 +6,55 @@ import {
 } from "../../../assets/svg/CustomSVGs";
 
 import { useNavigate } from "react-router-dom";
+import { errorHandler } from "../../../utils";
+import { useUserProfileQuery } from "../../../service/kyb";
 
 const FaceVerification = () => {
-  const navigate = useNavigate();
+  const { data } = useUserProfileQuery({});
 
-  const handleSubmit = () => {
-    navigate("/kyb/residential-address");
-  };
+  const navigate = useNavigate();
+  useEffect(() => {
+    const options = {
+      app_id: import.meta.env.VITE_REACT_APP_DOJAH_APP_ID,
+      p_key: import.meta.env.VITE_REACT_APP_P_KEY,
+      type: "verification",
+      user_data: {
+        first_name: data?.data?.firstName,
+        last_name: data?.data?.lastName,
+        dob: data?.data?.dob,
+        email: data?.data?.email,
+      },
+      metadata: {
+        user_id: data?.data?.id,
+      },
+      config: {
+        widget_id: import.meta.env.VITE_REACT_APP_DOJAH_WIDGET_ID,
+      },
+      onSuccess: function (response: { referenceId: string; message: string }) {
+        console.log(response);
+        // toast.success(response.message);
+      },
+      onError: function (err: unknown) {
+        errorHandler(err);
+      },
+      onClose: function () {
+        navigate("/kyb/residential-address");
+      },
+    };
+
+    if (window.Connect) {
+      const connect = new window.Connect(options);
+
+      const button = document.getElementById("button-connect");
+      if (button) {
+        button.addEventListener("click", () => {
+          connect.setup();
+          connect.open();
+        });
+      }
+    }
+  }, [navigate]);
+
   return (
     <div className="flex flex-col gap-6 justify-center items-center ">
       <div className="rounded-full p-6 w-[138px] h-[138px] bg-[#fdfbf6] flex justify-center items-center">
@@ -49,7 +92,8 @@ const FaceVerification = () => {
         <button
           className="main-btn w-full"
           type="submit"
-          onClick={handleSubmit}
+          id="button-connect"
+          // onClick={handleDojahLaunch}
         >
           Continue
         </button>

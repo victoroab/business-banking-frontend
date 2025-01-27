@@ -5,7 +5,7 @@ const DashboardLayout: React.FC<DashboardLayoutProps> = ({ children }) => {
   return (
     <main className=" w-full  gap-8  flex flex-col bg-white">
       <div className="flex">
-        <section className="fixed left-0 top-0 w-72 min-h-screen border-r bg-white border rounded-md transition-all duration-300">
+        <section className="fixed left-0 top-0 w-72 min-h-screen bg-white  rounded-md transition-all duration-300">
           <Sidebar />
         </section>
 

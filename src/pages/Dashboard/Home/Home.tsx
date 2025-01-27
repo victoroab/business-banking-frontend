@@ -9,15 +9,17 @@ import { CautionIcon } from "../../../assets/svg/PayBill";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../hooks";
 import { selectAuth } from "../../../store/slice/authSlice";
+import { useUserProfileQuery } from "../../../service/kyb";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const { kybDetails } = useAppSelector(selectAuth);
+  const { data } = useUserProfileQuery({});
 
   return (
-    <div className="">
+    <div className="border">
       <Navbar
-        title="Good Morning, Bamidele"
+        title={`Good Morning, ${data?.data?.firstName}`}
         subtitle="Here’s your dashboard overview."
       />
       {(kybDetails?.kybStatus === null ||

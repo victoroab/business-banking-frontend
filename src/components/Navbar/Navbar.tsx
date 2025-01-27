@@ -3,12 +3,15 @@ import { useAppDispatch } from "../../hooks";
 import { saveAccountStatus } from "../../store/slice/globalSlice";
 import { NotificationIcon } from "../../assets/svg/CustomSVGs";
 import { NavbarProps } from "../../interfaces/Global";
+import { useUserProfileQuery } from "../../service/kyb";
 
 const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
   const dispatch = useAppDispatch();
   const handleAccountToggle = (isLive: boolean) => {
     dispatch(saveAccountStatus(isLive ? "Live" : "Test"));
   };
+
+  const { data } = useUserProfileQuery({});
 
   return (
     <div className="flex justify-between items-center p-10">
@@ -35,13 +38,14 @@ const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
             /> */}
             <div className="flex items-center justify-center w-[64px] h-[64px] bg-[#f1f2f3] p-4 rounded-full">
               <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-                BA
+                {data?.data?.firstName?.charAt(0) +
+                  data?.data?.lastName?.charAt(0)}
               </h3>
             </div>
           </div>
           <div className="flex flex-col">
             <p className=" font-semibold text-sm font-workSans text-greyColr">
-              Bamidele Akinyemi
+              {data?.data?.firstName + " " + data?.data?.lastName}
             </p>
             <div className="flex gap-1 items-center">
               <p className="text-lightGreyColor font-medium font-workSans text-xs">

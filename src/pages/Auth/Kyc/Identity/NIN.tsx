@@ -8,6 +8,7 @@ import Spinner from "../../../../components/Spinner/Spinner";
 import { CautionIcon } from "../../../../assets/svg/CustomSVGs";
 import { useVerifyNINMutation } from "../../../../service/kyb";
 import { useNavigate } from "react-router-dom";
+import { errorHandler } from "../../../../utils";
 
 const NIN = () => {
   const dispatch = useAppDispatch();
@@ -24,8 +25,8 @@ const NIN = () => {
       toast.success(response?.message);
       navigate("/kyb/face-verification");
       dispatch(setKYCIdentityStep("DEFAULT"));
-    } catch (error: any) {
-      toast.error(error.data.message);
+    } catch (error: unknown) {
+      errorHandler(error);
     }
   };
 
