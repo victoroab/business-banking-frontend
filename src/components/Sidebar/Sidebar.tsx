@@ -6,7 +6,7 @@ import SubMenu from "./SubMenu";
 
 const Sidebar = () => {
   return (
-    <main className=" sidebarContainer py-8 flex flex-col gap-10 px-6 h-full justify-between">
+    <main className=" sidebarContainer py-8 flex flex-col gap-6 px-6 h-full justify-between">
       <div className="flex flex-col gap-10">
         <div className="flex gap-2 item-center ">
           <AlertLogoIcon />
@@ -15,7 +15,7 @@ const Sidebar = () => {
           </h1>
         </div>
         <section className=" w-full mx-auto flex flex-col h-[80%]">
-          <ul className="flex flex-col gap-3 h-full">
+          <ul className="flex flex-col gap-1 h-full">
             {SidebarData.map((item) => (
               <SubMenu item={item} />
             ))}

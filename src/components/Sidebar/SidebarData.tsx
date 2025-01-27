@@ -40,7 +40,7 @@ export const SidebarData: SidebarDataProps[] = [
       {
         id: "tab2",
         icon: UploadIcon,
-        title: "Uploads",
+        title: "Bulk Uploads",
         url: "/send-money/uploads/debit-account",
       },
       {
