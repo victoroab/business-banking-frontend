@@ -53,7 +53,7 @@ const FaceVerification = () => {
         });
       }
     }
-  }, [navigate]);
+  }, [navigate, data.data]);
 
   return (
     <div className="flex flex-col gap-6 justify-center items-center ">
