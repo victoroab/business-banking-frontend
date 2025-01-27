@@ -9,7 +9,18 @@ import { useNavigate } from "react-router-dom";
 import { errorHandler } from "../../../utils";
 import { useUserProfileQuery } from "../../../service/kyb";
 
-const FaceVerification = () => {
+declare global {
+  interface Window {
+    Connect: {
+      new (options: any): {
+        setup: () => void;
+        open: () => void;
+      };
+    };
+  }
+}
+
+const FaceVerification: React.FC = () => {
   const { data } = useUserProfileQuery({});
 
   const navigate = useNavigate();
@@ -42,7 +53,7 @@ const FaceVerification = () => {
       },
     };
 
-    if (window.Connect) {
+    if (typeof window.Connect !== "undefined") {
       const connect = new window.Connect(options);
 
       const button = document.getElementById("button-connect");
