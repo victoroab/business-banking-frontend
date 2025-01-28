@@ -11,12 +11,18 @@ import { useAppSelector } from "../../../hooks";
 import { selectAuth } from "../../../store/slice/authSlice";
 import { useUserProfileQuery } from "../../../service/kyb";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
+import AddEmail from "../../../components/Dashboard/Home/AddEmail";
+import { selectGlobal } from "../../../store/slice/globalSlice";
+import AddPhoneNumber from "../../../components/Dashboard/Home/AddPhoneNumber";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { kybDetails, userDetails } = useAppSelector(selectAuth);
+  const { kybDetails } = useAppSelector(selectAuth);
   const { data } = useUserProfileQuery({});
   const { handleShow } = useGlobalHooks();
+  const toggle = useAppSelector(selectGlobal);
+  const { data: profile } = useUserProfileQuery({});
+
   return (
     <div className="border">
       <Navbar
@@ -45,7 +51,7 @@ const Dashboard = () => {
         </div>
       )}
 
-      {(userDetails?.email === null ||
+      {(profile?.data?.email === null ||
         kybDetails === null ||
         kybDetails?.kybStatus?.attestation === false) && (
         <div className="flex justify-between bg-secColor p-3 mb-2 mx-10">
@@ -56,13 +62,13 @@ const Dashboard = () => {
               your account. Click the button to add your email address.
             </p>
           </div>
-          <button className="white-btn" onClick={() => navigate("add-email")}>
+          <button className="white-btn" onClick={() => handleShow("add-email")}>
             Add Email Address
           </button>
         </div>
       )}
 
-      {(userDetails?.phoneNumber === null ||
+      {(profile?.data?.phoneNumber === null ||
         kybDetails === null ||
         kybDetails?.kybStatus?.attestation === false) && (
         <div className="flex justify-between bg-secColor p-3 mb-2 mx-10">
@@ -90,6 +96,8 @@ const Dashboard = () => {
           <TransactionHistory />
         </div>
       </div>
+      {toggle["add-email"] && <AddEmail />}
+      {toggle["add-phone"] && <AddPhoneNumber />}
     </div>
   );
 };

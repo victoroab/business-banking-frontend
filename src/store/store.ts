@@ -20,6 +20,7 @@ import { dashboardSlice } from "./slice/dashboardSlice";
 import { beneficiaryApi } from "../service/beneficiary";
 import { transactionApi } from "../service/transaction";
 import { accountApi } from "../service/account";
+import { userApi } from "../service/user";
 
 const rootReducers = combineReducers({
   global: globalSlice.reducer,
@@ -30,6 +31,7 @@ const rootReducers = combineReducers({
   [beneficiaryApi.reducerPath]: beneficiaryApi.reducer,
   [transactionApi.reducerPath]: transactionApi.reducer,
   [accountApi.reducerPath]: accountApi.reducer,
+  [userApi.reducerPath]: userApi.reducer,
 });
 
 const persistConfig = {
@@ -56,7 +58,8 @@ export const store = configureStore({
       kybApi.middleware,
       beneficiaryApi.middleware,
       transactionApi.middleware,
-      accountApi.middleware
+      accountApi.middleware,
+      userApi.middleware
     ),
 });
 

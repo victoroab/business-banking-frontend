@@ -18,11 +18,13 @@ import {
   setEmailAddress,
   setExistingVerificationOTP,
 } from "../../../store/slice/authSlice";
+import { useGlobalHooks } from "../../../hooks/globalHooks";
 
 const ResetPasscode = () => {
   const [requestReset, requestMutation] = useRequestResetCodeMutation();
   const [verifyToken, verifyMutation] = useVerifyResetCodeMutation();
   const [email, setEmail] = useState<string>("");
+  const { handleShow } = useGlobalHooks();
   const [resetOTP, setOpenResetOTP] = useState<boolean>(false);
   const [otpCode, setOtpCode] = useState<string>("");
   const navigate = useNavigate();
@@ -50,10 +52,10 @@ const ResetPasscode = () => {
       }).unwrap();
 
       toast.success(response?.message);
-      // handleShow("resetPasscode");
       dispatch(setEmailAddress(email));
       dispatch(setExistingVerificationOTP(otpCode));
       setOpenResetOTP(false);
+      handleShow("resetPasscode");
       navigate("/reset-passcode");
       console.log(response);
     } catch (error: any) {

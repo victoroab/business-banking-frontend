@@ -50,7 +50,7 @@ export const authApi = createApi({
     }),
 
     //set-email
-    setEmail: builder.mutation<any, { phoneNumber: string; email: string }>({
+    setEmail: builder.mutation<any, { email: string }>({
       query: (body) => ({
         url: "/auth/signup/set-email",
         method: "POST",
