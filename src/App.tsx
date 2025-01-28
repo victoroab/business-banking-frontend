@@ -22,14 +22,22 @@ import {
   newBillProgressSteps,
   newTransaction,
 } from "./utils";
-import { useAppSelector } from "./hooks";
+import { useAppDispatch, useAppSelector } from "./hooks";
 import { selectDashboard } from "./store/slice/dashboardSlice";
 import Upload from "./pages/Dashboard/Upload/Upload";
 import Guard from "./routes/Guard";
 import NotFound from "./pages/NotFound/NotFound";
+import { useUserProfileQuery } from "./service/kyb";
+import { useEffect } from "react";
+import { setUserDetails } from "./store/slice/authSlice";
 
 function App() {
   const { airtimeDataAction } = useAppSelector(selectDashboard);
+  const profile = useUserProfileQuery({});
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(setUserDetails(profile?.data?.data));
+  }, [profile, dispatch]);
 
   return (
     <main className="App">

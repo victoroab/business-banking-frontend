@@ -41,30 +41,19 @@ const customBaseQuery: BaseQueryFn<
   return baseResult;
 };
 
-export const transactionApi = createApi({
-  reducerPath: "transactionApi",
+export const accountApi = createApi({
+  reducerPath: "accountApi",
   baseQuery: customBaseQuery,
 
   tagTypes: ["Transaction"],
 
   endpoints: (builder) => ({
-    //beneficiary
-    getAllBanks: builder.query({
+    //account details
+    getAccountDetails: builder.query({
       query: () => "/transaction/fetch-banks",
       providesTags: [{ type: "Transaction", id: "Beneficiary" }],
-    }),
-
-    //
-    setPin: builder.mutation<any, { pin: string; confirmPin: string }>({
-      query: (body) => ({
-        url: "/transaction/set-pin",
-        method: "POST",
-        body,
-      }),
-
-      invalidatesTags: [{ type: "Transaction", id: "Transaction" }],
     }),
   }),
 });
 
-export const { useGetAllBanksQuery, useSetPinMutation } = transactionApi;
+export const { useGetAccountDetailsQuery } = accountApi;

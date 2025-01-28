@@ -101,12 +101,7 @@ const FaceVerification: React.FC = () => {
       </div>
 
       <div className="flex justify-center  w-full gap-6">
-        <button
-          className="main-btn w-full"
-          type="submit"
-          id="button-connect"
-          // onClick={handleDojahLaunch}
-        >
+        <button className="main-btn w-full" type="submit" id="button-connect">
           Continue
         </button>
       </div>

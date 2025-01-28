@@ -819,7 +819,7 @@ export const accountSettingsSteps: ProgressStepsProps[] = [
   },
   {
     id: 6,
-    title: "Change Transaction PIN",
+    title: "Set Transaction PIN",
   },
   {
     id: 7,
