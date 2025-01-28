@@ -4,7 +4,7 @@ import { useAppSelector } from "../../../hooks";
 import { selectAuth } from "../../../store/slice/authSlice";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import Spinner from "../../../components/Spinner/Spinner";
 import { AddressProps } from "../../../interfaces/service/kyb";
 import { useNavigate } from "react-router-dom";

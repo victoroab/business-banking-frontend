@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useSetEmailMutation } from "../../service/auth";
 import { selectAuth, setEmailAddress } from "../../store/slice/authSlice";
 import { useAppDispatch, useAppSelector } from "../../hooks";

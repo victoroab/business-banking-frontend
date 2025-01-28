@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { saveUserInfo, selectAuth } from "../../store/slice/authSlice";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import {
   useSetExistingPasscodeMutation,
   useSetPasscodeMutation,

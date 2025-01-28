@@ -3,7 +3,7 @@ import { selectAuth } from "../../../store/slice/authSlice";
 import { useAppSelector } from "../../../hooks";
 import Spinner from "../../../components/Spinner/Spinner";
 import { useVerifyResidentialAddressMutation } from "../../../service/kyb";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { AddressProps } from "../../../interfaces/service/kyb";

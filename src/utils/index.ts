@@ -22,7 +22,7 @@ import {
   MobileIcon,
   MTNIcon,
 } from "../assets/svg/Airtime";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 
 export const manageBeneficiaryHeader = [
   { id: 1, title: "Transfer" },
@@ -1130,3 +1130,12 @@ export const businessDocuments = [
     title: "Utility Bill (Valid bill within the last 90 days)",
   },
 ];
+
+export const copyToClipboard = async (text: string) => {
+  try {
+    await navigator.clipboard.writeText(text);
+    toast.success("Copied to clipboard!");
+  } catch (err) {
+    toast.error("Failed to copy!");
+  }
+};

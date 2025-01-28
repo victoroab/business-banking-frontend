@@ -7,7 +7,7 @@ import {
 } from "../../service/auth";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { selectGlobal } from "../../store/slice/globalSlice";
 import {
   selectAuth,

@@ -3,7 +3,7 @@ import OTPInput from "react-otp-input";
 import { useAppSelector } from "../../../hooks";
 import { selectAuth } from "../../../store/slice/authSlice";
 import { useSetPinMutation } from "../../../service/transaction";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { errorHandler } from "../../../utils";
 import Spinner from "../../../components/Spinner/Spinner";
 const TransactionPin = () => {

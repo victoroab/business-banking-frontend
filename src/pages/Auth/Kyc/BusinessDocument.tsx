@@ -3,7 +3,7 @@ import ImageUpload from "../../../components/Upload/ImageUpload";
 import { ArrowDownIcon } from "../../../assets/svg/Auth";
 import { useNavigate } from "react-router-dom";
 import { businessDocuments, errorHandler } from "../../../utils";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useVerifyBusinessDocumentsMutation } from "../../../service/kyb";
 import Spinner from "../../../components/Spinner/Spinner";
 

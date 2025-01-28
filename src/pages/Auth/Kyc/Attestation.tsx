@@ -4,30 +4,37 @@ import { useAppSelector } from "../../../hooks";
 import PopUp from "../../../components/PopUps/PopUp";
 import { CopyIcon, SuccessIcon } from "../../../assets/svg/CustomSVGs";
 import { useNavigate } from "react-router-dom";
-import { attestation } from "../../../utils";
+import { attestation, copyToClipboard, errorHandler } from "../../../utils";
 import { FolderIcon } from "../../../assets/svg/Auth";
 import Checkbox from "../../../components/FormInput/Checkbox";
 import { useState } from "react";
 import { useAttestationMutation } from "../../../service/kyb";
 
 import Spinner from "../../../components/Spinner/Spinner";
+import { useGetAccountDetailsQuery } from "../../../service/account";
 
 const Attestation = () => {
   const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
   const [isChecked, setIsChecked] = useState(false);
   const [attest, { isLoading }] = useAttestationMutation();
+  const { data, refetch } = useGetAccountDetailsQuery({});
   const navigate = useNavigate();
   const handleCheckboxChange = () => {
     setIsChecked((prev) => !prev);
   };
 
   const handleSubmit = async () => {
-    const requiredData = {
-      attest: isChecked,
-    };
-    await attest(requiredData).unwrap();
-    handleShow("submit");
+    try {
+      const requiredData = {
+        attest: isChecked,
+      };
+      await attest(requiredData).unwrap();
+      refetch();
+      handleShow("submit");
+    } catch (error) {
+      errorHandler(error);
+    }
   };
 
   return (
@@ -108,9 +115,14 @@ const Attestation = () => {
             >
               <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
                 Account Number:{" "}
-                <span className="text-sm font-medium">1234567890</span>
+                <span className="text-sm font-medium">
+                  {data?.data?.accountNumber}
+                </span>
               </p>
-              <p className="copy text-xs text-secColor flex items-center gap-2">
+              <p
+                className="copy text-xs text-secColor flex items-center gap-2 cursor-pointer"
+                onClick={() => copyToClipboard(data?.data?.accountNumber)}
+              >
                 COPY <CopyIcon />
               </p>
             </div>

@@ -3,7 +3,7 @@ import FormInput from "../../components/FormInput";
 import Spinner from "../../components/Spinner/Spinner";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useSetNameMutation } from "../../service/kyb";
 import { useNavigate } from "react-router-dom";
 import Calender from "../../components/Calendar/DatePicker";
@@ -69,7 +69,10 @@ const Profile = () => {
                 Enter Your Legal Name
               </h3>
               <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-                Please provide your full legal name as it appears on your official documents. This helps us ensure secure and accurate account setup, especially for verification purposes. Make sure it’s spelled correctly
+                Please provide your full legal name as it appears on your
+                official documents. This helps us ensure secure and accurate
+                account setup, especially for verification purposes. Make sure
+                it’s spelled correctly
               </p>
             </div>
 
@@ -84,7 +87,7 @@ const Profile = () => {
                 onChange={handleChange}
                 defaultValue={values?.firstName}
               />
-                     <FormInput
+              <FormInput
                 placeholder="Other Name (Optional)"
                 type="text"
                 id={"otherName"}
@@ -104,7 +107,7 @@ const Profile = () => {
                 onChange={handleChange}
                 defaultValue={values?.lastName}
               />
-       
+
               <Calender setSelectedDate={setDob} selectedDate={dob} />
             </div>
             <div className="flex justify-center  w-full gap-6">

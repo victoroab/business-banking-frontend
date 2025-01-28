@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useVerfifyEmailMutation } from "../../service/auth";
 import { useAppSelector } from "../../hooks";
 import { useNavigate } from "react-router-dom";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { selectAuth } from "../../store/slice/authSlice";
 import Spinner from "../../components/Spinner/Spinner";
 

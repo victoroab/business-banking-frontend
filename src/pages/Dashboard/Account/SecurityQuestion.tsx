@@ -1,4 +1,4 @@
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import FormInput from "../../../components/FormInput";

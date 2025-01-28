@@ -5,10 +5,11 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useInitiateMutation } from "../../service/auth";
 import { useAppDispatch, useAppSelector } from "../../hooks";
-import toast from "react-hot-toast";
+
 import { setPhoneNumber } from "../../store/slice/authSlice";
 import Spinner from "../../components/Spinner/Spinner";
 import { selectGlobal } from "../../store/slice/globalSlice";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const dispatch = useAppDispatch();

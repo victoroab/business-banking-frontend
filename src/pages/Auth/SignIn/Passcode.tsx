@@ -8,7 +8,7 @@ import {
   useSignInVerifyMutation,
 } from "../../../service/auth";
 import { selectGlobal } from "../../../store/slice/globalSlice";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import Spinner from "../../../components/Spinner/Spinner";
 import {
   saveUserInfo,

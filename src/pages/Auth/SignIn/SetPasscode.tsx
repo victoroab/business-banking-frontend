@@ -4,7 +4,7 @@ import { useAppSelector } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
 import { selectAuth } from "../../../store/slice/authSlice";
 import OTPInput from "react-otp-input";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useSetCodeMutation } from "../../../service/auth";
 import Spinner from "../../../components/Spinner/Spinner";
 

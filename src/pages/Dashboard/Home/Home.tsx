@@ -10,12 +10,13 @@ import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../../hooks";
 import { selectAuth } from "../../../store/slice/authSlice";
 import { useUserProfileQuery } from "../../../service/kyb";
+import { useGlobalHooks } from "../../../hooks/globalHooks";
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { kybDetails } = useAppSelector(selectAuth);
+  const { kybDetails, userDetails } = useAppSelector(selectAuth);
   const { data } = useUserProfileQuery({});
-
+  const { handleShow } = useGlobalHooks();
   return (
     <div className="border">
       <Navbar
@@ -40,6 +41,40 @@ const Dashboard = () => {
             onClick={() => navigate("/kyb/identity")}
           >
             Complete KYB
+          </button>
+        </div>
+      )}
+
+      {(userDetails?.email === null ||
+        kybDetails === null ||
+        kybDetails?.kybStatus?.attestation === false) && (
+        <div className="flex justify-between bg-secColor p-3 mb-2 mx-10">
+          <div className="flex justify-between text-white w-[75%] gap-4 items-center">
+            <CautionIcon />
+            <p className="text-white font-workSans leading-4 font-semibold text-sm">
+              Hi, Bamidele! You currently don’t have an email address linked to
+              your account. Click the button to add your email address.
+            </p>
+          </div>
+          <button className="white-btn" onClick={() => navigate("add-email")}>
+            Add Email Address
+          </button>
+        </div>
+      )}
+
+      {(userDetails?.phoneNumber === null ||
+        kybDetails === null ||
+        kybDetails?.kybStatus?.attestation === false) && (
+        <div className="flex justify-between bg-secColor p-3 mb-2 mx-10">
+          <div className="flex justify-between text-white w-[75%] gap-4 items-center">
+            <CautionIcon />
+            <p className="text-white font-workSans leading-4 font-semibold text-sm">
+              Hi, Bamidele! You currently don’t have a phone number linked to
+              your account. Click the button to add your phone number.
+            </p>
+          </div>
+          <button className="white-btn" onClick={() => handleShow("add-phone")}>
+            Add Phone Number
           </button>
         </div>
       )}

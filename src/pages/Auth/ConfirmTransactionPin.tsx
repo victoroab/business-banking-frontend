@@ -1,6 +1,6 @@
 import AuthLayout from "../../layout/AuthLayout";
 import Otp from "../../components/OTP/Otp";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAppSelector } from "../../hooks";

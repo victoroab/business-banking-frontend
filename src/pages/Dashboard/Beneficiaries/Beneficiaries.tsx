@@ -13,7 +13,7 @@ import PopUp from "../../../components/PopUps/PopUp";
 import { useAppSelector } from "../../../hooks";
 import { selectGlobal } from "../../../store/slice/globalSlice";
 import FormInput from "../../../components/FormInput";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import {

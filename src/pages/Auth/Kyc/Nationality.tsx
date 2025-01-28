@@ -1,5 +1,5 @@
 import FormInput from "../../../components/FormInput";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useSetNationalityMutation } from "../../../service/kyb";
 import * as Yup from "yup";
 import { useFormik } from "formik";

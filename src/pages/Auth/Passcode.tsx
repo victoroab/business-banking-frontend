@@ -8,7 +8,7 @@ import {
   setKYBDetails,
 } from "../../store/slice/authSlice";
 import OTPInput from "react-otp-input";
-import toast from "react-hot-toast";
+import { toast } from "react-toastify";
 import {
   useSetExistingPasscodeMutation,
   useSetPasscodeMutation,
