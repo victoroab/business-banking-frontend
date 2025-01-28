@@ -49,7 +49,7 @@ const Beneficiaries = () => {
     pageSize: 10,
   });
   const [addBeneficiary, { isLoading }] = useAddBeneficiaryMutation();
-  const { data } = useGetAllBanksQuery({});
+  const { data } = useGetAllBanksQuery();
   const {
     data: allBeneficiaries,
     refetch,

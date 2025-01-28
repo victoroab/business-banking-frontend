@@ -19,7 +19,7 @@ const customBaseQuery: BaseQueryFn<
     prepareHeaders: (headers, { getState }) => {
       const userToken = (getState() as RootState)?.auth?.userInfo
         ?.refresh_token;
-
+      console.log(userToken);
       if (userToken) {
         headers.set("Authorization", `Bearer ${userToken}`);
       }
@@ -49,9 +49,9 @@ export const transactionApi = createApi({
 
   endpoints: (builder) => ({
     //beneficiary
-    getAllBanks: builder.query({
+    getAllBanks: builder.query<any, void>({
       query: () => "/transaction/fetch-banks",
-      providesTags: [{ type: "Transaction", id: "Beneficiary" }],
+      providesTags: [{ type: "Transaction", id: "Transaction" }],
     }),
 
     //
