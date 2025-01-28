@@ -166,3 +166,33 @@ export interface SidebarDataProps {
 export interface SidebarItemProps {
   item: SidebarDataProps;
 }
+export interface PosDataProps {
+  id?: string;
+  userId?: string;
+  businessId?: string;
+  accountId?: string;
+  deviceType?: string;
+  merchantName?: string;
+  deliveryOption?: string;
+  cardType?: string;
+  pickupBranch?: string | null;
+  address?: string | null;
+  city?: string;
+  zipCode?: string;
+  status?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+export interface AddPos {
+  businessId?: string;
+  accountId?: string;
+  deviceType?: string;
+  merchantName?: string;
+  deliveryOption?: string;
+  cardType?: string;
+  pickupBranch?: string;
+  address?: string;
+  city?: string;
+  zipCode?: string;
+  pin?: string;
+}

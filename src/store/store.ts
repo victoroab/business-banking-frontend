@@ -21,6 +21,7 @@ import { beneficiaryApi } from "../service/beneficiary";
 import { transactionApi } from "../service/transaction";
 import { accountApi } from "../service/account";
 import { userApi } from "../service/user";
+import { posApi } from "../service/pos";
 
 const rootReducers = combineReducers({
   global: globalSlice.reducer,
@@ -32,6 +33,7 @@ const rootReducers = combineReducers({
   [transactionApi.reducerPath]: transactionApi.reducer,
   [accountApi.reducerPath]: accountApi.reducer,
   [userApi.reducerPath]: userApi.reducer,
+  [posApi.reducerPath]: posApi.reducer,
 });
 
 const persistConfig = {
@@ -59,7 +61,8 @@ export const store = configureStore({
       beneficiaryApi.middleware,
       transactionApi.middleware,
       accountApi.middleware,
-      userApi.middleware
+      userApi.middleware,
+      posApi.middleware
     ),
 });
 

@@ -44,7 +44,7 @@ const EditDirector = () => {
         phone: values.phone,
         idCard: document,
       };
-      console.log(newDirector);
+
       dispatch(editDirector(newDirector));
       resetForm();
       handleShow("edit-director");

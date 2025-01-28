@@ -6,8 +6,8 @@ import {
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store/store";
-import { AddBeneficary } from "../interfaces/service/beneficiary";
 import { queryBuilder } from "../utils";
+import { AddPos } from "../interfaces/Global";
 
 const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 
@@ -43,44 +43,30 @@ const customBaseQuery: BaseQueryFn<
   return baseResult;
 };
 
-export const beneficiaryApi = createApi({
-  reducerPath: "beneficiaryApi",
+export const posApi = createApi({
+  reducerPath: "posApi",
   baseQuery: customBaseQuery,
 
-  tagTypes: ["Beneficiary"],
+  tagTypes: ["Pos"],
 
   endpoints: (builder) => ({
-    //addBeneficiary
-    addBeneficiary: builder.mutation<any, AddBeneficary>({
+    //addPos
+    addPos: builder.mutation<any, AddPos>({
       query: (body) => ({
-        url: "/beneficiary",
+        url: "/pos/request",
         method: "POST",
         body,
       }),
 
-      invalidatesTags: [{ type: "Beneficiary", id: "Beneficiary" }],
+      invalidatesTags: [{ type: "Pos", id: "Pos" }],
     }),
 
-    //beneficiary
-    getAllBeneficiaries: builder.query({
-      query: (params) => `/beneficiary?${queryBuilder(params)}`,
-      providesTags: [{ type: "Beneficiary", id: "Beneficiary" }],
-    }),
-
-    //deleteBeneficiary
-    deleteBeneficiary: builder.mutation<any, string>({
-      query: (id) => ({
-        url: `/beneficiary/${id}`,
-        method: "DELETE",
-      }),
-
-      invalidatesTags: [{ type: "Beneficiary", id: "Beneficiary" }],
+    //pos
+    getAllPos: builder.query({
+      query: (params) => `/pos/request?${queryBuilder(params)}`,
+      providesTags: [{ type: "Pos", id: "Pos" }],
     }),
   }),
 });
 
-export const {
-  useAddBeneficiaryMutation,
-  useGetAllBeneficiariesQuery,
-  useDeleteBeneficiaryMutation,
-} = beneficiaryApi;
+export const { useAddPosMutation, useGetAllPosQuery } = posApi;

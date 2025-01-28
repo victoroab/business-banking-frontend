@@ -1,13 +1,16 @@
 import { useNavigate } from "react-router-dom";
 import FormInput from "../../../../components/FormInput";
 import { industries } from "../../../../utils";
+import { useAppSelector } from "../../../../hooks";
+import { selectAuth } from "../../../../store/slice/authSlice";
 
 const PosDebitAccount = () => {
   const navigate = useNavigate();
   const handleSubmit = () => {
     navigate("/request-pos/device-type");
   };
-
+  const { kybDetails } = useAppSelector(selectAuth);
+  console.log(kybDetails);
   return (
     <div className="flex flex-col gap-14 pr-6">
       <div className="gap-4 flex flex-col">
