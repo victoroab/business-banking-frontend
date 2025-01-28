@@ -2,21 +2,22 @@ import { toast } from "react-toastify";
 import PopUp from "../../PopUps/PopUp";
 import { selectGlobal } from "../../../store/slice/globalSlice";
 import FormInput from "../../FormInput";
-import { useAppSelector } from "../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import {
   useSetEmailMutation,
   useVerfifyEmailMutation,
 } from "../../../service/user";
 import Spinner from "../../Spinner/Spinner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Otp from "../../OTP/Otp";
 import { useUserProfileQuery } from "../../../service/kyb";
 import { errorHandler } from "../../../utils";
+import { setUserDetails } from "../../../store/slice/authSlice";
 
 const AddEmail = () => {
   const [setEmail, { isLoading }] = useSetEmailMutation();
-  const { refetch } = useUserProfileQuery({});
+  const { data, refetch } = useUserProfileQuery({});
   const [verifyEmail, { isLoading: verifyingEmail }] =
     useVerfifyEmailMutation();
   const { handleShow } = useGlobalHooks();
@@ -24,6 +25,7 @@ const AddEmail = () => {
   const [email, setEmailAddress] = useState<string>("");
   const [isVerifyEmail, setIsVerifyEmail] = useState<boolean>(false);
   const toggle = useAppSelector(selectGlobal);
+  const dispatch = useAppDispatch();
 
   const handleSetEmail = async () => {
     try {
@@ -53,6 +55,10 @@ const AddEmail = () => {
       errorHandler(error);
     }
   };
+
+  useEffect(() => {
+    dispatch(setUserDetails(data?.data));
+  }, [data, dispatch]);
 
   return (
     <div>

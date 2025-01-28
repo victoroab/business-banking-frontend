@@ -2,27 +2,29 @@ import { toast } from "react-toastify";
 import PopUp from "../../PopUps/PopUp";
 import { selectGlobal } from "../../../store/slice/globalSlice";
 import FormInput from "../../FormInput";
-import { useAppSelector } from "../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import {
   useSetPhoneMutation,
   useVerfifyPhoneMutation,
 } from "../../../service/user";
 import Spinner from "../../Spinner/Spinner";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Otp from "../../OTP/Otp";
 import { useUserProfileQuery } from "../../../service/kyb";
 import { errorHandler } from "../../../utils";
+import { setUserDetails } from "../../../store/slice/authSlice";
 
 const AddPhoneNumber = () => {
   const [setPhone, { isLoading }] = useSetPhoneMutation();
-  const { refetch } = useUserProfileQuery({});
+  const { data, refetch } = useUserProfileQuery({});
   const [verifyPone, { isLoading: verifyingPhone }] = useVerfifyPhoneMutation();
   const { handleShow } = useGlobalHooks();
   const [otpCode, setOtpCode] = useState<string>("");
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [isVerifyPhone, setIsVerifyPhone] = useState<boolean>(false);
   const toggle = useAppSelector(selectGlobal);
+  const dispatch = useAppDispatch();
 
   const handleSetPhoneNumber = async () => {
     try {
@@ -52,6 +54,10 @@ const AddPhoneNumber = () => {
       errorHandler(error);
     }
   };
+
+  useEffect(() => {
+    dispatch(setUserDetails(data?.data));
+  }, [data, dispatch]);
 
   return (
     <div>
