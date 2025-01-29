@@ -1139,3 +1139,30 @@ export const copyToClipboard = async (text: string) => {
     toast.error("Failed to copy!");
   }
 };
+
+export const accounts = [
+  {
+    id: 1,
+    accountName: "John Doe",
+    accountNumber: "1234567890",
+    accountType: "POS",
+  },
+  {
+    id: 2,
+    accountName: "Jane Smith",
+    accountNumber: "0987654321",
+    accountType: "ACCOUNT",
+  },
+  {
+    id: 3,
+    accountName: "Michael Johnson",
+    accountNumber: "1122334455",
+    accountType: "POS",
+  },
+  {
+    id: 4,
+    accountName: "Emily Brown",
+    accountNumber: "5566778899",
+    accountType: "ACCOUNT",
+  },
+];

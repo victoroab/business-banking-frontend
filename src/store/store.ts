@@ -22,11 +22,15 @@ import { transactionApi } from "../service/transaction";
 import { accountApi } from "../service/account";
 import { userApi } from "../service/user";
 import { posApi } from "../service/pos";
+import { transactionSlice } from "./slice/transactionSlice";
+import { accountSlice } from "./slice/account";
 
 const rootReducers = combineReducers({
   global: globalSlice.reducer,
   auth: authSlice.reducer,
   dashboard: dashboardSlice.reducer,
+  transaction: transactionSlice.reducer,
+  account: accountSlice.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [kybApi.reducerPath]: kybApi.reducer,
   [beneficiaryApi.reducerPath]: beneficiaryApi.reducer,

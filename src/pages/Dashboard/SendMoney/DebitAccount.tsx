@@ -1,17 +1,35 @@
 import FormInput from "../../../components/FormInput";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../../hooks";
-import { selectDashboard } from "../../../store/slice/dashboardSlice";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import { setSendMoneyPayload } from "../../../store/slice/transactionSlice";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { selectAccount } from "../../../store/slice/account";
 
 const DebitAccount = () => {
   const navigate = useNavigate();
-  const { airtimeDataAction } = useAppSelector(selectDashboard);
-  const handleSubmit = () => {
-    airtimeDataAction === "AIRTIME"
-      ? navigate("/utility/amount")
-      : navigate("/utility/provider");
+  const dispatch = useAppDispatch();
+  const { accountDetails } = useAppSelector(selectAccount);
+  const onSubmit = async (formData: { accountNumber: string }) => {
+    dispatch(
+      setSendMoneyPayload({ fromAccountNumber: formData.accountNumber })
+    );
+    navigate("/send-money/bank-details");
   };
 
+  const initialValues = {
+    accountNumber: "",
+  };
+  const formSchema = Yup.object().shape({
+    accountName: Yup.string(),
+  });
+  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: formSchema,
+      onSubmit,
+    });
+  console.log(accountDetails);
   return (
     <div className="flex flex-col gap-14">
       <div className="gap-4 flex flex-col">
@@ -24,18 +42,30 @@ const DebitAccount = () => {
       </div>
 
       <div className="form">
-        <form action="#" className="flex gap-8 flex-col">
+        <form
+          action="#"
+          className="flex gap-8 flex-col"
+          onSubmit={handleSubmit}
+        >
           <FormInput
-            id={""}
+            id={"accountNumber"}
+            type="searchSelect"
             placeholder="Debit Account"
             className="flex flex-col gap-4"
+            name="accountNumber"
+            selectOptions={accountDetails}
+            keyPropertyName="accountNumber"
+            valuePropertyName="accountNumber"
+            itemPropertyName="accountNumber"
+            accountName="accountName"
+            accountType="accountType"
+            error={touched.accountNumber ? errors.accountNumber : undefined}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            defaultValue={values?.accountNumber}
           />
           <div className="flex justify-center  w-full gap-6">
-            <button
-              className="main-btn w-full"
-              type="submit"
-              onClick={handleSubmit}
-            >
+            <button className="main-btn w-full" type="submit">
               Continue
             </button>
           </div>

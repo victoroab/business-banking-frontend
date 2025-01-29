@@ -1,4 +1,5 @@
 import { IFormInputProps } from "../../interfaces/Global";
+import SearchSelect from "../Select/SearchSelect";
 import Select from "../Select/Select";
 import "./style.css";
 const FormInput = ({
@@ -21,6 +22,8 @@ const FormInput = ({
   keyPropertyName,
   itemPropertyName,
   valuePropertyName,
+  accountName,
+  accountType,
   filter,
 }: IFormInputProps) => {
   return (
@@ -55,6 +58,29 @@ const FormInput = ({
             keyPropertyName={keyPropertyName}
             itemPropertyName={itemPropertyName}
             valuePropertyName={valuePropertyName}
+          />
+        ) : type === "searchSelect" ? (
+          <SearchSelect
+            id={id}
+            options={selectOptions}
+            filter={filter}
+            selectedOption={defaultValue}
+            setSelectedOption={(option: any) =>
+              onChange &&
+              onChange({
+                target: {
+                  name: id,
+                  value: option,
+                },
+              })
+            }
+            errors={error}
+            placeholder={placeholder}
+            keyPropertyName={keyPropertyName}
+            itemPropertyName={itemPropertyName}
+            valuePropertyName={valuePropertyName}
+            accountName={accountName}
+            accountType={accountType}
           />
         ) : type === "checkbox" ? (
           <div className="flex items-center w-full gap-2">

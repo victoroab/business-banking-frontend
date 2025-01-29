@@ -23,7 +23,6 @@ const SendMoney = () => {
   const navigate = useNavigate();
 
   const handleOpenModal = (row: RowDataProps) => {
-    // handleShow("show-action");
     setSelectedRow(row);
     IsOpenAction((prev) => !prev);
   };

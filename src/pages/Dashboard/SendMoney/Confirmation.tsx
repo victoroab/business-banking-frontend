@@ -4,13 +4,18 @@ import { selectGlobal } from "../../../store/slice/globalSlice";
 import { AlertLogoIcon } from "../../../assets/svg/Sidebar";
 import PopUp from "../../../components/PopUps/PopUp";
 import { SuccessIcon } from "../../../assets/svg/CustomSVGs";
+import { selectTransaction } from "../../../store/slice/transactionSlice";
+import InputToken from "./InputToken";
+import { useNavigate } from "react-router-dom";
 
 const Confirmation = () => {
   const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
-
+  const navigate = useNavigate();
+  const { sendMoneyPayload } = useAppSelector(selectTransaction);
+  console.log(sendMoneyPayload);
   const handleSubmit = () => {
-    handleShow("submit-bill");
+    handleShow("input-pin");
   };
 
   return (
@@ -30,7 +35,7 @@ const Confirmation = () => {
         </p>
 
         <h3 className="text-pryColor font-extrabold text-2xl font-bricolage leading-6">
-          #50,000.00
+          #{sendMoneyPayload?.amount}.00
         </h3>
       </div>
 
@@ -53,10 +58,10 @@ const Confirmation = () => {
           "
             >
               <p className="tit text-sm  text-amount font-semibold font-workSans">
-                #5000.00
+                #{sendMoneyPayload?.amount}.00
               </p>
               <p className="va text-amount font-semibold text-sm font-workSans">
-                #500.00
+                #0.00
               </p>
             </div>
           </div>
@@ -72,7 +77,7 @@ const Confirmation = () => {
           "
             >
               <p className="tit  font-workSanstext-sm  text-amount font-semibold flex flex-col justify-end items-end">
-                #5500.00
+                #{sendMoneyPayload?.amount}.00
               </p>
             </div>
           </div>
@@ -93,15 +98,19 @@ const Confirmation = () => {
                 </div>
                 <div className="flex flex-col">
                   <p className="text-greyColr font-workSans  flex gap-2  items-center rounded-md py-1 leading-4 font-normal text-sm">
-                    Bamidele Akinyemi
+                    {sendMoneyPayload?.accountName}
                   </p>
                   <p className="text-greyColr font-workSans leading-4 font-normal flex gap-2 items-center text-sm">
                     Account Number:
-                    <span className="text-sm font-medium">1234567890</span>
+                    <span className="text-sm font-medium">
+                      {sendMoneyPayload?.accountNumber}
+                    </span>
                   </p>
                   <p className="text-greyColr font-workSans leading-4 font-normal gap-2 flex items-center text-sm">
                     Bank Name:
-                    <span className="text-sm font-medium">AlertMFB</span>
+                    <span className="text-sm font-medium">
+                      {sendMoneyPayload?.bankName}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -110,7 +119,10 @@ const Confirmation = () => {
               className="flex flex-col justify-end items-end
           "
             >
-              <p className="tit text-sm  text-secColor font-normal font-workSans cursor-pointer">
+              <p
+                className="tit text-sm  text-secColor font-normal font-workSans cursor-pointer"
+                onClick={() => navigate("/send-money/bank-details")}
+              >
                 Change
               </p>
             </div>
@@ -189,6 +201,8 @@ const Confirmation = () => {
           </div>
         </PopUp>
       )}
+
+      {toggle["input-pin"] && <InputToken />}
     </div>
   );
 };

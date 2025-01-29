@@ -7,26 +7,34 @@ import Navbar from "../../../components/Navbar/Navbar";
 import { sampleData } from "../../../utils";
 import { CautionIcon } from "../../../assets/svg/PayBill";
 import { useNavigate } from "react-router-dom";
-import { useAppSelector } from "../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { selectAuth } from "../../../store/slice/authSlice";
 import { useUserProfileQuery } from "../../../service/kyb";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import AddEmail from "../../../components/Dashboard/Home/AddEmail";
 import { selectGlobal } from "../../../store/slice/globalSlice";
 import AddPhoneNumber from "../../../components/Dashboard/Home/AddPhoneNumber";
+import { useGetAccountDetailsQuery } from "../../../service/account";
+import { useEffect } from "react";
+import { setAccountDetails } from "../../../store/slice/account";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const { kybDetails } = useAppSelector(selectAuth);
-  const { data } = useUserProfileQuery({});
+  const dispatch = useAppDispatch();
   const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
   const { data: profile } = useUserProfileQuery({});
+  const { data: accountdetails } = useGetAccountDetailsQuery({});
+
+  useEffect(() => {
+    dispatch(setAccountDetails(accountdetails?.data));
+  }, [dispatch, accountdetails, setAccountDetails]);
 
   return (
     <div className="border">
       <Navbar
-        title={`Good Morning, ${data?.data?.firstName}`}
+        title={`Good Morning, ${profile?.data?.firstName}`}
         subtitle="Here’s your dashboard overview."
       />
       {(kybDetails?.kybStatus === null ||
@@ -51,9 +59,7 @@ const Dashboard = () => {
         </div>
       )}
 
-      {(profile?.data?.email === null ||
-        kybDetails === null ||
-        kybDetails?.kybStatus?.attestation === false) && (
+      {profile?.data?.email === null && (
         <div className="flex justify-between bg-secColor p-3 mb-2 mx-10">
           <div className="flex justify-between text-white w-[75%] gap-4 items-center">
             <CautionIcon />
@@ -68,9 +74,7 @@ const Dashboard = () => {
         </div>
       )}
 
-      {(profile?.data?.phoneNumber === null ||
-        kybDetails === null ||
-        kybDetails?.kybStatus?.attestation === false) && (
+      {profile?.data?.phoneNumber === null && (
         <div className="flex justify-between bg-secColor p-3 mb-2 mx-10">
           <div className="flex justify-between text-white w-[75%] gap-4 items-center">
             <CautionIcon />

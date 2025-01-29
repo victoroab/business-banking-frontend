@@ -6,6 +6,7 @@ import {
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store/store";
+import { TransactionPayload } from "../interfaces/service/transaction";
 
 const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 
@@ -64,7 +65,39 @@ export const transactionApi = createApi({
 
       invalidatesTags: [{ type: "Transaction", id: "Transaction" }],
     }),
+
+    // name-enquiry
+
+    nameEnquiry: builder.mutation<
+      any,
+      { accountNumber: string; bankCode: string }
+    >({
+      query: (body) => ({
+        url: "/transaction/name-enquiry",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Transaction", id: "Transaction" }],
+    }),
+
+    //send-money
+
+    sendMoney: builder.mutation<any, TransactionPayload>({
+      query: (body) => ({
+        url: "/transaction/send-money",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Transaction", id: "Transaction" }],
+    }),
   }),
 });
 
-export const { useGetAllBanksQuery, useSetPinMutation } = transactionApi;
+export const {
+  useGetAllBanksQuery,
+  useSetPinMutation,
+  useNameEnquiryMutation,
+  useSendMoneyMutation,
+} = transactionApi;
