@@ -4,25 +4,34 @@ import Paginate from "../../../components/Paginate";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import { useState } from "react";
 import DataTable from "react-data-table-component";
-import { tableCustomStyles, transactionsData } from "../../../utils";
-import { columnsData } from "../../../utils/table";
-import { RowDataProps } from "../../../interfaces/Global";
+import { tableCustomStyles } from "../../../utils";
+import { TransferDataProps } from "../../../interfaces/Global";
+import { sendMoneyColumnsData } from "../../../components/Dashboard/SendMoney/Table";
+import { useGetAllTransactionsQuery } from "../../../service/transaction";
+import NoData from "../../../components/NoData/NoData";
+import Calender from "../../../components/Calendar/DatePicker";
+import FormInput from "../../../components/FormInput";
+import Search from "../../../components/Search/Search";
+import { FilterIcon } from "../../../assets/svg/dashboard";
 
 const SendMoney = () => {
   const { handleSearch } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
-  const [selectedRow, setSelectedRow] = useState<RowDataProps>();
+  const [selectedRow, setSelectedRow] = useState<TransferDataProps>();
   const [openAction, IsOpenAction] = useState<boolean>(false);
+  const [dob, setDob] = useState(new Date());
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
-    terminal: "",
+    keyword: "",
     pageNumber: 1,
     pageSize: 10,
   });
-  const navigate = useNavigate();
+  const { data, refetch } = useGetAllTransactionsQuery(queryData);
 
-  const handleOpenModal = (row: RowDataProps) => {
+  const navigate = useNavigate();
+  console.log(data?.data);
+  const handleOpenModal = (row: TransferDataProps) => {
     setSelectedRow(row);
     IsOpenAction((prev) => !prev);
   };
@@ -34,6 +43,58 @@ const SendMoney = () => {
         subtitle="Sending money has never been easier."
       />
       <div className="flex flex-col gap-10">
+        <div className="flex justify-end items-center gap-6 px-10">
+          <Search
+            placeholder="Search"
+            setQueryData={setQueryData}
+            label="Search"
+            className="shadow-md"
+          />
+          <FormInput
+            type="cSelect"
+            selectOptions={[
+              "TRANSFER",
+              "AIRTIME",
+              "DATA",
+              "TV_BILL",
+              "ELECTRICITY",
+            ]}
+            placeholder="Beneficiary Type"
+            label="Beneficiary Type"
+            filter
+            defaultValue={
+              queryData?.beneficiaryType !== ""
+                ? queryData?.beneficiaryType
+                : "TRANSFER"
+            }
+            id="beneficiaryType"
+            onChange={(e) => {
+              setQueryData((prev) => ({
+                ...prev,
+                beneficiaryType: e.target.value,
+              }));
+            }}
+            className="w-[200px]"
+            name="beneficiaryType"
+          />
+          <Calender
+            setSelectedDate={setDob}
+            selectedDate={dob}
+            label="From"
+            filter
+          />
+          <Calender
+            setSelectedDate={setDob}
+            selectedDate={dob}
+            label="To"
+            filter
+          />
+
+          <div className="flex items-center gap-2 bg-[#e2eefa] rounded-xl py-4 px-6 mt-6 cursor-pointer">
+            <FilterIcon />
+            <p className="font-bold text-pryColor tex-sm"> Filter</p>
+          </div>
+        </div>
         <div className="flex justify-end px-10">
           <button
             className="main-btn w-40 font-bricolage"
@@ -57,12 +118,14 @@ const SendMoney = () => {
           >
             <div className="">
               <DataTable
-                columns={columnsData(
+                columns={sendMoneyColumnsData(
                   handleOpenModal,
-                  selectedRow as RowDataProps,
-                  openAction
+                  selectedRow as TransferDataProps,
+                  openAction,
+                  refetch
                 )}
-                data={transactionsData}
+                data={data?.data}
+                noDataComponent={<NoData />}
                 customStyles={tableCustomStyles}
                 className=""
               />
@@ -70,14 +133,14 @@ const SendMoney = () => {
 
             <div className="">
               <Paginate
-                data={transactionsData}
+                data={data?.data}
                 handleSearch={handleSearch}
                 currentPage={filteredData}
                 setCurrentPage={setFilteredData}
                 searchParams="ref"
                 itemsPerPage={queryData?.pageSize as number}
                 setQueryData={setQueryData}
-                totalItemsCount={transactionsData.length}
+                totalItemsCount={data?.data.length}
               />
             </div>
           </section>

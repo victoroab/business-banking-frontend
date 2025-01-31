@@ -7,6 +7,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store/store";
 import { TransactionPayload } from "../interfaces/service/transaction";
+import { queryBuilder } from "../utils";
 
 const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 
@@ -54,7 +55,11 @@ export const transactionApi = createApi({
       query: () => "/transaction/fetch-banks",
       providesTags: [{ type: "Transaction", id: "Transaction" }],
     }),
-
+    //beneficiary
+    getAllTransactions: builder.query({
+      query: (params) => `/transaction?${queryBuilder(params)}`,
+      providesTags: [{ type: "Transaction", id: "Transaction" }],
+    }),
     //
     setPin: builder.mutation<any, { pin: string; confirmPin: string }>({
       query: (body) => ({
@@ -97,6 +102,7 @@ export const transactionApi = createApi({
 
 export const {
   useGetAllBanksQuery,
+  useGetAllTransactionsQuery,
   useSetPinMutation,
   useNameEnquiryMutation,
   useSendMoneyMutation,

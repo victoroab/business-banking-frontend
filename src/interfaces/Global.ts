@@ -125,10 +125,14 @@ export interface RowDataProps {
 export interface TransferDataProps {
   id: string;
   bankName: string;
-  beneficiaryType: string;
-  accountName: string;
-  accountNumber: string;
+
   createdAt: string;
+  beneficiary: {
+    accountName: string;
+    accountNumber: string;
+    beneficiaryType: string;
+    bankName: string;
+  };
 }
 
 export interface AirtimeRowDataProps {

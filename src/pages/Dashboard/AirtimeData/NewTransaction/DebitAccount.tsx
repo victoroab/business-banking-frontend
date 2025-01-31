@@ -1,12 +1,35 @@
 import FormInput from "../../../../components/FormInput";
 import { useNavigate } from "react-router-dom";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
+import { selectAccount } from "../../../../store/slice/account";
+import { setAirtimeBundlePayload } from "../../../../store/slice/billPaymentSlice";
 
 const DebitAccount = () => {
   const navigate = useNavigate();
-  const handleSubmit = () => {
-    navigate("/send-money/bank-details");
+  const dispatch = useAppDispatch();
+  const { accountDetails } = useAppSelector(selectAccount);
+  const onSubmit = async (formData: { accountNumber: string }) => {
+    dispatch(
+      setAirtimeBundlePayload({ fromAccountNumber: formData.accountNumber })
+    );
+    navigate("/utility/amount");
   };
 
+  const initialValues = {
+    accountNumber: "",
+  };
+  const formSchema = Yup.object().shape({
+    accountName: Yup.string(),
+  });
+  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: formSchema,
+      onSubmit,
+    });
+  console.log(accountDetails);
   return (
     <div className="flex flex-col gap-14">
       <div className="gap-4 flex flex-col">
@@ -19,14 +42,30 @@ const DebitAccount = () => {
       </div>
 
       <div className="form">
-        <form action="#" className="flex gap-8 flex-col">
+        <form
+          action="#"
+          className="flex gap-8 flex-col"
+          onSubmit={handleSubmit}
+        >
           <FormInput
-            id={""}
+            id={"accountNumber"}
+            type="searchSelect"
             placeholder="Debit Account"
             className="flex flex-col gap-4"
+            name="accountNumber"
+            selectOptions={accountDetails}
+            keyPropertyName="accountNumber"
+            valuePropertyName="accountNumber"
+            itemPropertyName="accountNumber"
+            accountName="accountName"
+            accountType="accountType"
+            error={touched.accountNumber ? errors.accountNumber : undefined}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            defaultValue={values?.accountNumber}
           />
           <div className="flex justify-center  w-full gap-6">
-            <button className="main-btn w-full" onClick={handleSubmit}>
+            <button className="main-btn w-full" type="submit">
               Continue
             </button>
           </div>

@@ -2,14 +2,12 @@ import { createSlice } from "@reduxjs/toolkit";
 import { RootState } from "../store";
 
 interface DashboardState {
-  airtimeDataAction: string;
   billCategory: string;
   posSelectedCategory: string;
   activeUploadTab: number;
 }
 
 const initialState: DashboardState = {
-  airtimeDataAction: "",
   billCategory: "",
   posSelectedCategory: "",
   activeUploadTab: 1,
@@ -20,9 +18,6 @@ export const dashboardSlice = createSlice({
   initialState,
 
   reducers: {
-    setAirtimeDataAction: (state, action) => {
-      state.airtimeDataAction = action.payload;
-    },
     setBillCategoryAction: (state, action) => {
       state.billCategory = action.payload;
     },
@@ -36,7 +31,6 @@ export const dashboardSlice = createSlice({
 });
 
 export const {
-  setAirtimeDataAction,
   setBillCategoryAction,
   setPosSelectedCategory,
   setActiveUploadTab,

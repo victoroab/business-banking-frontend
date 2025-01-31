@@ -24,6 +24,8 @@ import { userApi } from "../service/user";
 import { posApi } from "../service/pos";
 import { transactionSlice } from "./slice/transactionSlice";
 import { accountSlice } from "./slice/account";
+import { billPaymentSlice } from "./slice/billPaymentSlice";
+import { billPaymentApi } from "../service/billPayment";
 
 const rootReducers = combineReducers({
   global: globalSlice.reducer,
@@ -31,6 +33,7 @@ const rootReducers = combineReducers({
   dashboard: dashboardSlice.reducer,
   transaction: transactionSlice.reducer,
   account: accountSlice.reducer,
+  billPayment: billPaymentSlice.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [kybApi.reducerPath]: kybApi.reducer,
   [beneficiaryApi.reducerPath]: beneficiaryApi.reducer,
@@ -38,6 +41,7 @@ const rootReducers = combineReducers({
   [accountApi.reducerPath]: accountApi.reducer,
   [userApi.reducerPath]: userApi.reducer,
   [posApi.reducerPath]: posApi.reducer,
+  [billPaymentApi.reducerPath]: billPaymentApi.reducer,
 });
 
 const persistConfig = {
@@ -66,7 +70,8 @@ export const store = configureStore({
       transactionApi.middleware,
       accountApi.middleware,
       userApi.middleware,
-      posApi.middleware
+      posApi.middleware,
+      billPaymentApi.middleware
     ),
 });
 

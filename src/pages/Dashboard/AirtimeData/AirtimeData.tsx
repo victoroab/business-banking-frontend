@@ -8,7 +8,7 @@ import { tableCustomStyles, transactionsData } from "../../../utils";
 import { columnsData } from "../../../utils/table";
 import { RowDataProps } from "../../../interfaces/Global";
 import { useAppDispatch } from "../../../hooks";
-import { setAirtimeDataAction } from "../../../store/slice/dashboardSlice";
+import { setAirtimeDataAction } from "../../../store/slice/billPaymentSlice";
 
 const AirtimeData = () => {
   const { handleSearch, handleShow } = useGlobalHooks();

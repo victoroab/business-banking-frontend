@@ -24,12 +24,12 @@ import {
   newTransaction,
 } from "./utils";
 import { useAppSelector } from "./hooks";
-import { selectDashboard } from "./store/slice/dashboardSlice";
 import Upload from "./pages/Dashboard/Upload/Upload";
 import Guard from "./routes/Guard";
 import NotFound from "./pages/NotFound/NotFound";
+import { selectBillPayment } from "./store/slice/billPaymentSlice";
 function App() {
-  const { airtimeDataAction } = useAppSelector(selectDashboard);
+  const { airtimeDataAction } = useAppSelector(selectBillPayment);
 
   return (
     <main className="App">
