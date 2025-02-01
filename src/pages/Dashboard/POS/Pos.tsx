@@ -95,7 +95,7 @@ const Pos = () => {
         <div className="flex justify-end px-10">
           <button
             className="main-btn w-52 font-bricolage"
-            onClick={() => navigate("/request-pos/debit-account")}
+            onClick={() => navigate("/request-pos")}
           >
             Request Another POS
           </button>

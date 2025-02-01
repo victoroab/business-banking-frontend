@@ -7,7 +7,7 @@ import {
 import { KBrandIcon } from "../assets/svg/Alert";
 import { useKybDetailsQuery } from "../service/kyb";
 import { setKYBDetails } from "../store/slice/authSlice";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useAppDispatch } from "../hooks";
 import { useNavigate } from "react-router-dom";
 
@@ -17,8 +17,6 @@ const ProgressLayout = ({
   stepsComponents,
   stateCurrentStep,
   setStateCurrentStep,
-  navTitle,
-  navDesc,
   isUpload,
 }: ProgressProps) => {
   const location = useLocation();

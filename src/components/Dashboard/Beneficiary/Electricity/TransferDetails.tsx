@@ -43,7 +43,7 @@ const TransferDetails = ({ selectedRow, refetch }: DetailsProps) => {
                 Beneficiary
               </p>
               <p className="text-base text-greyColr font-workSans">
-                {selectedRow?.accountName}
+                {selectedRow?.beneficiary?.accountName}
               </p>
             </div>
             <div className="flex flex-col justify-end items-end">
@@ -62,7 +62,7 @@ const TransferDetails = ({ selectedRow, refetch }: DetailsProps) => {
                 Account Number
               </p>
               <p className="text-base text-greyColr font-workSans">
-                {selectedRow?.accountNumber}
+                {selectedRow?.beneficiary?.accountNumber}
               </p>
             </div>
             <div className="flex flex-col justify-end items-end">
@@ -81,7 +81,7 @@ const TransferDetails = ({ selectedRow, refetch }: DetailsProps) => {
                 Transaction Type
               </p>
               <p className="text-sm  bg-[#f7f8ff] text-statusBlue p-1 font-workSans">
-                {selectedRow?.beneficiaryType?.toLocaleUpperCase()}
+                {selectedRow?.beneficiary?.beneficiaryType?.toLocaleUpperCase()}
               </p>
             </div>
           </div>

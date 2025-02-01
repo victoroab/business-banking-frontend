@@ -8,12 +8,11 @@ import {
   dashboardRoutes,
   kybRoutes,
   payBillDataRoutes,
-  posRoutes,
 } from "./routes/routes";
 import DashboardLayout from "./layout/Dashboard";
 import { RouteProps } from "./interfaces/Global";
 import ProgressLayout from "./layout/ProgressLayout";
-import { androidStep, KYCProgressSteps, newBillProgressSteps } from "./utils";
+import { KYCProgressSteps, newBillProgressSteps } from "./utils";
 import Upload from "./pages/Dashboard/Upload/Upload";
 import Guard from "./routes/Guard";
 import NotFound from "./pages/NotFound/NotFound";
@@ -112,7 +111,7 @@ function App() {
             <Route key={idx} path={route.path} element={route.element} />
           ))}
         </Route>
-        <Route
+        {/* <Route
           path="/request-pos"
           element={
             <Guard>
@@ -130,7 +129,7 @@ function App() {
           {posRoutes.map((route, idx: number) => (
             <Route key={idx} path={route.path} element={route.element} />
           ))}
-        </Route>
+        </Route> */}
 
         <Route
           path="send-money/uploads"

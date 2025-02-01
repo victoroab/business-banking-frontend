@@ -70,6 +70,7 @@ import SetPasscode from "../pages/Auth/SignIn/SetPasscode";
 import Report from "../pages/Dashboard/Report/Report";
 import AuditTrail from "../pages/Dashboard/AuditTrail/Audit";
 import NewAirtimeData from "../pages/Dashboard/AirtimeData/NewTransaction/NewAirtimeData";
+import NewPOS from "../pages/Dashboard/POS/New/NewPOS";
 
 const authRoutes: RouteProps[] = [
   { path: "/welcome", name: "Home", element: <Home /> },
@@ -151,6 +152,7 @@ const dashboardRoutes: RouteProps[] = [
   { path: "/reports", name: "Home", element: <Report /> },
   { path: "/account", name: "Account", element: <Account /> },
   { path: "/pos", name: "Account", element: <Pos /> },
+  { path: "/request-pos", name: "Account", element: <NewPOS /> },
   { path: "/utility", name: "Account", element: <AirtimeData /> },
   { path: "/send-money/approval", name: "Approval", element: <Approvals /> },
   { path: "/beneficiaries", name: "Beneficiaries", element: <Beneficiaries /> },
