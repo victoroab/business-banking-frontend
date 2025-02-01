@@ -44,7 +44,7 @@ export const accountApi = createApi({
   reducerPath: "accountApi",
   baseQuery: customBaseQuery,
 
-  tagTypes: ["Account"],
+  tagTypes: ["Account", "Security"],
 
   endpoints: (builder) => ({
     //account details
@@ -60,7 +60,29 @@ export const accountApi = createApi({
       }),
       invalidatesTags: [{ type: "Account", id: "Account" }],
     }),
+
+    submitSecurityQuestions: builder.mutation<
+      any,
+      {
+        securityQuestions: Array<{
+          number: number;
+          question: string;
+          answer: string;
+        }>;
+      }
+    >({
+      query: (body) => ({
+        url: "/security/question",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: [{ type: "Security", id: "Security" }],
+    }),
   }),
 });
 
-export const { useGetAccountDetailsQuery, useGetAccountsMutation } = accountApi;
+export const {
+  useGetAccountDetailsQuery,
+  useGetAccountsMutation,
+  useSubmitSecurityQuestionsMutation,
+} = accountApi;

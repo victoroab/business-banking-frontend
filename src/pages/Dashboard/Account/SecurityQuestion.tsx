@@ -2,34 +2,74 @@ import { toast } from "react-toastify";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import FormInput from "../../../components/FormInput";
-import { securityQuestions } from "../../../utils";
+import { errorHandler, securityQuestions } from "../../../utils";
+import { useSubmitSecurityQuestionsMutation } from "../../../service/account";
+import { DeleteIcon } from "../../../assets/svg/Accout";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const SecurityQuestion = () => {
+  const [submitSecurityQuestions, { isLoading }] =
+    useSubmitSecurityQuestionsMutation();
   const initialValues = {
-    question: "",
-    answer: "",
+    securityQuestions: [
+      {
+        question: "",
+        answer: "",
+      },
+    ],
   };
 
   const onSubmit = async (formData: any) => {
     try {
-      console.log(formData);
+      const securityQuestions = formData.securityQuestions.map((q: any) => ({
+        number: Math.floor(Math.random() * 100),
+        question: q.question,
+        answer: q.answer,
+      }));
+
+      const response = await submitSecurityQuestions({
+        securityQuestions,
+      }).unwrap();
+      toast.success(response?.message);
+      resetForm();
     } catch (error: any) {
-      toast.error(error.data.message);
+      errorHandler(error);
     }
   };
 
-  const businessAddressSchema = Yup.object().shape({
-    question: Yup.string().required("Question is required"),
-    answer: Yup.string().required("Answer is required"),
+  const securityQuestionSchema = Yup.object().shape({
+    securityQuestions: Yup.array().of(
+      Yup.object().shape({
+        question: Yup.string().required("Question is required"),
+        answer: Yup.string().required("Answer is required"),
+      })
+    ),
   });
 
-  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: businessAddressSchema,
-      onSubmit,
-    });
+  const {
+    values,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+    resetForm,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: securityQuestionSchema,
+    onSubmit,
+  });
 
+  const addQuestion = () => {
+    setFieldValue("securityQuestions", [
+      ...values.securityQuestions,
+      { question: "", answer: "" },
+    ]);
+  };
+
+  const removeQuestion = (index: number) => {
+    const newQuestions = values.securityQuestions.filter((_, i) => i !== index);
+    setFieldValue("securityQuestions", newQuestions);
+  };
   return (
     <form
       onSubmit={handleSubmit}
@@ -44,35 +84,62 @@ const SecurityQuestion = () => {
         </p>
       </div>
 
-      <div className="flex flex-col gap-4 w-full">
-        <FormInput
-          placeholder="Security Question"
-          id={"question"}
-          name="question"
-          error={touched.question ? errors.question : undefined}
-          type="cSelect"
-          selectOptions={securityQuestions}
-          keyPropertyName="question"
-          valuePropertyName="question"
-          itemPropertyName="question"
-          defaultValue={values?.question}
-          onChange={handleChange}
-          onBlur={handleBlur}
-        />
-        <FormInput
-          id={"answer"}
-          placeholder="Answer"
-          name="answer"
-          error={touched.answer ? errors.answer : undefined}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          defaultValue={values?.answer}
-        />
+      {values.securityQuestions.map((question, index) => (
+        <div className="flex flex-col gap-4 w-full">
+          <FormInput
+            placeholder="Security Question"
+            id={`securityQuestions[${index}].question`}
+            name={`securityQuestions[${index}].question`}
+            // error={
+            //   touched.securityQuestions?.[index]?.question
+            //     ? (errors.securityQuestions?.[index]?.question as string)
+            //     : undefined
+            // }
+            type="cSelect"
+            selectOptions={securityQuestions}
+            keyPropertyName="question"
+            valuePropertyName="question"
+            itemPropertyName="question"
+            defaultValue={question?.question}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <FormInput
+            id={`answer`}
+            placeholder="Answer"
+            name={`securityQuestions[${index}].answer`}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            defaultValue={question?.answer}
+          />
+
+          {index > 0 && (
+            <div className="flex gap-8 items-center justify-end h-full">
+              <button
+                type="button"
+                onClick={() => removeQuestion(index)}
+                className="border rounded-full p-2 cursor-pointer border-nagative text-nagative"
+              >
+                <DeleteIcon />
+              </button>
+            </div>
+          )}
+        </div>
+      ))}
+
+      <div className="flex justify-center w-full gap-6">
+        <button
+          type="button"
+          onClick={addQuestion}
+          className="yellow-frame-btn w-full"
+        >
+          Add Another Question
+        </button>
       </div>
 
-      <div className="flex justify-center  w-full gap-6">
+      <div className="flex justify-center w-full gap-6">
         <button className="main-btn w-full" type="submit">
-          Set Security Question
+          {isLoading ? <Spinner /> : "Set Security Questions"}
         </button>
       </div>
     </form>
