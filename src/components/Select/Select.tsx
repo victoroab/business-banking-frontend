@@ -15,6 +15,7 @@ interface SelectProps {
   valuePropertyName?: string | number;
   placeholder?: string;
   filter?: boolean;
+  searchFunc?: boolean;
 }
 
 const Select: FC<SelectProps> = ({
@@ -27,8 +28,10 @@ const Select: FC<SelectProps> = ({
   itemPropertyName,
   valuePropertyName,
   filter,
+  searchFunc,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
   const popupRef = useRef<HTMLDivElement>(null);
 
   const toggleDropdown = () => {
@@ -57,6 +60,12 @@ const Select: FC<SelectProps> = ({
     valuePropertyName ? item?.[valuePropertyName] === selectedOption : null
   );
 
+  const filteredOptions = options?.filter((option) =>
+    option?.[itemPropertyName as any]
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div
       id={id}
@@ -81,19 +90,49 @@ const Select: FC<SelectProps> = ({
         <ArrowDownIcon />
       </p>
       {isOpen && (
-        <ul className="options">
-          {options?.map((option) => (
-            <li
-              key={option?.[keyPropertyName as any] || option}
-              className="option"
-              onClick={() =>
-                handleOptionClick(option?.[valuePropertyName as any] ?? option)
-              }
-            >
-              {option?.[itemPropertyName as any] || option}
-            </li>
-          ))}
-        </ul>
+        <>
+          {searchFunc ? (
+            <ul className="options">
+              <div className="flex px-4 mb-6">
+                <input
+                  placeholder="🔍 Search for Account"
+                  className={`form-controls w-full`}
+                  value={searchTerm}
+                  onChange={(e: any) => setSearchTerm(e.target.value)}
+                />
+              </div>
+              {filteredOptions?.map((option) => (
+                <li
+                  key={option?.[keyPropertyName as any] || option}
+                  className="option"
+                  onClick={() =>
+                    handleOptionClick(
+                      option?.[valuePropertyName as any] ?? option
+                    )
+                  }
+                >
+                  {option?.[itemPropertyName as any] || option}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <ul className="options">
+              {options?.map((option) => (
+                <li
+                  key={option?.[keyPropertyName as any] || option}
+                  className="option"
+                  onClick={() =>
+                    handleOptionClick(
+                      option?.[valuePropertyName as any] ?? option
+                    )
+                  }
+                >
+                  {option?.[itemPropertyName as any] || option}
+                </li>
+              ))}
+            </ul>
+          )}
+        </>
       )}
     </div>
   );
