@@ -1,19 +1,21 @@
 import FormInput from "../../../../components/FormInput";
 import { BeneficiaryIcon } from "../../../../assets/svg/PayBill";
-import { StepPagesProps } from "../../../../interfaces/Global";
-import { setAirtimeBundlePayload } from "../../../../store/slice/billPaymentSlice";
+import {
+  setAirtimeBundlePayload,
+  setAirtimeDataCurrentStep,
+} from "../../../../store/slice/billPaymentSlice";
 import { useAppDispatch } from "../../../../hooks";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 
-const AddBeneficiary: React.FC<StepPagesProps> = ({ setCurrentStep }) => {
+const AddBeneficiary = () => {
   const dispatch = useAppDispatch();
   const onSubmit = async (formData: { phoneNumber: string }) => {
     dispatch(
       setAirtimeBundlePayload({
         phoneNumber: formData.phoneNumber,
       }),
-      setCurrentStep(5)
+      setAirtimeDataCurrentStep(5)
     );
   };
   const initialValues = {

@@ -1,18 +1,21 @@
 import PopUp from "../../../../components/PopUps/PopUp";
 import { SuccessIcon } from "../../../../assets/svg/CustomSVGs";
 import { useGlobalHooks } from "../../../../hooks/globalHooks";
-import { useAppSelector } from "../../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
 import { selectGlobal } from "../../../../store/slice/globalSlice";
 import { useRef } from "react";
 import { ArrowDownIcon } from "../../../../assets/svg/PayBill";
-import { selectBillPayment } from "../../../../store/slice/billPaymentSlice";
-import { StepPagesProps } from "../../../../interfaces/Global";
+import {
+  selectBillPayment,
+  setAirtimeDataCurrentStep,
+} from "../../../../store/slice/billPaymentSlice";
 import InputToken from "./InputToken";
 
-const AirtimeConfirmation: React.FC<StepPagesProps> = ({ setCurrentStep }) => {
+const AirtimeConfirmation = () => {
   const formRef = useRef<HTMLDivElement>(null);
   const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
+  const dispatch = useAppDispatch();
   const { airtimeBundlePayload } = useAppSelector(selectBillPayment);
 
   const handleSubmit = () => {
@@ -104,7 +107,7 @@ const AirtimeConfirmation: React.FC<StepPagesProps> = ({ setCurrentStep }) => {
             <div className="flex flex-col items-end ">
               <p
                 className="tit text-sm  text-secColor font-normal font-workSans cursor-pointer"
-                onClick={() => setCurrentStep(4)}
+                onClick={() => dispatch(setAirtimeDataCurrentStep(4))}
               >
                 Change
               </p>

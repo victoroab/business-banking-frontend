@@ -3,16 +3,18 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
 import { selectAccount } from "../../../../store/slice/account";
-import { setAirtimeBundlePayload } from "../../../../store/slice/billPaymentSlice";
-import { StepPagesProps } from "../../../../interfaces/Global";
+import {
+  setAirtimeBundlePayload,
+  setAirtimeDataCurrentStep,
+} from "../../../../store/slice/billPaymentSlice";
 
-const DebitAccount: React.FC<StepPagesProps> = ({ setCurrentStep }) => {
+const DebitAccount = () => {
   const dispatch = useAppDispatch();
   const { accountDetails } = useAppSelector(selectAccount);
   const onSubmit = async (formData: { accountNumber: string }) => {
     dispatch(
       setAirtimeBundlePayload({ fromAccountNumber: formData.accountNumber }),
-      setCurrentStep(2)
+      setAirtimeDataCurrentStep(2)
     );
   };
 

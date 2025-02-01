@@ -1,19 +1,23 @@
 import { useState } from "react";
 import Otp from "../../../../components/OTP/Otp";
-import { useAppSelector } from "../../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
 import { useGlobalHooks } from "../../../../hooks/globalHooks";
 import PopUp from "../../../../components/PopUps/PopUp";
 import { selectGlobal } from "../../../../store/slice/globalSlice";
 import { errorHandler } from "../../../../utils";
 import { toast } from "react-toastify";
 import Spinner from "../../../../components/Spinner/Spinner";
-import { selectBillPayment } from "../../../../store/slice/billPaymentSlice";
+import {
+  selectBillPayment,
+  setAirtimeDataCurrentStep,
+} from "../../../../store/slice/billPaymentSlice";
 import { useBuyAirtimeMutation } from "../../../../service/billPayment";
 
 const InputToken = () => {
   const [otpCode, setOtpCode] = useState<string>("");
   const toggle = useAppSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
+  const dispatch = useAppDispatch();
   const [buyAirtime, { isLoading }] = useBuyAirtimeMutation();
   const { airtimeBundlePayload } = useAppSelector(selectBillPayment);
 
@@ -30,7 +34,7 @@ const InputToken = () => {
       const response = await buyAirtime(requiredData).unwrap();
       handleShow("input-pin");
       toast.success(response?.message);
-      console.log(response);
+      dispatch(setAirtimeDataCurrentStep(1));
     } catch (error: any) {
       errorHandler(error);
     }

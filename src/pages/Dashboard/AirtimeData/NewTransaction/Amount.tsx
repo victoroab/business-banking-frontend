@@ -2,17 +2,19 @@ import FormInput from "../../../../components/FormInput";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useAppDispatch } from "../../../../hooks";
-import { setAirtimeBundlePayload } from "../../../../store/slice/billPaymentSlice";
-import { StepPagesProps } from "../../../../interfaces/Global";
+import {
+  setAirtimeBundlePayload,
+  setAirtimeDataCurrentStep,
+} from "../../../../store/slice/billPaymentSlice";
 
-const Amount: React.FC<StepPagesProps> = ({ setCurrentStep }) => {
+const Amount = () => {
   const dispatch = useAppDispatch();
   const onSubmit = async (formData: { amount: string }) => {
     dispatch(
       setAirtimeBundlePayload({
         amount: parseFloat(formData.amount),
       }),
-      setCurrentStep(3)
+      setAirtimeDataCurrentStep(3)
     );
   };
   const initialValues = {

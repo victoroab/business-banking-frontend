@@ -1,13 +1,17 @@
 // import { useNavigate } from "react-router-dom";
 import { ArrowRightIcon } from "../../../../assets/svg/CustomSVGs";
+import { useAppDispatch } from "../../../../hooks";
 import { IDOption } from "../../../../interfaces/Global";
+import { setAirtimeDataCurrentStep } from "../../../../store/slice/billPaymentSlice";
 import { dataPackage } from "../../../../utils";
 
 const AirtimePackage = () => {
-  //   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const handleNavigate = (title: string) => {
     console.log(title);
+
+    dispatch(setAirtimeDataCurrentStep(4));
   };
 
   return (

@@ -1,10 +1,12 @@
 import { ArrowRightIcon } from "../../../../assets/svg/CustomSVGs";
 import { useAppDispatch } from "../../../../hooks";
-import { StepPagesProps } from "../../../../interfaces/Global";
 import { useGetAllAirtimeProvidersQuery } from "../../../../service/billPayment";
-import { setAirtimeBundlePayload } from "../../../../store/slice/billPaymentSlice";
+import {
+  setAirtimeBundlePayload,
+  setAirtimeDataCurrentStep,
+} from "../../../../store/slice/billPaymentSlice";
 
-const Provider: React.FC<StepPagesProps> = ({ setCurrentStep }) => {
+const Provider = () => {
   const { data } = useGetAllAirtimeProvidersQuery();
   console.log(data?.data);
 
@@ -12,7 +14,7 @@ const Provider: React.FC<StepPagesProps> = ({ setCurrentStep }) => {
   const handleNavigate = (name: string, id: string) => {
     dispatch(
       setAirtimeBundlePayload({ serviceCategoryId: id, network: name }),
-      setCurrentStep(4)
+      setAirtimeDataCurrentStep(4)
     );
   };
 
