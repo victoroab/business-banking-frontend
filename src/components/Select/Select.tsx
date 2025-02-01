@@ -95,7 +95,7 @@ const Select: FC<SelectProps> = ({
             <ul className="options">
               <div className="flex px-4 mb-6">
                 <input
-                  placeholder="🔍 Search for Account"
+                  placeholder="🔍 Search for Bank"
                   className={`form-controls w-full`}
                   value={searchTerm}
                   onChange={(e: any) => setSearchTerm(e.target.value)}
