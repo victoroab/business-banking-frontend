@@ -14,7 +14,7 @@ import { useGlobalHooks } from "../../../hooks/globalHooks";
 import AddEmail from "../../../components/Dashboard/Home/AddEmail";
 import { selectGlobal } from "../../../store/slice/globalSlice";
 import AddPhoneNumber from "../../../components/Dashboard/Home/AddPhoneNumber";
-import { useGetAccountDetailsQuery } from "../../../service/account";
+import { useGetAccountsMutation } from "../../../service/account";
 import { useEffect } from "react";
 import { setAccountDetails } from "../../../store/slice/account";
 
@@ -25,11 +25,19 @@ const Dashboard = () => {
   const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
   const { data: profile } = useUserProfileQuery({});
-  const { data: accountdetails } = useGetAccountDetailsQuery({});
+  const [account] = useGetAccountsMutation();
+
+  const handleFetchAccount = async () => {
+    try {
+      const response = await account().unwrap();
+      dispatch(setAccountDetails(response?.data));
+    } catch (error) {}
+  };
 
   useEffect(() => {
-    dispatch(setAccountDetails(accountdetails?.data));
-  }, [dispatch, accountdetails, setAccountDetails]);
+    handleFetchAccount();
+    // dispatch(setAccountDetails(accountdetails?.data));
+  }, []);
 
   return (
     <div className="border">

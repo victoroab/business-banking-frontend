@@ -540,7 +540,7 @@ export const airtimeStep: ProgressStepsProps[] = [
     title: "Add Beneficiary",
   },
   {
-    id: 4,
+    id: 5,
     link: "confirmation",
     title: "Confirmation",
   },

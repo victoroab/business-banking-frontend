@@ -19,7 +19,6 @@ const customBaseQuery: BaseQueryFn<
     prepareHeaders: (headers, { getState }) => {
       const userToken = (getState() as RootState)?.auth?.userInfo
         ?.refresh_token;
-      console.log(userToken);
       if (userToken) {
         headers.set("Authorization", `Bearer ${userToken}`);
       }
@@ -53,7 +52,15 @@ export const accountApi = createApi({
       query: () => "/account",
       providesTags: [{ type: "Account", id: "Account" }],
     }),
+
+    //account details
+    getAccounts: builder.mutation<any, void>({
+      query: () => ({
+        url: "/account",
+      }),
+      invalidatesTags: [{ type: "Account", id: "Account" }],
+    }),
   }),
 });
 
-export const { useGetAccountDetailsQuery } = accountApi;
+export const { useGetAccountDetailsQuery, useGetAccountsMutation } = accountApi;

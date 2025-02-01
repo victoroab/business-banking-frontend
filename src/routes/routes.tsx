@@ -69,6 +69,7 @@ import UploadPaymentPeriod from "../pages/Dashboard/Upload/PaymentPeriod";
 import SetPasscode from "../pages/Auth/SignIn/SetPasscode";
 import Report from "../pages/Dashboard/Report/Report";
 import AuditTrail from "../pages/Dashboard/AuditTrail/Audit";
+import NewAirtimeData from "../pages/Dashboard/AirtimeData/NewTransaction/NewAirtimeData";
 
 const authRoutes: RouteProps[] = [
   { path: "/welcome", name: "Home", element: <Home /> },
@@ -116,6 +117,11 @@ const dashboardRoutes: RouteProps[] = [
     path: "/send-money/transaction",
     name: "Send Money",
     element: <SendMoney />,
+  },
+  {
+    path: "/utility/test",
+    name: "New Airtime & Data",
+    element: <NewAirtimeData />,
   },
   { path: "/utility/pay-bills", name: "Home", element: <PayBills /> },
   { path: "/utility/pay-new-bill", name: "Home", element: <NewBill /> },
@@ -221,43 +227,43 @@ const sendMoneyRoutes: RouteProps[] = [
   },
 ];
 
-const airtimeDataRoutes: RouteProps[] = [
-  {
-    path: "debit-account",
-    name: "Debit Account",
-    element: <DebitAccount />,
-  },
-  {
-    path: "bank-details",
-    name: "Bank Details",
-    element: <BankDetails />,
-  },
-  {
-    path: "provider",
-    name: "Provider",
-    element: <Provider />,
-  },
-  {
-    path: "amount",
-    name: "Amount",
-    element: <Amount />,
-  },
-  {
-    path: "beneficiary",
-    name: "Add beneficiary",
-    element: <AddBeneficiary />,
-  },
-  {
-    path: "package",
-    name: "Select Package",
-    element: <AirtimePackage />,
-  },
-  {
-    path: "confirmation",
-    name: "Confirmation",
-    element: <AirtimeConfirmation />,
-  },
-];
+// const airtimeDataRoutes: RouteProps[] = [
+//   {
+//     path: "debit-account",
+//     name: "Debit Account",
+//     element: <DebitAccount />,
+//   },
+//   {
+//     path: "bank-details",
+//     name: "Bank Details",
+//     element: <BankDetails />,
+//   },
+//   {
+//     path: "provider",
+//     name: "Provider",
+//     element: <Provider />,
+//   },
+//   {
+//     path: "amount",
+//     name: "Amount",
+//     element: <Amount />,
+//   },
+//   {
+//     path: "beneficiary",
+//     name: "Add beneficiary",
+//     element: <AddBeneficiary />,
+//   },
+//   {
+//     path: "package",
+//     name: "Select Package",
+//     element: <AirtimePackage />,
+//   },
+//   {
+//     path: "confirmation",
+//     name: "Confirmation",
+//     element: <AirtimeConfirmation />,
+//   },
+// ];
 
 const posRoutes: RouteProps[] = [
   {
@@ -364,7 +370,7 @@ export {
   kybRoutes,
   sendMoneyRoutes,
   posRoutes,
-  airtimeDataRoutes,
+  // airtimeDataRoutes,
   payBillDataRoutes,
   bulkUploadRoutes,
 };

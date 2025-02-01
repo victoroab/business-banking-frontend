@@ -69,6 +69,9 @@ export interface KYCPageProps {
   setCurrentStep: any;
 }
 
+export interface StepPagesProps {
+  setCurrentStep: any;
+}
 export interface IDOption {
   icon?: any;
   title: string;

@@ -1,13 +1,19 @@
-// import { useNavigate } from "react-router-dom";
 import { ArrowRightIcon } from "../../../../assets/svg/CustomSVGs";
-import { IDOption } from "../../../../interfaces/Global";
-import { dataProvider } from "../../../../utils";
+import { useAppDispatch } from "../../../../hooks";
+import { StepPagesProps } from "../../../../interfaces/Global";
+import { useGetAllAirtimeProvidersQuery } from "../../../../service/billPayment";
+import { setAirtimeBundlePayload } from "../../../../store/slice/billPaymentSlice";
 
-const Provider = () => {
-  // const navigate = useNavigate();
+const Provider: React.FC<StepPagesProps> = ({ setCurrentStep }) => {
+  const { data } = useGetAllAirtimeProvidersQuery();
+  console.log(data?.data);
 
-  const handleNavigate = (title: string) => {
-    console.log(title);
+  const dispatch = useAppDispatch();
+  const handleNavigate = (name: string, id: string) => {
+    dispatch(
+      setAirtimeBundlePayload({ serviceCategoryId: id, network: name }),
+      setCurrentStep(4)
+    );
   };
 
   return (
@@ -22,18 +28,22 @@ const Provider = () => {
       </div>
 
       <div className="flex flex-col gap-2">
-        {dataProvider.map((option: IDOption, index) => (
+        {data?.data?.map((option: any) => (
           <div
             className="account-option flex flex-col cursor-pointer rounded-xl p-6 gap-4"
             style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
-            key={index}
-            onClick={() => handleNavigate(option?.title)}
+            key={option?.serviceCategoryId}
+            onClick={() => handleNavigate(option?.name, option?.id)}
           >
             <div className="flex items-center justify-between">
               <div className="flex gap-2 items-center">
-                <option.icon />
+                <img
+                  src={option?.logoUrl}
+                  alt=""
+                  className="h-6 w-6 rounded-full"
+                />
                 <h2 className="text-base font-medium text-lightGreyColor m-0 font-workSans">
-                  {option?.title}
+                  {option?.name}
                 </h2>
               </div>
               <ArrowRightIcon />

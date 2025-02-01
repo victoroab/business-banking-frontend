@@ -1,12 +1,33 @@
 import FormInput from "../../../../components/FormInput";
 import { BeneficiaryIcon } from "../../../../assets/svg/PayBill";
-import { useNavigate } from "react-router-dom";
+import { StepPagesProps } from "../../../../interfaces/Global";
+import { setAirtimeBundlePayload } from "../../../../store/slice/billPaymentSlice";
+import { useAppDispatch } from "../../../../hooks";
+import * as Yup from "yup";
+import { useFormik } from "formik";
 
-const AddBeneficiary = () => {
-  const navigate = useNavigate();
-  const handleSubmit = () => {
-    navigate("/utility/confirmation");
+const AddBeneficiary: React.FC<StepPagesProps> = ({ setCurrentStep }) => {
+  const dispatch = useAppDispatch();
+  const onSubmit = async (formData: { phoneNumber: string }) => {
+    dispatch(
+      setAirtimeBundlePayload({
+        phoneNumber: formData.phoneNumber,
+      }),
+      setCurrentStep(5)
+    );
   };
+  const initialValues = {
+    phoneNumber: "",
+  };
+  const formSchema = Yup.object().shape({
+    phoneNumber: Yup.string(),
+  });
+  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: formSchema,
+      onSubmit,
+    });
 
   return (
     <div className="flex flex-col gap-14 pr-6">
@@ -20,11 +41,21 @@ const AddBeneficiary = () => {
       </div>
 
       <div className="form">
-        <form action="#" className="flex gap-8 flex-col">
+        <form
+          action="#"
+          className="flex gap-8 flex-col"
+          onSubmit={handleSubmit}
+        >
           <FormInput
-            id={""}
-            placeholder="Meter Number"
-            className="flex flex-col gap-4"
+            type="text"
+            placeholder="Phone Number"
+            id="phoneNumber"
+            className="w-full"
+            name="phoneNumber"
+            error={touched.phoneNumber ? errors.phoneNumber : undefined}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            defaultValue={values?.phoneNumber}
           />
 
           <div className="flex justify-center flex-col w-full items-center">
@@ -34,11 +65,7 @@ const AddBeneficiary = () => {
             <BeneficiaryIcon className="cursor-pointer" />
           </div>
           <div className="flex justify-center  w-full gap-6">
-            <button
-              className="main-btn w-full"
-              type="submit"
-              onClick={handleSubmit}
-            >
+            <button className="main-btn w-full" type="submit">
               Continue
             </button>
           </div>

@@ -3,7 +3,6 @@ import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import {
-  airtimeDataRoutes,
   authRoutes,
   bulkUploadRoutes,
   dashboardRoutes,
@@ -87,18 +86,15 @@ function App() {
           ))}
         </Route>
 
-        <Route
+        {/* <Route
           path="/utility"
           element={
             <Guard>
               <DashboardLayout>
                 <ProgressLayout
-                  progressSteps={
-                    airtimeDataAction === "AIRTIME" ? airtimeStep : dataStep
-                  }
+               
                   isDashboard={true}
-                  navTitle="Airtime & Data"
-                  navDesc="Easily recharge you phone or prchase data bundles in just a few clicks"
+            
                 />
               </DashboardLayout>
             </Guard>
@@ -107,7 +103,7 @@ function App() {
           {airtimeDataRoutes.map((route, idx: number) => (
             <Route key={idx} path={route.path} element={route.element} />
           ))}
-        </Route>
+        </Route> */}
 
         <Route
           path="/utility/pay-new-bill"

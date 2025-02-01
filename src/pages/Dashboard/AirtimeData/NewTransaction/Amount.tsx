@@ -1,20 +1,19 @@
 import FormInput from "../../../../components/FormInput";
-import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useAppDispatch } from "../../../../hooks";
-import { setSendMoneyPayload } from "../../../../store/slice/transactionSlice";
+import { setAirtimeBundlePayload } from "../../../../store/slice/billPaymentSlice";
+import { StepPagesProps } from "../../../../interfaces/Global";
 
-const Amount = () => {
+const Amount: React.FC<StepPagesProps> = ({ setCurrentStep }) => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const onSubmit = async (formData: { amount: string }) => {
     dispatch(
-      setSendMoneyPayload({
+      setAirtimeBundlePayload({
         amount: parseFloat(formData.amount),
-      })
+      }),
+      setCurrentStep(3)
     );
-    navigate("/utility/provider");
   };
   const initialValues = {
     amount: "",
