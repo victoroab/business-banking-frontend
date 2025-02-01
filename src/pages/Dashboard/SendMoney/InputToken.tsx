@@ -1,8 +1,10 @@
 import { useState } from "react";
 import Otp from "../../../components/OTP/Otp";
-import { selectTransaction } from "../../../store/slice/transactionSlice";
-import { useAppSelector } from "../../../hooks";
-
+import {
+  selectTransaction,
+  setTransactionCurrentStep,
+} from "../../../store/slice/transactionSlice";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import PopUp from "../../../components/PopUps/PopUp";
 import { selectGlobal } from "../../../store/slice/globalSlice";
@@ -17,7 +19,7 @@ const InputToken = () => {
   const { handleShow } = useGlobalHooks();
   const [sendMoney, { isLoading }] = useSendMoneyMutation();
   const { sendMoneyPayload } = useAppSelector(selectTransaction);
-  console.log(sendMoneyPayload);
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async () => {
     try {
@@ -28,7 +30,7 @@ const InputToken = () => {
       const response = await sendMoney(requiredData).unwrap();
       handleShow("input-pin");
       toast.success(response?.message);
-      console.log(response);
+      dispatch(setTransactionCurrentStep(1));
     } catch (error: any) {
       errorHandler(error);
     }

@@ -10,13 +10,13 @@ import { setKYBDetails } from "../store/slice/authSlice";
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../hooks";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../components/Navbar/Navbar";
-import BackNavigation from "../components/ArrowBack/Back";
 
 const ProgressLayout = ({
   progressSteps,
   isDashboard,
   stepsComponents,
+  stateCurrentStep,
+  setStateCurrentStep,
   navTitle,
   navDesc,
   isUpload,
@@ -25,7 +25,6 @@ const ProgressLayout = ({
   const currentStep = location.pathname.split("/")[2];
   const navigate = useNavigate();
   const { data } = useKybDetailsQuery({});
-  const [stateCurrentStep, setStateCurrentStep] = useState(1);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(setKYBDetails(data?.data));

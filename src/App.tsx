@@ -9,27 +9,15 @@ import {
   kybRoutes,
   payBillDataRoutes,
   posRoutes,
-  sendMoneyRoutes,
 } from "./routes/routes";
 import DashboardLayout from "./layout/Dashboard";
 import { RouteProps } from "./interfaces/Global";
 import ProgressLayout from "./layout/ProgressLayout";
-import {
-  airtimeStep,
-  androidStep,
-  dataStep,
-  KYCProgressSteps,
-  newBillProgressSteps,
-  newTransaction,
-} from "./utils";
-import { useAppSelector } from "./hooks";
+import { androidStep, KYCProgressSteps, newBillProgressSteps } from "./utils";
 import Upload from "./pages/Dashboard/Upload/Upload";
 import Guard from "./routes/Guard";
 import NotFound from "./pages/NotFound/NotFound";
-import { selectBillPayment } from "./store/slice/billPaymentSlice";
 function App() {
-  const { airtimeDataAction } = useAppSelector(selectBillPayment);
-
   return (
     <main className="App">
       <ToastContainer position="top-right" autoClose={2000} />
@@ -66,7 +54,7 @@ function App() {
           ))}
         </Route>
 
-        <Route
+        {/* <Route
           path="/send-money"
           element={
             <Guard>
@@ -84,7 +72,7 @@ function App() {
           {sendMoneyRoutes.map((route, idx: number) => (
             <Route key={idx} path={route.path} element={route.element} />
           ))}
-        </Route>
+        </Route> */}
 
         {/* <Route
           path="/utility"

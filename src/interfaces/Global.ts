@@ -109,6 +109,8 @@ export interface ProgressProps {
   navTitle?: string;
   navDesc?: string;
   isUpload?: boolean;
+  stateCurrentStep?: number;
+  setStateCurrentStep?: React.Dispatch<React.SetStateAction<number>>;
 }
 
 type TransactionType = "debit" | "credit" | "transfer";
@@ -204,4 +206,9 @@ export interface AddPos {
   city?: string;
   zipCode?: string;
   pin?: string;
+}
+
+export interface BackArrowProps {
+  stateCurrentStep: number;
+  setStateCurrentStep: any;
 }

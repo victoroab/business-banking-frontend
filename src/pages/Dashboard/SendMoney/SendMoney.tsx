@@ -30,7 +30,6 @@ const SendMoney = () => {
   const { data, refetch } = useGetAllTransactionsQuery(queryData);
 
   const navigate = useNavigate();
-  console.log(data?.data);
   const handleOpenModal = (row: TransferDataProps) => {
     setSelectedRow(row);
     IsOpenAction((prev) => !prev);
@@ -98,7 +97,7 @@ const SendMoney = () => {
         <div className="flex justify-end px-10">
           <button
             className="main-btn w-40 font-bricolage"
-            onClick={() => navigate("/send-money/debit-account")}
+            onClick={() => navigate("/send-money/new-transaction")}
           >
             Send Money
           </button>

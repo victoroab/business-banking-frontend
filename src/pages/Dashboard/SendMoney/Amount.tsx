@@ -1,21 +1,22 @@
 import FormInput from "../../../components/FormInput";
-import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { useAppDispatch } from "../../../hooks";
-import { setSendMoneyPayload } from "../../../store/slice/transactionSlice";
+import {
+  setSendMoneyPayload,
+  setTransactionCurrentStep,
+} from "../../../store/slice/transactionSlice";
 
 const Amount = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const onSubmit = async (formData: { amount: string; narration: string }) => {
     dispatch(
       setSendMoneyPayload({
         amount: parseFloat(formData.amount),
         narration: formData.narration,
       })
-    );
-    navigate("/send-money/confirmation");
+    ),
+      setTransactionCurrentStep(4);
   };
   const initialValues = {
     amount: "",

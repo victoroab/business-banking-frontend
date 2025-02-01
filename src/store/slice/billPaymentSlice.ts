@@ -4,8 +4,8 @@ import { AirtimeBundleData } from "../../interfaces/service/billPayment";
 
 interface TransactionState {
   airtimeDataAction: string;
-
   airtimeBundlePayload: AirtimeBundleData;
+  airtimeDataCurrentStep: number;
 }
 
 const initialState: TransactionState = {
@@ -19,6 +19,7 @@ const initialState: TransactionState = {
     bundleCode: "",
     amount: 0,
   },
+  airtimeDataCurrentStep: 1,
 };
 
 export const billPaymentSlice = createSlice({
@@ -36,11 +37,18 @@ export const billPaymentSlice = createSlice({
         ...action.payload,
       };
     },
+
+    setAirtimeDataCurrentStep: (state, action) => {
+      state.airtimeDataCurrentStep = action.payload;
+    },
   },
 });
 
-export const { setAirtimeDataAction, setAirtimeBundlePayload } =
-  billPaymentSlice.actions;
+export const {
+  setAirtimeDataAction,
+  setAirtimeBundlePayload,
+  setAirtimeDataCurrentStep,
+} = billPaymentSlice.actions;
 
 export const selectBillPayment = (state: RootState) => state.billPayment;
 export default billPaymentSlice.reducer;

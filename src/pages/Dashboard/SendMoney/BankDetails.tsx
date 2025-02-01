@@ -1,13 +1,15 @@
 import { BeneficiaryIcon } from "../../../assets/svg/PayBill";
 import FormInput from "../../../components/FormInput";
-import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import {
   useGetAllBanksQuery,
   useNameEnquiryMutation,
 } from "../../../service/transaction";
-import { setSendMoneyPayload } from "../../../store/slice/transactionSlice";
+import {
+  setSendMoneyPayload,
+  setTransactionCurrentStep,
+} from "../../../store/slice/transactionSlice";
 import { useAppDispatch } from "../../../hooks";
 import { useEffect, useState } from "react";
 import { errorHandler } from "../../../utils";
@@ -15,7 +17,6 @@ import Spinner from "../../../components/Spinner/Spinner";
 
 const BankDetails = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const [nameEnquiry, { isLoading }] = useNameEnquiryMutation();
   const [beneficiaryAccountDetails, setBeneficiaryAccountDetails] =
     useState<any>();
@@ -124,7 +125,7 @@ const BankDetails = () => {
             <div className="flex justify-center  w-full gap-6">
               <button
                 className="main-btn w-full"
-                onClick={() => navigate("/send-money/amount")}
+                onClick={() => dispatch(setTransactionCurrentStep(3))}
               >
                 Continue
               </button>

@@ -1,20 +1,21 @@
 import FormInput from "../../../components/FormInput";
-import { useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { setSendMoneyPayload } from "../../../store/slice/transactionSlice";
+import {
+  setSendMoneyPayload,
+  setTransactionCurrentStep,
+} from "../../../store/slice/transactionSlice";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { selectAccount } from "../../../store/slice/account";
 
 const DebitAccount = () => {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { accountDetails } = useAppSelector(selectAccount);
   const onSubmit = async (formData: { accountNumber: string }) => {
     dispatch(
       setSendMoneyPayload({ fromAccountNumber: formData.accountNumber })
     );
-    navigate("/send-money/bank-details");
+    setTransactionCurrentStep(2);
   };
 
   const initialValues = {

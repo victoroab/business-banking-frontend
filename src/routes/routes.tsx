@@ -35,14 +35,14 @@ import Approvals from "../pages/Dashboard/Approvals/Approvals";
 import RequestCard from "../pages/Dashboard/Cards/RequestCard";
 import VirtualCard from "../pages/Dashboard/Cards/VirtualCard";
 import RequestPhysicalCard from "../pages/Dashboard/Cards/RequestPhysicalCard";
-import DebitAccount from "../pages/Dashboard/SendMoney/DebitAccount";
-import BankDetails from "../pages/Dashboard/SendMoney/BankDetails";
-import Amount from "../pages/Dashboard/SendMoney/Amount";
-import Confirmation from "../pages/Dashboard/SendMoney/Confirmation";
-import Provider from "../pages/Dashboard/AirtimeData/NewTransaction/Provider";
-import AddBeneficiary from "../pages/Dashboard/AirtimeData/NewTransaction/AddBeneficiary";
-import AirtimeConfirmation from "../pages/Dashboard/AirtimeData/NewTransaction/Confirmation";
-import AirtimePackage from "../pages/Dashboard/AirtimeData/NewTransaction/Package";
+// import DebitAccount from "../pages/Dashboard/SendMoney/DebitAccount";
+// import BankDetails from "../pages/Dashboard/SendMoney/BankDetails";
+// import Amount from "../pages/Dashboard/SendMoney/Amount";
+// import Confirmation from "../pages/Dashboard/SendMoney/Confirmation";
+// import Provider from "../pages/Dashboard/AirtimeData/NewTransaction/Provider";
+// import AddBeneficiary from "../pages/Dashboard/AirtimeData/NewTransaction/AddBeneficiary";
+// import AirtimeConfirmation from "../pages/Dashboard/AirtimeData/NewTransaction/Confirmation";
+// import AirtimePackage from "../pages/Dashboard/AirtimeData/NewTransaction/Package";
 import Category from "../pages/Dashboard/PayBills/NewBill/Category";
 import BillDebitAccount from "../pages/Dashboard/PayBills/NewBill/DebitAccount";
 import PosDebitAccount from "../pages/Dashboard/POS/New/PosDebitAccount";
@@ -114,12 +114,12 @@ const dashboardRoutes: RouteProps[] = [
   { path: "/transactions", name: "Transactions", element: <Transaction /> },
   { path: "/send-money", name: "Send Money", element: <SendMoney /> },
   {
-    path: "/send-money/transaction",
+    path: "/send-money/new-transaction",
     name: "Send Money",
-    element: <SendMoney />,
+    element: <NewTransaction />,
   },
   {
-    path: "/utility/test",
+    path: "/utility/airtime-data",
     name: "New Airtime & Data",
     element: <NewAirtimeData />,
   },
@@ -154,11 +154,6 @@ const dashboardRoutes: RouteProps[] = [
   { path: "/utility", name: "Account", element: <AirtimeData /> },
   { path: "/send-money/approval", name: "Approval", element: <Approvals /> },
   { path: "/beneficiaries", name: "Beneficiaries", element: <Beneficiaries /> },
-  {
-    path: "/new-transaction",
-    name: "Transaction",
-    element: <NewTransaction />,
-  },
 ];
 
 const kybRoutes: RouteProps[] = [
@@ -204,28 +199,28 @@ const kybRoutes: RouteProps[] = [
   },
 ];
 
-const sendMoneyRoutes: RouteProps[] = [
-  {
-    path: "debit-account",
-    name: "Debit Account",
-    element: <DebitAccount />,
-  },
-  {
-    path: "bank-details",
-    name: "Bank Details",
-    element: <BankDetails />,
-  },
-  {
-    path: "amount",
-    name: "Amount",
-    element: <Amount />,
-  },
-  {
-    path: "confirmation",
-    name: "Confirmation",
-    element: <Confirmation />,
-  },
-];
+// const sendMoneyRoutes: RouteProps[] = [
+//   {
+//     path: "debit-account",
+//     name: "Debit Account",
+//     element: <DebitAccount />,
+//   },
+//   {
+//     path: "bank-details",
+//     name: "Bank Details",
+//     element: <BankDetails />,
+//   },
+//   {
+//     path: "amount",
+//     name: "Amount",
+//     element: <Amount />,
+//   },
+//   {
+//     path: "confirmation",
+//     name: "Confirmation",
+//     element: <Confirmation />,
+//   },
+// ];
 
 // const airtimeDataRoutes: RouteProps[] = [
 //   {
@@ -368,7 +363,7 @@ export {
   authRoutes,
   dashboardRoutes,
   kybRoutes,
-  sendMoneyRoutes,
+  // sendMoneyRoutes,
   posRoutes,
   // airtimeDataRoutes,
   payBillDataRoutes,

@@ -15,7 +15,6 @@ const AirtimeConfirmation: React.FC<StepPagesProps> = ({ setCurrentStep }) => {
   const toggle = useAppSelector(selectGlobal);
   const { airtimeBundlePayload } = useAppSelector(selectBillPayment);
 
-  console.log(airtimeBundlePayload);
   const handleSubmit = () => {
     handleShow("input-pin");
   };

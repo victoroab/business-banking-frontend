@@ -1,9 +1,12 @@
-import BackNavigation from "../../../../components/ArrowBack/Back";
+import StepBackNavigation from "../../../../components/ArrowBack/StepBackArrow";
 import Navbar from "../../../../components/Navbar/Navbar";
 import { useAppSelector } from "../../../../hooks";
 import { StepComponentProps } from "../../../../interfaces/Global";
 import ProgressLayout from "../../../../layout/ProgressLayout";
-import { selectBillPayment } from "../../../../store/slice/billPaymentSlice";
+import {
+  selectBillPayment,
+  setAirtimeDataCurrentStep,
+} from "../../../../store/slice/billPaymentSlice";
 import { airtimeStep, dataStep } from "../../../../utils";
 import AddBeneficiary from "./AddBeneficiary";
 import Amount from "./Amount";
@@ -13,7 +16,8 @@ import AirtimePackage from "./Package";
 import Provider from "./Provider";
 
 const NewAirtimeData = () => {
-  const { airtimeDataAction } = useAppSelector(selectBillPayment);
+  const { airtimeDataAction, airtimeDataCurrentStep } =
+    useAppSelector(selectBillPayment);
 
   const airtimeStepsComponents: StepComponentProps[] = [
     { step: 1, component: DebitAccount },
@@ -45,7 +49,10 @@ const NewAirtimeData = () => {
       />
       <div className="flex flex-col  gap-10">
         <div className="flex  justify-start w-48">
-          <BackNavigation />
+          <StepBackNavigation
+            stateCurrentStep={airtimeDataCurrentStep}
+            setStateCurrentStep={setAirtimeDataCurrentStep}
+          />
         </div>
 
         <div className="bg-pryColor-Light w-full flex flex-col gap-10 justify-center items-center py-6 px-10 h-[80vh]">
@@ -53,6 +60,8 @@ const NewAirtimeData = () => {
             stepsComponents={stepsComponents}
             progressSteps={progressSteps}
             isDashboard
+            stateCurrentStep={airtimeDataCurrentStep}
+            setStateCurrentStep={setAirtimeDataCurrentStep}
           />
         </div>
       </div>

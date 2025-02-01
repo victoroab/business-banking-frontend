@@ -4,16 +4,18 @@ import { selectGlobal } from "../../../store/slice/globalSlice";
 import { AlertLogoIcon } from "../../../assets/svg/Sidebar";
 import PopUp from "../../../components/PopUps/PopUp";
 import { SuccessIcon } from "../../../assets/svg/CustomSVGs";
-import { selectTransaction } from "../../../store/slice/transactionSlice";
+import {
+  selectTransaction,
+  setTransactionCurrentStep,
+} from "../../../store/slice/transactionSlice";
 import InputToken from "./InputToken";
-import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 
 const Confirmation = () => {
   const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
-  const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { sendMoneyPayload } = useAppSelector(selectTransaction);
-  console.log(sendMoneyPayload);
   const handleSubmit = () => {
     handleShow("input-pin");
   };
@@ -121,7 +123,7 @@ const Confirmation = () => {
             >
               <p
                 className="tit text-sm  text-secColor font-normal font-workSans cursor-pointer"
-                onClick={() => navigate("/send-money/bank-details")}
+                onClick={() => dispatch(setTransactionCurrentStep(2))}
               >
                 Change
               </p>

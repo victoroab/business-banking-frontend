@@ -4,6 +4,7 @@ import { TransactionPayload } from "../../interfaces/service/transaction";
 
 interface TransactionState {
   sendMoneyPayload: TransactionPayload;
+  transactionCurrentStep: number;
 }
 
 const initialState: TransactionState = {
@@ -17,6 +18,7 @@ const initialState: TransactionState = {
     accountName: "",
     bankName: "",
   },
+  transactionCurrentStep: 1,
 };
 
 export const transactionSlice = createSlice({
@@ -30,10 +32,14 @@ export const transactionSlice = createSlice({
         ...action.payload,
       };
     },
+    setTransactionCurrentStep: (state, action) => {
+      state.transactionCurrentStep = action.payload;
+    },
   },
 });
 
-export const { setSendMoneyPayload } = transactionSlice.actions;
+export const { setSendMoneyPayload, setTransactionCurrentStep } =
+  transactionSlice.actions;
 
 export const selectTransaction = (state: RootState) => state.transaction;
 export default transactionSlice.reducer;
