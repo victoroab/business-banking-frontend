@@ -43,11 +43,7 @@ const DebitAccount = () => {
       </div>
 
       <div className="form">
-        <form
-          action="#"
-          className="flex gap-8 flex-col"
-          onSubmit={handleSubmit}
-        >
+        <form className="flex gap-8 flex-col" onSubmit={handleSubmit}>
           <FormInput
             id={"accountNumber"}
             type="searchSelect"

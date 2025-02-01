@@ -35,6 +35,7 @@ const SearchSelect: FC<SelectProps> = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -62,6 +63,12 @@ const SearchSelect: FC<SelectProps> = ({
     valuePropertyName ? item?.[valuePropertyName] === selectedOption : null
   );
 
+  const filteredOptions = options?.filter((option) =>
+    option?.[itemPropertyName as any]
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase())
+  );
+
   return (
     <div
       id={id}
@@ -87,15 +94,23 @@ const SearchSelect: FC<SelectProps> = ({
       </p>
       {isOpen && (
         <ul className="options p-4">
-          {options?.map((option) => (
+          <div className="flex px-4 mb-6">
+            <input
+              placeholder="🔍 Search for Account"
+              className={`form-controls w-full`}
+              value={searchTerm}
+              onChange={(e: any) => setSearchTerm(e.target.value)}
+            />
+          </div>
+          {filteredOptions?.map((option) => (
             <li
               key={option?.[keyPropertyName as any] || option}
-              className="option flex"
+              className="flex p-[10px] px-[20px] cursor-pointer font-normal flex-col text-[15px] items-start gap-[10px]"
               onClick={() =>
                 handleOptionClick(option?.[valuePropertyName as any] ?? option)
               }
             >
-              <div className="items-center flex justify-between gap-2 bg-[#f7f8ff] rounded-lg p-2">
+              <div className="items-center flex justify-between gap-2 bg-[#f7f8ff] rounded-xl p-4 w-full">
                 <div className="flex gap-2">
                   <AlertLogoIcon />
                   <div className="text-greyColr font-workSans flex gap-2 flex-col leading-4 font-medium text-sm">

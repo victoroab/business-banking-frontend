@@ -45,11 +45,11 @@ import RequestPhysicalCard from "../pages/Dashboard/Cards/RequestPhysicalCard";
 // import AirtimePackage from "../pages/Dashboard/AirtimeData/NewTransaction/Package";
 import Category from "../pages/Dashboard/PayBills/NewBill/Category";
 import BillDebitAccount from "../pages/Dashboard/PayBills/NewBill/DebitAccount";
-import PosDebitAccount from "../pages/Dashboard/POS/New/PosDebitAccount";
-import DeviceType from "../pages/Dashboard/POS/New/DeviceType";
-import Details from "../pages/Dashboard/POS/New/Details";
-import DeliveryOption from "../pages/Dashboard/POS/New/DeliveryOption";
-import PosConfirmation from "../pages/Dashboard/POS/New/PosConfirmation";
+// import PosDebitAccount from "../pages/Dashboard/POS/New/PosDebitAccount";
+// import DeviceType from "../pages/Dashboard/POS/New/DeviceType";
+// import Details from "../pages/Dashboard/POS/New/Details";
+// import DeliveryOption from "../pages/Dashboard/POS/New/DeliveryOption";
+// import PosConfirmation from "../pages/Dashboard/POS/New/PosConfirmation";
 import UserCards from "../pages/Dashboard/Cards/UserCards";
 import PhysicalCardDetails from "../pages/Dashboard/Cards/PhysicalCardDetails";
 import VirtualCardDetails from "../pages/Dashboard/Cards/VirtualCardDetails";
@@ -262,33 +262,33 @@ const kybRoutes: RouteProps[] = [
 //   },
 // ];
 
-const posRoutes: RouteProps[] = [
-  {
-    path: "debit-account",
-    name: "Debit Account",
-    element: <PosDebitAccount />,
-  },
-  {
-    path: "device-type",
-    name: "Select Device Type",
-    element: <DeviceType />,
-  },
-  {
-    path: "pos-details",
-    name: "POS Details",
-    element: <Details />,
-  },
-  {
-    path: "delivery-option",
-    name: "Delivery Option",
-    element: <DeliveryOption />,
-  },
-  {
-    path: "confirmation",
-    name: "Confirmation",
-    element: <PosConfirmation />,
-  },
-];
+// const posRoutes: RouteProps[] = [
+//   {
+//     path: "debit-account",
+//     name: "Debit Account",
+//     element: <PosDebitAccount />,
+//   },
+//   {
+//     path: "device-type",
+//     name: "Select Device Type",
+//     element: <DeviceType />,
+//   },
+//   {
+//     path: "pos-details",
+//     name: "POS Details",
+//     element: <Details />,
+//   },
+//   {
+//     path: "delivery-option",
+//     name: "Delivery Option",
+//     element: <DeliveryOption />,
+//   },
+//   {
+//     path: "confirmation",
+//     name: "Confirmation",
+//     element: <PosConfirmation />,
+//   },
+// ];
 
 const payBillDataRoutes: RouteProps[] = [
   {
@@ -366,7 +366,7 @@ export {
   dashboardRoutes,
   kybRoutes,
   // sendMoneyRoutes,
-  posRoutes,
+  // posRoutes,
   // airtimeDataRoutes,
   payBillDataRoutes,
   bulkUploadRoutes,

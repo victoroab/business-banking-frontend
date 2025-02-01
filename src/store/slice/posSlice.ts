@@ -29,7 +29,7 @@ export const posSlice = createSlice({
   initialState,
 
   reducers: {
-    setSendMoneyPayload: (state, action) => {
+    setResquestPOS: (state, action) => {
       state.requestPOSPayload = {
         ...state.requestPOSPayload,
         ...action.payload,
@@ -41,7 +41,7 @@ export const posSlice = createSlice({
   },
 });
 
-export const { setSendMoneyPayload, setPosCurrentStep } = posSlice.actions;
+export const { setResquestPOS, setPosCurrentStep } = posSlice.actions;
 
 export const selectPOS = (state: RootState) => state.pos;
 export default posSlice.reducer;

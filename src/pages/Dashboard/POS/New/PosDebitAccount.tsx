@@ -1,16 +1,38 @@
-import { useNavigate } from "react-router-dom";
 import FormInput from "../../../../components/FormInput";
-import { industries } from "../../../../utils";
-import { useAppSelector } from "../../../../hooks";
-import { selectAuth } from "../../../../store/slice/authSlice";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
+import { selectAccount } from "../../../../store/slice/account";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import {
+  setPosCurrentStep,
+  setResquestPOS,
+} from "../../../../store/slice/posSlice";
+import { accounts } from "../../../../utils";
 
 const PosDebitAccount = () => {
-  const navigate = useNavigate();
-  const handleSubmit = () => {
-    navigate("/request-pos/device-type");
+  const dispatch = useAppDispatch();
+  const { accountDetails } = useAppSelector(selectAccount);
+  console.log(accountDetails);
+  const onSubmit = async (formData: { accountNumber: string }) => {
+    dispatch(
+      setResquestPOS({ fromAccountNumber: formData.accountNumber }),
+      setPosCurrentStep(2)
+    );
   };
-  const { kybDetails } = useAppSelector(selectAuth);
-  console.log(kybDetails);
+
+  const initialValues = {
+    accountNumber: "",
+  };
+  const formSchema = Yup.object().shape({
+    accountName: Yup.string(),
+  });
+  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: formSchema,
+      onSubmit,
+    });
+
   return (
     <div className="flex flex-col gap-14 pr-6">
       <div className="gap-4 flex flex-col">
@@ -23,27 +45,26 @@ const PosDebitAccount = () => {
       </div>
 
       <div className="form">
-        <form action="#" className="flex gap-8 flex-col">
+        <form onSubmit={handleSubmit} className="flex gap-8 flex-col">
           <FormInput
-            id="debitAccount"
-            name="debitAccount"
-            label="Debit Account"
-            type="cSelect"
-            selectOptions={industries}
-            placeholder="Select industry"
-            keyPropertyName="industry"
-            valuePropertyName="industry"
-            itemPropertyName="industry"
-            //  defaultValue={values?.industry}
-            //  onChange={handleChange}
-            //  onBlur={handleBlur}
+            id={"accountNumber"}
+            type="searchSelect"
+            placeholder="Debit Account"
+            className="flex flex-col gap-4"
+            name="accountNumber"
+            selectOptions={accounts}
+            keyPropertyName="accountNumber"
+            valuePropertyName="accountNumber"
+            itemPropertyName="accountNumber"
+            accountName="accountName"
+            accountType="accountType"
+            error={touched.accountNumber ? errors.accountNumber : undefined}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            defaultValue={values?.accountNumber}
           />
           <div className="flex justify-center  w-full gap-6">
-            <button
-              className="main-btn w-full"
-              type="submit"
-              onClick={handleSubmit}
-            >
+            <button className="main-btn w-full" type="submit">
               Continue
             </button>
           </div>
