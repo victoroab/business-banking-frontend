@@ -37,7 +37,7 @@ const ProgressLayout = ({
               {progressSteps.map((progress: ProgressStepsProps) => (
                 <div className="flex" key={progress.id}>
                   <div
-                    className={`w-[200px] items-center gap-2 border-b-2 flex pb-2 ${
+                    className={`w-[210px] items-center gap-2 border-b-2 flex pb-2 ${
                       stateCurrentStep === progress.id
                         ? "border-secColor"
                         : "border-[#e8e9eb]"

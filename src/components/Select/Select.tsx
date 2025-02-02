@@ -62,8 +62,8 @@ const Select: FC<SelectProps> = ({
 
   const filteredOptions = options?.filter((option) =>
     option?.[itemPropertyName as any]
-      .toLowerCase()
-      .includes(searchTerm.toLowerCase())
+      ?.toLowerCase()
+      ?.includes(searchTerm.toLowerCase())
   );
 
   return (

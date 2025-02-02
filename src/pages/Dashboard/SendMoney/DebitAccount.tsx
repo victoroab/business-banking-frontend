@@ -30,7 +30,7 @@ const DebitAccount = () => {
       validationSchema: formSchema,
       onSubmit,
     });
-  console.log(accountDetails);
+
   return (
     <div className="flex flex-col gap-14">
       <div className="gap-4 flex flex-col">

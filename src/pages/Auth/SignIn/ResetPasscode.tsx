@@ -38,7 +38,6 @@ const ResetPasscode = () => {
       toast.success(response?.message);
       // handleShow("resetPasscode");
       setOpenResetOTP(true);
-      console.log(response);
     } catch (error: any) {
       toast.error(error.data.message);
     }
@@ -57,7 +56,6 @@ const ResetPasscode = () => {
       setOpenResetOTP(false);
       handleShow("resetPasscode");
       navigate("/reset-passcode");
-      console.log(response);
     } catch (error: any) {
       toast.error(error.data.message);
     }

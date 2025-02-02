@@ -61,7 +61,6 @@ const ResetPasscode = () => {
       setOpenResetOTP(false);
       handleShow("resetPasscode");
       navigate("/reset-passcode");
-      console.log(response);
     } catch (error: any) {
       toast.error(error.data.message);
     }

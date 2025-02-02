@@ -21,7 +21,6 @@ const NewTransaction = () => {
     { step: 3, component: Amount },
     { step: 4, component: Confirmation },
   ];
-
   return (
     <>
       <Navbar

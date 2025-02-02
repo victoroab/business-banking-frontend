@@ -8,7 +8,6 @@ import {
 
 const Provider = () => {
   const { data } = useGetAllAirtimeProvidersQuery();
-  console.log(data?.data);
 
   const dispatch = useAppDispatch();
   const handleNavigate = (name: string, id: string) => {

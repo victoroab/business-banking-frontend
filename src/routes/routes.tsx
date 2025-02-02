@@ -131,7 +131,7 @@ const dashboardRoutes: RouteProps[] = [
   { path: "/virtual-card", name: "Card", element: <VirtualCard /> },
   { path: "/cards", name: "Cards", element: <UserCards /> },
   { path: "/track-card", name: "Card", element: <TrackCard /> },
-  { path: "/uploads", name: "Upload", element: <Upload /> },
+  // { path: "/uploads", name: "Upload", element: <Upload /> },
   {
     path: "/physical-card-details",
     name: "Cards",
@@ -146,6 +146,12 @@ const dashboardRoutes: RouteProps[] = [
     path: "/request-physical-card",
     name: "Card",
     element: <RequestPhysicalCard />,
+  },
+
+  {
+    path: "/send-money/uploads/debit-account",
+    name: "Uploads",
+    element: <Upload />,
   },
   { path: "/support", name: "Home", element: <Support /> },
   { path: "/audit-trail", name: "Home", element: <AuditTrail /> },

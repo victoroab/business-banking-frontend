@@ -4,7 +4,7 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import {
   authRoutes,
-  bulkUploadRoutes,
+  // bulkUploadRoutes,
   dashboardRoutes,
   kybRoutes,
   payBillDataRoutes,
@@ -13,7 +13,7 @@ import DashboardLayout from "./layout/Dashboard";
 import { RouteProps } from "./interfaces/Global";
 import ProgressLayout from "./layout/ProgressLayout";
 import { KYCProgressSteps, newBillProgressSteps } from "./utils";
-import Upload from "./pages/Dashboard/Upload/Upload";
+// import Upload from "./pages/Dashboard/Upload/Upload";
 import Guard from "./routes/Guard";
 import NotFound from "./pages/NotFound/NotFound";
 function App() {
@@ -131,7 +131,7 @@ function App() {
           ))}
         </Route> */}
 
-        <Route
+        {/* <Route
           path="send-money/uploads"
           element={
             <Guard>
@@ -144,7 +144,7 @@ function App() {
           {bulkUploadRoutes.map((route, idx: number) => (
             <Route key={idx} path={route.path} element={route.element} />
           ))}
-        </Route>
+        </Route> */}
 
         <Route path="*" element={<NotFound />} />
       </Routes>

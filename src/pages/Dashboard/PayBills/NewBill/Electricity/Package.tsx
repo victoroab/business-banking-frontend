@@ -10,8 +10,6 @@ const ElectricityPackage = () => {
     (option: any) => selectedElectricityProvider === option?.title
   );
 
-  console.log(selectedProviderPackages);
-
   const handleNavigate = (title: string) => {
     console.log(title);
 

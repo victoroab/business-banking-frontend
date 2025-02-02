@@ -27,6 +27,7 @@ import { accountSlice } from "./slice/account";
 import { billPaymentSlice } from "./slice/billPaymentSlice";
 import { billPaymentApi } from "../service/billPayment";
 import { posSlice } from "./slice/posSlice";
+import { uploadSlice } from "./slice/uploadSlic";
 
 const rootReducers = combineReducers({
   global: globalSlice.reducer,
@@ -36,6 +37,7 @@ const rootReducers = combineReducers({
   account: accountSlice.reducer,
   billPayment: billPaymentSlice.reducer,
   pos: posSlice.reducer,
+  upload: uploadSlice.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [kybApi.reducerPath]: kybApi.reducer,
   [beneficiaryApi.reducerPath]: beneficiaryApi.reducer,

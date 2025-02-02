@@ -11,7 +11,6 @@ const TransactionPin = () => {
   const [confirmCode, setConfirmCode] = useState<string>("");
   const { userDetails } = useAppSelector(selectAuth);
 
-  console.log(userDetails);
   const handleNewChange = (otp: string) => {
     setNewCode(otp);
   };

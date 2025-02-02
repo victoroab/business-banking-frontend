@@ -8,7 +8,7 @@ import { sampleData } from "../../../utils";
 import { CautionIcon } from "../../../assets/svg/PayBill";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { selectAuth } from "../../../store/slice/authSlice";
+import { selectAuth, setUserDetails } from "../../../store/slice/authSlice";
 import { useUserProfileQuery } from "../../../service/kyb";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import AddEmail from "../../../components/Dashboard/Home/AddEmail";
@@ -36,7 +36,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     handleFetchAccount();
-    // dispatch(setAccountDetails(accountdetails?.data));
+    dispatch(setUserDetails(profile?.data));
   }, []);
 
   return (
