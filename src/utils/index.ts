@@ -1174,8 +1174,5 @@ export const logoutUser = (navigate: any) => {
   localStorage.clear();
   persistor.purge();
   console.log("Local storage cleared and persistor purged."); // Debugging
-  setTimeout(() => {
-    navigate("/login");
-    window.location.reload(); // Ensures Redux state is fully reset
-  }, 100);
+  navigate("/login");
 };

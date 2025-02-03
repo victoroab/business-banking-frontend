@@ -59,7 +59,7 @@ function App() {
   return (
     <main className="App">
       {showModal && (
-        <GeneralModal handleModalClose={() => setShowModal(false)}>
+        <GeneralModal>
           <InactiveContent
             id="idle-screen"
             close={() => setShowModal(false)}
