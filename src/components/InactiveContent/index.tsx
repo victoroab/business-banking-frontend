@@ -1,7 +1,8 @@
-import React from "react";
-
-import PopUp from "../PopUps/PopUp";
-import { useAuthHook } from "../../hooks/authHook";
+import React, { useRef } from "react";
+// import { useAuthHook } from "../../hooks/authHook";
+import { useNavigate } from "react-router-dom";
+import { logoutUser } from "../../utils";
+// import { useGlobalHooks } from "../../hooks/globalHooks";
 
 interface InactiveProps {
   close: () => void;
@@ -14,32 +15,44 @@ const InactiveContent: React.FC<InactiveProps> = ({
   close,
   counter,
   sessionTime,
-  id,
+  setShowModal,
 }) => {
-  const { logoutUser } = useAuthHook();
-  return (
-    <PopUp id={id as string}>
-      <div className="w-9/12 md:w-5/12 bg-white animate__animated animate__bounceInRight rounded-lg py-10 px-6">
-        <div className="w-500">
-          <h2 className="text-center p-4 text-pryColor text-2xl font-bricolage font-semibold">
-            You have been idle for {sessionTime} mins!
-          </h2>
-          <p className="font-workSans text-center p-4 text-greyColr">
-            You will be logged out of your session in {counter} sec. Press
-            cancel to stay?
-          </p>
-        </div>
+  const navigate = useNavigate();
+  const isLoggedOut = useRef(false); // Ref to track if logout has been called
 
-        <div className="flex flex-wrap justify-center items-center gap-6 w-full">
-          <button onClick={close} className="yellow-frame-btn !px-6">
-            Cancel
-          </button>
-          <button onClick={logoutUser} type="submit" className="main-btn !px-6">
-            Logout
-          </button>
-        </div>
+  const handleLogout = () => {
+    if (!isLoggedOut.current) {
+      isLoggedOut.current = true; // Set the ref to true
+      logoutUser(navigate);
+      setShowModal(false);
+    }
+  };
+
+  return (
+    <div className="w-full bg-white animate__animated animate__bounceInRight rounded-lg py-10 px-6 flex flex-col gap-6">
+      <div className="w-500 flex flex-col gap-4">
+        <h2 className="text-center text-nagative text-2xl font-bricolage font-semibold">
+          You have been idle for {sessionTime} mins!
+        </h2>
+        <p className="font-workSans text-center px-6 text-greyColr">
+          You will be logged out of your session in {counter} sec. Press cancel
+          to stay?
+        </p>
       </div>
-    </PopUp>
+
+      <div className="flex flex-wrap justify-center items-center gap-6 w-full">
+        <button onClick={close} className="blue-btn !px-6">
+          Cancel
+        </button>
+        <button
+          onClick={handleLogout}
+          type="submit"
+          className="red-frame-btn !px-6"
+        >
+          Logout
+        </button>
+      </div>
+    </div>
   );
 };
 

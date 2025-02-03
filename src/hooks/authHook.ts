@@ -1,7 +1,9 @@
-export const useAuthHook = () => {
+export const useAuthHook = (navigate: any) => {
   const logoutUser = () => {
     localStorage.clear();
-    window.location.href = "/login";
+    localStorage.removeItem("persist:alert-business");
+    // handleShow("idle-screen");
+    navigate("/login");
   };
 
   return { logoutUser };

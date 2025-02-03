@@ -2,10 +2,11 @@ import { SidebarData } from "./SidebarData";
 import { LogoutIcon } from "../../assets/svg/CustomSVGs";
 import { AlertLogoIcon } from "../../assets/svg/Sidebar";
 import SubMenu from "./SubMenu";
-import { useAuthHook } from "../../hooks/authHook";
+import { useNavigate } from "react-router-dom";
+import { logoutUser } from "../../utils";
 
 const Sidebar = () => {
-  const { logoutUser } = useAuthHook();
+  const navigate = useNavigate();
 
   return (
     <main className=" sidebarContainer py-8 flex flex-col gap-6 pl-6 pr-2 h-full justify-between">
@@ -26,7 +27,7 @@ const Sidebar = () => {
       </div>
 
       <div className="">
-        <div onClick={logoutUser} className="cursor-pointer">
+        <div onClick={() => logoutUser(navigate)} className="cursor-pointer">
           <hgroup className=" flex gap-4 items-center p-3">
             <h4>
               <LogoutIcon />{" "}

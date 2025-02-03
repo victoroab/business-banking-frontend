@@ -23,6 +23,7 @@ import {
   MTNIcon,
 } from "../assets/svg/Airtime";
 import { toast } from "react-toastify";
+import { persistor } from "../store/store";
 
 export const manageBeneficiaryHeader = [
   { id: 1, title: "Transfer" },
@@ -1166,3 +1167,15 @@ export const accounts = [
     accountType: "ACCOUNT",
   },
 ];
+
+export const logoutUser = (navigate: any) => {
+  console.log("Logging out user..."); // Debugging
+  localStorage.removeItem("persist:alert-business");
+  localStorage.clear();
+  persistor.purge();
+  console.log("Local storage cleared and persistor purged."); // Debugging
+  setTimeout(() => {
+    navigate("/login");
+    window.location.reload(); // Ensures Redux state is fully reset
+  }, 100);
+};
