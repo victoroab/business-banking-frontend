@@ -2,11 +2,11 @@ import { useNavigate } from "react-router-dom";
 import FormInput from "../../../components/FormInput";
 import { industries } from "../../../utils";
 import { useAppSelector } from "../../../hooks";
-import { selectDashboard } from "../../../store/slice/dashboardSlice";
+import { selectUpload } from "../../../store/slice/uploadSlic";
 
 const UploadDebitAccount = () => {
   const navigate = useNavigate();
-  const { activeUploadTab } = useAppSelector(selectDashboard);
+  const { activeUploadTab } = useAppSelector(selectUpload);
   const link =
     activeUploadTab === 2 || activeUploadTab === 3
       ? "/send-money/uploads/payment-date"
