@@ -7,6 +7,7 @@ import {
   setAirtimeBundlePayload,
   setAirtimeDataCurrentStep,
 } from "../../../../store/slice/billPaymentSlice";
+import { accounts } from "../../../../utils";
 
 const DebitAccount = () => {
   const dispatch = useAppDispatch();
@@ -50,7 +51,9 @@ const DebitAccount = () => {
             placeholder="Debit Account"
             className="flex flex-col gap-4"
             name="accountNumber"
-            selectOptions={accountDetails}
+            selectOptions={
+              accountDetails?.length > 0 ? accountDetails : accounts
+            }
             keyPropertyName="accountNumber"
             valuePropertyName="accountNumber"
             itemPropertyName="accountNumber"

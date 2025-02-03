@@ -60,12 +60,12 @@ import AddBillBeneficiary from "../pages/Dashboard/PayBills/NewBill/AddBeneficia
 import BillAmount from "../pages/Dashboard/PayBills/NewBill/Amount";
 import BillConfirmation from "../pages/Dashboard/PayBills/NewBill/Confirmation";
 import TrackCard from "../pages/Dashboard/Cards/TrackCard";
-import UploadDebitAccount from "../pages/Dashboard/Upload/DebitAccount";
-import UploadPaymentMode from "../pages/Dashboard/Upload/PaymentMethod";
-import UploadPaymentDate from "../pages/Dashboard/Upload/PaymentDate";
-import UploadBulkFile from "../pages/Dashboard/Upload/UploadFile";
-import UploadEmployerDetails from "../pages/Dashboard/Upload/EmployerDetails";
-import UploadPaymentPeriod from "../pages/Dashboard/Upload/PaymentPeriod";
+// import UploadDebitAccount from "../pages/Dashboard/Upload/DebitAccount";
+// import UploadPaymentMode from "../pages/Dashboard/Upload/PaymentMethod";
+// import UploadPaymentDate from "../pages/Dashboard/Upload/PaymentDate";
+// import UploadBulkFile from "../pages/Dashboard/Upload/UploadFile";
+// import UploadEmployerDetails from "../pages/Dashboard/Upload/EmployerDetails";
+// import UploadPaymentPeriod from "../pages/Dashboard/Upload/PaymentPeriod";
 import SetPasscode from "../pages/Auth/SignIn/SetPasscode";
 import Report from "../pages/Dashboard/Report/Report";
 import AuditTrail from "../pages/Dashboard/AuditTrail/Audit";
@@ -334,38 +334,38 @@ const payBillDataRoutes: RouteProps[] = [
   },
 ];
 
-const bulkUploadRoutes: RouteProps[] = [
-  {
-    path: "debit-account",
-    name: "Debit Account",
-    element: <UploadDebitAccount />,
-  },
-  {
-    path: "payment-mode",
-    name: "Select Payment Mode",
-    element: <UploadPaymentMode />,
-  },
-  {
-    path: "payment-date",
-    name: "Payment Due Date",
-    element: <UploadPaymentDate />,
-  },
-  {
-    path: "upload-file",
-    name: "Upload File",
-    element: <UploadBulkFile />,
-  },
-  {
-    path: "employer-details",
-    name: "Add beneficiary",
-    element: <UploadEmployerDetails />,
-  },
-  {
-    path: "payment-period",
-    name: "Payment Period",
-    element: <UploadPaymentPeriod />,
-  },
-];
+// const bulkUploadRoutes: RouteProps[] = [
+//   {
+//     path: "debit-account",
+//     name: "Debit Account",
+//     element: <UploadDebitAccount />,
+//   },
+//   {
+//     path: "payment-mode",
+//     name: "Select Payment Mode",
+//     element: <UploadPaymentMode />,
+//   },
+//   {
+//     path: "payment-date",
+//     name: "Payment Due Date",
+//     element: <UploadPaymentDate />,
+//   },
+//   {
+//     path: "upload-file",
+//     name: "Upload File",
+//     element: <UploadBulkFile />,
+//   },
+//   {
+//     path: "employer-details",
+//     name: "Add beneficiary",
+//     element: <UploadEmployerDetails />,
+//   },
+//   {
+//     path: "payment-period",
+//     name: "Payment Period",
+//     element: <UploadPaymentPeriod />,
+//   },
+// ];
 
 export {
   authRoutes,
@@ -375,5 +375,5 @@ export {
   // posRoutes,
   // airtimeDataRoutes,
   payBillDataRoutes,
-  bulkUploadRoutes,
+  // bulkUploadRoutes,
 };

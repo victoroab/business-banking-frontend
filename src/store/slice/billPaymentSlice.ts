@@ -6,6 +6,8 @@ interface TransactionState {
   airtimeDataAction: string;
   airtimeBundlePayload: AirtimeBundleData;
   airtimeDataCurrentStep: number;
+  billpaymentCurrentStep: number;
+  billPaymentPayload: any;
 }
 
 const initialState: TransactionState = {
@@ -19,7 +21,19 @@ const initialState: TransactionState = {
     bundleCode: "",
     amount: 0,
   },
+
+  billPaymentPayload: {
+    fromAccountNumber: "",
+    pin: "",
+    serviceCategoryId: "",
+    network: "",
+    phoneNumber: "",
+    bundleCode: "",
+    amount: 0,
+  },
+
   airtimeDataCurrentStep: 1,
+  billpaymentCurrentStep: 1,
 };
 
 export const billPaymentSlice = createSlice({
@@ -41,6 +55,16 @@ export const billPaymentSlice = createSlice({
     setAirtimeDataCurrentStep: (state, action) => {
       state.airtimeDataCurrentStep = action.payload;
     },
+    setBillpaymentCurrentStep: (state, action) => {
+      state.billpaymentCurrentStep = action.payload;
+    },
+
+    setBillPaymentPayload: (state, action) => {
+      state.billPaymentPayload = {
+        ...state.billPaymentPayload,
+        ...action.payload,
+      };
+    },
   },
 });
 
@@ -48,6 +72,7 @@ export const {
   setAirtimeDataAction,
   setAirtimeBundlePayload,
   setAirtimeDataCurrentStep,
+  setBillpaymentCurrentStep,
 } = billPaymentSlice.actions;
 
 export const selectBillPayment = (state: RootState) => state.billPayment;
