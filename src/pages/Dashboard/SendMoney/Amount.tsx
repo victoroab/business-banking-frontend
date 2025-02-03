@@ -15,8 +15,8 @@ const Amount = () => {
         amount: parseFloat(formData.amount),
         narration: formData.narration,
       })
-    ),
-      setTransactionCurrentStep(4);
+    );
+    dispatch(setTransactionCurrentStep(4));
   };
   const initialValues = {
     amount: "",

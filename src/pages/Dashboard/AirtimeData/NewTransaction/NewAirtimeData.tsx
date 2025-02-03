@@ -1,11 +1,13 @@
+import { useEffect } from "react";
 import StepBackNavigation from "../../../../components/ArrowBack/StepBackArrow";
 import Navbar from "../../../../components/Navbar/Navbar";
-import { useAppSelector } from "../../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
 import { StepComponentProps } from "../../../../interfaces/Global";
 import ProgressLayout from "../../../../layout/ProgressLayout";
 import {
   selectBillPayment,
   setAirtimeDataCurrentStep,
+  setBillpaymentCurrentStep,
 } from "../../../../store/slice/billPaymentSlice";
 import { airtimeStep, dataStep } from "../../../../utils";
 import AddBeneficiary from "./AddBeneficiary";
@@ -18,7 +20,10 @@ import Provider from "./Provider";
 const NewAirtimeData = () => {
   const { airtimeDataAction, airtimeDataCurrentStep } =
     useAppSelector(selectBillPayment);
-
+  const dispatch = useAppDispatch();
+  useEffect(() => {
+    dispatch(setAirtimeDataCurrentStep(1));
+  }, [setBillpaymentCurrentStep]);
   const airtimeStepsComponents: StepComponentProps[] = [
     { step: 1, component: DebitAccount },
     { step: 2, component: Amount },

@@ -14,11 +14,10 @@ const DebitAccount = () => {
   const { accountDetails } = useAppSelector(selectAccount);
 
   const onSubmit = async (formData: { accountNumber: string }) => {
-    console.log(formData);
     dispatch(
-      setAirtimeBundlePayload({ fromAccountNumber: formData.accountNumber }),
-      setBillpaymentCurrentStep(2)
+      setAirtimeBundlePayload({ fromAccountNumber: formData.accountNumber })
     );
+    dispatch(setBillpaymentCurrentStep(2));
   };
 
   const initialValues = {

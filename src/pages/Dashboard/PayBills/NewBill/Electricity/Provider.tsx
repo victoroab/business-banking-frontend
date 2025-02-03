@@ -4,16 +4,19 @@ import { electricityProvider } from "../../../../../utils";
 import { saveElectricityProvider } from "../../../../../store/slice/globalSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useGetAllElectricityProvidersQuery } from "../../../../../service/billPayment";
 
 const ElectricityProvider = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleNavigate = (title: string) => {
     dispatch(saveElectricityProvider(title));
-    console.log(title);
+
     navigate("/utility/pay-new-bill/package");
   };
+  const { data } = useGetAllElectricityProvidersQuery({});
 
+  console.log(data);
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4">

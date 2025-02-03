@@ -5,7 +5,6 @@ import DebitAccount from "./NewBill/DebitAccount";
 import Navbar from "../../../components/Navbar/Navbar";
 import Category from "./NewBill/Category";
 import { useSelector } from "react-redux";
-import { selectGlobal } from "../../../store/slice/globalSlice";
 import ElectricityProvider from "./NewBill/Electricity/Provider";
 import CableProvider from "./NewBill/CableTV/Provider";
 import BettingProvider from "./NewBill/Betting/Provider";
@@ -19,10 +18,12 @@ import {
 } from "../../../store/slice/billPaymentSlice";
 import { useAppSelector } from "../../../hooks";
 import StepBackNavigation from "../../../components/ArrowBack/StepBackArrow";
+import { selectDashboard } from "../../../store/slice/dashboardSlice";
 
 const NewBill = () => {
-  const { billCategory } = useSelector(selectGlobal);
+  const { billCategory } = useSelector(selectDashboard);
   const { billpaymentCurrentStep } = useAppSelector(selectBillPayment);
+
   const Provider =
     billCategory === "Electricity"
       ? ElectricityProvider
@@ -40,7 +41,6 @@ const NewBill = () => {
     { step: 7, component: Confirmation },
   ];
 
-  console.log(billpaymentCurrentStep);
   return (
     <>
       <Navbar

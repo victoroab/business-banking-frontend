@@ -14,6 +14,7 @@ import { useAppDispatch } from "../../../hooks";
 import { useEffect, useState } from "react";
 import { errorHandler } from "../../../utils";
 import Spinner from "../../../components/Spinner/Spinner";
+import { OkayIcon } from "../../../assets/svg/dashboard";
 
 const BankDetails = () => {
   const dispatch = useAppDispatch();
@@ -90,6 +91,7 @@ const BankDetails = () => {
               id="bankCode"
               className="w-full"
               name="bankCode"
+              searchFunc
               selectOptions={bankList?.data}
               keyPropertyName="Name"
               valuePropertyName="Code"
@@ -114,7 +116,10 @@ const BankDetails = () => {
             {isLoading ? (
               <Spinner />
             ) : (
-              <>{beneficiaryAccountDetails?.name as string}</>
+              <p className="bg-[#f7f8ff] rounded-xl p-2 font-semibold text-greyColr gap-2 flex items-center">
+                <OkayIcon />{" "}
+                {beneficiaryAccountDetails?.name?.toUpperCase() as string}
+              </p>
             )}
             <div className="flex justify-center flex-col w-full items-center">
               <div className="tex-[20px] font-workSans text-lightGreyColor">

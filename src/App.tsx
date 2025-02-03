@@ -1,7 +1,7 @@
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import {
   authRoutes,
   // bulkUploadRoutes,
@@ -16,9 +16,63 @@ import { KYCProgressSteps } from "./utils";
 // import Upload from "./pages/Dashboard/Upload/Upload";
 import Guard from "./routes/Guard";
 import NotFound from "./pages/NotFound/NotFound";
+import { useIdleTimer } from "react-idle-timer";
+import InactiveContent from "./components/InactiveContent";
+import { useEffect, useState } from "react";
+import { useGlobalHooks } from "./hooks/globalHooks";
+import { useAppSelector } from "./hooks";
+import { selectAuth } from "./store/slice/authSlice";
+import { selectGlobal } from "./store/slice/globalSlice";
+import { useAuthHook } from "./hooks/authHook";
 function App() {
+  const [showModal, setShowModal] = useState<boolean>(false);
+  const [counter, setCounter] = useState<number>(60);
+  const { handleShow } = useGlobalHooks();
+  const toggle = useAppSelector(selectGlobal);
+  const navigate = useNavigate();
+  const { userInfo } = useAppSelector(selectAuth);
+  const { logoutUser } = useAuthHook();
+
+  const onIdle = () => {
+    if (userInfo?.access_token) {
+      handleShow("idle-screen");
+      setShowModal(true);
+    }
+  };
+
+  const sessionTime = import.meta.env.VITE_REACT_APP_SESSION_TIME;
+
+  useIdleTimer({
+    onIdle,
+    timeout: parseInt(sessionTime) * 60 * 1000,
+    throttle: 500,
+  });
+
+  useEffect(() => {
+    if (showModal) {
+      counter > 0 && setTimeout(() => setCounter(counter - 1), 1000);
+    } else {
+      setCounter(60);
+    }
+
+    if (counter === 0) {
+      handleShow("idle-screen");
+      logoutUser();
+    }
+  }, [showModal, counter, navigate]);
+
   return (
     <main className="App">
+      {toggle["idle-screen"] && (
+        <InactiveContent
+          id="idle-screen"
+          close={() => handleShow("idle-screen")}
+          counter={counter}
+          setShowModal={setShowModal}
+          sessionTime={sessionTime.toString()}
+        />
+      )}
+
       <ToastContainer position="top-right" autoClose={2000} />
 
       <Routes>

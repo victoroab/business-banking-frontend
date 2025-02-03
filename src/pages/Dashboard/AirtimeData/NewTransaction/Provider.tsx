@@ -11,10 +11,8 @@ const Provider = () => {
 
   const dispatch = useAppDispatch();
   const handleNavigate = (name: string, id: string) => {
-    dispatch(
-      setAirtimeBundlePayload({ serviceCategoryId: id, network: name }),
-      setAirtimeDataCurrentStep(4)
-    );
+    dispatch(setAirtimeBundlePayload({ serviceCategoryId: id, network: name }));
+    dispatch(setAirtimeDataCurrentStep(4));
   };
 
   return (

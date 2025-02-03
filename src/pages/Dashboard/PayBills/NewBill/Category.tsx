@@ -3,14 +3,13 @@ import { IDOption } from "../../../../interfaces/Global";
 import { ArrowRightIcon } from "../../../../assets/svg/CustomSVGs";
 import { useDispatch } from "react-redux";
 import { setBillCategoryAction } from "../../../../store/slice/dashboardSlice";
-import { useNavigate } from "react-router-dom";
+import { setBillpaymentCurrentStep } from "../../../../store/slice/billPaymentSlice";
 
 const Category = () => {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const handleNavigate = (title: string) => {
     dispatch(setBillCategoryAction(title));
-    navigate("/utility/pay-new-bill/provider");
+    dispatch(setBillpaymentCurrentStep(3));
   };
 
   return (

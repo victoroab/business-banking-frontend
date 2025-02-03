@@ -85,6 +85,12 @@ export const billPaymentApi = createApi({
 
       invalidatesTags: [{ type: "Airtime", id: "Airtime" }],
     }),
+
+    //all electricity providers
+    getAllElectricityProviders: builder.query({
+      query: () => `/bill-payment/electricity/providers`,
+      providesTags: [{ type: "Bundle", id: "Bundle" }],
+    }),
   }),
 });
 
@@ -94,4 +100,5 @@ export const {
   useGetAllInternetBundlesQuery,
   useBuyAirtimeMutation,
   useBuyBundleMutation,
+  useGetAllElectricityProvidersQuery,
 } = billPaymentApi;

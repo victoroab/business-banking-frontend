@@ -25,6 +25,7 @@ const FormInput = ({
   accountName,
   accountType,
   filter,
+  searchFunc,
 }: IFormInputProps) => {
   return (
     <div className={`${error ? "" : ""} ${className}`}>
@@ -55,6 +56,7 @@ const FormInput = ({
             }
             errors={error}
             placeholder={placeholder}
+            searchFunc={searchFunc}
             keyPropertyName={keyPropertyName}
             itemPropertyName={itemPropertyName}
             valuePropertyName={valuePropertyName}

@@ -13,9 +13,9 @@ const Amount = () => {
     dispatch(
       setAirtimeBundlePayload({
         amount: parseFloat(formData.amount),
-      }),
-      setAirtimeDataCurrentStep(3)
+      })
     );
+    dispatch(setAirtimeDataCurrentStep(3));
   };
   const initialValues = {
     amount: "",

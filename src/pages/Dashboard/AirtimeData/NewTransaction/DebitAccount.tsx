@@ -14,9 +14,9 @@ const DebitAccount = () => {
   const { accountDetails } = useAppSelector(selectAccount);
   const onSubmit = async (formData: { accountNumber: string }) => {
     dispatch(
-      setAirtimeBundlePayload({ fromAccountNumber: formData.accountNumber }),
-      setAirtimeDataCurrentStep(2)
+      setAirtimeBundlePayload({ fromAccountNumber: formData.accountNumber })
     );
+    dispatch(setAirtimeDataCurrentStep(2));
   };
 
   const initialValues = {
