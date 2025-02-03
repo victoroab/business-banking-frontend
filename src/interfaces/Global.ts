@@ -217,7 +217,6 @@ export interface BackArrowProps {
 export interface ModalProps {
   title?: string;
   icon?: React.ReactNode;
-  handleModalClose: () => void;
   general?: boolean;
   children: React.ReactNode;
 }
