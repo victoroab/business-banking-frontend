@@ -12,6 +12,7 @@ export const sendMoneyColumnsData = (
   return [
     {
       name: "Bank Name",
+      grow: 1.6,
       id: "bankName",
       selector: ({ beneficiary }) => beneficiary.bankName,
       cell: ({ beneficiary }) => (
@@ -39,6 +40,23 @@ export const sendMoneyColumnsData = (
       selector: ({ beneficiary }) => beneficiary.accountNumber,
       cell: ({ beneficiary }) => (
         <div className="centered-box">{beneficiary.accountNumber}</div>
+      ),
+    },
+    {
+      name: "Status",
+      selector: ({ status }) => status,
+      cell: ({ status }) => (
+        <div className="centered-box">
+          <span
+            className={`rounded-2xl flex items-center py-2 px-4 text-center ${
+              status === "successful"
+                ? "text-positive bg-[#f3fbf8]"
+                : "text-nagative bg-[#fff7f5]"
+            }`}
+          >
+            {status}
+          </span>
+        </div>
       ),
     },
     {
