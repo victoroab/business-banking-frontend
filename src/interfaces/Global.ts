@@ -123,7 +123,7 @@ export interface RowDataProps {
   beneficiary: string;
   bank: string;
   amount: number;
-  transactionType: TransactionType;
+  transactionType: string;
   status: TransactionStatus;
   createdAt: string;
 }

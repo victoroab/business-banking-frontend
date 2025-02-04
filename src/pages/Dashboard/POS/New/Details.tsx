@@ -1,11 +1,15 @@
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import FormInput from "../../../../components/FormInput";
 import { industries } from "../../../../utils";
+import { setPosCurrentStep } from "../../../../store/slice/posSlice";
+import { useAppDispatch } from "../../../../hooks";
 
 const Details = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const handleSubmit = () => {
-    navigate("/request-pos/delivery-option");
+    // navigate("/request-pos/delivery-option");
+    dispatch(setPosCurrentStep(4));
   };
 
   return (

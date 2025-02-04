@@ -14,10 +14,8 @@ const PosDebitAccount = () => {
   const { accountDetails } = useAppSelector(selectAccount);
   console.log(accountDetails);
   const onSubmit = async (formData: { accountNumber: string }) => {
-    dispatch(
-      setResquestPOS({ fromAccountNumber: formData.accountNumber }),
-      setPosCurrentStep(2)
-    );
+    dispatch(setResquestPOS({ fromAccountNumber: formData.accountNumber }));
+    dispatch(setPosCurrentStep(2));
   };
 
   const initialValues = {

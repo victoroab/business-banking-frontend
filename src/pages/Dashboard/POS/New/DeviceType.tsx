@@ -1,16 +1,18 @@
 import { setPosSelectedCategory } from "../../../../store/slice/dashboardSlice";
 import { useAppDispatch } from "../../../../hooks";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { posDevice } from "../../../../utils";
 import { IDOption } from "../../../../interfaces/Global";
 import { ArrowRightIcon } from "../../../../assets/svg/CustomSVGs";
+import { setPosCurrentStep } from "../../../../store/slice/posSlice";
 
 const DeviceType = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const handleNavigate = (title: string) => {
     dispatch(setPosSelectedCategory(title));
-    navigate("/request-pos/pos-details");
+    dispatch(setPosCurrentStep(3));
+    // navigate("/request-pos/pos-details");
   };
 
   return (

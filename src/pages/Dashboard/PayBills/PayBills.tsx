@@ -5,7 +5,7 @@ import { useGlobalHooks } from "../../../hooks/globalHooks";
 import { useState } from "react";
 import DataTable from "react-data-table-component";
 import Paginate from "../../../components/Paginate";
-import { tableCustomStyles, transactionsData } from "../../../utils";
+import { tableCustomStyles, billlData } from "../../../utils";
 import { columnsData } from "../../../utils/table";
 
 const PayBills = () => {
@@ -55,7 +55,7 @@ const PayBills = () => {
 
                 selectedRow as RowDataProps
               )}
-              data={transactionsData}
+              data={billlData}
               customStyles={tableCustomStyles}
               className=""
             />
@@ -63,14 +63,14 @@ const PayBills = () => {
 
           <div className="">
             <Paginate
-              data={transactionsData}
+              data={billlData}
               handleSearch={handleSearch}
               currentPage={filteredData}
               setCurrentPage={setFilteredData}
               searchParams="ref"
               itemsPerPage={queryData?.pageSize as number}
               setQueryData={setQueryData}
-              totalItemsCount={transactionsData.length}
+              totalItemsCount={billlData.length}
             />
           </div>
         </section>

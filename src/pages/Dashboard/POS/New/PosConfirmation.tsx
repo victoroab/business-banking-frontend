@@ -1,15 +1,17 @@
 import PopUp from "../../../../components/PopUps/PopUp";
 import { SuccessIcon } from "../../../../assets/svg/CustomSVGs";
-import { useGlobalHooks } from "../../../../hooks/globalHooks";
-import { useAppSelector } from "../../../../hooks";
+// import { useGlobalHooks } from "../../../../hooks/globalHooks";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
 import { selectGlobal } from "../../../../store/slice/globalSlice";
 import { AlertLogoIcon } from "../../../../assets/svg/Sidebar";
+import { setPosCurrentStep } from "../../../../store/slice/posSlice";
 const PosConfirmation = () => {
-  const { handleShow } = useGlobalHooks();
+  // const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
-
+  const dispatch = useAppDispatch();
   const handleSubmit = () => {
-    handleShow("submit-bill");
+    // handleShow("submit-bill");
+    dispatch(setPosCurrentStep(1));
   };
 
   return (
