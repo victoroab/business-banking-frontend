@@ -30,7 +30,7 @@ const AccountCard = ({ type }: CardProps) => {
           {type} Balance <EyeIcon />
         </p>
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-          #0.00
+          &#8358;0.00
         </h3>
       </div>
 

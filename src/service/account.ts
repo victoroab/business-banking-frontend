@@ -78,6 +78,12 @@ export const accountApi = createApi({
       }),
       invalidatesTags: [{ type: "Security", id: "Security" }],
     }),
+
+    //account enq
+    getAccountEnquiry: builder.query({
+      query: () => "/account/balance-enquiry",
+      providesTags: [{ type: "Account", id: "Account" }],
+    }),
   }),
 });
 
@@ -85,4 +91,5 @@ export const {
   useGetAccountDetailsQuery,
   useGetAccountsMutation,
   useSubmitSecurityQuestionsMutation,
+  useGetAccountEnquiryQuery,
 } = accountApi;
