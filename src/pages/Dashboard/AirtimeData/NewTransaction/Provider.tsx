@@ -1,7 +1,8 @@
 import { ArrowRightIcon } from "../../../../assets/svg/CustomSVGs";
-import { useAppDispatch } from "../../../../hooks";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
 // import { useGetAllAirtimeProvidersQuery } from "../../../../service/billPayment";
 import {
+  selectBillPayment,
   // setAirtimeBundlePayload,
   setAirtimeDataCurrentStep,
 } from "../../../../store/slice/billPaymentSlice";
@@ -9,11 +10,15 @@ import { dataProvider } from "../../../../utils";
 
 const Provider = () => {
   // const { data } = useGetAllAirtimeProvidersQuery();
+  const { airtimeDataAction } = useAppSelector(selectBillPayment);
+  console.log(airtimeDataAction);
   const dispatch = useAppDispatch();
   // const dispatch = useAppDispatch();
   const handleNavigate = (name: string, id: string) => {
     console.log(name, id);
-    dispatch(setAirtimeDataCurrentStep(4));
+    airtimeDataAction === "DATA"
+      ? dispatch(setAirtimeDataCurrentStep(3))
+      : dispatch(setAirtimeDataCurrentStep(4));
     // dispatch(setAirtimeBundlePayload({ serviceCategoryId: id, network: name }));
     // dispatch(setAirtimeDataCurrentStep(4));
   };
