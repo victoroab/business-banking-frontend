@@ -12,27 +12,33 @@ import NotFound from "./pages/NotFound/NotFound";
 import { useIdleTimer } from "react-idle-timer";
 import InactiveContent from "./components/InactiveContent";
 import { useEffect, useState } from "react";
-import { useAppSelector } from "./hooks";
-import { selectAuth } from "./store/slice/authSlice";
 import GeneralModal from "./components/PopUps/GeneralModal";
+import { useAppDispatch, useAppSelector } from "./hooks";
+import { selectAuth } from "./store/slice/authSlice";
 
 function App() {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [counter, setCounter] = useState<number>(60);
+  const [counter, setCounter] = useState<number>(20);
   const navigate = useNavigate();
+  // const userInfoString = localStorage.getItem("persist:alert-business");
+  const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector(selectAuth);
+  // const userInfos = userInfoString ? JSON.parse(userInfoString) : null;
+  // console.log(userInfos);
+  // const accessToken = userInfos !== null ? JSON.parse(userInfos?.auth) : null;
+  // console.log(accessToken);
 
   const onIdle = () => {
     if (userInfo?.access_token) {
-      console.log("User is idle. Showing modal..."); // Debugging
+      console.log("User is idle. Showing modal...");
       setShowModal(true);
     } else {
-      console.log("No user token found. Skipping idle check."); // Debugging
+      console.log("No user token found. Skipping idle check.");
     }
   };
 
-  // const sessionTime = import.meta.env.VITE_REACT_APP_SESSION_TIME;
-  const sessionTime = 0.1;
+  const sessionTime = import.meta.env.VITE_REACT_APP_SESSION_TIME;
+
   useIdleTimer({
     onIdle,
     timeout: sessionTime * 60 * 1000,
@@ -43,19 +49,18 @@ function App() {
     if (showModal) {
       if (counter > 0) {
         const timer = setTimeout(() => setCounter(counter - 1), 1000);
-        console.log(`Counter: ${counter}`); // Debugging
-        return () => clearTimeout(timer); // Cleanup
+        console.log(`Counter: ${counter}`);
+        return () => clearTimeout(timer);
       } else {
-        console.log("Counter reached 0. Logging out..."); // Debugging
+        console.log("Counter reached 0. Logging out...");
+        logoutUser(navigate, dispatch);
         setShowModal(false);
-        logoutUser(navigate);
       }
     } else {
-      setCounter(60); // Reset counter when modal is closed
+      setCounter(20);
     }
   }, [showModal, counter, navigate]);
 
-  console.log(userInfo, showModal, counter);
   return (
     <main className="App">
       {showModal && (

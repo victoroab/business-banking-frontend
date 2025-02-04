@@ -24,6 +24,7 @@ import {
 } from "../assets/svg/Airtime";
 import { toast } from "react-toastify";
 import { persistor } from "../store/store";
+import { saveUserInfo } from "../store/slice/authSlice";
 
 export const manageBeneficiaryHeader = [
   { id: 1, title: "Transfer" },
@@ -1168,11 +1169,13 @@ export const accounts = [
   },
 ];
 
-export const logoutUser = (navigate: any) => {
+export const logoutUser = (navigate: any, dispatch: any) => {
   console.log("Logging out user..."); // Debugging
   localStorage.removeItem("persist:alert-business");
   localStorage.clear();
+  sessionStorage.clear();
   persistor.purge();
+  dispatch(saveUserInfo(undefined));
   console.log("Local storage cleared and persistor purged."); // Debugging
   navigate("/login");
 };

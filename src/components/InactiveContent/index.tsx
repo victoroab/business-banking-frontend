@@ -1,7 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
 // import { useAuthHook } from "../../hooks/authHook";
 import { useNavigate } from "react-router-dom";
 import { logoutUser } from "../../utils";
+import { useAppDispatch } from "../../hooks";
 // import { useGlobalHooks } from "../../hooks/globalHooks";
 
 interface InactiveProps {
@@ -18,14 +19,10 @@ const InactiveContent: React.FC<InactiveProps> = ({
   setShowModal,
 }) => {
   const navigate = useNavigate();
-  const isLoggedOut = useRef(false); // Ref to track if logout has been called
-
+  const dispatch = useAppDispatch();
   const handleLogout = () => {
-    if (!isLoggedOut.current) {
-      isLoggedOut.current = true; // Set the ref to true
-      logoutUser(navigate);
-      setShowModal(false);
-    }
+    logoutUser(navigate, dispatch);
+    setShowModal(false);
   };
 
   return (
