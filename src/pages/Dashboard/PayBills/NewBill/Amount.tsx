@@ -1,9 +1,13 @@
 import FormInput from "../../../../components/FormInput";
-import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "../../../../hooks";
+import { setBillpaymentCurrentStep } from "../../../../store/slice/billPaymentSlice";
+// import { useNavigate } from "react-router-dom";
 const BillAmount = () => {
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  // const navigate = useNavigate();
   const handleSubmit = () => {
-    navigate("/utility/pay-new-bill/confirmation");
+    dispatch(setBillpaymentCurrentStep(7));
+    // navigate("/utility/pay-new-bill/confirmation");
   };
 
   return (

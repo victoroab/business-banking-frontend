@@ -10,7 +10,6 @@ import FormInput from "../../../components/FormInput";
 import Otp from "../../../components/OTP/Otp";
 import Spinner from "../../../components/Spinner/Spinner";
 import { ResetEmailIcon } from "../../../assets/svg/dashboard";
-import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import {
   setEmailAddress,
@@ -30,9 +29,8 @@ const ResetPasscode = () => {
   const { handleShow } = useGlobalHooks();
   const [newCode, setNewCode] = useState<string>("");
   const [confirmCode, setConfirmCode] = useState<string>("");
-  const [resetOTP, setOpenResetOTP] = useState<boolean>(false);
+  const [resetOTP, setOpenResetOTP] = useState<boolean>(true);
   const [otpCode, setOtpCode] = useState<string>("");
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleResetPasscode = async () => {
@@ -59,8 +57,6 @@ const ResetPasscode = () => {
       dispatch(setEmailAddress(email));
       dispatch(setExistingVerificationOTP(otpCode));
       setOpenResetOTP(false);
-      handleShow("resetPasscode");
-      navigate("/reset-passcode");
     } catch (error: any) {
       toast.error(error.data.message);
     }

@@ -116,12 +116,12 @@ const Attestation = () => {
               <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
                 Account Number:{" "}
                 <span className="text-sm font-medium">
-                  {data?.data?.accountNumber}
+                  {data?.data[0]?.accountNumber}
                 </span>
               </p>
               <p
                 className="copy text-xs text-secColor flex items-center gap-2 cursor-pointer"
-                onClick={() => copyToClipboard(data?.data?.accountNumber)}
+                onClick={() => copyToClipboard(data?.data[0]?.accountNumber)}
               >
                 COPY <CopyIcon />
               </p>

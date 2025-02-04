@@ -33,6 +33,7 @@ const InputToken = () => {
       dispatch(setTransactionCurrentStep(1));
     } catch (error: any) {
       errorHandler(error);
+      dispatch(setTransactionCurrentStep(1));
     }
   };
 

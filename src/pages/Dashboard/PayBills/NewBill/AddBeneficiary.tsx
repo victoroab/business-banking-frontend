@@ -1,11 +1,15 @@
 import FormInput from "../../../../components/FormInput";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { BeneficiaryIcon } from "../../../../assets/svg/PayBill";
+import { setBillpaymentCurrentStep } from "../../../../store/slice/billPaymentSlice";
+import { useAppDispatch } from "../../../../hooks";
 
 const AddBillBeneficiary = () => {
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  // const navigate = useNavigate();
   const handleSubmit = () => {
-    navigate("/utility/pay-new-bill/amount");
+    dispatch(setBillpaymentCurrentStep(6));
+    // navigate("/utility/pay-new-bill/amount");
   };
 
   return (

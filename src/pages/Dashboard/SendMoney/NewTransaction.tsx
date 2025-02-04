@@ -15,6 +15,7 @@ import StepBackNavigation from "../../../components/ArrowBack/StepBackArrow";
 
 const NewTransaction = () => {
   const { transactionCurrentStep } = useAppSelector(selectTransaction);
+
   const stepsComponents: StepComponentProps[] = [
     { step: 1, component: DebitAccount },
     { step: 2, component: BankDetails },
@@ -22,7 +23,6 @@ const NewTransaction = () => {
     { step: 4, component: Confirmation },
   ];
 
-  console.log(transactionCurrentStep);
   return (
     <>
       <Navbar

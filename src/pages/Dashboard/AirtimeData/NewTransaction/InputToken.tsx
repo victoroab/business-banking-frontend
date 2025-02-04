@@ -1,41 +1,42 @@
 import { useState } from "react";
 import Otp from "../../../../components/OTP/Otp";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
-import { useGlobalHooks } from "../../../../hooks/globalHooks";
+// import { useGlobalHooks } from "../../../../hooks/globalHooks";
 import PopUp from "../../../../components/PopUps/PopUp";
 import { selectGlobal } from "../../../../store/slice/globalSlice";
 import { errorHandler } from "../../../../utils";
-import { toast } from "react-toastify";
-import Spinner from "../../../../components/Spinner/Spinner";
+// import { toast } from "react-toastify";
+// import Spinner from "../../../../components/Spinner/Spinner";
 import {
-  selectBillPayment,
+  // selectBillPayment,
   setAirtimeDataCurrentStep,
 } from "../../../../store/slice/billPaymentSlice";
-import { useBuyAirtimeMutation } from "../../../../service/billPayment";
+// import { useBuyAirtimeMutation } from "../../../../service/billPayment";
 
 const InputToken = () => {
   const [otpCode, setOtpCode] = useState<string>("");
   const toggle = useAppSelector(selectGlobal);
-  const { handleShow } = useGlobalHooks();
+  // const { handleShow } = useGlobalHooks();
   const dispatch = useAppDispatch();
-  const [buyAirtime, { isLoading }] = useBuyAirtimeMutation();
-  const { airtimeBundlePayload } = useAppSelector(selectBillPayment);
+  // const [buyAirtime, { isLoading }] = useBuyAirtimeMutation();
+  // const { airtimeBundlePayload } = useAppSelector(selectBillPayment);
 
   const handleSubmit = async () => {
     try {
-      const requiredData = {
-        fromAccountNumber: airtimeBundlePayload?.fromAccountNumber,
-        pin: otpCode,
-        serviceCategoryId: airtimeBundlePayload?.serviceCategoryId,
-        network: airtimeBundlePayload?.network,
-        amount: airtimeBundlePayload?.amount as number,
-        phoneNumber: airtimeBundlePayload?.phoneNumber as string,
-      };
-      const response = await buyAirtime(requiredData).unwrap();
-      handleShow("input-pin");
-      toast.success(response?.message);
+      // const requiredData = {
+      //   fromAccountNumber: airtimeBundlePayload?.fromAccountNumber,
+      //   pin: otpCode,
+      //   serviceCategoryId: airtimeBundlePayload?.serviceCategoryId,
+      //   network: airtimeBundlePayload?.network,
+      //   amount: airtimeBundlePayload?.amount as number,
+      //   phoneNumber: airtimeBundlePayload?.phoneNumber as string,
+      // };
+      // const response = await buyAirtime(requiredData).unwrap();
+      // handleShow("input-pin");
+      // toast.success(response?.message);
       dispatch(setAirtimeDataCurrentStep(1));
     } catch (error: any) {
+      dispatch(setAirtimeDataCurrentStep(1));
       errorHandler(error);
     }
   };
@@ -60,7 +61,8 @@ const InputToken = () => {
               />
               <div className="flex justify-center  w-full gap-6">
                 <button className="main-btn w-full" onClick={handleSubmit}>
-                  {isLoading ? <Spinner /> : "Next"}
+                  {/* {isLoading ? <Spinner /> : "Next"} */}
+                  Next
                 </button>
               </div>
             </div>

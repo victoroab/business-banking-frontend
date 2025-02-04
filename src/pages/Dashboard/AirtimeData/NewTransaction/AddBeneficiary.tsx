@@ -14,9 +14,9 @@ const AddBeneficiary = () => {
     dispatch(
       setAirtimeBundlePayload({
         phoneNumber: formData.phoneNumber,
-      }),
-      setAirtimeDataCurrentStep(5)
+      })
     );
+    dispatch(setAirtimeDataCurrentStep(5));
   };
   const initialValues = {
     phoneNumber: "",

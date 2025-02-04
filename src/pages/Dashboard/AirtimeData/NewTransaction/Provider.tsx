@@ -1,18 +1,21 @@
 import { ArrowRightIcon } from "../../../../assets/svg/CustomSVGs";
 import { useAppDispatch } from "../../../../hooks";
-import { useGetAllAirtimeProvidersQuery } from "../../../../service/billPayment";
+// import { useGetAllAirtimeProvidersQuery } from "../../../../service/billPayment";
 import {
-  setAirtimeBundlePayload,
+  // setAirtimeBundlePayload,
   setAirtimeDataCurrentStep,
 } from "../../../../store/slice/billPaymentSlice";
+import { dataProvider } from "../../../../utils";
 
 const Provider = () => {
-  const { data } = useGetAllAirtimeProvidersQuery();
-
+  // const { data } = useGetAllAirtimeProvidersQuery();
   const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   const handleNavigate = (name: string, id: string) => {
-    dispatch(setAirtimeBundlePayload({ serviceCategoryId: id, network: name }));
+    console.log(name, id);
     dispatch(setAirtimeDataCurrentStep(4));
+    // dispatch(setAirtimeBundlePayload({ serviceCategoryId: id, network: name }));
+    // dispatch(setAirtimeDataCurrentStep(4));
   };
 
   return (
@@ -27,7 +30,7 @@ const Provider = () => {
       </div>
 
       <div className="flex flex-col gap-2">
-        {data?.data?.map((option: any) => (
+        {dataProvider?.map((option: any) => (
           <div
             className="account-option flex flex-col cursor-pointer rounded-xl p-6 gap-4"
             style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
@@ -36,13 +39,14 @@ const Provider = () => {
           >
             <div className="flex items-center justify-between">
               <div className="flex gap-2 items-center">
-                <img
+                {/* <img
                   src={option?.logoUrl}
                   alt=""
                   className="h-6 w-6 rounded-full"
-                />
+                /> */}
+                {<option.icon />}
                 <h2 className="text-base font-medium text-lightGreyColor m-0 font-workSans">
-                  {option?.name}
+                  {option?.title}
                 </h2>
               </div>
               <ArrowRightIcon />

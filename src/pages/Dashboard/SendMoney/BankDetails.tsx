@@ -116,10 +116,15 @@ const BankDetails = () => {
             {isLoading ? (
               <Spinner />
             ) : (
-              <p className="bg-[#f7f8ff] rounded-xl p-2 font-semibold text-greyColr gap-2 flex items-center">
-                <OkayIcon />{" "}
-                {beneficiaryAccountDetails?.name?.toUpperCase() as string}
-              </p>
+              <>
+                {" "}
+                {beneficiaryAccountDetails !== undefined && (
+                  <p className="bg-[#f7f8ff] rounded-xl p-2 font-semibold text-greyColr gap-2 flex items-center">
+                    <OkayIcon />{" "}
+                    {beneficiaryAccountDetails?.name?.toUpperCase() as string}
+                  </p>
+                )}
+              </>
             )}
             <div className="flex justify-center flex-col w-full items-center">
               <div className="tex-[20px] font-workSans text-lightGreyColor">

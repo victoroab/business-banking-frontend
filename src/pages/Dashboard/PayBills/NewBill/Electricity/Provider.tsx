@@ -2,17 +2,19 @@ import { ArrowRightIcon } from "../../../../../assets/svg/CustomSVGs";
 import { IDOption } from "../../../../../interfaces/Global";
 import { electricityProvider } from "../../../../../utils";
 import { saveElectricityProvider } from "../../../../../store/slice/globalSlice";
-import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+// import { useDispatch } from "react-redux";
+// import { useNavigate } from "react-router-dom";
 import { useGetAllElectricityProvidersQuery } from "../../../../../service/billPayment";
+import { setBillpaymentCurrentStep } from "../../../../../store/slice/billPaymentSlice";
+import { useAppDispatch } from "../../../../../hooks";
 
 const ElectricityProvider = () => {
-  const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  // const navigate = useNavigate();
   const handleNavigate = (title: string) => {
     dispatch(saveElectricityProvider(title));
-
-    navigate("/utility/pay-new-bill/package");
+    dispatch(setBillpaymentCurrentStep(4));
+    // navigate("/utility/pay-new-bill/package");
   };
   const { data } = useGetAllElectricityProvidersQuery({});
 

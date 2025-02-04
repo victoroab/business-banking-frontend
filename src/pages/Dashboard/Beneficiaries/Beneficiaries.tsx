@@ -425,6 +425,7 @@ const Beneficiaries = () => {
                     keyPropertyName="Name"
                     valuePropertyName="Code"
                     itemPropertyName="Name"
+                    searchFunc
                     error={touched.bankCode ? errors.bankCode : undefined}
                     onBlur={handleBlur}
                     onChange={handleChange}

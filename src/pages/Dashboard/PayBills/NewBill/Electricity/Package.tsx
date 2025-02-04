@@ -2,18 +2,21 @@ import { ArrowRightIcon } from "../../../../../assets/svg/CustomSVGs";
 import { useSelector } from "react-redux";
 import { selectGlobal } from "../../../../../store/slice/globalSlice";
 import { electricityProvider } from "../../../../../utils";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
+import { setBillpaymentCurrentStep } from "../../../../../store/slice/billPaymentSlice";
+import { useAppDispatch } from "../../../../../hooks";
 const ElectricityPackage = () => {
   const { selectedElectricityProvider } = useSelector(selectGlobal);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const dispatch = useAppDispatch();
   const selectedProviderPackages = electricityProvider?.find(
     (option: any) => selectedElectricityProvider === option?.title
   );
 
   const handleNavigate = (title: string) => {
     console.log(title);
-
-    navigate("/utility/pay-new-bill/beneficiary");
+    dispatch(setBillpaymentCurrentStep(5));
+    // navigate("/utility/pay-new-bill/beneficiary");
   };
 
   return (
