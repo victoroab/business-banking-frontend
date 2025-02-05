@@ -20,6 +20,7 @@ import { useGetKybDetailsMutation } from "../../../service/kyb";
 import ResetPasscode from "./ResetPasscode";
 import PopUp from "../../../components/PopUps/PopUp";
 import { errorHandler } from "../../../utils";
+import { useCookies } from "../../../hooks/cookiesHook";
 
 const LoginPasscode = () => {
   const [signIn, { isLoading }] = useSignInMutation();
@@ -32,6 +33,7 @@ const LoginPasscode = () => {
   const { phoneNumber } = useAppSelector(selectAuth);
   const { handleShow } = useGlobalHooks();
   const [kybDetails] = useGetKybDetailsMutation();
+  const { setCookies } = useCookies();
 
   const handleSubmit = async () => {
     const requiredData = {
@@ -59,6 +61,7 @@ const LoginPasscode = () => {
       console.log("Tosin");
       toast.success(response?.message);
       dispatch(saveUserInfo(response?.data));
+      setCookies("businessUserToken", response?.data?.access_token);
       handleShow("success");
       if (response?.data?.kyc?.attestation === true) {
         navigate("/");

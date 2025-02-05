@@ -24,7 +24,7 @@ import {
 } from "../assets/svg/Airtime";
 import { toast } from "react-toastify";
 import { persistor } from "../store/store";
-import { saveUserInfo } from "../store/slice/authSlice";
+import { useCookies } from "../hooks/cookiesHook";
 
 export const manageBeneficiaryHeader = [
   { id: 1, title: "Transfer" },
@@ -1179,13 +1179,22 @@ export const accounts = [
   },
 ];
 
-export const logoutUser = (navigate: any, dispatch: any) => {
+export const logoutUser = (navigate: any) => {
+  const { removeTokenCookie, getTokenCookie } = useCookies();
   console.log("Logging out user..."); // Debugging
+
+  const userToken = getTokenCookie("businessUserToken");
+  if (userToken) {
+    removeTokenCookie("businessUserToken");
+  }
+
   localStorage.removeItem("persist:alert-business");
+
   localStorage.clear();
   sessionStorage.clear();
   persistor.purge();
-  dispatch(saveUserInfo(undefined));
+  navigate("/");
+  window.location.reload();
+  // dispatch(saveUserInfo(undefined));
   console.log("Local storage cleared and persistor purged."); // Debugging
-  navigate("/login");
 };

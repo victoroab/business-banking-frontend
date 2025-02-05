@@ -5,9 +5,10 @@ import {
   fetchBaseQuery,
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
-import { RootState } from "../store/store";
+// import { RootState } from "../store/store";
 import { queryBuilder } from "../utils";
 import { AddPos } from "../interfaces/Global";
+import Cookies from "js-cookie";
 
 const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 
@@ -18,10 +19,13 @@ const customBaseQuery: BaseQueryFn<
 > = async (args, api, extraOptions) => {
   const baseResult = await fetchBaseQuery({
     baseUrl: BASE_URL,
-    prepareHeaders: (headers, { getState }) => {
-      const userToken = (getState() as RootState)?.auth?.userInfo
-        ?.refresh_token;
-
+    prepareHeaders: (
+      headers
+      // { getState }
+    ) => {
+      // const userToken = (getState() as RootState)?.auth?.userInfo
+      //   ?.refresh_token;
+      const userToken = Cookies.get("businessUserToken");
       if (userToken) {
         headers.set("Authorization", `Bearer ${userToken}`);
       }

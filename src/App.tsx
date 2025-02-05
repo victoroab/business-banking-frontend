@@ -13,23 +13,17 @@ import { useIdleTimer } from "react-idle-timer";
 import InactiveContent from "./components/InactiveContent";
 import { useEffect, useState } from "react";
 import GeneralModal from "./components/PopUps/GeneralModal";
-import { useAppDispatch, useAppSelector } from "./hooks";
-import { selectAuth } from "./store/slice/authSlice";
+import Cookies from "js-cookie";
 
 function App() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [counter, setCounter] = useState<number>(20);
   const navigate = useNavigate();
-  // const userInfoString = localStorage.getItem("persist:alert-business");
-  const dispatch = useAppDispatch();
-  const { userInfo } = useAppSelector(selectAuth);
-  // const userInfos = userInfoString ? JSON.parse(userInfoString) : null;
-  // console.log(userInfos);
-  // const accessToken = userInfos !== null ? JSON.parse(userInfos?.auth) : null;
-  // console.log(accessToken);
+
+  const userToken = Cookies.get("businessUserToken");
 
   const onIdle = () => {
-    if (userInfo?.access_token) {
+    if (userToken) {
       console.log("User is idle. Showing modal...");
       setShowModal(true);
     } else {
@@ -38,7 +32,7 @@ function App() {
   };
 
   // const sessionTime = import.meta.env.VITE_REACT_APP_SESSION_TIME;
-  const sessionTime = 60;
+  const sessionTime = 0.1;
   useIdleTimer({
     onIdle,
     timeout: sessionTime * 60 * 1000,
@@ -53,7 +47,7 @@ function App() {
         return () => clearTimeout(timer);
       } else {
         console.log("Counter reached 0. Logging out...");
-        logoutUser(navigate, dispatch);
+        logoutUser(navigate);
         setShowModal(false);
       }
     } else {
