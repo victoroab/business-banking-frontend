@@ -23,10 +23,7 @@ const NewPOS = () => {
 
   return (
     <>
-      <Navbar
-        title="Send Money"
-        subtitle="Sending money has never been easier. ."
-      />
+      <Navbar title="POS" subtitle="Here's your your POS Terminals" />
       <div className="flex flex-col  gap-10">
         <div className="flex  justify-start w-48">
           <StepBackNavigation

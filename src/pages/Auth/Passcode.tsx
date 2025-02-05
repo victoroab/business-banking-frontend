@@ -83,7 +83,7 @@ const Passcode = () => {
         <div className="flex flex-col gap-8 w-full">
           <div className="flex flex-col gap-4">
             <h3 className="text-pryColor font-semibold text-2xl text-left font-bricolage leading-6">
-              Set Up your business account passcode
+              Set Up Your Business Account Passcode
             </h3>
             <p className="text-greyColr font-workSans leading-4 text-left font-normal text-sm">
               Your passcode will help keep your account safe and allow quick

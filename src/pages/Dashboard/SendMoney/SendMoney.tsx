@@ -58,15 +58,15 @@ const SendMoney = () => {
               "TV_BILL",
               "ELECTRICITY",
             ]}
-            placeholder="Beneficiary Type"
-            label="Beneficiary Type"
+            placeholder="Transfer Type"
+            label="Transfer Type"
             filter
             defaultValue={
-              queryData?.beneficiaryType !== ""
-                ? queryData?.beneficiaryType
+              queryData?.transferType !== ""
+                ? queryData?.transferType
                 : "TRANSFER"
             }
-            id="beneficiaryType"
+            id="transferType"
             onChange={(e) => {
               setQueryData((prev) => ({
                 ...prev,
@@ -74,7 +74,7 @@ const SendMoney = () => {
               }));
             }}
             className="w-[200px]"
-            name="beneficiaryType"
+            name="transferType"
           />
           <Calender
             setSelectedDate={setDob}

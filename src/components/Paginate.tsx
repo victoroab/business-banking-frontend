@@ -50,7 +50,7 @@ const Paginate: React.FC<IPaginate> = ({
       <div className="flex items-center gap-3">
         <p className="font-medium text-xs text-grey-300">
           {" "}
-          Showing: <span className="text-pryColor">{itemsPerPage}</span> of{" "}
+          Showing: <span className="text-pryColor">{1}</span> of{" "}
           {totalItemsCount}{" "}
         </p>
       </div>

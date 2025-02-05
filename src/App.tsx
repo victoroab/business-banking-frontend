@@ -17,22 +17,20 @@ import Cookies from "js-cookie";
 
 function App() {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [counter, setCounter] = useState<number>(20);
+  const [counter, setCounter] = useState<number>(60);
   const navigate = useNavigate();
 
   const userToken = Cookies.get("businessUserToken");
 
   const onIdle = () => {
     if (userToken) {
-      console.log("User is idle. Showing modal...");
       setShowModal(true);
     } else {
-      console.log("No user token found. Skipping idle check.");
     }
   };
 
   // const sessionTime = import.meta.env.VITE_REACT_APP_SESSION_TIME;
-  const sessionTime = 1;
+  const sessionTime = 10;
   useIdleTimer({
     onIdle,
     timeout: sessionTime * 60 * 1000,
@@ -43,15 +41,14 @@ function App() {
     if (showModal) {
       if (counter > 0) {
         const timer = setTimeout(() => setCounter(counter - 1), 1000);
-        console.log(`Counter: ${counter}`);
+
         return () => clearTimeout(timer);
       } else {
-        console.log("Counter reached 0. Logging out...");
         logoutUser(navigate);
         setShowModal(false);
       }
     } else {
-      setCounter(20);
+      setCounter(60);
     }
   }, [showModal, counter, navigate]);
 
