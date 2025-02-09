@@ -70,7 +70,7 @@ const SendMoney = () => {
             onChange={(e) => {
               setQueryData((prev) => ({
                 ...prev,
-                beneficiaryType: e.target.value,
+                transferType: e.target.value,
               }));
             }}
             className="w-[200px]"
@@ -136,7 +136,7 @@ const SendMoney = () => {
                 handleSearch={handleSearch}
                 currentPage={filteredData}
                 setCurrentPage={setFilteredData}
-                searchParams="ref"
+                searchParams="accountName"
                 itemsPerPage={queryData?.pageSize as number}
                 setQueryData={setQueryData}
                 totalItemsCount={data?.data.length}

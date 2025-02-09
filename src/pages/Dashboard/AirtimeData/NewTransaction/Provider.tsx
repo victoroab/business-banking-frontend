@@ -1,6 +1,6 @@
 import { ArrowRightIcon } from "../../../../assets/svg/CustomSVGs";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
-// import { useGetAllAirtimeProvidersQuery } from "../../../../service/billPayment";
+import { useGetAllAirtimeProvidersQuery } from "../../../../service/billPayment";
 import {
   selectBillPayment,
   // setAirtimeBundlePayload,
@@ -9,7 +9,7 @@ import {
 import { dataProvider } from "../../../../utils";
 
 const Provider = () => {
-  // const { data } = useGetAllAirtimeProvidersQuery();
+  const { data } = useGetAllAirtimeProvidersQuery();
   const { airtimeDataAction } = useAppSelector(selectBillPayment);
   console.log(airtimeDataAction);
   const dispatch = useAppDispatch();
@@ -22,7 +22,7 @@ const Provider = () => {
     // dispatch(setAirtimeBundlePayload({ serviceCategoryId: id, network: name }));
     // dispatch(setAirtimeDataCurrentStep(4));
   };
-
+  console.log(data);
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4">

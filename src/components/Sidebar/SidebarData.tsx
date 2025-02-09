@@ -92,27 +92,27 @@ export const SidebarData: SidebarDataProps[] = [
   },
 
   {
-    id: "tab9",
+    id: "tab10",
     icon: SidebarReportIcon,
     title: "Reports",
     url: "/reports",
   },
 
   {
-    id: "tab9",
+    id: "tab11",
     icon: SidebarAuditTrailIcon,
     title: "Audit Trail",
     url: "/audit-trail",
   },
 
   {
-    id: "tab10",
+    id: "tab12",
     icon: SupportIcon,
     title: "Support",
     url: "/support",
   },
   {
-    id: "tab11",
+    id: "tab13",
     icon: SidebarUserIcon,
     title: "Account Settings",
     url: "/account",

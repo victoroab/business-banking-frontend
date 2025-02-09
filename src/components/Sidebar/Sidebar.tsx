@@ -20,7 +20,7 @@ const Sidebar = () => {
         <section className=" w-full mx-auto flex flex-col h-[80%]">
           <ul className="flex flex-col gap-1 h-full">
             {SidebarData.map((item) => (
-              <SubMenu item={item} />
+              <SubMenu item={item} key={item.id} />
             ))}
           </ul>
         </section>
