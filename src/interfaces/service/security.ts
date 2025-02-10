@@ -7,6 +7,7 @@ export type QRCodeResponse = {
 export type QRCodeData = {
   secret: string;
   qrCode: string;
+  twoFaEnabled?: boolean;
 };
 
 export type NotificationPreferences = {
