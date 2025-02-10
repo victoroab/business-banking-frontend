@@ -31,9 +31,17 @@ const InactiveContent: React.FC<InactiveProps> = ({
           You have been idle for {sessionTime} mins!
         </h2>
         <p className="font-workSans text-center px-6 text-greyColr">
-          You will be logged out of your session in {counter} sec. Press cancel
-          to stay?
+          For security reasons, your login session has timed out due to
+          inactivity. Please log in again to continue using Alert Business. You
+          can retry in
         </p>
+
+        <div className="flex">
+          00:
+          <p className="font-workSans text-center px-6 text-greyColr">
+            {counter}
+          </p>
+        </div>
       </div>
 
       <div className="flex flex-wrap justify-center items-center gap-6 w-full">

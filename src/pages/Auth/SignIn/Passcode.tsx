@@ -67,13 +67,9 @@ const LoginPasscode = () => {
       dispatch(saveUserInfo(response?.data));
       setCookies("businessUserToken", response?.data?.access_token);
       handleShow("login-success");
-      if (response?.data?.kyc?.attestation === true) {
-        navigate("/");
-      } else {
-        const KYBresponse = await kybDetails().unwrap();
-        dispatch(setKYBDetails(KYBresponse?.data));
-        navigate("/kyb/identity");
-      }
+      const KYBresponse = await kybDetails().unwrap();
+      dispatch(setKYBDetails(KYBresponse?.data));
+      navigate("/");
     } catch (error: unknown) {
       errorHandler(error);
     }
