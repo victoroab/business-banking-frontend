@@ -7,7 +7,10 @@ import {
 } from "@reduxjs/toolkit/query/react";
 
 import Cookies from "js-cookie";
-import { QRCodeResponse } from "../interfaces/service/security";
+import {
+  NotificationPreferences,
+  QRCodeResponse,
+} from "../interfaces/service/security";
 
 const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 
@@ -50,7 +53,7 @@ export const securityApi = createApi({
   reducerPath: "securityApi",
   baseQuery: customBaseQuery,
 
-  tagTypes: ["Security"],
+  tagTypes: ["Security", "Notification"],
 
   endpoints: (builder) => ({
     //beneficiary
@@ -61,14 +64,55 @@ export const securityApi = createApi({
 
     generateCode: builder.mutation<QRCodeResponse, void>({
       query: (body) => ({
-        url: "/security/2fa/generate/",
+        url: "/security/2fa/generate",
         method: "POST",
         body,
       }),
 
       invalidatesTags: [{ type: "Security", id: "Security" }],
     }),
+
+    verifyCode: builder.mutation<
+      QRCodeResponse,
+      { token: string; secret: string }
+    >({
+      query: (body) => ({
+        url: "/security/2fa/verify",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Security", id: "Security" }],
+    }),
+
+    //preference
+    getAllNotificationPreference: builder.mutation<any, void>({
+      query: () => ({
+        url: "/notification/preference",
+        method: "GET",
+      }),
+      invalidatesTags: [{ type: "Notification", id: "Notification" }],
+    }),
+
+    updateNotificationPreference: builder.mutation<
+      any,
+      NotificationPreferences
+    >({
+      query: (body) => ({
+        url: "/notification/preference",
+        method: "PATCH",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Notification", id: "Notification" }],
+    }),
   }),
 });
 
-export const { useGenerateCodeMutation, useGetAllCodeQuery } = securityApi;
+export const {
+  useGenerateCodeMutation,
+  useGetAllCodeQuery,
+  useVerifyCodeMutation,
+  useGetAllNotificationPreferenceMutation,
+  useUpdateNotificationPreferenceMutation,
+} = securityApi;

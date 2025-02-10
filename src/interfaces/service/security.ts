@@ -8,3 +8,14 @@ export type QRCodeData = {
   secret: string;
   qrCode: string;
 };
+
+export type NotificationPreferences = {
+  creditEmail: boolean;
+  creditSms: boolean;
+  creditPush: boolean;
+  creditWhatsapp: boolean;
+  debitEmail: boolean;
+  debitSms: boolean;
+  debitPush: boolean;
+  debitWhatsapp: boolean;
+};

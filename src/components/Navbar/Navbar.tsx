@@ -4,15 +4,17 @@ import { saveAccountStatus } from "../../store/slice/globalSlice";
 import { NotificationIcon } from "../../assets/svg/CustomSVGs";
 import { NavbarProps } from "../../interfaces/Global";
 import { useUserProfileQuery } from "../../service/kyb";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setUserDetails } from "../../store/slice/authSlice";
 
 const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
   const dispatch = useAppDispatch();
   const { data } = useUserProfileQuery({});
 
-  const handleAccountToggle = (isLive: boolean) => {
-    dispatch(saveAccountStatus(isLive ? "Live" : "Test"));
+  const [isChecked, setIsChecked] = useState(false);
+  const handleAccountToggle = (checked: boolean) => {
+    setIsChecked(checked);
+    dispatch(saveAccountStatus(checked ? "Live" : "Test"));
   };
 
   useEffect(() => {
@@ -30,7 +32,7 @@ const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
         </p>
       </div>
       <div className="flex items-center gap-4">
-        <Switch onToggle={handleAccountToggle} />
+        <Switch onToggle={handleAccountToggle} isChecked={isChecked} />
         <div className="rounded-full w-[47px] h-[47px] bg-[#ebeff2] flex items-center justify-center">
           <NotificationIcon />
         </div>

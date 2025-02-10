@@ -3,10 +3,17 @@ import { useGenerateCodeMutation } from "../../../service/security";
 import { copyToClipboard, errorHandler } from "../../../utils";
 import { CopyIcon } from "../../../assets/svg/CustomSVGs";
 import { QRCodeData } from "../../../interfaces/service/security";
+import { useGlobalHooks } from "../../../hooks/globalHooks";
+import Verify2FA from "../../../components/Verify2FA";
+import { useAppSelector } from "../../../hooks";
+import { selectGlobal } from "../../../store/slice/globalSlice";
 
 const SetUp2FA = () => {
   const [generateCode] = useGenerateCodeMutation();
   const [code, setCode] = useState<QRCodeData>();
+  const { handleShow } = useGlobalHooks();
+  const toggle = useAppSelector(selectGlobal);
+
   const handleGenerateCode = async () => {
     try {
       const response = await generateCode().unwrap();
@@ -67,7 +74,11 @@ const SetUp2FA = () => {
             </div>
 
             <div className="flex justify-center  w-full gap-6">
-              <button className="main-btn w-full" type="submit">
+              <button
+                className="main-btn w-full"
+                type="submit"
+                onClick={() => handleShow("verify-2fa-code")}
+              >
                 Continue
               </button>
             </div>
@@ -80,6 +91,10 @@ const SetUp2FA = () => {
           </div>
         </div>
       </div>
+
+      {toggle["verify-2fa-code"] && (
+        <Verify2FA secret={code?.secret as string} />
+      )}
     </div>
   );
 };
