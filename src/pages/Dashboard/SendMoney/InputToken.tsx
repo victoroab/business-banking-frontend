@@ -33,11 +33,11 @@ const InputToken = () => {
       handleShow("input-pin");
       setOpenReceipt(true);
       console.log(response);
-      // toast.success(response?.message);
-      // dispatch(setTransactionCurrentStep(1));
+      toast.success(response?.message);
+      dispatch(setTransactionCurrentStep(1));
     } catch (error: any) {
       errorHandler(error);
-      // dispatch(setTransactionCurrentStep(1));
+      dispatch(setTransactionCurrentStep(1));
     }
   };
   console.log(openReceipt);

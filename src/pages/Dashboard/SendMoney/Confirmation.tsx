@@ -2,8 +2,8 @@ import { useGlobalHooks } from "../../../hooks/globalHooks";
 import { useAppSelector } from "../../../hooks";
 import { selectGlobal } from "../../../store/slice/globalSlice";
 import { AlertLogoIcon } from "../../../assets/svg/Sidebar";
-import PopUp from "../../../components/PopUps/PopUp";
-import { SuccessIcon } from "../../../assets/svg/CustomSVGs";
+// import PopUp from "../../../components/PopUps/PopUp";
+// import { SuccessIcon } from "../../../assets/svg/CustomSVGs";
 import {
   selectTransaction,
   setTransactionCurrentStep,

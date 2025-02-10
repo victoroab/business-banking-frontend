@@ -21,6 +21,8 @@ import ResetPasscode from "./ResetPasscode";
 import PopUp from "../../../components/PopUps/PopUp";
 import { errorHandler } from "../../../utils";
 import { useCookies } from "../../../hooks/cookiesHook";
+import { FAIcon } from "../../../assets/svg/dashboard";
+import { EmailIcon } from "../../../assets/svg/Accout";
 
 const LoginPasscode = () => {
   const [signIn, { isLoading }] = useSignInMutation();
@@ -30,6 +32,7 @@ const LoginPasscode = () => {
   const dispatch = useAppDispatch();
   const [otpCode, setOtpCode] = useState<string>("");
   const [verifyOtpCode, setVerifyOtpCode] = useState<string>("");
+  const [loginResponse, setLoginResponse] = useState<any>();
   const { phoneNumber } = useAppSelector(selectAuth);
   const { handleShow } = useGlobalHooks();
   const [kybDetails] = useGetKybDetailsMutation();
@@ -42,9 +45,10 @@ const LoginPasscode = () => {
     };
     try {
       const response = await signIn(requiredData).unwrap();
-
+      console.log(response?.data);
       toast.success(response?.data?.message);
-      handleShow("success");
+      setLoginResponse(response?.data);
+      handleShow("login-success");
     } catch (error: unknown) {
       errorHandler(error);
     }
@@ -62,7 +66,7 @@ const LoginPasscode = () => {
       toast.success(response?.message);
       dispatch(saveUserInfo(response?.data));
       setCookies("businessUserToken", response?.data?.access_token);
-      handleShow("success");
+      handleShow("login-success");
       if (response?.data?.kyc?.attestation === true) {
         navigate("/");
       } else {
@@ -113,18 +117,33 @@ const LoginPasscode = () => {
         </p>
       </div>
 
-      {toggle["success"] && (
-        <PopUp id={"success"}>
-          <div className="bg-white rounded-lg flex flex-col text-center items-center justify-center p-10 gap-10 w-[650px] border">
+      {toggle["login-success"] && (
+        <PopUp id={"login-success"}>
+          <div className="bg-white rounded-lg flex flex-col text-center items-center justify-center p-10 gap-10 w-[650px]">
+            {loginResponse?.twoFaEnabled ||
+            (loginResponse?.otpEnabled && phoneNumber.length === 11) ? (
+              <FAIcon />
+            ) : (
+              <EmailIcon />
+            )}
             <Otp
               otpCode={verifyOtpCode}
               setOtpCode={setVerifyOtpCode}
               inputCount={6}
-              title={"Verify This Request"}
+              title={
+                loginResponse?.twoFaEnabled
+                  ? "Two-Factor Authentication"
+                  : loginResponse?.otpEnabled && phoneNumber.length === 11
+                  ? `Check Your Phone`
+                  : `Check Your Email`
+              }
               paragraph={
                 <p>
-                  We sent a 6 digit code to {phoneNumber}. Check your SMS and
-                  enter it here.
+                  {loginResponse?.twoFaEnabled
+                    ? "Please enter the 6-digit code from your Google Authenticator app."
+                    : loginResponse?.otpEnabled && phoneNumber.length === 11
+                    ? `We sent a 6-digit code to ${phoneNumber}. Check your SMS and enter it here.`
+                    : `We sent a 6-digit code to ${phoneNumber}. Check your mail and enter it here.`}
                 </p>
               }
             />

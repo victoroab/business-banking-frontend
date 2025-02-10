@@ -7,9 +7,10 @@ import { useGlobalHooks } from "../../../hooks/globalHooks";
 import Verify2FA from "../../../components/Verify2FA";
 import { useAppSelector } from "../../../hooks";
 import { selectGlobal } from "../../../store/slice/globalSlice";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const SetUp2FA = () => {
-  const [generateCode] = useGenerateCodeMutation();
+  const [generateCode, { isLoading }] = useGenerateCodeMutation();
   const [code, setCode] = useState<QRCodeData>();
   const { handleShow } = useGlobalHooks();
   const toggle = useAppSelector(selectGlobal);
@@ -51,26 +52,38 @@ const SetUp2FA = () => {
                 using any authenticator app
               </p>
             </div>
-            <div className="flex">
-              <img src={code?.qrCode} alt="" />
-            </div>
+            <div className="flex gap-4 w-full items-center justify-center flex-col">
+              {isLoading ? (
+                <Spinner />
+              ) : (
+                <>
+                  <div className="flex">
+                    <img src={code?.qrCode} alt="" />
+                  </div>
 
-            <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-              Setup Key
-            </p>
-            <div
-              className="p-4 gap-4  rounded-md items-center flex w-[100%] justify-between"
-              style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
-            >
-              <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-                <span className="text-sm font-medium">{code?.secret}</span>
-              </p>
-              <p
-                className="copy text-xs text-secColor flex items-center gap-2 cursor-pointer"
-                onClick={() => copyToClipboard(code?.secret as string)}
-              >
-                COPY <CopyIcon />
-              </p>
+                  <p className="text-greyColr font-workSans leading-4 font-normal text-sm text-left w-full">
+                    Setup Key
+                  </p>
+                  <div
+                    className="p-4 gap-4  rounded-md items-center flex w-[100%] justify-between"
+                    style={{
+                      boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)",
+                    }}
+                  >
+                    <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
+                      <span className="text-sm font-medium">
+                        {code?.secret}
+                      </span>
+                    </p>
+                    <p
+                      className="copy text-xs text-secColor flex items-center gap-2 cursor-pointer"
+                      onClick={() => copyToClipboard(code?.secret as string)}
+                    >
+                      COPY <CopyIcon />
+                    </p>
+                  </div>
+                </>
+              )}
             </div>
 
             <div className="flex justify-center  w-full gap-6">
