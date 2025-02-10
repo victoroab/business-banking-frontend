@@ -494,7 +494,29 @@ export const cableProvider: IDOption[] = [
     title: "Showmax",
   },
 ];
+export const newSendMoneyTransaction: ProgressStepsProps[] = [
+  {
+    id: 1,
+    link: "debit-account",
+    title: "Select Debit Account",
+  },
+  {
+    id: 2,
+    link: "bank-details",
+    title: "Bank Details",
+  },
+  {
+    id: 3,
+    link: "amount",
+    title: "Amount",
+  },
 
+  {
+    id: 4,
+    link: "confirmation",
+    title: "Confirmation",
+  },
+];
 export const newTransaction: ProgressStepsProps[] = [
   {
     id: 1,
@@ -839,26 +861,30 @@ export const accountSettingsSteps: ProgressStepsProps[] = [
   },
   {
     id: 8,
-    title: "Bank Statement",
+    title: "Setup 2FA",
   },
   {
     id: 9,
-    title: "Manage Beneficiaries",
+    title: "Bank Statement",
   },
   {
     id: 10,
-    title: "Device Management",
+    title: "Manage Beneficiaries",
   },
   {
     id: 11,
-    title: "Contact US",
+    title: "Device Management",
   },
   {
     id: 12,
-    title: "Terms and Conditions",
+    title: "Contact US",
   },
   {
     id: 13,
+    title: "Terms and Conditions",
+  },
+  {
+    id: 14,
     title: "Visit our Website",
   },
 ];

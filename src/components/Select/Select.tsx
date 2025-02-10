@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef, useState } from "react";
 import "./style.css";
 import { ArrowDownIcon } from "../../assets/svg/PayBill";
+import Spinner from "../Spinner/Spinner";
 interface SelectProps {
   id: string;
   label?: string;
@@ -16,6 +17,7 @@ interface SelectProps {
   placeholder?: string;
   filter?: boolean;
   searchFunc?: boolean;
+  isLoading?: boolean;
 }
 
 const Select: FC<SelectProps> = ({
@@ -29,6 +31,7 @@ const Select: FC<SelectProps> = ({
   valuePropertyName,
   filter,
   searchFunc,
+  isLoading,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
@@ -101,19 +104,37 @@ const Select: FC<SelectProps> = ({
                   onChange={(e: any) => setSearchTerm(e.target.value)}
                 />
               </div>
-              {filteredOptions?.map((option) => (
-                <li
-                  key={option?.[keyPropertyName as any] || option}
-                  className="option"
-                  onClick={() =>
-                    handleOptionClick(
-                      option?.[valuePropertyName as any] ?? option
-                    )
-                  }
-                >
-                  {option?.[itemPropertyName as any] || option}
-                </li>
-              ))}
+              {isLoading ? (
+                <div className="flex justify-center items-center w-full">
+                  <Spinner />
+                </div>
+              ) : (
+                <>
+                  {filteredOptions !== undefined &&
+                  filteredOptions?.length >= 1 ? (
+                    <>
+                      {" "}
+                      {filteredOptions?.map((option) => (
+                        <li
+                          key={option?.[keyPropertyName as any] || option}
+                          className="option"
+                          onClick={() =>
+                            handleOptionClick(
+                              option?.[valuePropertyName as any] ?? option
+                            )
+                          }
+                        >
+                          {option?.[itemPropertyName as any] || option}
+                        </li>
+                      ))}
+                    </>
+                  ) : (
+                    <div className="flex justify-center items-center font-workSans text-sm pb-4">
+                      Not found
+                    </div>
+                  )}
+                </>
+              )}
             </ul>
           ) : (
             <ul className="options">

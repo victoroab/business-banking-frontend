@@ -1,6 +1,6 @@
 import ProgressLayout from "../../../layout/ProgressLayout";
 import { StepComponentProps } from "../../../interfaces/Global";
-import { newTransaction } from "../../../utils";
+import { newSendMoneyTransaction } from "../../../utils";
 import Navbar from "../../../components/Navbar/Navbar";
 import DebitAccount from "./DebitAccount";
 import BankDetails from "./BankDetails";
@@ -40,7 +40,7 @@ const NewTransaction = () => {
         <div className="bg-pryColor-Light w-full flex flex-col gap-10 justify-center items-center py-6 px-10 h-[80vh]">
           <ProgressLayout
             stepsComponents={stepsComponents}
-            progressSteps={newTransaction}
+            progressSteps={newSendMoneyTransaction}
             isDashboard
             stateCurrentStep={transactionCurrentStep}
             setStateCurrentStep={setTransactionCurrentStep}

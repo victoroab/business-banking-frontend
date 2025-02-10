@@ -27,14 +27,14 @@ export const ScreenIcon = (props: SVGProps<SVGSVGElement>) => (
     <path
       d="M12.668 23.0605H19.3346"
       stroke="#0E0C60"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M9.33203 19.9939V11.4605C9.33203 11.2396 9.51112 11.0605 9.73203 11.0605H22.2654C22.4863 11.0605 22.6654 11.2396 22.6654 11.4605V19.9939C22.6654 20.2148 22.4863 20.3939 22.2654 20.3939H9.73203C9.51112 20.3939 9.33203 20.2148 9.33203 19.9939Z"
       stroke="#0E0C60"
-      stroke-width="1.5"
+      strokeWidth="1.5"
     />
     <rect
       y="0.0605469"
@@ -267,7 +267,7 @@ export const SliderIcon = (props: SVGProps<SVGSVGElement>) => (
       r="7"
       fill="white"
       stroke="#DBB950"
-      stroke-width="2"
+      strokeWidth="2"
     />
     <circle
       cx="600"
@@ -275,13 +275,13 @@ export const SliderIcon = (props: SVGProps<SVGSVGElement>) => (
       r="7"
       fill="white"
       stroke="#DBB950"
-      stroke-width="2"
+      strokeWidth="2"
     />
     <path
       d="M15 8.77832C15 12.6443 11.866 15.7783 8 15.7783C4.13401 15.7783 1 12.6443 1 8.77832C1 4.91233 4.13401 1.77832 8 1.77832C11.866 1.77832 15 4.91233 15 8.77832Z"
       fill="white"
       stroke="#DBB950"
-      stroke-width="2"
+      strokeWidth="2"
     />
   </svg>
 );

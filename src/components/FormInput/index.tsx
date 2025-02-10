@@ -25,6 +25,7 @@ const FormInput = ({
   accountName,
   accountType,
   filter,
+  isLoading,
   searchFunc,
 }: IFormInputProps) => {
   return (
@@ -45,6 +46,7 @@ const FormInput = ({
             options={selectOptions}
             filter={filter}
             selectedOption={defaultValue}
+            isLoading={isLoading}
             setSelectedOption={(option: any) =>
               onChange &&
               onChange({

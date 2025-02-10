@@ -17,7 +17,7 @@ export const RequestIcon = (props: SVGProps<SVGSVGElement>) => (
       strokeLinejoin="round"
     />
     <path
-      fill-rule="evenodd"
+      fillRule="evenodd"
       clipRule="evenodd"
       d="M86.9953 70.9893C89.0528 72.2547 88.9261 75.3351 86.8069 75.5755L76.1128 76.7876L71.3161 86.4222C70.3657 88.3314 67.4278 87.3968 66.9419 85.0305L61.7115 59.5472C61.3011 57.5472 63.0986 56.2884 64.8374 57.3584L86.9953 70.9893Z"
       stroke="#DBB950"

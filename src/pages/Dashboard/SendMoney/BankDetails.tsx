@@ -21,7 +21,7 @@ const BankDetails = () => {
   const [nameEnquiry, { isLoading }] = useNameEnquiryMutation();
   const [beneficiaryAccountDetails, setBeneficiaryAccountDetails] =
     useState<any>();
-  const { data } = useGetAllBanksQuery();
+  const { data, isLoading: bankLoading } = useGetAllBanksQuery();
   const [bankList, setBankList] = useState<any>();
   const onSubmit = async (formData: {
     bankCode: string;
@@ -92,6 +92,7 @@ const BankDetails = () => {
               className="w-full"
               name="bankCode"
               searchFunc
+              isLoading={bankLoading}
               selectOptions={bankList?.data}
               keyPropertyName="Name"
               valuePropertyName="Code"

@@ -77,14 +77,14 @@ export const CableIcon = (props: SVGProps<SVGSVGElement>) => (
     <path
       d="M16.2422 31.041H26.2422"
       stroke="#A30A82"
-      stroke-width="1.5"
+      strokeWidth="1.5"
       stroke-linecap="round"
       stroke-linejoin="round"
     />
     <path
       d="M11.2422 26.441V13.641C11.2422 13.3096 11.5108 13.041 11.8422 13.041H30.6422C30.9736 13.041 31.2422 13.3096 31.2422 13.641V26.441C31.2422 26.7724 30.9736 27.041 30.6422 27.041H11.8422C11.5108 27.041 11.2422 26.7724 11.2422 26.441Z"
       stroke="#A30A82"
-      stroke-width="1.5"
+      strokeWidth="1.5"
     />
     <rect
       x="0.742188"
@@ -128,7 +128,7 @@ export const BettingIcon = (props: SVGProps<SVGSVGElement>) => (
       fill="#1C7CD5"
     />
     <path
-      fill-rule="evenodd"
+      fillRule="evenodd"
       clipRule="evenodd"
       d="M9.74219 14.082C9.74219 12.4252 11.0853 11.082 12.7422 11.082H28.7422C30.3991 11.082 31.7422 12.4252 31.7422 14.082V30.082C31.7422 31.7389 30.3991 33.082 28.7422 33.082H12.7422C11.0853 33.082 9.74219 31.7389 9.74219 30.082V14.082ZM12.7422 13.082H28.7422C29.2945 13.082 29.7422 13.5298 29.7422 14.082V30.082C29.7422 30.6343 29.2945 31.082 28.7422 31.082H12.7422C12.1899 31.082 11.7422 30.6343 11.7422 30.082V14.082C11.7422 13.5298 12.1899 13.082 12.7422 13.082Z"
       fill="#1C7CD5"
@@ -170,14 +170,14 @@ export const BeneficiaryIcon = (props: SVGProps<SVGSVGElement>) => (
       <path
         d="M17.4092 26.667V53.3337"
         stroke="#DBB950"
-        stroke-width="2"
-        stroke-miterlimit="10"
+        strokeWidth="2"
+        strokeMiterlimit="10"
       />
       <path
         d="M30.7419 40H4.0752"
         stroke="#DBB950"
-        stroke-width="2"
-        stroke-miterlimit="10"
+        strokeWidth="2"
+        strokeMiterlimit="10"
       />
     </g>
     <defs>

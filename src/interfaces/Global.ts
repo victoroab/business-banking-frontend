@@ -48,6 +48,7 @@ export interface IFormInputProps {
   accountName?: string;
   accountType?: string;
   searchFunc?: boolean;
+  isLoading?: boolean;
 }
 
 export interface DashboardLayoutProps {
