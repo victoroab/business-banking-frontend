@@ -30,7 +30,7 @@ function App() {
   };
 
   // const sessionTime = import.meta.env.VITE_REACT_APP_SESSION_TIME;
-  const sessionTime = 10;
+  const sessionTime = 5;
   useIdleTimer({
     onIdle,
     timeout: sessionTime * 60 * 1000,
