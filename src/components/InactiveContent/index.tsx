@@ -15,7 +15,7 @@ interface InactiveProps {
 const InactiveContent: React.FC<InactiveProps> = ({
   close,
   counter,
-  sessionTime,
+
   setShowModal,
 }) => {
   const navigate = useNavigate();
@@ -25,10 +25,10 @@ const InactiveContent: React.FC<InactiveProps> = ({
   };
 
   return (
-    <div className="w-full bg-white animate__animated animate__bounceInRight rounded-lg py-10 px-6 flex flex-col gap-6">
-      <div className="w-500 flex flex-col gap-4">
-        <h2 className="text-center text-nagative text-2xl font-bricolage font-semibold">
-          You have been idle for {sessionTime} mins!
+    <div className="w-full bg-white animate__animated animate__bounceInRight rounded-lg py-10 px-6 flex flex-col gap-6 justify-center items-center">
+      <div className=" w-[650px] flex flex-col gap-4">
+        <h2 className="text-center text-pryColor text-2xl font-bricolage font-semibold">
+          Login Session Timeout
         </h2>
         <p className="font-workSans text-center px-6 text-greyColr">
           For security reasons, your login session has timed out due to
@@ -36,7 +36,7 @@ const InactiveContent: React.FC<InactiveProps> = ({
           can retry in
         </p>
 
-        <div className="flex">
+        <div className="flex w-full justify-center items-center">
           00:
           <p className="font-workSans text-center px-6 text-greyColr">
             {counter}
