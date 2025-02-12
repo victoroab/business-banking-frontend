@@ -1,31 +1,29 @@
-import PopUp from "../../../../components/PopUps/PopUp";
-import { SuccessIcon } from "../../../../assets/svg/CustomSVGs";
-import { useGlobalHooks } from "../../../../hooks/globalHooks";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
-import { selectGlobal } from "../../../../store/slice/globalSlice";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { ArrowDownIcon } from "../../../../assets/svg/PayBill";
 import {
   selectBillPayment,
   setAirtimeDataCurrentStep,
 } from "../../../../store/slice/billPaymentSlice";
 import InputToken from "./InputToken";
+import GeneralModal from "../../../../components/PopUps/GeneralModal";
 
 const AirtimeConfirmation = () => {
   const formRef = useRef<HTMLDivElement>(null);
-  const { handleShow } = useGlobalHooks();
-  const toggle = useAppSelector(selectGlobal);
+  const [openPinModal, setOpenPinModal] = useState(false);
   const dispatch = useAppDispatch();
   const { airtimeBundlePayload } = useAppSelector(selectBillPayment);
 
   const handleSubmit = () => {
-    handleShow("input-pin");
+    // handleShow("input-pin");
+    setOpenPinModal(true);
   };
 
   const scrollToBottom = () => {
     formRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
+  console.log(openPinModal);
   return (
     <div className="flex flex-col gap-10 pr-6 relative">
       <div className="gap-4 flex flex-col justify-center items-center">
@@ -43,7 +41,7 @@ const AirtimeConfirmation = () => {
         </p>
 
         <h3 className="text-pryColor font-extrabold text-2xl font-bricolage leading-6">
-          #{airtimeBundlePayload?.amount}.00
+          &#8358;{airtimeBundlePayload?.amount}.00
         </h3>
       </div>
 
@@ -66,10 +64,10 @@ const AirtimeConfirmation = () => {
           "
             >
               <p className="tit text-sm  text-amount font-semibold font-workSans">
-                #{airtimeBundlePayload?.amount}.00
+                &#8358;{airtimeBundlePayload?.amount}.00
               </p>
               <p className="va text-amount font-semibold text-sm font-workSans">
-                #0.00
+                &#8358;0.00
               </p>
             </div>
           </div>
@@ -85,7 +83,7 @@ const AirtimeConfirmation = () => {
           "
             >
               <p className="tit  font-workSanstext-sm  text-amount font-semibold flex flex-col justify-end items-end">
-                #{airtimeBundlePayload?.amount}.00
+                &#8358;{airtimeBundlePayload?.amount}.00
               </p>
             </div>
           </div>
@@ -137,66 +135,10 @@ const AirtimeConfirmation = () => {
         <div ref={formRef}></div>
       </div>
 
-      {toggle["input-pin"] && <InputToken />}
-
-      {toggle["submit-bill"] && (
-        <PopUp id={"submit-bill"}>
-          <div className="bg-white rounded-lg flex flex-col items-center justify-center p-10 gap-10 w-[650px]">
-            <div
-              className="p-4 gap-4 rounded-full items-center justify-center flex w-[122px] h-[122px]"
-              style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
-            >
-              <SuccessIcon />
-            </div>
-
-            <div className="flex flex-col gap-4 items-center justify-center">
-              <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-                Bet wallet Funded Successfully
-              </h3>
-              <p className="text-greyColr font-workSans leading-4 font-normal text-base text-center">
-                Your wallet has been funded successfully
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-4 items-center justify-center border-t pt-6">
-              <p className="text-greyColr font-workSans leading-4 font-normal text-sm text-center">
-                TV Package
-              </p>
-              <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-                DSTV Yanga NGN 5,000
-              </h3>
-
-              <p className="text-greyColr font-workSans leading-4 font-normal text-base text-center">
-                Add Beneficiary ?
-              </p>
-            </div>
-            <div className="flex justify-center  w-full gap-6">
-              <button
-                className="yellow-frame-btn w-1/2"
-                type="submit"
-                // onClick={() => navigate("/signup")}
-              >
-                Share Receipt
-              </button>
-              <button
-                className="main-btn w-1/2"
-                type="submit"
-                // onClick={() => navigate("/signup")}
-              >
-                Download Receipt
-              </button>
-            </div>
-            <div className="flex justify-center  w-[80%] gap-6">
-              <button
-                className="main-btn w-full"
-                type="submit"
-                // onClick={() => navigate("/")}
-              >
-                Download Receipt
-              </button>
-            </div>
-          </div>
-        </PopUp>
+      {openPinModal && (
+        <GeneralModal>
+          <InputToken />
+        </GeneralModal>
       )}
     </div>
   );

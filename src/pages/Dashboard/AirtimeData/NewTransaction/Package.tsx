@@ -1,16 +1,22 @@
-// import { useNavigate } from "react-router-dom";
 import { ArrowRightIcon } from "../../../../assets/svg/CustomSVGs";
-import { useAppDispatch } from "../../../../hooks";
-import { IDOption } from "../../../../interfaces/Global";
-import { setAirtimeDataCurrentStep } from "../../../../store/slice/billPaymentSlice";
-import { dataPackage } from "../../../../utils";
+import { useAppDispatch, useAppSelector } from "../../../../hooks";
+import { useGetAllInternetBundlesQuery } from "../../../../service/billPayment";
+import {
+  selectBillPayment,
+  setAirtimeBundlePayload,
+  setAirtimeDataCurrentStep,
+} from "../../../../store/slice/billPaymentSlice";
 
 const AirtimePackage = () => {
   const dispatch = useAppDispatch();
+  const { airtimeBundlePayload } = useAppSelector(selectBillPayment);
+
+  const { data } = useGetAllInternetBundlesQuery(
+    airtimeBundlePayload?.serviceCategoryId
+  );
 
   const handleNavigate = (title: string) => {
-    console.log(title);
-
+    dispatch(setAirtimeBundlePayload({ bundleCode: title }));
     dispatch(setAirtimeDataCurrentStep(4));
   };
 
@@ -29,17 +35,18 @@ const AirtimePackage = () => {
         <h3 className="text-greyColr font-semibold text-base font-bricolage leading-6">
           Categories
         </h3>
-        {dataPackage.map((option: IDOption, index) => (
+        {data?.data.map((option: any) => (
           <div
             className="account-option flex flex-col cursor-pointer rounded-xl p-6 gap-4"
             style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
-            key={index}
-            onClick={() => handleNavigate(option?.title)}
+            key={option?.productId}
+            onClick={() => handleNavigate(option?.bundleCode)}
           >
             <div className="flex items-center justify-between">
               <div className="flex gap-2 items-center">
                 <h2 className="text-base font-medium text-lightGreyColor m-0 font-workSans">
-                  {option?.title}
+                  {option?.bundleCode} for {option?.validity} NGN{" "}
+                  {option?.amount}
                 </h2>
               </div>
               <ArrowRightIcon />

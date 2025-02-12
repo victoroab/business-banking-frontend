@@ -25,7 +25,7 @@ const TransferDetails = ({ selectedRow }: DetailsProps) => {
   //     errorHandler(error);
   //   }
   // };
-  console.log(selectedRow);
+
   return (
     <PopUp id={"transaction-details"}>
       <div className="bg-white rounded-lg flex flex-col py-10 px-32 gap-10 w-[650px]">

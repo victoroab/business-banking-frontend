@@ -61,11 +61,10 @@ export const billPaymentApi = createApi({
       providesTags: [{ type: "Airtime", id: "Airtime" }],
     }),
     //all internet providers
-    getAllInternetProviders: builder.query({
+    getAllInternetProviders: builder.query<any, void>({
       query: () => `/bill-payment/internet/providers`,
       providesTags: [{ type: "Bundle", id: "Bundle" }],
     }),
-
     //all internet bundles
     getAllInternetBundles: builder.query({
       query: (categoryId) =>
@@ -74,7 +73,7 @@ export const billPaymentApi = createApi({
     }),
     buyBundle: builder.mutation<any, BundleData>({
       query: (body) => ({
-        url: "/transaction/send-money",
+        url: "/bill-payment/internet/buy",
         method: "POST",
         body,
       }),
@@ -84,7 +83,7 @@ export const billPaymentApi = createApi({
 
     buyAirtime: builder.mutation<any, AirtimeData>({
       query: (body) => ({
-        url: "/transaction/send-money",
+        url: "/bill-payment/airtime/buy",
         method: "POST",
         body,
       }),
