@@ -1,25 +1,23 @@
-import { useGlobalHooks } from "../../../hooks/globalHooks";
 import { useAppSelector } from "../../../hooks";
-import { selectGlobal } from "../../../store/slice/globalSlice";
 import { AlertLogoIcon } from "../../../assets/svg/Sidebar";
-// import PopUp from "../../../components/PopUps/PopUp";
-// import { SuccessIcon } from "../../../assets/svg/CustomSVGs";
 import {
   selectTransaction,
   setTransactionCurrentStep,
 } from "../../../store/slice/transactionSlice";
 import InputToken from "./InputToken";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
+import GeneralModal from "../../../components/PopUps/GeneralModal";
 
 const Confirmation = () => {
-  const { handleShow } = useGlobalHooks();
-  const toggle = useAppSelector(selectGlobal);
+  const [openPinModal, setOpenPinModal] = useState(false);
   const dispatch = useDispatch();
   const { sendMoneyPayload } = useAppSelector(selectTransaction);
   const handleSubmit = () => {
-    handleShow("input-pin");
+    // handleShow("input-pin");
+    setOpenPinModal(true);
   };
-
+  console.log(openPinModal);
   return (
     <div className="flex flex-col gap-10">
       <div className="gap-4 flex flex-col justify-center items-center">
@@ -136,7 +134,7 @@ const Confirmation = () => {
         <div className="flex justify-center items-center w-full gap-6">
           <button
             className="main-btn w-full"
-            type="submit"
+            // type="submit"
             onClick={handleSubmit}
           >
             Next
@@ -144,7 +142,11 @@ const Confirmation = () => {
         </div>
       </div>
 
-      {toggle["input-pin"] && <InputToken />}
+      {openPinModal && (
+        <GeneralModal>
+          <InputToken />
+        </GeneralModal>
+      )}
     </div>
   );
 };

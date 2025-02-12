@@ -132,8 +132,9 @@ export interface RowDataProps {
 export interface TransferDataProps {
   id: string;
   bankName: string;
-
   createdAt: string;
+  narration?: string;
+  reference?: string;
   beneficiary: {
     accountName: string;
     accountNumber: string;
