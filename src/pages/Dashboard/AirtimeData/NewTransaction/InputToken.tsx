@@ -43,18 +43,17 @@ const InputToken = () => {
         bundleCode: airtimeBundlePayload?.bundleCode as string,
         phoneNumber: airtimeBundlePayload?.phoneNumber as string,
       };
-      const response =
-        airtimeDataAction === "DATA"
-          ? await buyBundle(bundleRequiredData).unwrap()
-          : await buyAirtime(airtimeRequiredData).unwrap();
+
+      airtimeDataAction === "DATA"
+        ? await buyBundle(bundleRequiredData).unwrap()
+        : await buyAirtime(airtimeRequiredData).unwrap();
       setOpenReceipt(true);
       dispatch(setAirtimeDataCurrentStep(1));
-      console.log(response);
     } catch (error: any) {
       errorHandler(error);
     }
   };
-  console.log(openReceipt);
+
   return (
     <>
       {openReceipt ? (
@@ -68,11 +67,16 @@ const InputToken = () => {
 
           <div className="flex flex-col gap-4 items-center justify-center text-white">
             <h3 className=" font-semibold text-2xl font-bricolage leading-6">
-              Transfer Successfully
+              {airtimeDataAction === "DATA"
+                ? "Data Purchased Successfully"
+                : "Airtime Purchased Successfully"}
             </h3>
             <p className=" font-workSans leading-4 font-normal text-base text-center">
-              You have successfully sent airtime to{" "}
-              {airtimeBundlePayload?.phoneNumber}
+              {airtimeDataAction === "DATA"
+                ? `You have successfully sent data to
+              ${airtimeBundlePayload?.phoneNumber}`
+                : `You have successfully recharged your number
+              ${airtimeBundlePayload?.phoneNumber}`}
             </p>
           </div>
 

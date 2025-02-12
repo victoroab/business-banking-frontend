@@ -18,7 +18,6 @@ const Provider = () => {
   const dispatch = useAppDispatch();
 
   const handleNavigate = (name: string, id: string) => {
-    console.log(name, id);
     dispatch(setAirtimeBundlePayload({ serviceCategoryId: id, network: name }));
     airtimeDataAction === "DATA"
       ? dispatch(setAirtimeDataCurrentStep(3))
@@ -26,7 +25,6 @@ const Provider = () => {
   };
   const data = airtimeDataAction === "DATA" ? bundle : airtime;
 
-  console.log(data);
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4">
