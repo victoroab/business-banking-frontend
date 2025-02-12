@@ -34,7 +34,9 @@ const SendMoney = () => {
     setSelectedRow(row);
     IsOpenAction((prev) => !prev);
   };
-
+  const onClose = () => {
+    IsOpenAction(false);
+  };
   return (
     <div className="border">
       <Navbar
@@ -121,7 +123,8 @@ const SendMoney = () => {
                   handleOpenModal,
                   selectedRow as TransferDataProps,
                   openAction,
-                  refetch
+                  refetch,
+                  onClose
                 )}
                 data={data?.data}
                 noDataComponent={<NoData />}

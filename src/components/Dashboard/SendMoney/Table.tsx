@@ -7,7 +7,8 @@ export const sendMoneyColumnsData = (
   handleOpenModal: (row: TransferDataProps) => void,
   selectedRow: TransferDataProps,
   openAction: boolean,
-  refetch: any
+  refetch: any,
+  onClose: any
 ): IColData[] => {
   return [
     {
@@ -81,7 +82,12 @@ export const sendMoneyColumnsData = (
 
           {openAction && selectedRow?.id === row?.id && (
             <div className="absolute z-[1000] right-[70px] bottom-[-18px] ">
-              <TransferActionMenu id={row?.id} row={row} refetch={refetch} />
+              <TransferActionMenu
+                id={row?.id}
+                row={row}
+                refetch={refetch}
+                onClose={onClose}
+              />
             </div>
           )}
         </div>
