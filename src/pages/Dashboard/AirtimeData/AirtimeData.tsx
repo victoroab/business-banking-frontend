@@ -4,29 +4,46 @@ import Paginate from "../../../components/Paginate";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import { useState } from "react";
 import DataTable from "react-data-table-component";
-import { tableCustomStyles, transactionsData } from "../../../utils";
-import { columnsData } from "../../../utils/table";
-import { RowDataProps } from "../../../interfaces/Global";
+import { tableCustomStyles } from "../../../utils";
 import { useAppDispatch } from "../../../hooks";
 import { setAirtimeDataAction } from "../../../store/slice/billPaymentSlice";
+import { useGetAllTransactionsQuery } from "../../../service/transaction";
+import Search from "../../../components/Search/Search";
+import FormInput from "../../../components/FormInput";
+import Calender from "../../../components/Calendar/DatePicker";
+import { FilterIcon } from "../../../assets/svg/dashboard";
+import NoData from "../../../components/NoData/NoData";
+import {
+  airtimeColumnsData,
+  dataColumnsData,
+} from "../../../components/Dashboard/AirtimeData/Table";
+import { TransactionProps } from "../../../interfaces/service/billPayment";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const AirtimeData = () => {
   const { handleSearch, handleShow } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
-  const [selectedRow, setSelectedRow] = useState<RowDataProps>();
+  const [selectedRow, setSelectedRow] = useState<TransactionProps>();
+  const [dob, setDob] = useState(new Date());
+  const [openAction, IsOpenAction] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
-    terminal: "",
+    keyword: "",
+    type: "AIRTIME",
     pageNumber: 1,
     pageSize: 10,
   });
   const navigate = useNavigate();
-
-  const handleOpenModal = (row: RowDataProps) => {
+  const { data, refetch, isLoading } = useGetAllTransactionsQuery(queryData);
+  const handleOpenModal = (row: TransactionProps) => {
     handleShow("show-action");
     setSelectedRow(row);
+  };
+
+  const onClose = () => {
+    IsOpenAction(false);
   };
 
   return (
@@ -36,6 +53,48 @@ const AirtimeData = () => {
         subtitle="Easily recharge you phone or prchase data bundles in just a few clicks"
       />
       <div className="flex flex-col gap-10">
+        <div className="flex justify-end items-center gap-6 px-10">
+          <Search
+            placeholder="Search"
+            setQueryData={setQueryData}
+            label="Search"
+            className="shadow-md"
+          />
+          <FormInput
+            type="cSelect"
+            selectOptions={["AIRTIME", "DATA"]}
+            placeholder="Type"
+            label="Top Up"
+            filter
+            defaultValue={queryData?.type !== "" ? queryData?.type : "AIRTIME"}
+            id="type"
+            onChange={(e) => {
+              setQueryData((prev) => ({
+                ...prev,
+                type: e.target.value,
+              }));
+            }}
+            className="w-[200px]"
+            name="transferType"
+          />
+          <Calender
+            setSelectedDate={setDob}
+            selectedDate={dob}
+            label="From"
+            filter
+          />
+          <Calender
+            setSelectedDate={setDob}
+            selectedDate={dob}
+            label="To"
+            filter
+          />
+
+          <div className="flex items-center gap-2 bg-[#e2eefa] rounded-xl py-4 px-6 mt-6 cursor-pointer">
+            <FilterIcon />
+            <p className="font-bold text-pryColor tex-sm"> Filter</p>
+          </div>
+        </div>
         <div className="flex justify-end px-10 gap-6">
           <button
             className="main-btn w-40 font-bricolage"
@@ -69,31 +128,77 @@ const AirtimeData = () => {
             className="relative px-10 font-workSans"
             style={{ boxShadow: "0px 1px 7px 4px rgba(216, 216, 216, 0.2)" }}
           >
-            <div className="">
-              <DataTable
-                columns={columnsData(
-                  handleOpenModal,
-
-                  selectedRow as RowDataProps
+            {isLoading ? (
+              <div className="flex justify-center items-center">
+                <Spinner />
+              </div>
+            ) : (
+              <div className="aasd">
+                {queryData?.type === "AIRTIME" ? (
+                  <>
+                    {" "}
+                    <div className="">
+                      <DataTable
+                        columns={airtimeColumnsData(
+                          handleOpenModal,
+                          selectedRow as TransactionProps,
+                          openAction,
+                          refetch,
+                          onClose
+                        )}
+                        data={data?.data}
+                        noDataComponent={<NoData />}
+                        customStyles={tableCustomStyles}
+                        className=""
+                      />
+                    </div>
+                    <div className="">
+                      <Paginate
+                        data={data?.data}
+                        handleSearch={handleSearch}
+                        currentPage={filteredData}
+                        setCurrentPage={setFilteredData}
+                        searchParams="accountName"
+                        itemsPerPage={queryData?.pageSize as number}
+                        setQueryData={setQueryData}
+                        totalItemsCount={data?.data.length}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    {" "}
+                    <div className="">
+                      <DataTable
+                        columns={dataColumnsData(
+                          handleOpenModal,
+                          selectedRow as TransactionProps,
+                          openAction,
+                          refetch,
+                          onClose
+                        )}
+                        data={data?.data}
+                        noDataComponent={<NoData />}
+                        customStyles={tableCustomStyles}
+                        className=""
+                      />
+                    </div>
+                    <div className="">
+                      <Paginate
+                        data={data?.data}
+                        handleSearch={handleSearch}
+                        currentPage={filteredData}
+                        setCurrentPage={setFilteredData}
+                        searchParams="accountName"
+                        itemsPerPage={queryData?.pageSize as number}
+                        setQueryData={setQueryData}
+                        totalItemsCount={data?.data.length}
+                      />
+                    </div>
+                  </>
                 )}
-                data={transactionsData}
-                customStyles={tableCustomStyles}
-                className=""
-              />
-            </div>
-
-            <div className="">
-              <Paginate
-                data={transactionsData}
-                handleSearch={handleSearch}
-                currentPage={filteredData}
-                setCurrentPage={setFilteredData}
-                searchParams="ref"
-                itemsPerPage={queryData?.pageSize as number}
-                setQueryData={setQueryData}
-                totalItemsCount={transactionsData.length}
-              />
-            </div>
+              </div>
+            )}
           </section>
         </div>
       </div>

@@ -24,6 +24,7 @@ const SendMoney = () => {
     [key: string]: string | number;
   }>({
     keyword: "",
+    type: "TRANSFER",
     pageNumber: 1,
     pageSize: 10,
   });
@@ -53,13 +54,7 @@ const SendMoney = () => {
           />
           <FormInput
             type="cSelect"
-            selectOptions={[
-              "TRANSFER",
-              "AIRTIME",
-              "DATA",
-              "TV_BILL",
-              "ELECTRICITY",
-            ]}
+            selectOptions={["TRANSFER"]}
             placeholder="Transfer Type"
             label="Transfer Type"
             filter
