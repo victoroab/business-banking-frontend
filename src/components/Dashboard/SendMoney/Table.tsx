@@ -1,11 +1,12 @@
 import { IoMdMore } from "react-icons/io";
-import { TransferDataProps, IColData } from "../../../interfaces/Global";
+import { IColData } from "../../../interfaces/Global";
 import TransferActionMenu from "./Action";
 import { formatTimestamp } from "../../../utils";
+import { TransactionProps } from "../../../interfaces/service/billPayment";
 
 export const sendMoneyColumnsData = (
-  handleOpenModal: (row: TransferDataProps) => void,
-  selectedRow: TransferDataProps,
+  handleOpenModal: (row: TransactionProps) => void,
+  selectedRow: TransactionProps,
   openAction: boolean,
   refetch: any,
   onClose: any
@@ -69,7 +70,7 @@ export const sendMoneyColumnsData = (
 
     {
       name: "Action",
-      cell: (row: TransferDataProps) => (
+      cell: (row: TransactionProps) => (
         <div className="centered-box">
           <button>
             {" "}

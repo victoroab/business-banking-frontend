@@ -1,13 +1,13 @@
 import TransferDetails from "./TransferDetails";
 import { useAppSelector } from "../../../hooks";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
-import { TransferDataProps } from "../../../interfaces/Global";
 import { selectGlobal } from "../../../store/slice/globalSlice";
 import { useEffect, useRef } from "react";
+import { TransactionProps } from "../../../interfaces/service/billPayment";
 
 interface TransferActionProps {
   id: string;
-  row: TransferDataProps;
+  row: TransactionProps;
   refetch: any;
   onClose: () => void;
 }

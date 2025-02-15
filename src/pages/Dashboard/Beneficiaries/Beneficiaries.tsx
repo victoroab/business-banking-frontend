@@ -29,7 +29,6 @@ import NoData from "../../../components/NoData/NoData";
 import { transferColumnsData } from "../../../components/Dashboard/Beneficiary/Transfer/Table";
 import {
   Bank,
-  BeneficiaryData,
   BeneficiaryProps,
 } from "../../../interfaces/service/beneficiary";
 import { airtimeDataColumnsData } from "../../../components/Dashboard/Beneficiary/AirtimeData/Table";
@@ -44,7 +43,7 @@ const Beneficiaries = () => {
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
-    beneficiaryType: "",
+    beneficiaryType: "TRANSFER",
     pageNumber: 1,
     pageSize: 10,
   });
@@ -313,7 +312,7 @@ const Beneficiaries = () => {
                       />
                     </div>
                   </>
-                ) : queryData?.beneficiaryType === "ELECTRICITY" ? (
+                ) : (
                   <>
                     <DataTable
                       columns={electricityColumnsData(
@@ -335,40 +334,6 @@ const Beneficiaries = () => {
                         currentPage={filteredData}
                         setCurrentPage={setFilteredData}
                         searchParams="networkProvider"
-                        itemsPerPage={queryData?.pageSize as number}
-                        setQueryData={setQueryData}
-                        totalItemsCount={allBeneficiaries?.data?.length}
-                      />
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    <DataTable
-                      columns={transferColumnsData(
-                        handleOpenModal,
-                        selectedRow as TransferDataProps,
-                        openAction,
-                        refetch
-                      )}
-                      noDataComponent={<NoData />}
-                      data={allBeneficiaries?.data?.filter(
-                        (item: BeneficiaryData) =>
-                          item.beneficiaryType === "TRANSFER"
-                      )}
-                      customStyles={tableCustomStyles}
-                      className=""
-                    />
-
-                    <div className="">
-                      <Paginate
-                        data={allBeneficiaries?.data?.filter(
-                          (item: BeneficiaryData) =>
-                            item.beneficiaryType === "TRANSFER"
-                        )}
-                        handleSearch={handleSearch}
-                        currentPage={filteredData}
-                        setCurrentPage={setFilteredData}
-                        searchParams="accountName"
                         itemsPerPage={queryData?.pageSize as number}
                         setQueryData={setQueryData}
                         totalItemsCount={allBeneficiaries?.data?.length}

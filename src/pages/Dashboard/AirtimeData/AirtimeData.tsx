@@ -21,7 +21,7 @@ import { TransactionProps } from "../../../interfaces/service/billPayment";
 import Spinner from "../../../components/Spinner/Spinner";
 
 const AirtimeData = () => {
-  const { handleSearch, handleShow } = useGlobalHooks();
+  const { handleSearch } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [selectedRow, setSelectedRow] = useState<TransactionProps>();
   const [dob, setDob] = useState(new Date());
@@ -38,7 +38,7 @@ const AirtimeData = () => {
   const navigate = useNavigate();
   const { data, refetch, isLoading } = useGetAllTransactionsQuery(queryData);
   const handleOpenModal = (row: TransactionProps) => {
-    handleShow("show-action");
+    IsOpenAction((prev) => !prev);
     setSelectedRow(row);
   };
 

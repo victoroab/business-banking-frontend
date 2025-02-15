@@ -1,12 +1,12 @@
 import { CloseIcon } from "../../../assets/svg/Auth";
 import { CopyIcon } from "../../../assets/svg/CustomSVGs";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
-import { TransferDataProps } from "../../../interfaces/Global";
+import { TransactionProps } from "../../../interfaces/service/billPayment";
 import { copyToClipboard, formatTimestamp } from "../../../utils";
 import PopUp from "../../PopUps/PopUp";
 
 interface DetailsProps {
-  selectedRow: TransferDataProps;
+  selectedRow: TransactionProps;
   refetch: any;
 }
 const TransferDetails = ({ selectedRow }: DetailsProps) => {
@@ -138,7 +138,7 @@ const TransferDetails = ({ selectedRow }: DetailsProps) => {
                 Date
               </p>
               <p className="text-base text-greyColr font-workSans font-medium">
-                {formatTimestamp(selectedRow?.createdAt, true)}
+                {formatTimestamp(selectedRow?.createdAt as string, true)}
               </p>
             </div>
           </div>

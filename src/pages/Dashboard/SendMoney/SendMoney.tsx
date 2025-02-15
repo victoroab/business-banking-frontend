@@ -5,7 +5,6 @@ import { useGlobalHooks } from "../../../hooks/globalHooks";
 import { useState } from "react";
 import DataTable from "react-data-table-component";
 import { tableCustomStyles } from "../../../utils";
-import { TransferDataProps } from "../../../interfaces/Global";
 import { sendMoneyColumnsData } from "../../../components/Dashboard/SendMoney/Table";
 import { useGetAllTransactionsQuery } from "../../../service/transaction";
 import NoData from "../../../components/NoData/NoData";
@@ -13,11 +12,12 @@ import Calender from "../../../components/Calendar/DatePicker";
 import FormInput from "../../../components/FormInput";
 import Search from "../../../components/Search/Search";
 import { FilterIcon } from "../../../assets/svg/dashboard";
+import { TransactionProps } from "../../../interfaces/service/billPayment";
 
 const SendMoney = () => {
   const { handleSearch } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
-  const [selectedRow, setSelectedRow] = useState<TransferDataProps>();
+  const [selectedRow, setSelectedRow] = useState<TransactionProps>();
   const [openAction, IsOpenAction] = useState<boolean>(false);
   const [dob, setDob] = useState(new Date());
   const [queryData, setQueryData] = useState<{
@@ -31,7 +31,7 @@ const SendMoney = () => {
   const { data, refetch } = useGetAllTransactionsQuery(queryData);
 
   const navigate = useNavigate();
-  const handleOpenModal = (row: TransferDataProps) => {
+  const handleOpenModal = (row: TransactionProps) => {
     setSelectedRow(row);
     IsOpenAction((prev) => !prev);
   };
@@ -116,7 +116,7 @@ const SendMoney = () => {
               <DataTable
                 columns={sendMoneyColumnsData(
                   handleOpenModal,
-                  selectedRow as TransferDataProps,
+                  selectedRow as TransactionProps,
                   openAction,
                   refetch,
                   onClose

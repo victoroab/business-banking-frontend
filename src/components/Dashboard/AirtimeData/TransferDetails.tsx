@@ -1,12 +1,12 @@
 import { CloseIcon } from "../../../assets/svg/Auth";
 import { CopyIcon } from "../../../assets/svg/CustomSVGs";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
-import { TransferDataProps } from "../../../interfaces/Global";
+import { TransactionProps } from "../../../interfaces/service/billPayment";
 import { copyToClipboard, formatTimestamp } from "../../../utils";
 import PopUp from "../../PopUps/PopUp";
 
 interface DetailsProps {
-  selectedRow: TransferDataProps;
+  selectedRow: TransactionProps;
   refetch: any;
 }
 const TransferDetails = ({ selectedRow }: DetailsProps) => {
@@ -40,47 +40,18 @@ const TransferDetails = ({ selectedRow }: DetailsProps) => {
           <div className="column flex justify-between items-center">
             <div className="flex flex-col items-start justify-start">
               <p className="tit text-sm text-lightGreyColor font-workSans">
-                Sender
+                Beneficiary
               </p>
               <p className="text-base text-greyColr font-workSans font-medium">
-                {selectedRow?.beneficiary?.accountName}
+                {selectedRow?.beneficiary?.phoneNumber}
               </p>
             </div>
             <div className="flex flex-col justify-end items-end">
               <p className="tit text-sm text-lightGreyColor font-workSans">
-                Beneficiary
+                Date
               </p>
               <p className="text-base text-greyColr font-workSans font-medium">
-                {selectedRow?.beneficiary?.bankName}
-              </p>
-            </div>
-          </div>
-
-          <div className="column flex justify-between items-center">
-            <div className="flex flex-col items-start justify-start">
-              <p className="tit text-sm text-lightGreyColor font-workSans">
-                Beneficiary Bank
-              </p>
-              <p className="text-base text-greyColr font-workSans font-medium">
-                {selectedRow?.beneficiary?.accountName}
-              </p>
-            </div>
-            <div className="flex flex-col items-end justify-end">
-              <p className="tit text-sm text-lightGreyColor font-workSans">
-                Account Number
-              </p>
-              <p className="text-base text-greyColr font-workSans gap-2 font-medium items-center flex">
-                {selectedRow?.beneficiary?.accountNumber}{" "}
-                <span
-                  className="copy text-xs text-secColor flex items-center gap-2 cursor-pointer"
-                  onClick={() =>
-                    copyToClipboard(
-                      selectedRow?.beneficiary?.accountNumber as string
-                    )
-                  }
-                >
-                  <CopyIcon />
-                </span>
+                {formatTimestamp(selectedRow?.createdAt as string, true)}
               </p>
             </div>
           </div>
@@ -94,37 +65,6 @@ const TransferDetails = ({ selectedRow }: DetailsProps) => {
                 {selectedRow?.beneficiary?.beneficiaryType?.toLocaleUpperCase()}
               </p>
             </div>
-
-            <div className="flex flex-col items-end justify-end">
-              <p className="tit text-sm text-lightGreyColor font-workSans">
-                Transaction Reference
-              </p>
-              <p className="text-base text-greyColr font-workSans font-medium">
-                {selectedRow?.reference as string}
-              </p>
-            </div>
-          </div>
-
-          <div className="column flex justify-between items-center">
-            <div className="flex flex-col items-start justify-start">
-              <p className="tit text-sm text-lightGreyColor font-workSans">
-                Narration
-              </p>
-              <p className="text-base text-greyColr font-workSans font-medium">
-                {selectedRow?.narration}
-              </p>
-            </div>
-            <div className="flex flex-col justify-end items-end">
-              <p className="tit text-sm text-lightGreyColor font-workSans">
-                Debit Account
-              </p>
-              <p className="text-base text-greyColr font-workSans font-medium">
-                {selectedRow?.beneficiary?.bankName}
-              </p>
-            </div>
-          </div>
-
-          <div className="column flex justify-between items-center">
             <div className="flex flex-col items-start justify-start">
               <p className="tit text-sm text-lightGreyColor font-workSans">
                 Fees
@@ -133,12 +73,32 @@ const TransferDetails = ({ selectedRow }: DetailsProps) => {
                 - &#8358;0.00
               </p>
             </div>
+          </div>
+
+          <div className="column flex justify-between items-center">
+            <div className="flex flex-col items-end justify-end">
+              <p className="tit text-sm text-lightGreyColor font-workSans">
+                Account Number
+              </p>
+              <p className="text-base text-greyColr font-workSans gap-2 font-medium items-center flex">
+                {selectedRow?.reference}{" "}
+                <span
+                  className="copy text-xs text-secColor flex items-center gap-2 cursor-pointer"
+                  onClick={() =>
+                    copyToClipboard(selectedRow?.reference as string)
+                  }
+                >
+                  <CopyIcon />
+                </span>
+              </p>
+            </div>
+
             <div className="flex flex-col justify-end items-end">
               <p className="tit text-sm text-lightGreyColor font-workSans">
-                Date
+                Debit Account
               </p>
               <p className="text-base text-greyColr font-workSans font-medium">
-                {formatTimestamp(selectedRow?.createdAt, true)}
+                {selectedRow?.beneficiary?.bankName}
               </p>
             </div>
           </div>
