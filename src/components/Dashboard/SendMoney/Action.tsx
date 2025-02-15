@@ -6,7 +6,7 @@ import { useEffect, useRef } from "react";
 import { TransactionProps } from "../../../interfaces/service/billPayment";
 
 interface TransferActionProps {
-  id: string;
+  id: string | undefined;
   row: TransactionProps;
   refetch: any;
   onClose: () => void;
