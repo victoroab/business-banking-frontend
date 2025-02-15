@@ -10,7 +10,6 @@ import {
   setAirtimeBundlePayload,
   setAirtimeDataCurrentStep,
 } from "../../../../store/slice/billPaymentSlice";
-// import { dataProvider } from "../../../../utils";
 
 const Provider = () => {
   const { data: airtime, isLoading: loadingAirtime } =
@@ -22,9 +21,11 @@ const Provider = () => {
 
   const handleNavigate = (name: string, id: string) => {
     dispatch(setAirtimeBundlePayload({ serviceCategoryId: id, network: name }));
-    airtimeDataAction === "DATA"
-      ? dispatch(setAirtimeDataCurrentStep(3))
-      : dispatch(setAirtimeDataCurrentStep(4));
+    if (airtimeDataAction === "DATA") {
+      dispatch(setAirtimeDataCurrentStep(3));
+    } else {
+      dispatch(setAirtimeDataCurrentStep(4));
+    }
   };
   const data = airtimeDataAction === "DATA" ? bundle : airtime;
   const isLoading =

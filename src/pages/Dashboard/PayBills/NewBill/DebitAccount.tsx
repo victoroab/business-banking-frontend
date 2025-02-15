@@ -4,8 +4,8 @@ import { useFormik } from "formik";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
 import { selectAccount } from "../../../../store/slice/account";
 import {
-  setAirtimeBundlePayload,
   setBillpaymentCurrentStep,
+  setBillPaymentPayload,
 } from "../../../../store/slice/billPaymentSlice";
 import { accounts } from "../../../../utils";
 
@@ -15,7 +15,7 @@ const DebitAccount = () => {
 
   const onSubmit = async (formData: { accountNumber: string }) => {
     dispatch(
-      setAirtimeBundlePayload({ fromAccountNumber: formData.accountNumber })
+      setBillPaymentPayload({ fromAccountNumber: formData.accountNumber })
     );
     dispatch(setBillpaymentCurrentStep(2));
   };

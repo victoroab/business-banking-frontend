@@ -66,3 +66,26 @@ export interface TransactionProps {
   metadata?: unknown;
   beneficiary?: Beneficiary;
 }
+
+export type MeterDetails = {
+  fromAccountNumber: string;
+  serviceCategoryId: string;
+  meterType: string;
+  meterNumber: string;
+  meterName: string;
+  vendType: string;
+  pin: string;
+  amount: number;
+};
+
+export type TVDetails = {
+  fromAccountNumber: string;
+  serviceCategoryId: string;
+  cardNumber: string;
+  bundleCode: string;
+  provider: string;
+  name: string;
+  invoicePeriod: number;
+  amount: number;
+  pin: string;
+};

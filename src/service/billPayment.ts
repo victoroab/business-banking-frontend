@@ -52,7 +52,7 @@ export const billPaymentApi = createApi({
   reducerPath: "billPaymentApi",
   baseQuery: customBaseQuery,
 
-  tagTypes: ["Airtime", "Bundle", "TV"],
+  tagTypes: ["Airtime", "Bundle", "TV", "Electricity"],
 
   endpoints: (builder) => ({
     //all airtime providers
@@ -94,7 +94,19 @@ export const billPaymentApi = createApi({
     //all electricity providers
     getAllElectricityProviders: builder.query({
       query: () => `/bill-payment/electricity/providers`,
-      providesTags: [{ type: "Bundle", id: "Bundle" }],
+      providesTags: [{ type: "Electricity", id: "Electricity" }],
+    }),
+
+    //all cable-tv providers
+    getAllCableTVProviders: builder.query({
+      query: () => `/bill-payment/cable-tv/providers`,
+      providesTags: [{ type: "TV", id: "TV" }],
+    }),
+    //all cable-tv plan
+    getAllCableTVPlan: builder.query({
+      query: (serviceCategory) =>
+        `/bill-payment/cable-tv/plans?serviceCategoryId=${serviceCategory}`,
+      providesTags: [{ type: "TV", id: "TV" }],
     }),
   }),
 });
@@ -106,4 +118,6 @@ export const {
   useBuyAirtimeMutation,
   useBuyBundleMutation,
   useGetAllElectricityProvidersQuery,
+  useGetAllCableTVPlanQuery,
+  useGetAllCableTVProvidersQuery,
 } = billPaymentApi;

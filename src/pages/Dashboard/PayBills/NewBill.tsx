@@ -19,6 +19,7 @@ import {
 import { useAppSelector } from "../../../hooks";
 import StepBackNavigation from "../../../components/ArrowBack/StepBackArrow";
 import { selectDashboard } from "../../../store/slice/dashboardSlice";
+import CablePackage from "./NewBill/CableTV/Package";
 
 const NewBill = () => {
   const { billCategory } = useSelector(selectDashboard);
@@ -31,11 +32,13 @@ const NewBill = () => {
       ? CableProvider
       : BettingProvider;
 
+  const plan = billCategory === "Electricity" ? Package : CablePackage;
+
   const stepsComponents: StepComponentProps[] = [
     { step: 1, component: DebitAccount },
     { step: 2, component: Category },
     { step: 3, component: Provider },
-    { step: 4, component: Package },
+    { step: 4, component: plan },
     { step: 5, component: AddBeneficiary },
     { step: 6, component: Amount },
     { step: 7, component: Confirmation },

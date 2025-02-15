@@ -24,12 +24,18 @@ const initialState: TransactionState = {
 
   billPaymentPayload: {
     fromAccountNumber: "",
-    pin: "",
     serviceCategoryId: "",
-    network: "",
-    phoneNumber: "",
-    bundleCode: "",
+    meterType: "",
+    meterNumber: "",
+    meterName: "",
+    vendType: "",
+    pin: "",
     amount: 0,
+    cardNumber: "",
+    bundleCode: "",
+    provider: "",
+    name: "",
+    invoicePeriod: "",
   },
 
   airtimeDataCurrentStep: 1,
@@ -73,6 +79,7 @@ export const {
   setAirtimeBundlePayload,
   setAirtimeDataCurrentStep,
   setBillpaymentCurrentStep,
+  setBillPaymentPayload,
 } = billPaymentSlice.actions;
 
 export const selectBillPayment = (state: RootState) => state.billPayment;

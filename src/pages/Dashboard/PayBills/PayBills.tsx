@@ -1,31 +1,39 @@
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../components/Navbar/Navbar";
-import { RowDataProps } from "../../../interfaces/Global";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import { useState } from "react";
-import DataTable from "react-data-table-component";
 import Paginate from "../../../components/Paginate";
-import { tableCustomStyles, billlData } from "../../../utils";
-import { columnsData } from "../../../utils/table";
+import { FilterIcon } from "../../../assets/svg/dashboard";
+import Calender from "../../../components/Calendar/DatePicker";
+import FormInput from "../../../components/FormInput";
+import Search from "../../../components/Search/Search";
+import { TransactionProps } from "../../../interfaces/service/billPayment";
+import { useGetAllTransactionsQuery } from "../../../service/transaction";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const PayBills = () => {
   const navigate = useNavigate();
-  const { handleSearch, handleShow } = useGlobalHooks();
+  const { handleSearch } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
-  const [selectedRow, setSelectedRow] = useState<RowDataProps>();
+  const [selectedRow, setSelectedRow] = useState<TransactionProps>();
+  const [dob, setDob] = useState(new Date());
+  const [openAction, IsOpenAction] = useState<boolean>(false);
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
-    terminal: "",
+    keyword: "",
+    type: "ELECTRICITY",
     pageNumber: 1,
     pageSize: 10,
   });
-
-  const handleOpenModal = (row: RowDataProps) => {
-    handleShow("show-action");
+  const { data, refetch, isLoading } = useGetAllTransactionsQuery(queryData);
+  const handleOpenModal = (row: TransactionProps) => {
     setSelectedRow(row);
+    IsOpenAction((prev) => !prev);
   };
-
+  const onClose = () => {
+    IsOpenAction(false);
+  };
   return (
     <div className="border">
       <Navbar
@@ -33,6 +41,50 @@ const PayBills = () => {
         subtitle="Settle your bills for utilities, subscriptions, and more—all in one place!"
       />
       <div className="flex flex-col gap-10">
+        <div className="flex justify-end items-center gap-6 px-10">
+          <Search
+            placeholder="Search"
+            setQueryData={setQueryData}
+            label="Search"
+            className="shadow-md"
+          />
+          <FormInput
+            type="cSelect"
+            selectOptions={["TV_BILL", "ELECTRICITY"]}
+            placeholder="Transaction Type"
+            label="Transaction Type"
+            filter
+            defaultValue={
+              queryData?.type !== "" ? queryData?.type : "ELECTRICITY"
+            }
+            id="tyoe"
+            onChange={(e) => {
+              setQueryData((prev) => ({
+                ...prev,
+                type: e.target.value,
+              }));
+            }}
+            className="w-[200px]"
+            name="type"
+          />
+          <Calender
+            setSelectedDate={setDob}
+            selectedDate={dob}
+            label="From"
+            filter
+          />
+          <Calender
+            setSelectedDate={setDob}
+            selectedDate={dob}
+            label="To"
+            filter
+          />
+
+          <div className="flex items-center gap-2 bg-[#e2eefa] rounded-xl py-4 px-6 mt-6 cursor-pointer">
+            <FilterIcon />
+            <p className="font-bold text-pryColor tex-sm"> Filter</p>
+          </div>
+        </div>
         <div className="flex flex-col gap-10">
           <div className="flex justify-end px-10">
             <button
@@ -48,31 +100,73 @@ const PayBills = () => {
           className="relative px-10 font-workSans"
           style={{ boxShadow: "0px 1px 7px 4px rgba(216, 216, 216, 0.2)" }}
         >
-          <div className="">
-            <DataTable
-              columns={columnsData(
-                handleOpenModal,
+          {isLoading ? (
+            <div className="flex justify-center items-center">
+              <Spinner />
+            </div>
+          ) : (
+            <div className="">
+              {queryData?.type === "TV_BILL" ? (
+                <>
+                  {/* <DataTable
+                      columns={tvColumnsData(
+                        handleOpenModal,
+                          selectedRow as TransactionProps,
+                          openAction,
+                          refetch,
+                          onClose
+                      )}
+                      data={data?.data}
+                      noDataComponent={<NoData />}
+                      customStyles={tableCustomStyles}
+                      className=""
+                    /> */}
 
-                selectedRow as RowDataProps
+                  <div className="">
+                    <Paginate
+                      data={data?.data}
+                      handleSearch={handleSearch}
+                      currentPage={filteredData}
+                      setCurrentPage={setFilteredData}
+                      searchParams="networkProvider"
+                      itemsPerPage={queryData?.pageSize as number}
+                      setQueryData={setQueryData}
+                      totalItemsCount={data?.data?.length}
+                    />
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* <DataTable
+                      columns={electricityColumnsData(
+                        handleOpenModal,
+                        selectedRow as TransactionProps,
+                        openAction,
+                        refetch,
+                        onClose
+                      )}
+                      data={data?.data}
+                      noDataComponent={<NoData />}
+                      customStyles={tableCustomStyles}
+                      className=""
+                    /> */}
+
+                  <div className="">
+                    <Paginate
+                      data={data?.data}
+                      handleSearch={handleSearch}
+                      currentPage={filteredData}
+                      setCurrentPage={setFilteredData}
+                      searchParams="networkProvider"
+                      itemsPerPage={queryData?.pageSize as number}
+                      setQueryData={setQueryData}
+                      totalItemsCount={data?.data?.length}
+                    />
+                  </div>
+                </>
               )}
-              data={billlData}
-              customStyles={tableCustomStyles}
-              className=""
-            />
-          </div>
-
-          <div className="">
-            <Paginate
-              data={billlData}
-              handleSearch={handleSearch}
-              currentPage={filteredData}
-              setCurrentPage={setFilteredData}
-              searchParams="ref"
-              itemsPerPage={queryData?.pageSize as number}
-              setQueryData={setQueryData}
-              totalItemsCount={billlData.length}
-            />
-          </div>
+            </div>
+          )}
         </section>
       </div>
     </div>
