@@ -10,6 +10,13 @@ import Search from "../../../components/Search/Search";
 import { TransactionProps } from "../../../interfaces/service/billPayment";
 import { useGetAllTransactionsQuery } from "../../../service/transaction";
 import Spinner from "../../../components/Spinner/Spinner";
+import DataTable from "react-data-table-component";
+import NoData from "../../../components/NoData/NoData";
+import { tableCustomStyles } from "../../../utils";
+import {
+  cableTvColumnsData,
+  electricityColumnsData,
+} from "../../../components/Dashboard/BillPayment/Table";
 
 const PayBills = () => {
   const navigate = useNavigate();
@@ -108,19 +115,19 @@ const PayBills = () => {
             <div className="">
               {queryData?.type === "TV_BILL" ? (
                 <>
-                  {/* <DataTable
-                      columns={tvColumnsData(
-                        handleOpenModal,
-                          selectedRow as TransactionProps,
-                          openAction,
-                          refetch,
-                          onClose
-                      )}
-                      data={data?.data}
-                      noDataComponent={<NoData />}
-                      customStyles={tableCustomStyles}
-                      className=""
-                    /> */}
+                  <DataTable
+                    columns={cableTvColumnsData(
+                      handleOpenModal,
+                      selectedRow as TransactionProps,
+                      openAction,
+                      refetch,
+                      onClose
+                    )}
+                    data={data?.data}
+                    noDataComponent={<NoData />}
+                    customStyles={tableCustomStyles}
+                    className=""
+                  />
 
                   <div className="">
                     <Paginate
@@ -137,19 +144,19 @@ const PayBills = () => {
                 </>
               ) : (
                 <>
-                  {/* <DataTable
-                      columns={electricityColumnsData(
-                        handleOpenModal,
-                        selectedRow as TransactionProps,
-                        openAction,
-                        refetch,
-                        onClose
-                      )}
-                      data={data?.data}
-                      noDataComponent={<NoData />}
-                      customStyles={tableCustomStyles}
-                      className=""
-                    /> */}
+                  <DataTable
+                    columns={electricityColumnsData(
+                      handleOpenModal,
+                      selectedRow as TransactionProps,
+                      openAction,
+                      refetch,
+                      onClose
+                    )}
+                    data={data?.data}
+                    noDataComponent={<NoData />}
+                    customStyles={tableCustomStyles}
+                    className=""
+                  />
 
                   <div className="">
                     <Paginate

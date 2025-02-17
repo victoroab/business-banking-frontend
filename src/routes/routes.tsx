@@ -56,7 +56,7 @@ import VirtualCardDetails from "../pages/Dashboard/Cards/VirtualCardDetails";
 import Upload from "../pages/Dashboard/Upload/Upload";
 import BillProvider from "../pages/Dashboard/PayBills/NewBill/Provider";
 import BillPackage from "../pages/Dashboard/PayBills/NewBill/Package";
-import AddBillBeneficiary from "../pages/Dashboard/PayBills/NewBill/AddBeneficiary";
+import AddBillBeneficiary from "../pages/Dashboard/PayBills/NewBill/Electricity/AddBeneficiary";
 import BillAmount from "../pages/Dashboard/PayBills/NewBill/Amount";
 import BillConfirmation from "../pages/Dashboard/PayBills/NewBill/Electricity/Confirmation";
 import TrackCard from "../pages/Dashboard/Cards/TrackCard";

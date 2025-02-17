@@ -24,7 +24,7 @@ const CablePackage = () => {
     dispatch(setBillpaymentCurrentStep(5));
     // navigate("/utility/pay-new-bill/beneficiary");
   };
-
+  console.log(data);
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4">

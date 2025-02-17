@@ -5,7 +5,7 @@ import { useState } from "react";
 import GeneralModal from "../../../../../components/PopUps/GeneralModal";
 import InputToken from "./InputToken";
 
-const BillConfirmation = () => {
+const CableConfirmation = () => {
   const [openPinModal, setOpenPinModal] = useState(false);
   const { billPaymentPayload } = useAppSelector(selectBillPayment);
 
@@ -166,4 +166,4 @@ const BillConfirmation = () => {
   );
 };
 
-export default BillConfirmation;
+export default CableConfirmation;

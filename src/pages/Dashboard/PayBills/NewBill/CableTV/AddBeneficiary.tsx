@@ -1,21 +1,21 @@
-import FormInput from "../../../../components/FormInput";
+import FormInput from "../../../../../components/FormInput";
 // import { useNavigate } from "react-router-dom";
-import { BeneficiaryIcon } from "../../../../assets/svg/PayBill";
+import { BeneficiaryIcon } from "../../../../../assets/svg/PayBill";
 import {
   selectBillPayment,
   setBillpaymentCurrentStep,
   setBillPaymentPayload,
-} from "../../../../store/slice/billPaymentSlice";
-import { useAppDispatch, useAppSelector } from "../../../../hooks";
+} from "../../../../../store/slice/billPaymentSlice";
+import { useAppDispatch, useAppSelector } from "../../../../../hooks";
 import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
-import { errorHandler } from "../../../../utils";
-import { useValidateElectricityMutation } from "../../../../service/billPayment";
-import { OkayIcon } from "../../../../assets/svg/dashboard";
-import Spinner from "../../../../components/Spinner/Spinner";
+import { errorHandler } from "../../../../../utils";
+import { useValidateElectricityMutation } from "../../../../../service/billPayment";
+import { OkayIcon } from "../../../../../assets/svg/dashboard";
+import Spinner from "../../../../../components/Spinner/Spinner";
 
-const AddBillBeneficiary = () => {
+const CableBeneficiary = () => {
   const dispatch = useAppDispatch();
   // const navigate = useNavigate();
   const [beneficiaryDetails, setBeneficiaryDetails] = useState<any>();
@@ -128,4 +128,4 @@ const AddBillBeneficiary = () => {
   );
 };
 
-export default AddBillBeneficiary;
+export default CableBeneficiary;

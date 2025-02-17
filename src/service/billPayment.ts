@@ -10,6 +10,7 @@ import {
   AirtimeData,
   BundleData,
   MeterDetails,
+  TVDetails,
 } from "../interfaces/service/billPayment";
 import Cookies from "js-cookie";
 
@@ -114,7 +115,7 @@ export const billPaymentApi = createApi({
     }),
     validateElectricity: builder.mutation<
       any,
-      { serviceCategoryId: string; cardNumber: string }
+      { serviceCategoryId: string; cardNumber: string; vendType: string }
     >({
       query: (body) => ({
         url: "/bill-payment/electricity/validate",
@@ -125,9 +126,32 @@ export const billPaymentApi = createApi({
       invalidatesTags: [{ type: "Airtime", id: "Airtime" }],
     }),
 
-    buyElectricity: builder.mutation<any, MeterDetails>({
+    buyElectricity: builder.mutation<any, TVDetails>({
       query: (body) => ({
         url: "/bill-payment/electricity/buy",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Airtime", id: "Airtime" }],
+    }),
+
+    validateCable: builder.mutation<
+      any,
+      { serviceCategoryId: string; cardNumber: string; vendType: string }
+    >({
+      query: (body) => ({
+        url: "/bill-payment/cable-tv/validate",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Airtime", id: "Airtime" }],
+    }),
+
+    buyCable: builder.mutation<any, MeterDetails>({
+      query: (body) => ({
+        url: "/bill-payment/cable-tv/buy",
         method: "POST",
         body,
       }),
@@ -148,4 +172,6 @@ export const {
   useGetAllCableTVProvidersQuery,
   useValidateElectricityMutation,
   useBuyElectricityMutation,
+  useValidateCableMutation,
+  useBuyCableMutation,
 } = billPaymentApi;
