@@ -1,5 +1,4 @@
 import { ArrowRightIcon } from "../../../../../assets/svg/CustomSVGs";
-import { saveElectricityProvider } from "../../../../../store/slice/globalSlice";
 import { useGetAllElectricityProvidersQuery } from "../../../../../service/billPayment";
 import {
   setBillpaymentCurrentStep,

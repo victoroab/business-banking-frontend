@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Otp from "../../../../../components/OTP/Otp";
-import { setTransactionCurrentStep } from "../../../../../store/slice/transactionSlice";
 import { useAppDispatch, useAppSelector } from "../../../../../hooks";
 import { errorHandler } from "../../../../../utils";
 import Spinner from "../../../../../components/Spinner/Spinner";
