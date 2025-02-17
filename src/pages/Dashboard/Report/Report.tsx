@@ -14,6 +14,10 @@ import { sendMoneyColumnsData } from "../../../components/Dashboard/SendMoney/Ta
 import NoData from "../../../components/NoData/NoData";
 import { dataColumnsData } from "../../../components/Dashboard/AirtimeData/Table";
 import Spinner from "../../../components/Spinner/Spinner";
+import {
+  cableTvColumnsData,
+  electricityColumnsData,
+} from "../../../components/Dashboard/BillPayment/Table";
 
 const Report = () => {
   const { handleSearch } = useGlobalHooks();
@@ -169,19 +173,19 @@ const Report = () => {
                   </>
                 ) : queryData?.type === "TV_BILL" ? (
                   <>
-                    {/* <DataTable
-                      columns={tvColumnsData(
+                    <DataTable
+                      columns={cableTvColumnsData(
                         handleOpenModal,
-                          selectedRow as TransactionProps,
-                          openAction,
-                          refetch,
-                          onClose
+                        selectedRow as TransactionProps,
+                        openAction,
+                        refetch,
+                        onClose
                       )}
                       data={data?.data}
                       noDataComponent={<NoData />}
                       customStyles={tableCustomStyles}
                       className=""
-                    /> */}
+                    />
 
                     <div className="">
                       <Paginate
@@ -198,7 +202,7 @@ const Report = () => {
                   </>
                 ) : (
                   <>
-                    {/* <DataTable
+                    <DataTable
                       columns={electricityColumnsData(
                         handleOpenModal,
                         selectedRow as TransactionProps,
@@ -210,7 +214,7 @@ const Report = () => {
                       noDataComponent={<NoData />}
                       customStyles={tableCustomStyles}
                       className=""
-                    /> */}
+                    />
 
                     <div className="">
                       <Paginate
