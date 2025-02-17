@@ -126,7 +126,7 @@ export const billPaymentApi = createApi({
       invalidatesTags: [{ type: "Airtime", id: "Airtime" }],
     }),
 
-    buyElectricity: builder.mutation<any, TVDetails>({
+    buyElectricity: builder.mutation<any, MeterDetails>({
       query: (body) => ({
         url: "/bill-payment/electricity/buy",
         method: "POST",
@@ -138,7 +138,7 @@ export const billPaymentApi = createApi({
 
     validateCable: builder.mutation<
       any,
-      { serviceCategoryId: string; cardNumber: string; vendType: string }
+      { serviceCategoryId: string; cardNumber: string }
     >({
       query: (body) => ({
         url: "/bill-payment/cable-tv/validate",
@@ -149,7 +149,7 @@ export const billPaymentApi = createApi({
       invalidatesTags: [{ type: "Airtime", id: "Airtime" }],
     }),
 
-    buyCable: builder.mutation<any, MeterDetails>({
+    buyCable: builder.mutation<any, TVDetails>({
       query: (body) => ({
         url: "/bill-payment/cable-tv/buy",
         method: "POST",

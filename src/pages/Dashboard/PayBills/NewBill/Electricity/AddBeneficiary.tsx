@@ -19,8 +19,7 @@ const AddBillBeneficiary = () => {
   const dispatch = useAppDispatch();
   // const navigate = useNavigate();
   const [beneficiaryDetails, setBeneficiaryDetails] = useState<any>();
-  const { selectedElectricityProvider, billPaymentPayload } =
-    useAppSelector(selectBillPayment);
+  const { billPaymentPayload } = useAppSelector(selectBillPayment);
   const [validateElectricity, { isLoading }] = useValidateElectricityMutation();
   // const handleSubmit = () => {
   //   dispatch(setBillpaymentCurrentStep(6));
@@ -36,7 +35,7 @@ const AddBillBeneficiary = () => {
   const onSubmit = async (formData: { meterNumber: string }) => {
     try {
       const requiredData = {
-        serviceCategoryId: selectedElectricityProvider?.serviceCategoryId,
+        serviceCategoryId: billPaymentPayload?.serviceCategoryId,
         cardNumber: formData.meterNumber,
         vendType: billPaymentPayload?.vendType,
       };

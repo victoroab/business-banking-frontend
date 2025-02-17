@@ -364,7 +364,7 @@ export const electricityNewBillProgressSteps: ProgressStepsProps[] = [
   },
 ];
 
-export const billProgressSteps: ProgressStepsProps[] = [
+export const electricityProgressSteps: ProgressStepsProps[] = [
   { id: 1, link: "debit-account", title: "Select Debit Account" },
   { id: 2, link: "category", title: "Select a Category" },
   { id: 3, link: "provider", title: "Select Provider" },
@@ -380,8 +380,7 @@ export const cableProgressSteps: ProgressStepsProps[] = [
   { id: 3, link: "provider", title: "Select Provider" },
   { id: 4, link: "package", title: "Select Package" },
   { id: 5, link: "beneficiary", title: "Add Beneficiary" },
-  { id: 6, link: "amount", title: "Amount" },
-  { id: 7, link: "confirmation", title: "Confirmation" },
+  { id: 6, link: "confirmation", title: "Confirmation" },
 ];
 export const electricityType = [
   { id: 1, title: "PREPAID" },

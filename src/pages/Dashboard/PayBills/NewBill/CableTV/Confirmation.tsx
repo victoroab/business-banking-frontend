@@ -7,13 +7,14 @@ import InputToken from "./InputToken";
 
 const CableConfirmation = () => {
   const [openPinModal, setOpenPinModal] = useState(false);
-  const { billPaymentPayload } = useAppSelector(selectBillPayment);
+  const { billPaymentPayload, cablePackage } =
+    useAppSelector(selectBillPayment);
 
   const handleSubmit = () => {
     // handleShow("submit-bill");
     setOpenPinModal(true);
   };
-  console.log(billPaymentPayload);
+  console.log(billPaymentPayload, cablePackage);
   return (
     <div className="flex flex-col gap-10 pr-6 ">
       <div className="gap-4 flex flex-col justify-center items-center">
@@ -27,11 +28,11 @@ const CableConfirmation = () => {
 
       <div className="gap-4 flex flex-col justify-center items-center">
         <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-          Electricity Package
+          TV Package
         </p>
 
         <h3 className="text-pryColor font-extrabold text-2xl font-bricolage leading-6">
-          {billPaymentPayload?.meterType + " " + billPaymentPayload?.vendType}
+          {cablePackage?.name + " " + billPaymentPayload?.amount}
         </h3>
       </div>
 
@@ -89,10 +90,10 @@ const CableConfirmation = () => {
           <div className="grid grid-cols-2 gap-10 w-full">
             <div className="det flex flex-col gap-2">
               <p className="tit text-sm text-greyColr font-workSans">
-                {billPaymentPayload?.meterName}
+                {billPaymentPayload?.name}
               </p>
               <p className="text-sm text-greyColr font-workSans">
-                {billPaymentPayload?.meterType}
+                {billPaymentPayload?.bundleCode}
               </p>
             </div>
             <div className="flex flex-col items-end ">

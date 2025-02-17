@@ -4,6 +4,8 @@ import { useSelector } from "react-redux";
 import {
   selectBillPayment,
   setBillpaymentCurrentStep,
+  setBillPaymentPayload,
+  setSelectedCablePackage,
 } from "../../../../../store/slice/billPaymentSlice";
 import { useAppDispatch } from "../../../../../hooks";
 import { useGetAllCableTVPlanQuery } from "../../../../../service/billPayment";
@@ -19,17 +21,24 @@ const CablePackage = () => {
   //   (option: any) => selectedElectricityProvider === option?.title
   // );
 
-  const handleNavigate = (title: string) => {
-    console.log(title);
+  const handleNavigate = (selectedPackage: any) => {
+    dispatch(setSelectedCablePackage(selectedPackage));
+    dispatch(
+      setBillPaymentPayload({
+        bundleCode: selectedPackage?.code,
+        amount: selectedPackage?.availablePricingOptions[0]?.price,
+        invoicePeriod:
+          selectedPackage?.availablePricingOptions[0]?.invoicePeriod,
+      })
+    );
     dispatch(setBillpaymentCurrentStep(5));
-    // navigate("/utility/pay-new-bill/beneficiary");
   };
   console.log(data);
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-          Electricity Package
+          Cable Package
         </h3>
         <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
           Select the package you want to buy from
@@ -48,7 +57,7 @@ const CablePackage = () => {
                   boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)",
                 }}
                 key={index}
-                onClick={() => handleNavigate(option?.nam)}
+                onClick={() => handleNavigate(option)}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex gap-2 items-center">

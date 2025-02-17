@@ -11,7 +11,7 @@ import { useEffect, useState } from "react";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { errorHandler } from "../../../../../utils";
-import { useValidateElectricityMutation } from "../../../../../service/billPayment";
+import { useValidateCableMutation } from "../../../../../service/billPayment";
 import { OkayIcon } from "../../../../../assets/svg/dashboard";
 import Spinner from "../../../../../components/Spinner/Spinner";
 
@@ -19,35 +19,30 @@ const CableBeneficiary = () => {
   const dispatch = useAppDispatch();
   // const navigate = useNavigate();
   const [beneficiaryDetails, setBeneficiaryDetails] = useState<any>();
-  const { selectedElectricityProvider, billPaymentPayload } =
-    useAppSelector(selectBillPayment);
-  const [validateElectricity, { isLoading }] = useValidateElectricityMutation();
-  // const handleSubmit = () => {
-  //   dispatch(setBillpaymentCurrentStep(6));
-  //   dispatch(setBillPaymentPayload({ meterNumber: title }));
-  // };
+  const { billPaymentPayload } = useAppSelector(selectBillPayment);
+  const [validateCable, { isLoading }] = useValidateCableMutation();
+
   const initialValues = {
-    meterNumber: "",
+    cardNumber: "",
   };
   const formSchema = Yup.object().shape({
-    meterNumber: Yup.string(),
+    cardNumber: Yup.string(),
   });
 
-  const onSubmit = async (formData: { meterNumber: string }) => {
+  const onSubmit = async (formData: { cardNumber: string }) => {
     try {
       const requiredData = {
-        serviceCategoryId: selectedElectricityProvider?.serviceCategoryId,
-        cardNumber: formData.meterNumber,
-        vendType: billPaymentPayload?.vendType,
+        serviceCategoryId: billPaymentPayload?.serviceCategoryId,
+        cardNumber: formData.cardNumber,
       };
-      const response = await validateElectricity(requiredData).unwrap();
+      const response = await validateCable(requiredData).unwrap();
 
       setBeneficiaryDetails(response?.data);
       dispatch(
         setBillPaymentPayload({
           ...formData,
-          meterNumber: response?.data?.meterNumber,
-          meterName: response?.data?.name,
+          cardNumber: response?.data?.cardNumber,
+          name: response?.data?.name,
         })
       );
     } catch (error: any) {
@@ -63,10 +58,10 @@ const CableBeneficiary = () => {
     });
 
   useEffect(() => {
-    if (values?.meterNumber?.length === 11) {
+    if (values?.cardNumber?.length === 11) {
       handleSubmit();
     }
-  }, [values?.meterNumber]);
+  }, [values?.cardNumber]);
 
   return (
     <div className="flex flex-col gap-14 pr-6">
@@ -83,16 +78,16 @@ const CableBeneficiary = () => {
         <div className="flex gap-8 flex-col">
           <FormInput
             type="text"
-            placeholder="Meter Number"
-            id="meterNumber"
+            placeholder="Card Number"
+            id="cardNumber"
             className="w-full"
-            name="meterNumber"
+            name="cardNumber"
             error={
-              touched.meterNumber ? (errors.meterNumber as string) : undefined
+              touched.cardNumber ? (errors.cardNumber as string) : undefined
             }
             onBlur={handleBlur}
             onChange={handleChange}
-            defaultValue={values?.meterNumber}
+            defaultValue={values?.cardNumber}
           />
           {isLoading ? (
             <Spinner />

@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Otp from "../../../../../components/OTP/Otp";
-import { setTransactionCurrentStep } from "../../../../../store/slice/transactionSlice";
 import { useAppDispatch, useAppSelector } from "../../../../../hooks";
 import { errorHandler } from "../../../../../utils";
 import Spinner from "../../../../../components/Spinner/Spinner";
@@ -10,12 +9,12 @@ import {
   selectBillPayment,
   setBillpaymentCurrentStep,
 } from "../../../../../store/slice/billPaymentSlice";
-import { useBuyElectricityMutation } from "../../../../../service/billPayment";
+import { useBuyCableMutation } from "../../../../../service/billPayment";
 
 const InputToken = () => {
   const [otpCode, setOtpCode] = useState<string>("");
   const [openReceipt, setOpenReceipt] = useState<boolean>(false);
-  const [buyElectricity, { isLoading }] = useBuyElectricityMutation();
+  const [buyCable, { isLoading }] = useBuyCableMutation();
   const { billPaymentPayload } = useAppSelector(selectBillPayment);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -24,14 +23,15 @@ const InputToken = () => {
       const requiredData = {
         fromAccountNumber: billPaymentPayload.fromAccountNumber,
         serviceCategoryId: billPaymentPayload.serviceCategoryId,
-        meterType: billPaymentPayload.meterType,
-        meterNumber: billPaymentPayload.meterNumber,
-        meterName: billPaymentPayload.meterName,
-        vendType: billPaymentPayload.vendType,
+        cardNumber: billPaymentPayload.cardNumber,
+        bundleCode: billPaymentPayload.bundleCode,
+        provider: billPaymentPayload.provider,
+        name: billPaymentPayload.name,
+        invoicePeriod: billPaymentPayload.invoicePeriod,
         amount: billPaymentPayload.amount,
         pin: otpCode,
       };
-      const response = await buyElectricity(requiredData).unwrap();
+      const response = await buyCable(requiredData).unwrap();
 
       setOpenReceipt(true);
       console.log(response);

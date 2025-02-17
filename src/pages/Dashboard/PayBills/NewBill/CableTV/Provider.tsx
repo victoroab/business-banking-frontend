@@ -1,9 +1,9 @@
 import { ArrowRightIcon } from "../../../../../assets/svg/CustomSVGs";
 import { useGetAllCableTVProvidersQuery } from "../../../../../service/billPayment";
-import { saveElectricityProvider } from "../../../../../store/slice/globalSlice";
 import {
   setBillpaymentCurrentStep,
   setBillPaymentPayload,
+  setSelectedCableProvider,
 } from "../../../../../store/slice/billPaymentSlice";
 import { useAppDispatch } from "../../../../../hooks";
 import Spinner from "../../../../../components/Spinner/Spinner";
@@ -12,7 +12,7 @@ const CableProvider = () => {
   const dispatch = useAppDispatch();
   // const navigate = useNavigate();
   const handleNavigate = (name: string, category: string) => {
-    dispatch(saveElectricityProvider(name));
+    dispatch(setSelectedCableProvider(name));
     dispatch(setBillpaymentCurrentStep(4));
     dispatch(
       setBillPaymentPayload({ provider: name, serviceCategoryId: category })

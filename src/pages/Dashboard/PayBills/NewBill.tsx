@@ -1,7 +1,6 @@
 import ProgressLayout from "../../../layout/ProgressLayout";
 import { StepComponentProps } from "../../../interfaces/Global";
 import {
-  billProgressSteps,
   cableProgressSteps,
   electricityProgressSteps,
   // newBillProgressSteps,
@@ -12,7 +11,7 @@ import Category from "./NewBill/Category";
 import { useSelector } from "react-redux";
 import ElectricityProvider from "./NewBill/Electricity/Provider";
 import CableProvider from "./NewBill/CableTV/Provider";
-import BettingProvider from "./NewBill/Betting/Provider";
+// import BettingProvider from "./NewBill/Betting/Provider";
 import Package from "./NewBill/Electricity/Package";
 import AddBeneficiary from "./NewBill/Electricity/AddBeneficiary";
 import Amount from "./NewBill/Amount";
@@ -32,32 +31,46 @@ const NewBill = () => {
   const { billCategory } = useSelector(selectDashboard);
   const { billpaymentCurrentStep } = useAppSelector(selectBillPayment);
 
-  const Provider =
-    billCategory === "Electricity"
-      ? ElectricityProvider
-      : billCategory === "Cable TV"
-      ? CableProvider
-      : BettingProvider;
+  // const Provider =
+  //   billCategory === "Electricity"
+  //     ? ElectricityProvider
+  //     : billCategory === "Cable TV"
+  //     ? CableProvider
+  //     : BettingProvider;
 
-  const plan = billCategory === "Electricity" ? Package : CablePackage;
-  const beneficiary =
-    billCategory === "Electricity" ? AddBeneficiary : CableBeneficiary;
+  // const plan = billCategory === "Electricity" ? Package : CablePackage;
+  // const beneficiary =
+  //   billCategory === "Electricity" ? AddBeneficiary : CableBeneficiary;
   const confirmation =
     billCategory === "Electricity" ? Confirmation : CableConfirmation;
-  const stepsComponents: StepComponentProps[] = [
+  const electricityStepsComponents: StepComponentProps[] = [
     { step: 1, component: DebitAccount },
     { step: 2, component: Category },
-    { step: 3, component: Provider },
-    { step: 4, component: plan },
-    { step: 5, component: beneficiary },
+    { step: 3, component: ElectricityProvider },
+    { step: 4, component: Package },
+    { step: 5, component: AddBeneficiary },
     { step: 6, component: Amount },
     { step: 7, component: confirmation },
   ];
 
-  // const progressSteps =
-  //   billCategory === "Electricity"
-  //     ? electricityProgressSteps
-  //     : cableProgressSteps;
+  const cableStepsComponents: StepComponentProps[] = [
+    { step: 1, component: DebitAccount },
+    { step: 2, component: Category },
+    { step: 3, component: CableProvider },
+    { step: 4, component: CablePackage },
+    { step: 5, component: CableBeneficiary },
+    { step: 6, component: confirmation },
+  ];
+
+  const stepsComponents =
+    billCategory === "Electricity"
+      ? electricityStepsComponents
+      : cableStepsComponents;
+
+  const progressSteps =
+    billCategory === "Electricity"
+      ? electricityProgressSteps
+      : cableProgressSteps;
 
   return (
     <>
@@ -76,7 +89,7 @@ const NewBill = () => {
         <div className="bg-pryColor-Light w-full flex flex-col gap-10 justify-center items-center py-6 px-10 h-[80vh]">
           <ProgressLayout
             stepsComponents={stepsComponents}
-            progressSteps={billProgressSteps}
+            progressSteps={progressSteps}
             isDashboard
             stateCurrentStep={billpaymentCurrentStep}
             setStateCurrentStep={setBillpaymentCurrentStep}

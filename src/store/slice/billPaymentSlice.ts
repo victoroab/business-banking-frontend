@@ -9,6 +9,8 @@ interface TransactionState {
   billpaymentCurrentStep: number;
   billPaymentPayload: any;
   selectedElectricityProvider: any | undefined;
+  cableProvider: string;
+  cablePackage: any | undefined;
 }
 
 const initialState: TransactionState = {
@@ -42,6 +44,8 @@ const initialState: TransactionState = {
   airtimeDataCurrentStep: 1,
   billpaymentCurrentStep: 1,
   selectedElectricityProvider: undefined,
+  cableProvider: "",
+  cablePackage: undefined,
 };
 
 export const billPaymentSlice = createSlice({
@@ -77,6 +81,13 @@ export const billPaymentSlice = createSlice({
     setSelectedElectricityProvider: (state, action) => {
       state.selectedElectricityProvider = action.payload;
     },
+    setSelectedCableProvider: (state, action) => {
+      state.cableProvider = action.payload;
+    },
+
+    setSelectedCablePackage: (state, action) => {
+      state.cablePackage = action.payload;
+    },
   },
 });
 
@@ -87,6 +98,8 @@ export const {
   setBillpaymentCurrentStep,
   setBillPaymentPayload,
   setSelectedElectricityProvider,
+  setSelectedCableProvider,
+  setSelectedCablePackage,
 } = billPaymentSlice.actions;
 
 export const selectBillPayment = (state: RootState) => state.billPayment;
