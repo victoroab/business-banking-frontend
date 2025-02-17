@@ -1,14 +1,36 @@
 import FormInput from "../../../../components/FormInput";
 import { useAppDispatch } from "../../../../hooks";
-import { setBillpaymentCurrentStep } from "../../../../store/slice/billPaymentSlice";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import {
+  setBillpaymentCurrentStep,
+  setBillPaymentPayload,
+} from "../../../../store/slice/billPaymentSlice";
 // import { useNavigate } from "react-router-dom";
 const BillAmount = () => {
   const dispatch = useAppDispatch();
   // const navigate = useNavigate();
-  const handleSubmit = () => {
+
+  const onSubmit = async (formData: { amount: string }) => {
+    dispatch(
+      setBillPaymentPayload({
+        amount: parseFloat(formData.amount),
+      })
+    );
     dispatch(setBillpaymentCurrentStep(7));
-    // navigate("/utility/pay-new-bill/confirmation");
   };
+  const initialValues = {
+    amount: "",
+  };
+  const formSchema = Yup.object().shape({
+    amount: Yup.string(),
+  });
+  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: formSchema,
+      onSubmit,
+    });
 
   return (
     <div className="flex flex-col gap-14 pr-6">
@@ -22,19 +44,25 @@ const BillAmount = () => {
       </div>
 
       <div className="form">
-        <form action="#" className="flex gap-8 flex-col">
+        <form
+          action="#"
+          className="flex gap-8 flex-col"
+          onSubmit={handleSubmit}
+        >
           <FormInput
-            id={""}
+            type="text"
             placeholder="Amount"
-            className="flex flex-col gap-4"
+            id="amount"
+            className="w-full"
+            name="amount"
+            error={touched.amount ? errors.amount : undefined}
+            onBlur={handleBlur}
+            onChange={handleChange}
+            defaultValue={values?.amount}
           />
 
           <div className="flex justify-center  w-full gap-6">
-            <button
-              className="main-btn w-full"
-              type="submit"
-              onClick={handleSubmit}
-            >
+            <button className="main-btn w-full" type="submit">
               Continue
             </button>
           </div>

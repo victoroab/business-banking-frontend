@@ -58,7 +58,7 @@ import BillProvider from "../pages/Dashboard/PayBills/NewBill/Provider";
 import BillPackage from "../pages/Dashboard/PayBills/NewBill/Package";
 import AddBillBeneficiary from "../pages/Dashboard/PayBills/NewBill/AddBeneficiary";
 import BillAmount from "../pages/Dashboard/PayBills/NewBill/Amount";
-import BillConfirmation from "../pages/Dashboard/PayBills/NewBill/Confirmation";
+import BillConfirmation from "../pages/Dashboard/PayBills/NewBill/Electricity/Confirmation";
 import TrackCard from "../pages/Dashboard/Cards/TrackCard";
 // import UploadDebitAccount from "../pages/Dashboard/Upload/DebitAccount";
 // import UploadPaymentMode from "../pages/Dashboard/Upload/PaymentMethod";

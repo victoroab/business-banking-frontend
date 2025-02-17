@@ -1,13 +1,10 @@
 import { ArrowRightIcon } from "../../../../../assets/svg/CustomSVGs";
-import { IDOption } from "../../../../../interfaces/Global";
-import { electricityProvider } from "../../../../../utils";
 import { saveElectricityProvider } from "../../../../../store/slice/globalSlice";
-// import { useDispatch } from "react-redux";
-// import { useNavigate } from "react-router-dom";
 import { useGetAllElectricityProvidersQuery } from "../../../../../service/billPayment";
 import {
   setBillpaymentCurrentStep,
   setBillPaymentPayload,
+  setSelectedElectricityProvider,
 } from "../../../../../store/slice/billPaymentSlice";
 import { useAppDispatch } from "../../../../../hooks";
 import Spinner from "../../../../../components/Spinner/Spinner";
@@ -15,13 +12,18 @@ import Spinner from "../../../../../components/Spinner/Spinner";
 const ElectricityProvider = () => {
   const dispatch = useAppDispatch();
   // const navigate = useNavigate();
-  const handleNavigate = (title: string, category: string) => {
-    dispatch(saveElectricityProvider(title));
-    dispatch(setBillpaymentCurrentStep(5));
-    dispatch(setBillPaymentPayload({ serviceCategoryId: category }));
+  const handleNavigate = (selectedProvider: any) => {
+    dispatch(setSelectedElectricityProvider(selectedProvider));
+    dispatch(setBillpaymentCurrentStep(4));
+    dispatch(
+      setBillPaymentPayload({
+        serviceCategoryId: selectedProvider?.serviceCategoryId,
+        meterType: selectedProvider?.name,
+      })
+    );
   };
   const { data, isLoading } = useGetAllElectricityProvidersQuery({});
-
+  console.log(data, "testting");
   return (
     <div className="flex flex-col gap-10">
       <div className="flex flex-col gap-4">
@@ -38,16 +40,14 @@ const ElectricityProvider = () => {
           <Spinner />
         ) : (
           <>
-            {data?.data?.map((option: any, index) => (
+            {data?.data?.map((option: any, index: number) => (
               <div
                 className="account-option flex flex-col cursor-pointer rounded-xl p-6 gap-4"
                 style={{
                   boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)",
                 }}
                 key={index}
-                onClick={() =>
-                  handleNavigate(option?.description, option?.serviceCategoryId)
-                }
+                onClick={() => handleNavigate(option)}
               >
                 <div className="flex items-center justify-between">
                   <div className="flex gap-2 items-center">

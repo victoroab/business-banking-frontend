@@ -326,7 +326,7 @@ export const attestation = [
   { id: 3, title: "Business Address", navigate: "/kyb/business-address" },
 ];
 
-export const newBillProgressSteps: ProgressStepsProps[] = [
+export const electricityNewBillProgressSteps: ProgressStepsProps[] = [
   {
     id: 1,
     link: "debit-account",
@@ -364,6 +364,29 @@ export const newBillProgressSteps: ProgressStepsProps[] = [
   },
 ];
 
+export const electricityProgressSteps: ProgressStepsProps[] = [
+  { id: 1, link: "debit-account", title: "Select Debit Account" },
+  { id: 2, link: "category", title: "Select a Category" },
+  { id: 3, link: "provider", title: "Select Provider" },
+  { id: 4, link: "package", title: "Select Package" },
+  { id: 5, link: "beneficiary", title: "Add Beneficiary" },
+  { id: 6, link: "amount", title: "Amount" },
+  { id: 7, link: "confirmation", title: "Confirmation" },
+];
+
+export const cableProgressSteps: ProgressStepsProps[] = [
+  { id: 1, link: "debit-account", title: "Select Debit Account" },
+  { id: 2, link: "category", title: "Select a Category" },
+  { id: 3, link: "provider", title: "Select Provider" },
+  { id: 4, link: "package", title: "Select Package" },
+  { id: 5, link: "beneficiary", title: "Add Beneficiary" },
+  { id: 6, link: "amount", title: "Amount" },
+  { id: 7, link: "confirmation", title: "Confirmation" },
+];
+export const electricityType = [
+  { id: 1, title: "PREPAID" },
+  { id: 2, title: "POSTPAID" },
+];
 export const electricityProvider: IDOption[] = [
   {
     icon: ElectricityIcon,

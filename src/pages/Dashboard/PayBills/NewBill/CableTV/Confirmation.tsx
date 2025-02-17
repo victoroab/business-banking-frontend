@@ -1,20 +1,19 @@
-import PopUp from "../../../../components/PopUps/PopUp";
-import { SuccessIcon } from "../../../../assets/svg/CustomSVGs";
-// import { useGlobalHooks } from "../../../../hooks/globalHooks";
-import { useAppDispatch, useAppSelector } from "../../../../hooks";
-import { selectGlobal } from "../../../../store/slice/globalSlice";
-import { AlertLogoIcon } from "../../../../assets/svg/Sidebar";
-import { setBillpaymentCurrentStep } from "../../../../store/slice/billPaymentSlice";
+import { useAppSelector } from "../../../../../hooks";
+import { AlertLogoIcon } from "../../../../../assets/svg/Sidebar";
+import { selectBillPayment } from "../../../../../store/slice/billPaymentSlice";
+import { useState } from "react";
+import GeneralModal from "../../../../../components/PopUps/GeneralModal";
+import InputToken from "./InputToken";
 
 const BillConfirmation = () => {
-  // const { handleShow } = useGlobalHooks();
-  const toggle = useAppSelector(selectGlobal);
-  const dispatch = useAppDispatch();
+  const [openPinModal, setOpenPinModal] = useState(false);
+  const { billPaymentPayload } = useAppSelector(selectBillPayment);
+
   const handleSubmit = () => {
     // handleShow("submit-bill");
-    dispatch(setBillpaymentCurrentStep(1));
+    setOpenPinModal(true);
   };
-
+  console.log(billPaymentPayload);
   return (
     <div className="flex flex-col gap-10 pr-6 ">
       <div className="gap-4 flex flex-col justify-center items-center">
@@ -32,7 +31,7 @@ const BillConfirmation = () => {
         </p>
 
         <h3 className="text-pryColor font-extrabold text-2xl font-bricolage leading-6">
-          IKEDC Prepaid
+          {billPaymentPayload?.meterType + " " + billPaymentPayload?.vendType}
         </h3>
       </div>
 
@@ -55,7 +54,7 @@ const BillConfirmation = () => {
           "
             >
               <p className="tit text-sm  text-amount font-semibold font-workSans">
-                #5000.00
+                &#8358;{billPaymentPayload?.amount}.00
               </p>
               <p className="va text-amount font-semibold text-sm font-workSans">
                 #500.00
@@ -74,7 +73,7 @@ const BillConfirmation = () => {
           "
             >
               <p className="tit  font-workSanstext-sm  text-amount font-semibold flex flex-col justify-end items-end">
-                #5500.00
+                &#8358;{billPaymentPayload?.amount}.00
               </p>
             </div>
           </div>
@@ -89,8 +88,12 @@ const BillConfirmation = () => {
         <div className="p-4 gap-4 items-center flex flex-col w-full bg-[#f7f8ff] rounded-xl">
           <div className="grid grid-cols-2 gap-10 w-full">
             <div className="det flex flex-col gap-2">
-              <p className="tit text-sm text-greyColr font-workSans">Amount:</p>
-              <p className="text-sm text-greyColr font-workSans">IKEDC</p>
+              <p className="tit text-sm text-greyColr font-workSans">
+                {billPaymentPayload?.meterName}
+              </p>
+              <p className="text-sm text-greyColr font-workSans">
+                {billPaymentPayload?.meterType}
+              </p>
             </div>
             <div className="flex flex-col items-end ">
               <p className="tit text-sm  text-secColor font-normal font-workSans cursor-pointer">
@@ -119,7 +122,10 @@ const BillConfirmation = () => {
                   </p>
                   <p className="text-greyColr font-workSans leading-4 font-normal flex items-center text-sm">
                     Account Number:
-                    <span className="text-sm font-medium">1234567890</span>
+                    <span className="text-sm font-medium">
+                      {" "}
+                      {billPaymentPayload?.fromAccountNumber}
+                    </span>
                   </p>
                 </div>
               </div>
@@ -151,64 +157,10 @@ const BillConfirmation = () => {
         </div>
       </div>
 
-      {toggle["submit-bill"] && (
-        <PopUp id={"submit-bill"}>
-          <div className="bg-white rounded-lg flex flex-col items-center justify-center p-10 gap-10 w-[650px]">
-            <div
-              className="p-4 gap-4 rounded-full items-center justify-center flex w-[122px] h-[122px]"
-              style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
-            >
-              <SuccessIcon />
-            </div>
-
-            <div className="flex flex-col gap-4 items-center justify-center">
-              <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-                Bet wallet Funded Successfully
-              </h3>
-              <p className="text-greyColr font-workSans leading-4 font-normal text-base text-center">
-                Your wallet has been funded successfully
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-4 items-center justify-center border-t pt-6">
-              <p className="text-greyColr font-workSans leading-4 font-normal text-sm text-center">
-                TV Package
-              </p>
-              <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-                DSTV Yanga NGN 5,000
-              </h3>
-
-              <p className="text-greyColr font-workSans leading-4 font-normal text-base text-center">
-                Add Beneficiary ?
-              </p>
-            </div>
-            <div className="flex justify-center  w-full gap-6">
-              <button
-                className="yellow-frame-btn w-1/2"
-                type="submit"
-                // onClick={() => navigate("/signup")}
-              >
-                Share Receipt
-              </button>
-              <button
-                className="main-btn w-1/2"
-                type="submit"
-                // onClick={() => navigate("/signup")}
-              >
-                Download Receipt
-              </button>
-            </div>
-            <div className="flex justify-center  w-[80%] gap-6">
-              <button
-                className="main-btn w-full"
-                type="submit"
-                // onClick={() => navigate("/")}
-              >
-                Download Receipt
-              </button>
-            </div>
-          </div>
-        </PopUp>
+      {openPinModal && (
+        <GeneralModal>
+          <InputToken />
+        </GeneralModal>
       )}
     </div>
   );

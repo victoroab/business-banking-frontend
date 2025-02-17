@@ -6,7 +6,11 @@ import {
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
 // import { RootState } from "../store/store";
-import { AirtimeData, BundleData } from "../interfaces/service/billPayment";
+import {
+  AirtimeData,
+  BundleData,
+  MeterDetails,
+} from "../interfaces/service/billPayment";
 import Cookies from "js-cookie";
 
 const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
@@ -108,6 +112,28 @@ export const billPaymentApi = createApi({
         `/bill-payment/cable-tv/plans?serviceCategoryId=${serviceCategory}`,
       providesTags: [{ type: "TV", id: "TV" }],
     }),
+    validateElectricity: builder.mutation<
+      any,
+      { serviceCategoryId: string; cardNumber: string }
+    >({
+      query: (body) => ({
+        url: "/bill-payment/electricity/validate",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Airtime", id: "Airtime" }],
+    }),
+
+    buyElectricity: builder.mutation<any, MeterDetails>({
+      query: (body) => ({
+        url: "/bill-payment/electricity/buy",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Airtime", id: "Airtime" }],
+    }),
   }),
 });
 
@@ -120,4 +146,6 @@ export const {
   useGetAllElectricityProvidersQuery,
   useGetAllCableTVPlanQuery,
   useGetAllCableTVProvidersQuery,
+  useValidateElectricityMutation,
+  useBuyElectricityMutation,
 } = billPaymentApi;

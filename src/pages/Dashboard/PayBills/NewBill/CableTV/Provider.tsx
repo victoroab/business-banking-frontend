@@ -1,5 +1,3 @@
-import { cableProvider } from "../../../../../utils";
-import { IDOption } from "../../../../../interfaces/Global";
 import { ArrowRightIcon } from "../../../../../assets/svg/CustomSVGs";
 import { useGetAllCableTVProvidersQuery } from "../../../../../service/billPayment";
 import { saveElectricityProvider } from "../../../../../store/slice/globalSlice";
@@ -38,7 +36,7 @@ const CableProvider = () => {
           <Spinner />
         ) : (
           <>
-            {data?.data.map((option: any, index) => (
+            {data?.data.map((option: any, index: number) => (
               <div
                 className="account-option flex flex-col cursor-pointer rounded-xl p-6 gap-4"
                 style={{
