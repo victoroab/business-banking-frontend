@@ -1,7 +1,6 @@
 import { ArrowRightIcon } from "../../../../../assets/svg/CustomSVGs";
 import { useSelector } from "react-redux";
 import { electricityType } from "../../../../../utils";
-// import { useNavigate } from "react-router-dom";
 import {
   selectBillPayment,
   setBillpaymentCurrentStep,
@@ -10,14 +9,11 @@ import {
 import { useAppDispatch } from "../../../../../hooks";
 const ElectricityPackage = () => {
   const { selectedElectricityProvider } = useSelector(selectBillPayment);
-  // const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const handleNavigate = (title: string) => {
-    console.log(title);
     dispatch(setBillpaymentCurrentStep(5));
     dispatch(setBillPaymentPayload({ vendType: title }));
-    // navigate("/utility/pay-new-bill/beneficiary");
   };
 
   return (

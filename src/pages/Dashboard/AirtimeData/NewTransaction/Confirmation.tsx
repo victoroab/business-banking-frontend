@@ -15,7 +15,6 @@ const AirtimeConfirmation = () => {
   const { airtimeBundlePayload } = useAppSelector(selectBillPayment);
 
   const handleSubmit = () => {
-    // handleShow("input-pin");
     setOpenPinModal(true);
   };
 
@@ -23,7 +22,6 @@ const AirtimeConfirmation = () => {
     formRef.current?.scrollIntoView({ behavior: "smooth" });
   };
 
-  console.log(openPinModal);
   return (
     <div className="flex flex-col gap-10 pr-6 relative">
       <div className="gap-4 flex flex-col justify-center items-center">

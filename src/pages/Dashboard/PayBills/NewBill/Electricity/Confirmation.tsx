@@ -10,10 +10,9 @@ const BillConfirmation = () => {
   const { billPaymentPayload } = useAppSelector(selectBillPayment);
 
   const handleSubmit = () => {
-    // handleShow("submit-bill");
     setOpenPinModal(true);
   };
-  console.log(billPaymentPayload);
+
   return (
     <div className="flex flex-col gap-10 pr-6 ">
       <div className="gap-4 flex flex-col justify-center items-center">

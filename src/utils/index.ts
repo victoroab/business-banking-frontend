@@ -1229,7 +1229,6 @@ export const accounts = [
 
 export const logoutUser = (navigate: any) => {
   const { removeTokenCookie, getTokenCookie } = useCookies();
-  console.log("Logging out user..."); // Debugging
 
   const userToken = getTokenCookie("businessUserToken");
   if (userToken) {
@@ -1244,5 +1243,4 @@ export const logoutUser = (navigate: any) => {
   navigate("/");
   window.location.reload();
   // dispatch(saveUserInfo(undefined));
-  console.log("Local storage cleared and persistor purged."); // Debugging
 };

@@ -15,7 +15,8 @@ const InputToken = () => {
   const [otpCode, setOtpCode] = useState<string>("");
   const [openReceipt, setOpenReceipt] = useState<boolean>(false);
   const [buyCable, { isLoading }] = useBuyCableMutation();
-  const { billPaymentPayload } = useAppSelector(selectBillPayment);
+  const { billPaymentPayload, cablePackage } =
+    useAppSelector(selectBillPayment);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const handleSubmit = async () => {
@@ -53,20 +54,19 @@ const InputToken = () => {
 
           <div className="flex flex-col gap-4 items-center justify-center text-white">
             <h3 className=" font-semibold text-2xl font-bricolage leading-6">
-              Electricity Purchase Successful
+              TV Subscription Renewal Successful
             </h3>
             <p className=" font-workSans leading-4 font-normal text-base text-center">
-              Your electricity purchase was successful! Here are your
-              transaction details
+              Your TV subscription has been successfully renewed
             </p>
           </div>
 
           <div className="flex flex-col gap-4 items-center justify-center border-t pt-6 text-white">
             <p className=" font-workSans leading-4 font-normal text-sm text-center">
-              Transfer Amount
+              TV Package
             </p>
             <h3 className="font-semibold text-2xl font-bricolage leading-6 text-secColor">
-              &#8358;{billPaymentPayload?.amount}.00
+              {cablePackage?.name} &#8358;{billPaymentPayload?.amount}.00
             </h3>
 
             <p className="font-workSans leading-4 font-medium text-base text-center mt-10">

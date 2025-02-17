@@ -14,10 +14,9 @@ const Confirmation = () => {
   const dispatch = useDispatch();
   const { sendMoneyPayload } = useAppSelector(selectTransaction);
   const handleSubmit = () => {
-    // handleShow("input-pin");
     setOpenPinModal(true);
   };
-  console.log(openPinModal);
+
   return (
     <div className="flex flex-col gap-10">
       <div className="gap-4 flex flex-col justify-center items-center">

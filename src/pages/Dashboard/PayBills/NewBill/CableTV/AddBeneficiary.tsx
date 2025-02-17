@@ -41,7 +41,7 @@ const CableBeneficiary = () => {
       dispatch(
         setBillPaymentPayload({
           ...formData,
-          cardNumber: response?.data?.cardNumber,
+          cardNumber: response?.data?.cardNumber.toString(),
           name: response?.data?.name,
         })
       );

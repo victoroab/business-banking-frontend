@@ -21,13 +21,11 @@ const customBaseQuery: BaseQueryFn<
       headers
       // { getState }
     ) => {
-      // const userToken = (getState() as RootState)?.auth?.userInfo
-      //   ?.refresh_token;
       const userToken = Cookies.get("businessUserToken");
       if (userToken) {
         headers.set("Authorization", `Bearer ${userToken}`);
       }
-      console.log();
+
       return headers;
     },
   })(args, api, extraOptions);

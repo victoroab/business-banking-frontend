@@ -47,11 +47,6 @@ const RequestPhysicalCard = () => {
     }));
   };
 
-  // const handleSubmit = () => {
-  //   // Handle form submission logic
-  //   console.log(formData);
-  // };
-
   return (
     <>
       <Navbar
