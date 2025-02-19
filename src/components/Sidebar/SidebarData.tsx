@@ -3,7 +3,7 @@ import {
   // TransactionIcon,
   SendMoneyIcon,
   // PayBillIcons,
-  SupportIcon,
+  // SupportIcon,
   UploadIcon,
   CardIcon,
   SidebarUserIcon,
@@ -105,14 +105,14 @@ export const SidebarData: SidebarDataProps[] = [
     url: "/audit-trail",
   },
 
+  // {
+  //   id: "tab12",
+  //   icon: SupportIcon,
+  //   title: "Support",
+  //   url: "/support",
+  // },
   {
     id: "tab12",
-    icon: SupportIcon,
-    title: "Support",
-    url: "/support",
-  },
-  {
-    id: "tab13",
     icon: SidebarUserIcon,
     title: "Account Settings",
     url: "/account",

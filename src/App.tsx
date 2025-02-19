@@ -14,6 +14,7 @@ import InactiveContent from "./components/InactiveContent";
 import { useEffect, useState } from "react";
 import GeneralModal from "./components/PopUps/GeneralModal";
 import Cookies from "js-cookie";
+import Livechat from "./components/Chatwoot/Chatwoot";
 
 function App() {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -195,6 +196,7 @@ function App() {
 
         <Route path="*" element={<NotFound />} />
       </Routes>
+      <Livechat />
     </main>
   );
 }
