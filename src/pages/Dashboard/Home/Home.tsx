@@ -4,7 +4,7 @@ import QuickAction from "../../../components/Dashboard/Home/QuickAction";
 import TransactionChart from "../../../components/Dashboard/Home/TransactionChart";
 import TransactionHistory from "../../../components/Dashboard/Home/TransactionHistory";
 import Navbar from "../../../components/Navbar/Navbar";
-import { sampleData } from "../../../utils";
+import { errorHandler, sampleData } from "../../../utils";
 import { CautionIcon } from "../../../assets/svg/PayBill";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
@@ -31,7 +31,9 @@ const Dashboard = () => {
     try {
       const response = await account().unwrap();
       dispatch(setAccountDetails(response?.data));
-    } catch (error) {}
+    } catch (error) {
+      errorHandler(error);
+    }
   };
 
   useEffect(() => {

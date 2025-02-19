@@ -3,7 +3,7 @@ import { LogoutIcon } from "../../assets/svg/CustomSVGs";
 import { AlertLogoIcon } from "../../assets/svg/Sidebar";
 import SubMenu from "./SubMenu";
 import { useNavigate } from "react-router-dom";
-import { logoutUser } from "../../utils";
+import { LogoutUser } from "../../utils";
 
 const Sidebar = () => {
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ const Sidebar = () => {
       </div>
 
       <div className="">
-        <div onClick={() => logoutUser(navigate)} className="cursor-pointer">
+        <div onClick={() => LogoutUser(navigate)} className="cursor-pointer">
           <hgroup className=" flex gap-4 items-center p-3">
             <h4>
               <LogoutIcon />{" "}

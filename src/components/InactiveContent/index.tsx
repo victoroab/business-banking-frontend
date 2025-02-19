@@ -1,7 +1,7 @@
 import React from "react";
 // import { useAuthHook } from "../../hooks/authHook";
 import { useNavigate } from "react-router-dom";
-import { logoutUser } from "../../utils";
+import { LogoutUser } from "../../utils";
 
 // import { useGlobalHooks } from "../../hooks/globalHooks";
 
@@ -20,7 +20,7 @@ const InactiveContent: React.FC<InactiveProps> = ({
 }) => {
   const navigate = useNavigate();
   const handleLogout = () => {
-    logoutUser(navigate);
+    LogoutUser(navigate);
     setShowModal(false);
   };
 

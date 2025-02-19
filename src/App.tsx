@@ -6,7 +6,7 @@ import { authRoutes, dashboardRoutes, kybRoutes } from "./routes/routes";
 import DashboardLayout from "./layout/Dashboard";
 import { RouteProps } from "./interfaces/Global";
 import ProgressLayout from "./layout/ProgressLayout";
-import { KYCProgressSteps, logoutUser } from "./utils";
+import { KYCProgressSteps, LogoutUser } from "./utils";
 import Guard from "./routes/Guard";
 import NotFound from "./pages/NotFound/NotFound";
 import { useIdleTimer } from "react-idle-timer";
@@ -45,7 +45,7 @@ function App() {
 
         return () => clearTimeout(timer);
       } else {
-        logoutUser(navigate);
+        LogoutUser(navigate);
         setShowModal(false);
       }
     } else {

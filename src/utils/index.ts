@@ -1227,14 +1227,17 @@ export const accounts = [
   },
 ];
 
-export const logoutUser = (navigate: any) => {
+export const LogoutUser = (navigate: any) => {
   const { removeTokenCookie, getTokenCookie } = useCookies();
 
   const userToken = getTokenCookie("businessUserToken");
+  const chatwoot = getTokenCookie("_chatwoot_session");
   if (userToken) {
     removeTokenCookie("businessUserToken");
   }
-
+  if (chatwoot) {
+    removeTokenCookie("_chatwoot_session");
+  }
   localStorage.removeItem("persist:alert-business");
 
   localStorage.clear();

@@ -1,7 +1,6 @@
 /// <reference lib="dom" />
 
 import { useEffect } from "react";
-
 declare global {
   interface Window {
     chatwootSettings: {
@@ -9,6 +8,7 @@ declare global {
       position: string;
       locale: string;
       type: string;
+      launcherTitle: string;
     };
     chatwootSDK: {
       run: (config: { websiteToken: string; baseUrl: string }) => void;
@@ -23,6 +23,7 @@ function Livechat() {
       position: "right",
       locale: "en",
       type: "standard",
+      launcherTitle: "Chat with us",
     };
 
     (function (d, t) {
