@@ -1,19 +1,18 @@
-import { useState } from "react";
 import OtpInput from "react-otp-input";
-import { useNavigate } from "react-router-dom";
 import { OTPProps } from "../../interfaces/Global";
 
 const Otp: React.FC<OTPProps> = ({
-  page,
   title,
   paragraph,
   inputCount,
-  resend,
+  setOtpCode,
+  otpCode,
 }) => {
-  const [otpcode, setOtpCode] = useState<string>("");
-  const navigate = useNavigate();
   const handleChange = (otp: string) => {
-    setOtpCode(otp);
+    const isNumeric = /^\d*$/.test(otp);
+    if (isNumeric && otp.length <= inputCount) {
+      setOtpCode(otp);
+    }
   };
 
   return (
@@ -22,14 +21,14 @@ const Otp: React.FC<OTPProps> = ({
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
           {title}
         </h3>
-        <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
+        <div className="text-greyColr font-workSans leading-4 font-normal text-sm">
           {paragraph}
-        </p>
+        </div>
       </div>
-      <div className="flex justify-center items-center">
+      <div className="flex justify-center items-center flex-col">
         {" "}
         <OtpInput
-          value={otpcode}
+          value={otpCode}
           onChange={handleChange}
           numInputs={inputCount}
           inputType="password"
@@ -47,28 +46,11 @@ const Otp: React.FC<OTPProps> = ({
             minWidth: "55px",
             minHeight: "60px",
           }}
-          renderInput={(props) => <input {...props} />}
+          renderInput={(props) => (
+            <input {...props} inputMode="numeric" pattern="\d*" />
+          )}
         />
       </div>
-
-      <div className="flex justify-center  w-full gap-6">
-        <button
-          className="main-btn w-full"
-          type="submit"
-          onClick={() => navigate(page)}
-        >
-          Continue
-        </button>
-      </div>
-      {resend && (
-        <p className="text-lightGreyColor font-workSans leading-4 font-normal text-[13px]">
-          Didn’t get the code?{" "}
-          <span className="font-bold cursor-pointer text-pryColor">
-            {" "}
-            Resend Code
-          </span>
-        </p>
-      )}
     </div>
   );
 };

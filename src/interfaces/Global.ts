@@ -15,8 +15,9 @@ export interface NavbarProps {
 }
 
 export interface ProgressStepsProps {
-  id: number;
+  id: number | string;
   title: string;
+  link?: string;
 }
 export interface AddProps {
   setActiveTab: any;
@@ -27,6 +28,7 @@ export interface IFormInputProps {
   placeholder?: string;
   id: string;
   name?: string;
+  filter?: boolean;
   shortP?: string;
   error?: string | undefined;
   defaultValue?: string | number;
@@ -37,11 +39,16 @@ export interface IFormInputProps {
   onBlur?: (e: any) => void;
   icon?: JSX.Element | string;
   required?: boolean;
+  sublabel?: string;
   disabled?: boolean;
   selectOptions?: any[];
   valuePropertyName?: string;
   keyPropertyName?: string;
   itemPropertyName?: string;
+  accountName?: string;
+  accountType?: string;
+  searchFunc?: boolean;
+  isLoading?: boolean;
 }
 
 export interface DashboardLayoutProps {
@@ -53,20 +60,165 @@ export interface RouteProps {
   element: ReactElement;
 }
 export interface OTPProps {
-  page: string;
   inputCount: number;
   title: string;
   paragraph: ReactElement;
-  resend?: boolean;
+  setOtpCode: React.Dispatch<React.SetStateAction<string>>;
+  otpCode: string;
 }
 
 export interface KYCPageProps {
   setCurrentStep: any;
 }
 
+export interface StepPagesProps {
+  setCurrentStep: any;
+}
 export interface IDOption {
+  icon?: any;
+  title: string;
+  iconBg?: string;
+  status?: string;
+  shortCode?: string;
+  package?: {
+    title: string;
+    shortCode?: string;
+  }[];
+}
+export interface DataItem {
+  createdAt: string;
+}
+
+export interface AnalyticsChartProps {
+  data: { createdAt: string }[];
+}
+
+export interface GraphData {
+  name: string;
+  income: number;
+}
+
+export type StepComponentProps = {
+  step: number;
+  component: React.ComponentType<any>;
+};
+
+export interface ProgressProps {
+  stepsComponents?: StepComponentProps[];
+  progressSteps: ProgressStepsProps[];
+  currentStep?: number;
+  isDashboard: boolean;
+  navTitle?: string;
+  navDesc?: string;
+  isUpload?: boolean;
+  stateCurrentStep?: number;
+  setStateCurrentStep?: React.Dispatch<React.SetStateAction<number>>;
+}
+
+type TransactionType = "debit" | "credit" | "transfer";
+type TransactionStatus = "successful" | "failed";
+
+export interface RowDataProps {
+  id: number;
+  sender: string;
+  beneficiary: string;
+  bank: string;
+  amount: number;
+  transactionType: string;
+  status: TransactionStatus;
+  createdAt: string;
+}
+
+export interface TransferDataProps {
+  id: string;
+  bankName: string;
+  createdAt: string;
+  narration?: string;
+  reference?: string;
+  beneficiary: {
+    accountName: string;
+    accountNumber: string;
+    beneficiaryType: string;
+    bankName: string;
+  };
+}
+
+export interface AirtimeRowDataProps {
+  id: string;
+  sender: string;
+  beneficiaryType: string;
+  phoneNumber: string;
+  networkProvider: string;
+  transactionType: TransactionType;
+  status: TransactionStatus;
+  createdAt: string;
+}
+
+export interface TVRowDataProps {
+  id: string;
+  tvCardName?: string;
+  tvCardNumber?: string;
+  beneficiaryType: string;
+  tvProvider?: string;
+  transactionType: TransactionType;
+  status: TransactionStatus;
+  createdAt: string;
+}
+export interface IColData {
+  selector?: (row: any) => string;
+  cell?: (row: any) => ReactNode;
+  [key: string]: string | number | any;
+}
+
+export interface SidebarDataProps {
+  id: string;
   icon: any;
   title: string;
-  iconBg: string;
-  shortCode: string;
+  url: string;
+  subNav?: SidebarDataProps[];
+}
+export interface SidebarItemProps {
+  item: SidebarDataProps;
+}
+export interface PosDataProps {
+  id?: string;
+  userId?: string;
+  businessId?: string;
+  accountId?: string;
+  deviceType?: string;
+  merchantName?: string;
+  deliveryOption?: string;
+  cardType?: string;
+  pickupBranch?: string | null;
+  address?: string | null;
+  city?: string;
+  zipCode?: string;
+  status?: string;
+  createdAt?: string;
+  updatedAt?: string;
+}
+export interface AddPos {
+  businessId?: string;
+  accountId?: string;
+  deviceType?: string;
+  merchantName?: string;
+  deliveryOption?: string;
+  cardType?: string;
+  pickupBranch?: string;
+  address?: string;
+  city?: string;
+  zipCode?: string;
+  pin?: string;
+}
+
+export interface BackArrowProps {
+  stateCurrentStep: number;
+  setStateCurrentStep: any;
+}
+
+export interface ModalProps {
+  title?: string;
+  icon?: React.ReactNode;
+  general?: boolean;
+  children: React.ReactNode;
 }

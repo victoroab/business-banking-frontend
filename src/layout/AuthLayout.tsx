@@ -1,15 +1,16 @@
 import { Layout } from "../interfaces/Global";
-import { NavListIcon } from "../assets/svg/CustomSVGs";
+import { AlertLogoIcon } from "../assets/svg/Sidebar";
 import BackNavigation from "../components/ArrowBack/Back";
 import { useNavigate } from "react-router-dom";
+import { CBNIcon, NDICIcon } from "../assets/svg/Auth";
 
 const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
   const navigate = useNavigate();
   return (
-    <main className="border-red-950 h-screen w-full flex">
-      <section className="flex flex-col w-1/2 bg-pryColor-Light px-20 py-6 justify-between">
+    <main className="h-screen w-full flex">
+      <section className="fixed h-full flex flex-col w-1/2 bg-pryColor-Light px-20 py-6 justify-between">
         <div className="flex gap-2 item-center ">
-          <NavListIcon />
+          <AlertLogoIcon />
           <h1 className="font-bold text-base text-pryColor font-bricolage m-0 p-1">
             Alert Business
           </h1>
@@ -27,13 +28,23 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
             enhance efficiency, and help your business grow
           </p>
         </div>
-
-        <p className="footer-text font-normal text-sm text-greyColr font-workSans leading-4">
-          Alert MFB is licensed by the Central Bank of Nigeria. All deposits are
-          insured by the NDIC.
-        </p>
+        <div className="flex flex-col">
+          <p className="footer-text font-normal text-sm text-greyColr font-workSans leading-4 flex items-center gap-1">
+            Alert MFB is licensed by the Central Bank of Nigeria{" "}
+            <span className="flex items-center gap-1">
+              <CBNIcon /> All deposits are
+            </span>{" "}
+          </p>
+          <p className="footer-text font-normal text-sm text-greyColr font-workSans leading-4 flex items-center gap-1">
+            insured by the NDIC{" "}
+            <span>
+              {" "}
+              <NDICIcon />
+            </span>
+          </p>
+        </div>
       </section>
-      <section className="w-1/2 bg-white px-20 pt-4">
+      <section className="ml-[50%] w-1/2 bg-white px-20 pt-4 overflow-y-auto">
         {loginBtn && (
           <div className="flex justify-end">
             <button
@@ -48,15 +59,17 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
         <div className={loginBtn ? "" : "h-[100%] flex justify-end flex-col"}>
           <div
             className={
-              loginBtn ? "" : "h-[90%] flex items-center flex-col shadow-lg"
+              loginBtn
+                ? ""
+                : "h-[90%] flex items-center flex-col shadow-default"
             }
           >
             {children}
 
             {terms && (
               <div className="flex p-6 flex-col gap-8">
-                <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-                  By using Alert, you agree to our{" "}
+                <p className="text-greyColr font-workSans leading-6 text-center font-normal text-sm px-6">
+                  By using Alert Business, you agree to our{" "}
                   <span className="font-bold cursor-pointer text-black">
                     Terms of Use
                   </span>{" "}

@@ -5,6 +5,7 @@ export const useGlobalHooks = () => {
   const dispatch = useDispatch();
 
   const handleShow = (id: string | number) => {
+    // dispatch(resetAllShows());
     dispatch(toggleShow(id));
   };
 

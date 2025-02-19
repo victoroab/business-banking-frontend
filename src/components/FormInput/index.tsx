@@ -1,4 +1,6 @@
 import { IFormInputProps } from "../../interfaces/Global";
+import SearchSelect from "../Select/SearchSelect";
+import Select from "../Select/Select";
 import "./style.css";
 const FormInput = ({
   className,
@@ -15,6 +17,16 @@ const FormInput = ({
   disabled,
   defaultValue,
   error,
+  sublabel,
+  selectOptions,
+  keyPropertyName,
+  itemPropertyName,
+  valuePropertyName,
+  accountName,
+  accountType,
+  filter,
+  isLoading,
+  searchFunc,
 }: IFormInputProps) => {
   return (
     <div className={`${error ? "" : ""} ${className}`}>
@@ -22,13 +34,73 @@ const FormInput = ({
         <label htmlFor={id} className="labelClassName font-workSans">
           <span>{label}</span>
           {required ? <em className="required"> * </em> : ""}{" "}
+          <span>{sublabel}</span>
         </label>
       )}
 
       <div className="input">
         {icon && <span>{icon}</span>}
         {type === "cSelect" ? (
-          <></>
+          <Select
+            id={id}
+            options={selectOptions}
+            filter={filter}
+            selectedOption={defaultValue}
+            isLoading={isLoading}
+            setSelectedOption={(option: any) =>
+              onChange &&
+              onChange({
+                target: {
+                  name: id,
+                  value: option,
+                },
+              })
+            }
+            errors={error}
+            placeholder={placeholder}
+            searchFunc={searchFunc}
+            keyPropertyName={keyPropertyName}
+            itemPropertyName={itemPropertyName}
+            valuePropertyName={valuePropertyName}
+          />
+        ) : type === "searchSelect" ? (
+          <SearchSelect
+            id={id}
+            options={selectOptions}
+            filter={filter}
+            selectedOption={defaultValue}
+            setSelectedOption={(option: any) =>
+              onChange &&
+              onChange({
+                target: {
+                  name: id,
+                  value: option,
+                },
+              })
+            }
+            errors={error}
+            placeholder={placeholder}
+            keyPropertyName={keyPropertyName}
+            itemPropertyName={itemPropertyName}
+            valuePropertyName={valuePropertyName}
+            accountName={accountName}
+            accountType={accountType}
+          />
+        ) : type === "checkbox" ? (
+          <div className="flex items-center w-full gap-2">
+            <input
+              id={id}
+              name={name}
+              type={type}
+              onChange={onChange}
+              onBlur={onBlur}
+              className={error ? "errors  !m-0" : "!m-0"}
+              placeholder={placeholder}
+              disabled={disabled}
+              // checked={defaultCheck}
+            />
+            <small className="">{label} </small>
+          </div>
         ) : (
           <>
             <input

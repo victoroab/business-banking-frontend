@@ -1,6 +1,9 @@
 .errorMsg {
-  color: red;
+  color: #ee443f;
   font-size: 12px;
+  display: flex;
+  align-items: start;
+  text-align: left;
 }
 .shortP {
   font-size: 14px;
@@ -34,8 +37,8 @@ input:focus {
   border-radius: 12px;
 }
 input::placeholder {
-  color: #b4b4b4;
-  font-size: 16px;
+  color: #676869;
+  font-size: 14px;
   font-weight: 500;
 }
 .required {

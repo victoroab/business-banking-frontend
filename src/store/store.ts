@@ -13,9 +13,41 @@ import {
 
 import storage from "redux-persist/lib/storage";
 import { globalSlice } from "./slice/globalSlice";
+import { authApi } from "../service/auth";
+import { authSlice } from "./slice/authSlice";
+import { kybApi } from "../service/kyb";
+import { dashboardSlice } from "./slice/dashboardSlice";
+import { beneficiaryApi } from "../service/beneficiary";
+import { transactionApi } from "../service/transaction";
+import { accountApi } from "../service/account";
+import { userApi } from "../service/user";
+import { posApi } from "../service/pos";
+import { transactionSlice } from "./slice/transactionSlice";
+import { accountSlice } from "./slice/account";
+import { billPaymentSlice } from "./slice/billPaymentSlice";
+import { billPaymentApi } from "../service/billPayment";
+import { posSlice } from "./slice/posSlice";
+import { uploadSlice } from "./slice/uploadSlic";
+import { securityApi } from "../service/security";
 
 const rootReducers = combineReducers({
   global: globalSlice.reducer,
+  auth: authSlice.reducer,
+  dashboard: dashboardSlice.reducer,
+  transaction: transactionSlice.reducer,
+  account: accountSlice.reducer,
+  billPayment: billPaymentSlice.reducer,
+  pos: posSlice.reducer,
+  upload: uploadSlice.reducer,
+  [authApi.reducerPath]: authApi.reducer,
+  [kybApi.reducerPath]: kybApi.reducer,
+  [beneficiaryApi.reducerPath]: beneficiaryApi.reducer,
+  [transactionApi.reducerPath]: transactionApi.reducer,
+  [accountApi.reducerPath]: accountApi.reducer,
+  [userApi.reducerPath]: userApi.reducer,
+  [posApi.reducerPath]: posApi.reducer,
+  [billPaymentApi.reducerPath]: billPaymentApi.reducer,
+  [securityApi.reducerPath]: securityApi.reducer,
 });
 
 const persistConfig = {
@@ -37,7 +69,17 @@ export const store = configureStore({
       serializableCheck: {
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }).concat(),
+    }).concat(
+      authApi.middleware,
+      kybApi.middleware,
+      beneficiaryApi.middleware,
+      transactionApi.middleware,
+      accountApi.middleware,
+      userApi.middleware,
+      posApi.middleware,
+      billPaymentApi.middleware,
+      securityApi.middleware
+    ),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

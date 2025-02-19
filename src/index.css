@@ -17,6 +17,7 @@
   --secColor: #dbb951;
   --black: #000000;
   --Grey1: #352f36;
+  --Grey2: #777777;
   --positive: #00c46c;
   --negative: #ee443f;
 }
@@ -26,9 +27,41 @@
   border-radius: 12px;
   padding: 12px 9px;
   font-size: 18px;
+  font-family: "Bricolage Grotesque", serif;
   cursor: pointer;
   font-weight: 500;
   color: var(--white);
+}
+.blue-btn {
+  background: var(--white);
+  border-radius: 12px;
+  border: 1px solid var(--pryColor);
+  padding: 12px 9px;
+  font-size: 18px;
+  font-family: "Bricolage Grotesque", serif;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--pryColor);
+}
+.main-card-btn {
+  background: var(--pryColor);
+  border-radius: 12px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-family: "Bricolage Grotesque", serif;
+  cursor: pointer;
+  font-weight: 600;
+  color: var(--white);
+}
+.white-btn {
+  background: var(--white);
+  border-radius: 8px;
+  padding: 4px 20px;
+  font-size: 16px;
+  font-family: "Bricolage Grotesque", serif;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--secColor);
 }
 .yellow-frame-btn {
   border: solid 1px var(--secColor);
@@ -36,16 +69,136 @@
   background-color: white;
   padding: 12px 9px;
   font-size: 18px;
+  font-family: "Bricolage Grotesque", serif;
   cursor: pointer;
   font-weight: 500;
   color: var(--secColor);
+}
+.yellow-frame-outline-btn {
+  border: solid 1px var(--secColor);
+  border-radius: 12px;
+  background-color: transparent;
+  padding: 12px 9px;
+  font-size: 18px;
+  font-family: "Bricolage Grotesque", serif;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--secColor);
+}
+.yellow-btn {
+  border: solid 1px var(--secColor);
+  border-radius: 12px;
+  background-color: var(--secColor);
+  padding: 12px 9px;
+  font-size: 18px;
+  font-family: "Bricolage Grotesque", serif;
+  cursor: pointer;
+  font-weight: 500;
+  /* color: var(--secColor); */
 }
 .red-frame-btn {
   border-radius: 12px;
   color: white;
   padding: 12px 9px;
   font-size: 18px;
+  font-family: "Bricolage Grotesque", serif;
   cursor: pointer;
   font-weight: 500;
   background-color: var(--negative);
+}
+
+.red-outline-btn {
+  border-radius: 12px;
+  color: var(--negative);
+  padding: 12px 9px;
+  font-size: 18px;
+  border: 1px solid var(--negative);
+  cursor: pointer;
+  font-weight: 500;
+}
+
+/* === Pagination styles start ==== */
+.paginContainer {
+  display: flex;
+  justify-content: center;
+  gap: 5px;
+  font-weight: 400;
+}
+
+.paginContainer a {
+  display: block;
+  width: 24px;
+  height: 24px;
+  color: var(--Grey1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.5s;
+}
+
+.paginContainer .pageClass a:hover {
+  border-color: var(--secColor);
+  color: var(--secColor);
+  background-color: white;
+  transition: all 0.5s;
+}
+.paginContainer .pageClass a {
+  background-color: var(--white);
+  color: var(--Grey2);
+}
+.paginContainer .activePage a {
+  border-color: var(--secColor);
+  color: var(--secColor);
+  border: 1px solid #dbb950;
+}
+
+.paginContainer .prev a,
+.paginContainer .next a {
+  background-color: var(--white);
+  color: #8e949a;
+  border: 1px solid #8e949a;
+}
+
+.paginContainer .disabled a {
+  pointer-events: none;
+  background-color: #ebeff2;
+  color: var(--Grey5);
+  border: 1px solid lightgrey;
+}
+
+/* === Pagination styles end ==== */
+
+.centered-box {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.left-box {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}
+
+[data-column-id="sender"].rdt_TableCol {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}
+
+[data-column-id="bankName"].rdt_TableCol {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: start;
+}
+
+[data-column-id="beneficiary"].rdt_TableCol {
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: start;
 }

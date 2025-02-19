@@ -1,28 +1,32 @@
-import React, { useState } from "react";
-import { IDOption, KYCPageProps } from "../../../interfaces/Global";
+import { IDOption } from "../../../interfaces/Global";
 import { accountOptions } from "../../../utils";
-import { ArrowRightIcon } from "../../../assets/svg/CustomSVGs";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { selectAuth, setKYCIdentityStep } from "../../../store/slice/authSlice";
+import BVN from "./Identity/BVN";
+import { useNavigate } from "react-router-dom";
 
-const IdVerification: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
-  const [screen, setScreen] = useState<string>("default");
+const IdVerification = () => {
+  const { kycIdentityStep, userInfo } = useAppSelector(selectAuth);
 
-  const handleNavigate = (title: string) => {
-    setCurrentStep(2);
-    setScreen(title);
-    console.log(title);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
+  const handleVerify = () => {
+    if (userInfo?.kyc?.bvnStatus && !userInfo?.kyc?.ninStatus) {
+      dispatch(setKYCIdentityStep("NIN"));
+    } else if (userInfo?.kyc?.bvnStatus && userInfo?.kyc?.ninStatus) {
+      navigate("/kyb/face-verification");
+    } else {
+      dispatch(setKYCIdentityStep("BVN"));
+    }
   };
-
-  const handleConfirmation = () => {
-    setCurrentStep(3);
-  };
-
   return (
     <>
-      {screen === "default" && (
+      {kycIdentityStep === "DEFAULT" ? (
         <div className="flex flex-col gap-10">
           <div className="flex flex-col gap-4">
             <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-              Choose Your ID Type for Verification
+              Provide These IDs For Verification
             </h3>
             <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
               To keep your account secure and compliant, we need to validate{" "}
@@ -34,9 +38,11 @@ const IdVerification: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
           <div className="flex flex-col gap-2">
             {accountOptions.map((option: IDOption, index) => (
               <div
-                className="account-option shadow-sm flex flex-col cursor-pointer rounded-xl p-6 gap-4"
+                className="account-option flex flex-col rounded-xl p-6 gap-4"
+                style={{
+                  boxShadow: "0px 1px 7px 5px rgba(216, 216, 216, 0.2)",
+                }}
                 key={index}
-                onClick={() => handleNavigate(option?.shortCode)}
               >
                 <div
                   className="flex items-center justify-center w-[40px] h-[40px] p-2 rounded-sm"
@@ -48,67 +54,25 @@ const IdVerification: React.FC<KYCPageProps> = ({ setCurrentStep }) => {
                   <h2 className="text-base font-medium text-lightGreyColor m-0 font-workSans">
                     {option?.title}
                   </h2>
-                  <ArrowRightIcon />
                 </div>
               </div>
             ))}
           </div>
-        </div>
-      )}
 
-      {(screen === "NIN" || screen === "BVN") && (
-        <div className="flex flex-col gap-4 px-4 justify-center items-center">
-          <div className="flex flex-col gap-4 justify-center items-center w-[70%]">
-            <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-              Is this {screen} Yours?
-            </h3>
-            <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-              Confirm the {screen} shown below belongs to you.
-            </p>
-          </div>
-
-          <div className="image">
-            <img
-              src={"https://via.placeholder.com/50"}
-              alt="Uploaded Preview"
-              className="w-12 h-12 rounded-full mr-4"
-            />
-          </div>
-
-          <div className="py-6 p-20 gap-2 shadow-sm rounded-md justify-center items-center flex flex-col w-[70%]">
-            <p className="text-greyColr font-workSans leading-4 font-medium text-sm">
-              Bamidele Akinyemi
-            </p>
-            <p className="text-greyColr font-workSans leading-4 font-medium text-sm">
-              09131683009
-            </p>
-          </div>
-
-          <div className="border-dashed p-2 justify-center items-center flex flex-col border rounded-md w-[70%]">
-            <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-              Bank Verification Number(BVN)
-            </p>
-            <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-              1234567890
-            </p>
-          </div>
-          <div className="flex justify-center px-14 w-full gap-6">
+          <div className="flex justify-center  w-full gap-6">
             <button
-              className="red-frame-btn w-1/2 font-bricolage"
+              className="main-btn w-full"
               type="submit"
-              onClick={handleConfirmation}
+              onClick={handleVerify}
             >
-              No, It Isn't
-            </button>
-            <button
-              className="main-btn w-1/2 font-bricolage"
-              type="submit"
-              onClick={handleConfirmation}
-            >
-              Yes, It's Mine
+              {userInfo?.kyc?.bvnStatus && userInfo?.kyc?.ninStatus
+                ? "Proceed to Face Verification"
+                : "Verify Identity"}
             </button>
           </div>
         </div>
+      ) : (
+        <BVN />
       )}
     </>
   );
