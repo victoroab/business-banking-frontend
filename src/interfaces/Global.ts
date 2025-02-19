@@ -91,6 +91,7 @@ export interface DataItem {
 
 export interface AnalyticsChartProps {
   data: { createdAt: string }[];
+  withdrawableAmount: string;
 }
 
 export interface GraphData {

@@ -15,7 +15,7 @@ import AddEmail from "../../../components/Dashboard/Home/AddEmail";
 import { selectGlobal } from "../../../store/slice/globalSlice";
 import AddPhoneNumber from "../../../components/Dashboard/Home/AddPhoneNumber";
 import { useGetAccountsMutation } from "../../../service/account";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { setAccountDetails } from "../../../store/slice/account";
 
 const Dashboard = () => {
@@ -23,6 +23,7 @@ const Dashboard = () => {
   const { kybDetails } = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
   const { handleShow } = useGlobalHooks();
+  const [withdrawableAmount, setWithdrawableAmount] = useState<string>();
   const toggle = useAppSelector(selectGlobal);
   const { data: profile } = useUserProfileQuery({});
   const [account] = useGetAccountsMutation();
@@ -30,6 +31,7 @@ const Dashboard = () => {
   const handleFetchAccount = async () => {
     try {
       const response = await account().unwrap();
+      setWithdrawableAmount(response?.data[0]?.withdrawableAmount);
       dispatch(setAccountDetails(response?.data));
     } catch (error) {
       errorHandler(error);
@@ -106,7 +108,10 @@ const Dashboard = () => {
         </div>
         <QuickAction />
         <div className="flex gap-10 items-center">
-          <TransactionChart data={sampleData} />
+          <TransactionChart
+            data={sampleData}
+            withdrawableAmount={withdrawableAmount as string}
+          />
           <TransactionHistory />
         </div>
       </div>

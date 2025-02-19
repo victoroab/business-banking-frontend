@@ -101,6 +101,11 @@ export const transactionApi = createApi({
 
       invalidatesTags: [{ type: "Transaction", id: "Transaction" }],
     }),
+    //logo
+    getAllLogos: builder.query<any, void>({
+      query: () => `/logos`,
+      providesTags: [{ type: "Transaction", id: "Transaction" }],
+    }),
   }),
 });
 
@@ -110,4 +115,5 @@ export const {
   useSetPinMutation,
   useNameEnquiryMutation,
   useSendMoneyMutation,
+  useGetAllLogosQuery,
 } = transactionApi;
