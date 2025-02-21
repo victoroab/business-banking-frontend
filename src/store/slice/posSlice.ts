@@ -10,11 +10,9 @@ interface PosState {
 const initialState: PosState = {
   requestPOSPayload: {
     businessId: "",
-    accountId: "",
     deviceType: "",
     merchantName: "",
     deliveryOption: "",
-    cardType: "",
     pickupBranch: "",
     address: "",
     city: "",

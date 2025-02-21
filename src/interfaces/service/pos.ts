@@ -4,7 +4,6 @@ export interface POSPayload {
   deviceType: string;
   merchantName: string;
   deliveryOption: string;
-  cardType: string;
   pickupBranch: string;
   address: string;
   city: string;

@@ -60,7 +60,7 @@ export const ElectricityIcon = (props: SVGProps<SVGSVGElement>) => (
       height="43.0409"
       rx="5"
       fill="#FA4747"
-      fill-opacity="0.03"
+      fillOpacity="0.03"
     />
   </svg>
 );
@@ -93,7 +93,7 @@ export const CableIcon = (props: SVGProps<SVGSVGElement>) => (
       height="43.0409"
       rx="5"
       fill="#A30A82"
-      fill-opacity="0.03"
+      fillOpacity="0.03"
     />
   </svg>
 );
@@ -140,7 +140,7 @@ export const BettingIcon = (props: SVGProps<SVGSVGElement>) => (
       height="43.0409"
       rx="5"
       fill="#1C7CD5"
-      fill-opacity="0.03"
+      fillOpacity="0.03"
     />
   </svg>
 );

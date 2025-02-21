@@ -1,16 +1,57 @@
-// import { useNavigate } from "react-router-dom";
 import FormInput from "../../../../components/FormInput";
-import { industries } from "../../../../utils";
-import { setPosCurrentStep } from "../../../../store/slice/posSlice";
+import { locations } from "../../../../utils";
+import {
+  setPosCurrentStep,
+  setResquestPOS,
+} from "../../../../store/slice/posSlice";
 import { useAppDispatch } from "../../../../hooks";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import { useState } from "react";
 
 const DeliveryOption = () => {
-  // const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const handleSubmit = () => {
-    // navigate("/request-pos/confirmation");
+  const [deliveryOption, setDeliveryOption] = useState("PICKUP");
+  const initialValues = {
+    pickupBranch: "",
+    address: "",
+    city: "",
+    zipCode: "",
+  };
+
+  const handleDeliveryOptionChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    setDeliveryOption(e.target.value);
+  };
+
+  const onSubmit = async (formData: {
+    pickupBranch: string;
+    address: string;
+    city: string;
+    zipCode: string;
+  }) => {
+    dispatch(
+      setResquestPOS({
+        pickupBranch: formData.pickupBranch,
+        deliveryOption: deliveryOption,
+        address: formData.address,
+        city: formData.city,
+        zipCode: formData.zipCode,
+      })
+    );
     dispatch(setPosCurrentStep(5));
   };
+
+  const formSchema = Yup.object().shape({
+    accountName: Yup.string(),
+  });
+  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: formSchema,
+      onSubmit,
+    });
 
   return (
     <div className="flex flex-col gap-14 pr-6">
@@ -23,28 +64,100 @@ const DeliveryOption = () => {
         </p>
       </div>
 
+      <div className="flex flex-col gap-6">
+        <h2>Delivery Option</h2>
+        <div className="flex items-center gap-6">
+          <label className="flex items-center gap-2">
+            <input
+              type="radio"
+              name="deliveryOption"
+              value="PICKUP"
+              checked={deliveryOption === "PICKUP"}
+              onChange={handleDeliveryOptionChange}
+              className="w-4 h-4"
+            />
+            Self Pickup
+          </label>
+          <label className="flex items-center gap-2">
+            <input
+              type="radio"
+              name="deliveryOption"
+              value="homeDelivery"
+              checked={deliveryOption === "homeDelivery"}
+              onChange={handleDeliveryOptionChange}
+              className="w-4 h-4"
+            />
+            Home Delivery
+            <div className="ml-2 bg-positive-Light text-positive uppercase text-xs p-1">
+              Coming Soon
+            </div>
+          </label>
+        </div>
+      </div>
+
       <div className="form">
-        <form action="#" className="flex gap-8 flex-col">
-          <FormInput
-            id="debitAccount"
-            name="debitAccount"
-            // label=""
-            type="cSelect"
-            selectOptions={industries}
-            placeholder="Pick up branch"
-            keyPropertyName="industry"
-            valuePropertyName="industry"
-            itemPropertyName="industry"
-            //  defaultValue={values?.industry}
-            //  onChange={handleChange}
-            //  onBlur={handleBlur}
-          />
+        <form
+          action="#"
+          onSubmit={handleSubmit}
+          className="flex gap-6 flex-col"
+        >
+          {deliveryOption === "PICKUP" && (
+            <FormInput
+              id="pickupBranch"
+              name="pickupBranch"
+              // label=""
+              type="cSelect"
+              selectOptions={locations}
+              placeholder="Pick up branch"
+              keyPropertyName="name"
+              valuePropertyName="name"
+              itemPropertyName="name"
+              defaultValue={values?.pickupBranch}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              error={touched.pickupBranch ? errors.pickupBranch : undefined}
+            />
+          )}
+
+          {deliveryOption === "homeDelivery" && (
+            <>
+              <FormInput
+                id="address"
+                name="address"
+                type="text"
+                placeholder="Address"
+                defaultValue={values?.address}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.address ? errors.address : undefined}
+              />
+
+              <FormInput
+                id="city"
+                name="city"
+                // label=""
+                type="text"
+                placeholder="City"
+                defaultValue={values?.city}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.city ? errors.city : undefined}
+              />
+
+              <FormInput
+                id="zipCode"
+                name="zipCode"
+                type="text"
+                placeholder="Zip Code"
+                defaultValue={values?.zipCode}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                error={touched.zipCode ? errors.zipCode : undefined}
+              />
+            </>
+          )}
           <div className="flex justify-center  w-full gap-6">
-            <button
-              className="main-btn w-full"
-              type="submit"
-              onClick={handleSubmit}
-            >
+            <button className="main-btn w-full" type="submit">
               Continue
             </button>
           </div>

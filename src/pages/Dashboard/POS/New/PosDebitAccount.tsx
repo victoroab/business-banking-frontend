@@ -7,12 +7,19 @@ import {
   setPosCurrentStep,
   setResquestPOS,
 } from "../../../../store/slice/posSlice";
+import { selectAuth } from "../../../../store/slice/authSlice";
 
 const PosDebitAccount = () => {
   const dispatch = useAppDispatch();
   const { accountDetails } = useAppSelector(selectAccount);
+  const { userDetails } = useAppSelector(selectAuth);
   const onSubmit = async (formData: { accountNumber: string }) => {
-    dispatch(setResquestPOS({ fromAccountNumber: formData.accountNumber }));
+    dispatch(
+      setResquestPOS({
+        fromAccountNumber: formData.accountNumber,
+        businessId: userDetails.id,
+      })
+    );
     dispatch(setPosCurrentStep(2));
   };
 

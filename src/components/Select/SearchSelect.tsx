@@ -71,7 +71,7 @@ const SearchSelect: FC<SelectProps> = ({
       .toLowerCase()
       .includes(searchTerm.toLowerCase())
   );
-  console.log(filteredOptions);
+
   return (
     <div
       id={id}
