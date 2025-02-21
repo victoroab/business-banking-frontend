@@ -1,10 +1,22 @@
-import { useNavigate } from "react-router-dom";
 import { YellowCardImage } from "../../assets/svg/RequestCards";
 import BackNavigation from "../ArrowBack/Back";
 import PopUp from "../PopUps/PopUp";
+import { useAppSelector } from "../../hooks";
+import { selectCard } from "../../store/slice/cardSlice";
+import { useGlobalHooks } from "../../hooks/globalHooks";
+import { useState } from "react";
+import GeneralModal from "../PopUps/GeneralModal";
+import InputToken from "../../pages/Dashboard/Cards/InputToken";
 
 const CardIssuance = () => {
-  const navigate = useNavigate();
+  const { handleShow } = useGlobalHooks();
+  const { requestCardPayload } = useAppSelector(selectCard);
+  const [openPinModal, setOpenPinModal] = useState(false);
+  console.log(requestCardPayload, "sdfsdf");
+  const handleConfirm = () => {
+    setOpenPinModal(true);
+    handleShow("card-issuance");
+  };
   return (
     <PopUp id={"card-issuance"}>
       <div className="bg-white rounded-lg flex flex-col py-10 px-20 gap-10 w-[650px] font-workSans">
@@ -25,13 +37,11 @@ const CardIssuance = () => {
           >
             <div className="flex justify-between">
               <span>Delivery Option</span>
-              <span>Home Delivery</span>
+              <span>{requestCardPayload?.deliveryOption}</span>
             </div>
             <div className="flex justify-between items-center">
               <span>Delivery Address</span>
-              <span className="w-[100px]">
-                123, Herbert Macaulay, Yaba, Lagos state, 101234
-              </span>
+              <span className="w-[100px]">{requestCardPayload?.address}</span>
             </div>
           </div>
         </div>
@@ -53,16 +63,19 @@ const CardIssuance = () => {
           </div>
           <span>*Payment for card is non-refundable</span>
         </div>
-        <button
-          className="main-btn w-[472px]"
-          onClick={() => navigate("/cards")}
-        >
+        <button className="main-btn w-[472px]" onClick={handleConfirm}>
           Confirm
         </button>
         <div className="flex justify-center">
           <BackNavigation />
         </div>
       </div>
+
+      {openPinModal && (
+        <GeneralModal>
+          <InputToken />
+        </GeneralModal>
+      )}
     </PopUp>
   );
 };

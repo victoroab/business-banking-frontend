@@ -15,7 +15,6 @@ const initialState: CardState = {
     address: "",
     city: "",
     zipCode: "",
-    pin: "",
   },
 };
 
@@ -35,5 +34,5 @@ export const cardSlice = createSlice({
 
 export const { setRequestCard } = cardSlice.actions;
 
-export const selectCard = (state: RootState) => state.pos;
+export const selectCard = (state: RootState) => state.card;
 export default cardSlice.reducer;

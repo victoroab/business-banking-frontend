@@ -6,5 +6,4 @@ export interface CardPaylod {
   address: string;
   city: string;
   zipCode: string;
-  pin: string;
 }

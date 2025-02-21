@@ -5,18 +5,19 @@ import { useState } from "react";
 import FormInput from "../../../components/FormInput";
 import { ExclamationIcon } from "../../../assets/svg/Card";
 import CardIssuance from "../../../components/Card/CardIssuance";
-import CardRequest from "../../../components/Card/CardRequest";
+// import CardRequest from "../../../components/Card/CardRequest";
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { cardTypes, locations } from "../../../utils";
 import { selectAccount } from "../../../store/slice/account";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { setRequestCard } from "../../../store/slice/cardSlice";
+import { useGlobalHooks } from "../../../hooks/globalHooks";
 
 const RequestPhysicalCard = () => {
   const [deliveryOption, setDeliveryOption] = useState("PICKUP");
-
   const { accountDetails } = useAppSelector(selectAccount);
+  const { handleShow } = useGlobalHooks();
   const dispatch = useAppDispatch();
   const initialValues = {
     fromAccountNumber: "",
@@ -51,13 +52,10 @@ const RequestPhysicalCard = () => {
       zipCode: formData.zipCode,
     };
     dispatch(setRequestCard(requiredData));
+    handleShow("card-issuance");
   };
 
-  const formSchema = Yup.object().shape({
-    address: Yup.string(),
-    city: Yup.string(),
-    zipCode: Yup.string(),
-  });
+  const formSchema = Yup.object().shape({});
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
@@ -65,6 +63,7 @@ const RequestPhysicalCard = () => {
       onSubmit,
     });
 
+  console.log(errors);
   return (
     <>
       <Navbar
@@ -115,7 +114,7 @@ const RequestPhysicalCard = () => {
               </h1>
               <p>Choose your card type and delivery option</p>
             </div>
-            {/* Radio buttons for delivery option */}
+
             <div className="flex flex-col gap-6">
               <h2>Delivery Option</h2>
               <div className="flex items-center gap-6">
@@ -147,7 +146,6 @@ const RequestPhysicalCard = () => {
               </div>
             </div>
 
-            {/* Form fields based on selected delivery option */}
             {deliveryOption === "PICKUP" && (
               <div className="flex flex-col gap-4">
                 <FormInput
@@ -203,7 +201,7 @@ const RequestPhysicalCard = () => {
                 />
               </div>
             )}
-            <CardRequest />
+            {/* <CardRequest /> */}
 
             {deliveryOption === "DELIVERY" && (
               <div className="flex flex-col gap-4">

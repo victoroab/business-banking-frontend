@@ -50,12 +50,13 @@ export const cardApi = createApi({
       any,
       {
         fromAccountNumber: string;
-        deliverOption: string;
+        deliveryOption: string;
         cardType: string;
         pickupBranch: string;
         address: string;
         city: string;
         zipCode: string;
+        pin: string;
       }
     >({
       query: (body) => ({
