@@ -1128,6 +1128,7 @@ export const UploadBeneficiaryList: ProgressStepsProps[] = [
 ];
 
 export const queryBuilder = (params: { [key: string]: string }) => {
+  if (!params || Object.keys(params).length === 0) return "";
   const filteredParams = Object.entries(params)
     .filter(
       ([_, value]) => value !== null && value != undefined && value !== ""
@@ -1137,8 +1138,7 @@ export const queryBuilder = (params: { [key: string]: string }) => {
       return acc;
     }, {} as { [key: string]: string });
 
-  const query = new URLSearchParams(filteredParams);
-  return query;
+  return new URLSearchParams(filteredParams).toString();
 };
 
 export const errorHandler = (error: unknown) => {

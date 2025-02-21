@@ -10,7 +10,6 @@ import {
   PURGE,
   REGISTER,
 } from "redux-persist";
-
 import storage from "redux-persist/lib/storage";
 import { globalSlice } from "./slice/globalSlice";
 import { authApi } from "../service/auth";
@@ -18,7 +17,6 @@ import { authSlice } from "./slice/authSlice";
 import { kybApi } from "../service/kyb";
 import { dashboardSlice } from "./slice/dashboardSlice";
 import { beneficiaryApi } from "../service/beneficiary";
-import { transactionApi } from "../service/transaction";
 import { accountApi } from "../service/account";
 import { userApi } from "../service/user";
 import { posApi } from "../service/pos";
@@ -29,6 +27,7 @@ import { billPaymentApi } from "../service/billPayment";
 import { posSlice } from "./slice/posSlice";
 import { uploadSlice } from "./slice/uploadSlic";
 import { securityApi } from "../service/security";
+import { transactionApi } from "../service/transaction";
 
 const rootReducers = combineReducers({
   global: globalSlice.reducer,

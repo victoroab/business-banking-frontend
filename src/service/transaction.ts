@@ -5,13 +5,24 @@ import {
   fetchBaseQuery,
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query/react";
-// import { RootState } from "../store/store";
 import { TransactionPayload } from "../interfaces/service/transaction";
-import { queryBuilder } from "../utils";
 import Cookies from "js-cookie";
 
-const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
+const queryBuilder = (params: { [key: string]: string }) => {
+  if (!params || Object.keys(params).length === 0) return "";
+  const filteredParams = Object.entries(params)
+    .filter(
+      ([_, value]) => value !== null && value != undefined && value !== ""
+    )
+    .reduce((acc, [key, value]) => {
+      acc[key] = value;
+      return acc;
+    }, {} as { [key: string]: string });
 
+  return new URLSearchParams(filteredParams).toString();
+};
+
+const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 const customBaseQuery: BaseQueryFn<
   string | FetchArgs,
   any,
@@ -108,7 +119,6 @@ export const transactionApi = createApi({
     }),
   }),
 });
-
 export const {
   useGetAllBanksQuery,
   useGetAllTransactionsQuery,
