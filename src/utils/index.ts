@@ -1284,3 +1284,8 @@ export const locations = [
   { id: 4, name: "TRADEFAIR" },
   { id: 5, name: "IKORODU" },
 ];
+export const cardTypes = [
+  { id: 1, name: "VISA" },
+  { id: 2, name: "MASTERCARD" },
+  { id: 3, name: "VERVE" },
+];

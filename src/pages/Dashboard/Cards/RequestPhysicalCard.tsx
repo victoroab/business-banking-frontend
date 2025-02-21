@@ -1,37 +1,31 @@
-// import { useNavigate } from "react-router-dom";
 import { YellowCardImage } from "../../../assets/svg/RequestCards";
 import BackNavigation from "../../../components/ArrowBack/Back";
 import Navbar from "../../../components/Navbar/Navbar";
 import { useState } from "react";
-// import Select from "../../../components/Select/Select";
 import FormInput from "../../../components/FormInput";
 import { ExclamationIcon } from "../../../assets/svg/Card";
-// import { useAppSelector } from "../../../hooks";
-// import { selectGlobal } from "../../../store/slice/globalSlice";
-import { useGlobalHooks } from "../../../hooks/globalHooks";
 import CardIssuance from "../../../components/Card/CardIssuance";
-// import PopUp from "../../../components/PopUps/PopUp";
-// import Otp from "../../../components/OTP/Otp";
 import CardRequest from "../../../components/Card/CardRequest";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import { cardTypes, locations } from "../../../utils";
+import { selectAccount } from "../../../store/slice/account";
+import { useAppDispatch, useAppSelector } from "../../../hooks";
+import { setRequestCard } from "../../../store/slice/cardSlice";
 
 const RequestPhysicalCard = () => {
-  //   const navigate = useNavigate();
-  const [deliveryOption, setDeliveryOption] = useState("selfPickUp"); // "selfPickUp" or "homeDelivery"
-  // const toggle = useAppSelector(selectGlobal);
-  const { handleShow } = useGlobalHooks();
-  // const [otpCode, setOtpCode] = useState<string>("");
-  const handleViewDetails = () => {
-    handleShow("card-issuance");
-  };
-  const [formData, setFormData] = useState({
-    account: "",
+  const [deliveryOption, setDeliveryOption] = useState("PICKUP");
+
+  const { accountDetails } = useAppSelector(selectAccount);
+  const dispatch = useAppDispatch();
+  const initialValues = {
+    fromAccountNumber: "",
     cardType: "",
     pickupBranch: "",
     address: "",
     city: "",
-    state: "",
     zipCode: "",
-  });
+  };
 
   const handleDeliveryOptionChange = (
     e: React.ChangeEvent<HTMLInputElement>
@@ -39,13 +33,37 @@ const RequestPhysicalCard = () => {
     setDeliveryOption(e.target.value);
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  const onSubmit = async (formData: {
+    fromAccountNumber: string;
+    cardType: string;
+    pickupBranch: string;
+    address: string;
+    city: string;
+    zipCode: string;
+  }) => {
+    const requiredData = {
+      fromAccountNumber: formData.fromAccountNumber,
+      deliverOption: deliveryOption,
+      cardType: formData.cardType,
+      pickupBranch: formData.pickupBranch,
+      address: formData.address,
+      city: formData.city,
+      zipCode: formData.zipCode,
+    };
+    dispatch(setRequestCard(requiredData));
   };
+
+  const formSchema = Yup.object().shape({
+    address: Yup.string(),
+    city: Yup.string(),
+    zipCode: Yup.string(),
+  });
+  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: formSchema,
+      onSubmit,
+    });
 
   return (
     <>
@@ -87,7 +105,10 @@ const RequestPhysicalCard = () => {
               </div>
             </div>
           </div>
-          <div className="flex flex-col justify-center gap-10 bg-white px-20 py-20 font-workSans">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col justify-center gap-10 bg-white px-20 py-20 font-workSans"
+          >
             <div className="flex flex-col gap-4">
               <h1 className="font-bricolage font-semibold text-xl text-[#0E0C60]">
                 Get Physical Card
@@ -102,8 +123,8 @@ const RequestPhysicalCard = () => {
                   <input
                     type="radio"
                     name="deliveryOption"
-                    value="selfPickUp"
-                    checked={deliveryOption === "selfPickUp"}
+                    value="PICKUP"
+                    checked={deliveryOption === "PICKUP"}
                     onChange={handleDeliveryOptionChange}
                     className="w-4 h-4"
                   />
@@ -113,8 +134,8 @@ const RequestPhysicalCard = () => {
                   <input
                     type="radio"
                     name="deliveryOption"
-                    value="homeDelivery"
-                    checked={deliveryOption === "homeDelivery"}
+                    value="DELIVERY"
+                    checked={deliveryOption === "DELIVERY"}
                     onChange={handleDeliveryOptionChange}
                     className="w-4 h-4"
                   />
@@ -127,105 +148,132 @@ const RequestPhysicalCard = () => {
             </div>
 
             {/* Form fields based on selected delivery option */}
-            {deliveryOption === "selfPickUp" && (
+            {deliveryOption === "PICKUP" && (
               <div className="flex flex-col gap-4">
                 <FormInput
-                  type="text"
-                  id="account"
-                  name="account"
-                  defaultValue={formData.account}
-                  onChange={handleInputChange}
-                  placeholder="Account"
-                  className="input-field"
-                />
-                {/* Card Type Select */}
-                <FormInput
-                  type="cSelect"
-                  placeholder="Card Type"
-                  id="cardType"
-                  selectOptions={["Mastercard", "Visa"]}
-                  //   selectedOption={formData.cardType}
-                  //   setSelectedOption={(option) =>
-                  //     setFormData({ ...formData, cardType: option })
-                  //   }
+                  id={"fromAccountNumber"}
+                  type="searchSelect"
+                  placeholder="Debit Account"
+                  className="flex flex-col gap-4"
+                  name="fromAccountNumber"
+                  selectOptions={accountDetails}
+                  keyPropertyName="accountNumber"
+                  valuePropertyName="accountNumber"
+                  itemPropertyName="accountNumber"
+                  accountName="accountName"
+                  accountType="accountType"
+                  error={
+                    touched.fromAccountNumber
+                      ? errors.fromAccountNumber
+                      : undefined
+                  }
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  defaultValue={values?.fromAccountNumber}
                 />
 
-                {/* Pickup Branch Select */}
                 <FormInput
+                  id="cardType"
+                  name="cardType"
                   type="cSelect"
-                  id="pickupBranch"
-                  selectOptions={["Yaba", "VI", "Trade Fair", "Lekki"]}
-                  //   selectedOption={formData.pickupBranch}
-                  //   setSelectedOption={(option) =>
-                  //     setFormData({ ...formData, pickupBranch: option })
-                  //   }
-                  placeholder="Pickup Branch"
+                  selectOptions={cardTypes}
+                  placeholder="Card type"
+                  keyPropertyName="name"
+                  valuePropertyName="name"
+                  itemPropertyName="name"
+                  defaultValue={values?.cardType}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.cardType ? errors.cardType : undefined}
                 />
-                {/* Submit button */}
-                <button
-                  className="main-btn mt-4 w-[472px]"
-                  onClick={() => handleShow("otpVerification")}
-                >
-                  Continue
-                </button>
+                <FormInput
+                  id="pickupBranch"
+                  name="pickupBranch"
+                  // label=""
+                  type="cSelect"
+                  selectOptions={locations}
+                  placeholder="Pick up branch"
+                  keyPropertyName="name"
+                  valuePropertyName="name"
+                  itemPropertyName="name"
+                  defaultValue={values?.pickupBranch}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.pickupBranch ? errors.pickupBranch : undefined}
+                />
               </div>
             )}
             <CardRequest />
 
-            {deliveryOption === "homeDelivery" && (
+            {deliveryOption === "DELIVERY" && (
               <div className="flex flex-col gap-4">
                 <FormInput
-                  type="text"
-                  id="account"
-                  name="account"
-                  defaultValue={formData.account}
-                  onChange={handleInputChange}
-                  placeholder="Account"
-                  className="input-field"
+                  id={"fromAccountNumber"}
+                  type="searchSelect"
+                  placeholder="Debit Account"
+                  className="flex flex-col gap-4"
+                  name="fromAccountNumber"
+                  selectOptions={accountDetails}
+                  keyPropertyName="accountNumber"
+                  valuePropertyName="accountNumber"
+                  itemPropertyName="accountNumber"
+                  accountName="accountName"
+                  accountType="accountType"
+                  error={
+                    touched.fromAccountNumber
+                      ? errors.fromAccountNumber
+                      : undefined
+                  }
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  defaultValue={values?.fromAccountNumber}
                 />
                 <FormInput
-                  type="cSelect"
                   id="cardType"
-                  selectOptions={["Mastercard", "Visa"]}
-                  // selectedOption={formData.cardType}
-                  // setSelectedOption={(option) =>
-                  //   setFormData({ ...formData, cardType: option })
-                  // }
-                  placeholder="Select Card Type"
+                  name="cardType"
+                  type="cSelect"
+                  selectOptions={cardTypes}
+                  placeholder="Pick up branch"
+                  keyPropertyName="name"
+                  valuePropertyName="name"
+                  itemPropertyName="name"
+                  defaultValue={values?.cardType}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.cardType ? errors.cardType : undefined}
                 />
                 <FormInput
-                  //   label="Address"
-                  type="text"
                   id="address"
                   name="address"
-                  placeholder="Address"
-                  defaultValue={formData.address}
-                  onChange={handleInputChange}
-                />
-                <FormInput
-                  //   label="City"
                   type="text"
+                  placeholder="Address"
+                  defaultValue={values?.address}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.address ? errors.address : undefined}
+                />
+
+                <FormInput
                   id="city"
                   name="city"
+                  // label=""
+                  type="text"
                   placeholder="City"
-                  defaultValue={formData.city}
-                  onChange={handleInputChange}
+                  defaultValue={values?.city}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.city ? errors.city : undefined}
                 />
+
                 <FormInput
-                  type="text"
-                  id="state"
-                  name="state"
-                  placeholder="State"
-                  defaultValue={formData.state}
-                  onChange={handleInputChange}
-                />
-                <FormInput
-                  type="text"
                   id="zipCode"
                   name="zipCode"
+                  type="text"
                   placeholder="Zip Code"
-                  defaultValue={formData.zipCode}
-                  onChange={handleInputChange}
+                  defaultValue={values?.zipCode}
+                  onChange={handleChange}
+                  onBlur={handleBlur}
+                  error={touched.zipCode ? errors.zipCode : undefined}
                 />
                 <div
                   className="flex items-center justify-center gap-2 text-center w-[472px] mx-auto py-5 rounded-xl my-4"
@@ -236,18 +284,15 @@ const RequestPhysicalCard = () => {
                   <ExclamationIcon /> Delivery takes between 5 - 7 business
                   working days.
                 </div>
-                {/* Submit button */}
-                <button
-                  className="main-btn mt-4 w-[472px]"
-                  onClick={handleViewDetails}
-                >
-                  Continue
-                </button>
 
                 <CardIssuance />
               </div>
             )}
-          </div>
+
+            <button className="main-btn mt-4 w-[472px]" type="submit">
+              Continue
+            </button>
+          </form>
         </div>
       </div>
     </>

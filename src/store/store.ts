@@ -28,6 +28,8 @@ import { posSlice } from "./slice/posSlice";
 import { uploadSlice } from "./slice/uploadSlic";
 import { securityApi } from "../service/security";
 import { transactionApi } from "../service/transaction";
+import { cardApi } from "../service/card";
+import { cardSlice } from "./slice/cardSlice";
 
 const rootReducers = combineReducers({
   global: globalSlice.reducer,
@@ -38,6 +40,7 @@ const rootReducers = combineReducers({
   billPayment: billPaymentSlice.reducer,
   pos: posSlice.reducer,
   upload: uploadSlice.reducer,
+  card: cardSlice.reducer,
   [authApi.reducerPath]: authApi.reducer,
   [kybApi.reducerPath]: kybApi.reducer,
   [beneficiaryApi.reducerPath]: beneficiaryApi.reducer,
@@ -47,6 +50,7 @@ const rootReducers = combineReducers({
   [posApi.reducerPath]: posApi.reducer,
   [billPaymentApi.reducerPath]: billPaymentApi.reducer,
   [securityApi.reducerPath]: securityApi.reducer,
+  [cardApi.reducerPath]: cardApi.reducer,
 });
 
 const persistConfig = {
@@ -77,7 +81,8 @@ export const store = configureStore({
       userApi.middleware,
       posApi.middleware,
       billPaymentApi.middleware,
-      securityApi.middleware
+      securityApi.middleware,
+      cardApi.middleware
     ),
 });
 

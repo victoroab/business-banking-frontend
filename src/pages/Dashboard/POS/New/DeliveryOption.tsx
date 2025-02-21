@@ -44,7 +44,9 @@ const DeliveryOption = () => {
   };
 
   const formSchema = Yup.object().shape({
-    accountName: Yup.string(),
+    address: Yup.string(),
+    city: Yup.string(),
+    zipCode: Yup.string(),
   });
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
     useFormik({
@@ -82,8 +84,8 @@ const DeliveryOption = () => {
             <input
               type="radio"
               name="deliveryOption"
-              value="homeDelivery"
-              checked={deliveryOption === "homeDelivery"}
+              value="DELIVERY"
+              checked={deliveryOption === "DELIVERY"}
               onChange={handleDeliveryOptionChange}
               className="w-4 h-4"
             />
@@ -119,7 +121,7 @@ const DeliveryOption = () => {
             />
           )}
 
-          {deliveryOption === "homeDelivery" && (
+          {deliveryOption === "DELIVERY" && (
             <>
               <FormInput
                 id="address"
