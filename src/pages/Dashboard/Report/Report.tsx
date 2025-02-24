@@ -42,6 +42,7 @@ const Report = () => {
     IsOpenAction(false);
   };
 
+  console.log(data?.data?.data?.total);
   return (
     <div className="border">
       <Navbar title="Reports" subtitle="Here’s all your transactions." />
@@ -139,7 +140,7 @@ const Report = () => {
                             searchParams="accountName"
                             itemsPerPage={queryData?.pageSize as number}
                             setQueryData={setQueryData}
-                            totalItemsCount={data?.data?.data?.length}
+                            totalItemsCount={data?.data?.total}
                           />
                         </div>
                       </>
@@ -169,7 +170,7 @@ const Report = () => {
                             searchParams="networkProvider"
                             itemsPerPage={queryData?.pageSize as number}
                             setQueryData={setQueryData}
-                            totalItemsCount={data?.data?.data?.length}
+                            totalItemsCount={data?.data?.total}
                           />
                         </div>
                       </>
@@ -198,7 +199,7 @@ const Report = () => {
                             searchParams="networkProvider"
                             itemsPerPage={queryData?.pageSize as number}
                             setQueryData={setQueryData}
-                            totalItemsCount={data?.data?.data?.length}
+                            totalItemsCount={data?.data?.total}
                           />
                         </div>
                       </>
@@ -227,7 +228,7 @@ const Report = () => {
                             searchParams="networkProvider"
                             itemsPerPage={queryData?.pageSize as number}
                             setQueryData={setQueryData}
-                            totalItemsCount={data?.data?.data?.length}
+                            totalItemsCount={data?.data?.total}
                           />
                         </div>
                       </>

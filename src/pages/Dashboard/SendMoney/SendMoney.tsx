@@ -147,7 +147,7 @@ const SendMoney = () => {
                         searchParams="accountName"
                         itemsPerPage={10 as number}
                         setQueryData={setQueryData}
-                        totalItemsCount={data?.data?.data.length}
+                        totalItemsCount={data?.data?.data.total}
                       />
                     </div>
                   </>
