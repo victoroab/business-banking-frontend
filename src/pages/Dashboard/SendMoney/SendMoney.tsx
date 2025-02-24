@@ -13,6 +13,7 @@ import FormInput from "../../../components/FormInput";
 import Search from "../../../components/Search/Search";
 import { FilterIcon } from "../../../assets/svg/dashboard";
 import { TransactionProps } from "../../../interfaces/service/billPayment";
+import Spinner from "../../../components/Spinner/Spinner";
 
 const SendMoney = () => {
   const { handleSearch } = useGlobalHooks();
@@ -28,7 +29,7 @@ const SendMoney = () => {
     page: 1,
     perPage: 30,
   });
-  const { data, refetch } = useGetAllTransactionsQuery(queryData);
+  const { data, refetch, isLoading } = useGetAllTransactionsQuery(queryData);
 
   const navigate = useNavigate();
   const handleOpenModal = (row: TransactionProps) => {
@@ -38,7 +39,7 @@ const SendMoney = () => {
   const onClose = () => {
     IsOpenAction(false);
   };
-  console.log(data?.data);
+
   return (
     <div className="border">
       <Navbar
@@ -113,34 +114,48 @@ const SendMoney = () => {
             className="relative px-10 font-workSans"
             style={{ boxShadow: "0px 1px 7px 4px rgba(216, 216, 216, 0.2)" }}
           >
-            <div className="">
-              <DataTable
-                columns={sendMoneyColumnsData(
-                  handleOpenModal,
-                  selectedRow as TransactionProps,
-                  openAction,
-                  refetch,
-                  onClose
-                )}
-                data={data?.data}
-                noDataComponent={<NoData />}
-                customStyles={tableCustomStyles}
-                className=""
-              />
-            </div>
+            {isLoading ? (
+              <div className="flex justify-center items-center">
+                <Spinner />
+              </div>
+            ) : (
+              <>
+                {data?.data?.data?.length > 0 ? (
+                  <>
+                    <div className="">
+                      <DataTable
+                        columns={sendMoneyColumnsData(
+                          handleOpenModal,
+                          selectedRow as TransactionProps,
+                          openAction,
+                          refetch,
+                          onClose
+                        )}
+                        data={data?.data?.data}
+                        noDataComponent={<NoData />}
+                        customStyles={tableCustomStyles}
+                        className=""
+                      />
+                    </div>
 
-            <div className="">
-              <Paginate
-                data={data?.data}
-                handleSearch={handleSearch}
-                currentPage={filteredData}
-                setCurrentPage={setFilteredData}
-                searchParams="accountName"
-                itemsPerPage={10 as number}
-                setQueryData={setQueryData}
-                totalItemsCount={data?.data.length}
-              />
-            </div>
+                    <div className="">
+                      <Paginate
+                        data={data?.data?.data}
+                        handleSearch={handleSearch}
+                        currentPage={filteredData}
+                        setCurrentPage={setFilteredData}
+                        searchParams="accountName"
+                        itemsPerPage={10 as number}
+                        setQueryData={setQueryData}
+                        totalItemsCount={data?.data?.data.length}
+                      />
+                    </div>
+                  </>
+                ) : (
+                  <NoData />
+                )}
+              </>
+            )}
           </section>
         </div>
       </div>

@@ -38,7 +38,7 @@ const Paginate: React.FC<IPaginate> = ({
 
   const handlePageClick = (e: any) => {
     console.log(e);
-    setQueryData((prev) => ({ ...prev, ["page"]: e?.selected + 1 }));
+    setQueryData((prev) => ({ ...prev, ["pageNumber"]: e?.selected + 1 }));
   };
 
   useEffect(() => {
