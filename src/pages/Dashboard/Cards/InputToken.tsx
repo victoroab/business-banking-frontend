@@ -15,14 +15,14 @@ const InputToken = () => {
   const { requestCardPayload } = useAppSelector(selectCard);
   // const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  console.log(requestCardPayload);
+
   const handleSubmit = async () => {
     try {
       const requiredData = {
         ...requestCardPayload,
         pin: otpCode,
       };
-      console.log(requiredData);
+
       const response = await requestCard(requiredData).unwrap();
 
       setOpenReceipt(true);
@@ -45,26 +45,21 @@ const InputToken = () => {
 
           <div className="flex flex-col gap-4 items-center justify-center text-white">
             <h3 className=" font-semibold text-2xl font-bricolage leading-6">
-              POS Request Successful
+              Card Request Successful
             </h3>
             <p className=" font-workSans leading-4 font-normal text-base text-center">
-              We’re pleased to inform you that your Android POS device request
-              has been successfully submitted. We’ll notify you via your
-              registered email as soon as your POS device is ready.
+              Your card request has been processed. You will be notified via
+              mail when your card is ready for pickup.
             </p>
           </div>
 
           <div className="flex flex-col gap-4 items-center justify-center border-t pt-6 text-white">
             <p className=" font-workSans leading-4 font-normal text-sm text-center">
-              Transfer Amount
+              Card Price
             </p>
             <h3 className="font-semibold text-2xl font-bricolage leading-6 text-secColor">
-              {/* {requestPOSPayload?.deviceType} */}
+              &#8358;1,000.00
             </h3>
-
-            <p className="font-workSans leading-4 font-medium text-base text-center mt-10">
-              Add Beneficiary ?
-            </p>
           </div>
           <div className="flex justify-center  w-[80%] gap-6">
             <button

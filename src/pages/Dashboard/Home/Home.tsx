@@ -9,14 +9,20 @@ import { CautionIcon } from "../../../assets/svg/PayBill";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { selectAuth, setUserDetails } from "../../../store/slice/authSlice";
-import { useUserProfileQuery } from "../../../service/kyb";
+import {
+  useGetBusinessKYBDetailsMutation,
+  useUserProfileQuery,
+} from "../../../service/kyb";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import AddEmail from "../../../components/Dashboard/Home/AddEmail";
 import { selectGlobal } from "../../../store/slice/globalSlice";
 import AddPhoneNumber from "../../../components/Dashboard/Home/AddPhoneNumber";
 import { useGetAccountsMutation } from "../../../service/account";
 import { useEffect, useState } from "react";
-import { setAccountDetails } from "../../../store/slice/account";
+import {
+  setAccountDetails,
+  setBusinessKYBDetials,
+} from "../../../store/slice/account";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -26,6 +32,7 @@ const Dashboard = () => {
   const [withdrawableAmount, setWithdrawableAmount] = useState<string>();
   const toggle = useAppSelector(selectGlobal);
   const { data: profile } = useUserProfileQuery({});
+  const [businessKYBDetails] = useGetBusinessKYBDetailsMutation();
   const [account] = useGetAccountsMutation();
 
   const handleFetchAccount = async () => {
@@ -37,9 +44,17 @@ const Dashboard = () => {
       errorHandler(error);
     }
   };
-
+  const handleFetchBusinessKYBDetails = async () => {
+    try {
+      const response = await businessKYBDetails().unwrap();
+      dispatch(setBusinessKYBDetials(response?.data));
+    } catch (error) {
+      errorHandler(error);
+    }
+  };
   useEffect(() => {
     handleFetchAccount();
+    handleFetchBusinessKYBDetails();
     dispatch(setUserDetails(profile?.data));
   }, []);
 

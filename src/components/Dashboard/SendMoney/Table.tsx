@@ -21,13 +21,7 @@ export const sendMoneyColumnsData = (
         <div className="left-box">{beneficiary.bankName}</div>
       ),
     },
-    {
-      name: "Beneficiary Type",
-      selector: ({ beneficiary }) => beneficiary.beneficiaryType,
-      cell: ({ beneficiary }) => (
-        <div className="centered-box">{beneficiary.beneficiaryType}</div>
-      ),
-    },
+
     {
       name: "Account Name",
       grow: 1.2,
@@ -45,6 +39,16 @@ export const sendMoneyColumnsData = (
       ),
     },
     {
+      name: "Amount",
+      cell: ({ amount }) => <div className="centered-box">NGN {amount}</div>,
+    },
+    {
+      name: "Date Added",
+      cell: ({ createdAt }) => (
+        <div className="centered-box">{formatTimestamp(createdAt, false)}</div>
+      ),
+    },
+    {
       name: "Status",
       selector: ({ status }) => status,
       cell: ({ status }) => (
@@ -59,12 +63,6 @@ export const sendMoneyColumnsData = (
             {status}
           </span>
         </div>
-      ),
-    },
-    {
-      name: "Date Added",
-      cell: ({ createdAt }) => (
-        <div className="centered-box">{formatTimestamp(createdAt, false)}</div>
       ),
     },
 

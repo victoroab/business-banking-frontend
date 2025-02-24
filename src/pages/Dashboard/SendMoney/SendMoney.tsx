@@ -25,8 +25,8 @@ const SendMoney = () => {
   }>({
     keyword: "",
     type: "TRANSFER",
-    pageNumber: 1,
-    pageSize: 10,
+    page: 1,
+    perPage: 30,
   });
   const { data, refetch } = useGetAllTransactionsQuery(queryData);
 
@@ -38,6 +38,7 @@ const SendMoney = () => {
   const onClose = () => {
     IsOpenAction(false);
   };
+  console.log(data?.data);
   return (
     <div className="border">
       <Navbar
@@ -135,7 +136,7 @@ const SendMoney = () => {
                 currentPage={filteredData}
                 setCurrentPage={setFilteredData}
                 searchParams="accountName"
-                itemsPerPage={queryData?.pageSize as number}
+                itemsPerPage={10 as number}
                 setQueryData={setQueryData}
                 totalItemsCount={data?.data.length}
               />

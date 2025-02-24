@@ -12,12 +12,10 @@ import { cardTypes, locations } from "../../../utils";
 import { selectAccount } from "../../../store/slice/account";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { setRequestCard } from "../../../store/slice/cardSlice";
-import { useGlobalHooks } from "../../../hooks/globalHooks";
-
 const RequestPhysicalCard = () => {
   const [deliveryOption, setDeliveryOption] = useState("PICKUP");
   const { accountDetails } = useAppSelector(selectAccount);
-  const { handleShow } = useGlobalHooks();
+  const [openCardModal, setOpenCardModal] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const initialValues = {
     fromAccountNumber: "",
@@ -44,7 +42,7 @@ const RequestPhysicalCard = () => {
   }) => {
     const requiredData = {
       fromAccountNumber: formData.fromAccountNumber,
-      deliverOption: deliveryOption,
+      deliveryOption: deliveryOption,
       cardType: formData.cardType,
       pickupBranch: formData.pickupBranch,
       address: formData.address,
@@ -52,18 +50,25 @@ const RequestPhysicalCard = () => {
       zipCode: formData.zipCode,
     };
     dispatch(setRequestCard(requiredData));
-    handleShow("card-issuance");
+    setOpenCardModal(true);
   };
 
   const formSchema = Yup.object().shape({});
-  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: formSchema,
-      onSubmit,
-    });
+  const {
+    values,
+    touched,
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    isValid,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: formSchema,
+    onSubmit,
+  });
 
-  console.log(errors);
+  console.log(errors, isValid, deliveryOption);
   return (
     <>
       <Navbar
@@ -231,7 +236,7 @@ const RequestPhysicalCard = () => {
                   name="cardType"
                   type="cSelect"
                   selectOptions={cardTypes}
-                  placeholder="Pick up branch"
+                  placeholder="Card type"
                   keyPropertyName="name"
                   valuePropertyName="name"
                   itemPropertyName="name"
@@ -283,7 +288,7 @@ const RequestPhysicalCard = () => {
                   working days.
                 </div>
 
-                <CardIssuance />
+                {/* <CardIssuance /> */}
               </div>
             )}
 
@@ -293,6 +298,7 @@ const RequestPhysicalCard = () => {
           </form>
         </div>
       </div>
+      {openCardModal && <CardIssuance />}
     </>
   );
 };
