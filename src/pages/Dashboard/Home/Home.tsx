@@ -9,35 +9,52 @@ import { CautionIcon } from "../../../assets/svg/PayBill";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
 import { selectAuth, setUserDetails } from "../../../store/slice/authSlice";
-import { useUserProfileQuery } from "../../../service/kyb";
+import {
+  useGetBusinessKYBDetailsMutation,
+  useUserProfileQuery,
+} from "../../../service/kyb";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
 import AddEmail from "../../../components/Dashboard/Home/AddEmail";
 import { selectGlobal } from "../../../store/slice/globalSlice";
 import AddPhoneNumber from "../../../components/Dashboard/Home/AddPhoneNumber";
 import { useGetAccountsMutation } from "../../../service/account";
-import { useEffect } from "react";
-import { setAccountDetails } from "../../../store/slice/account";
+import { useEffect, useState } from "react";
+import {
+  setAccountDetails,
+  setBusinessKYBDetials,
+} from "../../../store/slice/account";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const { kybDetails } = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
   const { handleShow } = useGlobalHooks();
+  const [withdrawableAmount, setWithdrawableAmount] = useState<string>();
   const toggle = useAppSelector(selectGlobal);
   const { data: profile } = useUserProfileQuery({});
+  const [businessKYBDetails] = useGetBusinessKYBDetailsMutation();
   const [account] = useGetAccountsMutation();
 
   const handleFetchAccount = async () => {
     try {
       const response = await account().unwrap();
+      setWithdrawableAmount(response?.data[0]?.withdrawableAmount);
       dispatch(setAccountDetails(response?.data));
     } catch (error) {
       errorHandler(error);
     }
   };
-
+  const handleFetchBusinessKYBDetails = async () => {
+    try {
+      const response = await businessKYBDetails().unwrap();
+      dispatch(setBusinessKYBDetials(response?.data));
+    } catch (error) {
+      errorHandler(error);
+    }
+  };
   useEffect(() => {
     handleFetchAccount();
+    handleFetchBusinessKYBDetails();
     dispatch(setUserDetails(profile?.data));
   }, []);
 
@@ -106,7 +123,10 @@ const Dashboard = () => {
         </div>
         <QuickAction />
         <div className="flex gap-10 items-center">
-          <TransactionChart data={sampleData} />
+          <TransactionChart
+            data={sampleData}
+            withdrawableAmount={withdrawableAmount as string}
+          />
           <TransactionHistory />
         </div>
       </div>

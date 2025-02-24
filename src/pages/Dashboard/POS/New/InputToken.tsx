@@ -3,53 +3,31 @@ import Otp from "../../../../components/OTP/Otp";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
 import { errorHandler } from "../../../../utils";
 import Spinner from "../../../../components/Spinner/Spinner";
-import {
-  selectBillPayment,
-  setAirtimeDataCurrentStep,
-} from "../../../../store/slice/billPaymentSlice";
-import {
-  useBuyAirtimeMutation,
-  useBuyBundleMutation,
-} from "../../../../service/billPayment";
 import { SuccessIcon } from "../../../../assets/svg/CustomSVGs";
 import { useNavigate } from "react-router-dom";
+import { selectPOS, setPosCurrentStep } from "../../../../store/slice/posSlice";
+import { useAddPosMutation } from "../../../../service/pos";
 
 const InputToken = () => {
   const [otpCode, setOtpCode] = useState<string>("");
-  const navigate = useNavigate();
   const [openReceipt, setOpenReceipt] = useState<boolean>(false);
+  const [requestPos, { isLoading }] = useAddPosMutation();
+  const { requestPOSPayload } = useAppSelector(selectPOS);
   const dispatch = useAppDispatch();
-  const [buyAirtime, { isLoading: buyingAirtime }] = useBuyAirtimeMutation();
-  const [buyBundle, { isLoading: buyingBundle }] = useBuyBundleMutation();
-  const { airtimeBundlePayload, airtimeDataAction } =
-    useAppSelector(selectBillPayment);
-
-  const isLoading = airtimeDataAction === "DATA" ? buyingBundle : buyingAirtime;
+  const navigate = useNavigate();
   const handleSubmit = async () => {
     try {
-      const airtimeRequiredData = {
-        fromAccountNumber: airtimeBundlePayload?.fromAccountNumber,
+      const requiredData = {
+        ...requestPOSPayload,
         pin: otpCode,
-        serviceCategoryId: airtimeBundlePayload?.serviceCategoryId,
-        network: airtimeBundlePayload?.network,
-        amount: airtimeBundlePayload?.amount as number,
-        phoneNumber: airtimeBundlePayload?.phoneNumber as string,
       };
-      const bundleRequiredData = {
-        fromAccountNumber: airtimeBundlePayload?.fromAccountNumber,
-        pin: otpCode,
-        serviceCategoryId: airtimeBundlePayload?.serviceCategoryId,
-        network: airtimeBundlePayload?.network,
-        bundleCode: airtimeBundlePayload?.bundleCode as string,
-        phoneNumber: airtimeBundlePayload?.phoneNumber as string,
-      };
+      console.log(requiredData);
+      const response = await requestPos(requiredData).unwrap();
 
-      airtimeDataAction === "DATA"
-        ? await buyBundle(bundleRequiredData).unwrap()
-        : await buyAirtime(airtimeRequiredData).unwrap();
       setOpenReceipt(true);
-      dispatch(setAirtimeDataCurrentStep(1));
+      console.log(response);
     } catch (error: any) {
+      dispatch(setPosCurrentStep(1));
       errorHandler(error);
     }
   };
@@ -67,16 +45,12 @@ const InputToken = () => {
 
           <div className="flex flex-col gap-4 items-center justify-center text-white">
             <h3 className=" font-semibold text-2xl font-bricolage leading-6">
-              {airtimeDataAction === "DATA"
-                ? "Data Purchased Successfully"
-                : "Airtime Purchased Successfully"}
+              POS Request Successful
             </h3>
             <p className=" font-workSans leading-4 font-normal text-base text-center">
-              {airtimeDataAction === "DATA"
-                ? `You have successfully sent data to
-              ${airtimeBundlePayload?.phoneNumber}`
-                : `You have successfully recharged your number
-              ${airtimeBundlePayload?.phoneNumber}`}
+              We’re pleased to inform you that your Android POS device request
+              has been successfully submitted. We’ll notify you via your
+              registered email as soon as your POS device is ready.
             </p>
           </div>
 
@@ -85,7 +59,7 @@ const InputToken = () => {
               Transfer Amount
             </p>
             <h3 className="font-semibold text-2xl font-bricolage leading-6 text-secColor">
-              &#8358;{airtimeBundlePayload?.amount}.00
+              {requestPOSPayload?.deviceType}
             </h3>
 
             <p className="font-workSans leading-4 font-medium text-base text-center mt-10">
@@ -112,7 +86,7 @@ const InputToken = () => {
             <button
               className="border border-[var(--secColor)] w-[80%] rounded-[12px] bg-pryColor px-[9px] py-[12px] text-[18px] font-medium text-[var(--secColor)] cursor-pointer font-['Bricolage_Grotesque']"
               onClick={() => {
-                dispatch(setAirtimeDataCurrentStep(1));
+                dispatch(setPosCurrentStep(1));
                 navigate("/");
               }}
             >
@@ -143,6 +117,8 @@ const InputToken = () => {
         </div>
       )}
     </>
+
+    // </>
   );
 };
 

@@ -91,6 +91,7 @@ export interface DataItem {
 
 export interface AnalyticsChartProps {
   data: { createdAt: string }[];
+  withdrawableAmount: string;
 }
 
 export interface GraphData {
@@ -199,11 +200,9 @@ export interface PosDataProps {
 }
 export interface AddPos {
   businessId?: string;
-  accountId?: string;
   deviceType?: string;
   merchantName?: string;
   deliveryOption?: string;
-  cardType?: string;
   pickupBranch?: string;
   address?: string;
   city?: string;

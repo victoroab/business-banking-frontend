@@ -9,17 +9,15 @@ interface PosState {
 
 const initialState: PosState = {
   requestPOSPayload: {
-    businessId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    accountId: "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-    deviceType: "ANDROID",
-    merchantName: "ABC Store",
-    deliveryOption: "PICKUP",
-    cardType: "VERVE",
-    pickupBranch: "YABA",
-    address: "123 Main Street",
-    city: "Lagos",
-    zipCode: "100001",
-    pin: "1234",
+    businessId: "",
+    deviceType: "",
+    merchantName: "",
+    deliveryOption: "",
+    pickupBranch: "",
+    address: "",
+    city: "",
+    zipCode: "",
+    pin: "",
   },
   posCurrentStep: 1,
 };

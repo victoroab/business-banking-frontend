@@ -102,7 +102,7 @@ const InputToken = () => {
         </div>
       ) : (
         <div className="bg-white rounded-lg flex flex-col items-center justify-center p-10 gap-10 w-[650px]">
-          <div className="flex flex-col w-full gap-10 justify-center items-center">
+          <div className="flex flex-col w-full gap-10 justify-center items-center text-center">
             <Otp
               inputCount={4}
               title={"Enter Your Transaction PIN"}

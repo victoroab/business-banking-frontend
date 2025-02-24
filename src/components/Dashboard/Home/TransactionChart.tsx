@@ -18,12 +18,12 @@ import {
 } from "../../../utils";
 import { AnalyticsChartProps, GraphData } from "../../../interfaces/Global";
 import ChartToolTip from "./ChartToolTip";
-import { useAppSelector } from "../../../hooks";
-import { selectAccount } from "../../../store/slice/account";
 
-const TransactionChart: React.FC<AnalyticsChartProps> = ({ data }) => {
+const TransactionChart: React.FC<AnalyticsChartProps> = ({
+  data,
+  withdrawableAmount,
+}) => {
   const [filterBy, setFilter] = useState<string>("week");
-  const { accountDetails } = useAppSelector(selectAccount);
   const [type, setType] = useState<"income" | "expenses">("income");
   const [graphData, setGraphData] = useState<GraphData[]>([]);
   const getWeekData = useCallback(() => {
@@ -42,7 +42,6 @@ const TransactionChart: React.FC<AnalyticsChartProps> = ({ data }) => {
         ),
     }));
   }, [data]);
-
   const getMonthData = useCallback(() => {
     const today = new Date();
     const lastMonth = subMonths(today, 1);
@@ -110,7 +109,7 @@ const TransactionChart: React.FC<AnalyticsChartProps> = ({ data }) => {
           ))}
         </select>
         <p className="font-bricolage text-pryColor font-bold text-[42px]">
-          &#8358;{accountDetails[0]?.withdrawableAmount}
+          &#8358;{withdrawableAmount}
         </p>
         <div className="font-workSans text-pryColor  font-2xl flex gap-2 items-center">
           <div

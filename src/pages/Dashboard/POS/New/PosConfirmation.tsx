@@ -1,17 +1,15 @@
-import PopUp from "../../../../components/PopUps/PopUp";
-import { SuccessIcon } from "../../../../assets/svg/CustomSVGs";
-// import { useGlobalHooks } from "../../../../hooks/globalHooks";
 import { useAppDispatch, useAppSelector } from "../../../../hooks";
-import { selectGlobal } from "../../../../store/slice/globalSlice";
 import { AlertLogoIcon } from "../../../../assets/svg/Sidebar";
-import { setPosCurrentStep } from "../../../../store/slice/posSlice";
+import { selectPOS, setPosCurrentStep } from "../../../../store/slice/posSlice";
+import { useState } from "react";
+import GeneralModal from "../../../../components/PopUps/GeneralModal";
+import InputToken from "./InputToken";
 const PosConfirmation = () => {
-  // const { handleShow } = useGlobalHooks();
-  const toggle = useAppSelector(selectGlobal);
+  const [openPinModal, setOpenPinModal] = useState(false);
   const dispatch = useAppDispatch();
+  const { requestPOSPayload } = useAppSelector(selectPOS);
   const handleSubmit = () => {
-    // handleShow("submit-bill");
-    dispatch(setPosCurrentStep(1));
+    setOpenPinModal(true);
   };
 
   return (
@@ -21,7 +19,7 @@ const PosConfirmation = () => {
           Confirmation
         </h3>
         <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-          Please confirm the transaction details you have entered
+          Please confirm the request you have endtered
         </p>
       </div>
 
@@ -94,7 +92,7 @@ const PosConfirmation = () => {
                 </div>
                 <div className="flex flex-col">
                   <p className="text-greyColr font-workSans  flex gap-2  items-center rounded-md py-1 leading-4 font-normal text-sm">
-                    Bamidele Akinyemi
+                    {requestPOSPayload?.merchantName}
                   </p>
                   <p className="text-greyColr font-workSans leading-4 font-normal flex items-center text-sm">
                     Account Number:
@@ -107,7 +105,10 @@ const PosConfirmation = () => {
               className="flex flex-col justify-end items-end
           "
             >
-              <p className="tit text-sm  text-secColor font-normal font-workSans cursor-pointer">
+              <p
+                className="tit text-sm  text-secColor font-normal font-workSans cursor-pointer"
+                onClick={() => dispatch(setPosCurrentStep(3))}
+              >
                 Change
               </p>
               <p className="va text-nagative font-normal text-sm font-workSans bg-[#f6eff6] p-1">
@@ -130,64 +131,10 @@ const PosConfirmation = () => {
         </div>
       </div>
 
-      {toggle["submit-bill"] && (
-        <PopUp id={"submit-bill"}>
-          <div className="bg-white rounded-lg flex flex-col items-center justify-center p-10 gap-10 w-[650px]">
-            <div
-              className="p-4 gap-4 rounded-full items-center justify-center flex w-[122px] h-[122px]"
-              style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
-            >
-              <SuccessIcon />
-            </div>
-
-            <div className="flex flex-col gap-4 items-center justify-center">
-              <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-                Bet wallet Funded Successfully
-              </h3>
-              <p className="text-greyColr font-workSans leading-4 font-normal text-base text-center">
-                Your wallet has been funded successfully
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-4 items-center justify-center border-t pt-6">
-              <p className="text-greyColr font-workSans leading-4 font-normal text-sm text-center">
-                TV Package
-              </p>
-              <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-                DSTV Yanga NGN 5,000
-              </h3>
-
-              <p className="text-greyColr font-workSans leading-4 font-normal text-base text-center">
-                Add Beneficiary ?
-              </p>
-            </div>
-            <div className="flex justify-center  w-full gap-6">
-              <button
-                className="yellow-frame-btn w-1/2"
-                type="submit"
-                // onClick={() => navigate("/signup")}
-              >
-                Share Receipt
-              </button>
-              <button
-                className="main-btn w-1/2"
-                type="submit"
-                // onClick={() => navigate("/signup")}
-              >
-                Download Receipt
-              </button>
-            </div>
-            <div className="flex justify-center  w-[80%] gap-6">
-              <button
-                className="main-btn w-full"
-                type="submit"
-                // onClick={() => navigate("/")}
-              >
-                Download Receipt
-              </button>
-            </div>
-          </div>
-        </PopUp>
+      {openPinModal && (
+        <GeneralModal>
+          <InputToken />
+        </GeneralModal>
       )}
     </div>
   );

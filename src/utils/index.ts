@@ -568,6 +568,35 @@ export const newTransaction: ProgressStepsProps[] = [
   },
 ];
 
+export const newPosSteps: ProgressStepsProps[] = [
+  {
+    id: 1,
+    link: "debit-account",
+    title: "Select Debit Account",
+  },
+  {
+    id: 2,
+    link: "bank-details",
+    title: "Select Device Type",
+  },
+  {
+    id: 3,
+    link: "amount",
+    title: "Enter POS Details",
+  },
+
+  {
+    id: 4,
+    link: "option",
+    title: "Select Delivery Option",
+  },
+  {
+    id: 5,
+    link: "confirmation",
+    title: "Confirmation",
+  },
+];
+
 export const airtimeStep: ProgressStepsProps[] = [
   {
     id: 1,
@@ -1128,6 +1157,7 @@ export const UploadBeneficiaryList: ProgressStepsProps[] = [
 ];
 
 export const queryBuilder = (params: { [key: string]: string }) => {
+  if (!params || Object.keys(params).length === 0) return "";
   const filteredParams = Object.entries(params)
     .filter(
       ([_, value]) => value !== null && value != undefined && value !== ""
@@ -1137,8 +1167,7 @@ export const queryBuilder = (params: { [key: string]: string }) => {
       return acc;
     }, {} as { [key: string]: string });
 
-  const query = new URLSearchParams(filteredParams);
-  return query;
+  return new URLSearchParams(filteredParams).toString();
 };
 
 export const errorHandler = (error: unknown) => {
@@ -1247,3 +1276,16 @@ export const LogoutUser = (navigate: any) => {
   window.location.reload();
   // dispatch(saveUserInfo(undefined));
 };
+
+export const locations = [
+  { id: 1, name: "YABA" },
+  { id: 2, name: "IKEJA" },
+  { id: 3, name: "VI" },
+  { id: 4, name: "TRADEFAIR" },
+  { id: 5, name: "IKORODU" },
+];
+export const cardTypes = [
+  { id: 1, name: "VISA" },
+  { id: 2, name: "MASTERCARD" },
+  { id: 3, name: "VERVE" },
+];

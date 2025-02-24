@@ -7,14 +7,18 @@ import {
   setPosCurrentStep,
   setResquestPOS,
 } from "../../../../store/slice/posSlice";
-import { accounts } from "../../../../utils";
 
 const PosDebitAccount = () => {
   const dispatch = useAppDispatch();
-  const { accountDetails } = useAppSelector(selectAccount);
-  console.log(accountDetails);
+  const { accountDetails, businessKYBDetails } = useAppSelector(selectAccount);
+
   const onSubmit = async (formData: { accountNumber: string }) => {
-    dispatch(setResquestPOS({ fromAccountNumber: formData.accountNumber }));
+    dispatch(
+      setResquestPOS({
+        fromAccountNumber: formData.accountNumber,
+        businessId: businessKYBDetails.id,
+      })
+    );
     dispatch(setPosCurrentStep(2));
   };
 
@@ -50,7 +54,7 @@ const PosDebitAccount = () => {
             placeholder="Debit Account"
             className="flex flex-col gap-4"
             name="accountNumber"
-            selectOptions={accounts}
+            selectOptions={accountDetails}
             keyPropertyName="accountNumber"
             valuePropertyName="accountNumber"
             itemPropertyName="accountNumber"

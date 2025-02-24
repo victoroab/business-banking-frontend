@@ -2,6 +2,7 @@ import { FC, useEffect, useRef, useState } from "react";
 import "./style.css";
 import { ArrowDownIcon } from "../../assets/svg/PayBill";
 import Spinner from "../Spinner/Spinner";
+import { useGetAllLogosQuery } from "../../service/transaction";
 interface SelectProps {
   id: string;
   label?: string;
@@ -36,7 +37,7 @@ const Select: FC<SelectProps> = ({
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const popupRef = useRef<HTMLDivElement>(null);
-
+  const { data } = useGetAllLogosQuery();
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
   };
@@ -117,13 +118,27 @@ const Select: FC<SelectProps> = ({
                       {filteredOptions?.map((option) => (
                         <li
                           key={option?.[keyPropertyName as any] || option}
-                          className="option"
+                          className="bank-option !flex"
                           onClick={() =>
                             handleOptionClick(
                               option?.[valuePropertyName as any] ?? option
                             )
                           }
                         >
+                          <img
+                            className="rounded-full w-6 h-6"
+                            src={
+                              data[
+                                String(option?.[valuePropertyName as string])
+                              ]
+                                ? data[
+                                    String(
+                                      option?.[valuePropertyName as string]
+                                    )
+                                  ]
+                                : data?.BANK_PLACEHOLDER
+                            }
+                          />
                           {option?.[itemPropertyName as any] || option}
                         </li>
                       ))}

@@ -27,7 +27,7 @@ const Pos = () => {
     pageSize: 10,
   });
   const { data, refetch } = useGetAllPosQuery(queryData);
-
+  console.log(data);
   const [openAction, IsOpenAction] = useState<boolean>(false);
 
   const handleOpenModal = (row: PosDataProps) => {
@@ -121,7 +121,7 @@ const Pos = () => {
                   openAction,
                   refetch
                 )}
-                data={data?.data}
+                data={[]}
                 customStyles={tableCustomStyles}
                 className=""
               />
@@ -129,14 +129,14 @@ const Pos = () => {
 
             <div className="">
               <Paginate
-                data={data?.data}
+                data={[]}
                 handleSearch={handleSearch}
                 currentPage={filteredData}
                 setCurrentPage={setFilteredData}
                 searchParams="ref"
                 itemsPerPage={queryData?.pageSize as number}
                 setQueryData={setQueryData}
-                totalItemsCount={data?.data?.length}
+                totalItemsCount={0}
               />
             </div>
           </section>

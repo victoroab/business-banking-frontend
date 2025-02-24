@@ -4,13 +4,17 @@ import { useAppDispatch } from "../../../../hooks";
 import { posDevice } from "../../../../utils";
 import { IDOption } from "../../../../interfaces/Global";
 import { ArrowRightIcon } from "../../../../assets/svg/CustomSVGs";
-import { setPosCurrentStep } from "../../../../store/slice/posSlice";
+import {
+  setPosCurrentStep,
+  setResquestPOS,
+} from "../../../../store/slice/posSlice";
 
 const DeviceType = () => {
   const dispatch = useAppDispatch();
   // const navigate = useNavigate();
   const handleNavigate = (title: string) => {
     dispatch(setPosSelectedCategory(title));
+    dispatch(setResquestPOS({ deviceType: title }));
     dispatch(setPosCurrentStep(3));
     // navigate("/request-pos/pos-details");
   };
