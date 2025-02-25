@@ -55,7 +55,7 @@ export const sendMoneyColumnsData = (
         <div className="centered-box">
           <span
             className={`rounded-2xl flex items-center py-2 px-4 text-center ${
-              status === "successful"
+              status === "SUCCESS"
                 ? "text-positive bg-[#f3fbf8]"
                 : "text-nagative bg-[#fff7f5]"
             }`}

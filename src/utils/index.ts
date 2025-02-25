@@ -1210,6 +1210,20 @@ export const formatTimestamp = (
   return formattedDate;
 };
 
+export const formatOnlyTimestamp = (timestamp: string): string => {
+  const date = new Date(timestamp);
+
+  const timeOptions: Intl.DateTimeFormatOptions = {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  };
+
+  const formattedTime = date.toLocaleTimeString("en-US", timeOptions);
+
+  return formattedTime;
+};
+
 export const businessDocuments = [
   { name: "cac", title: "CAC Certificate of your business" },
   { name: "memorandum", title: "Memorandum of Incorporation" },
