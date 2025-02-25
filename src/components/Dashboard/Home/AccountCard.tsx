@@ -7,8 +7,14 @@ interface CardProps {
   type: string;
   accountName?: string;
   accountNumber?: string;
+  balance?: string;
 }
-const AccountCard = ({ type, accountName, accountNumber }: CardProps) => {
+const AccountCard = ({
+  type,
+  accountName,
+  accountNumber,
+  balance,
+}: CardProps) => {
   return (
     <div className="rounded-lg py-4 px-6 bg-white items-center flex w-[48%] justify-between">
       <div className=" flex flex-col gap-4">
@@ -37,7 +43,7 @@ const AccountCard = ({ type, accountName, accountNumber }: CardProps) => {
           {type} Balance <EyeIcon />
         </p>
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-          &#8358;0.00
+          &#8358;{balance}
         </h3>
       </div>
 
