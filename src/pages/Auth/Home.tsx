@@ -22,7 +22,7 @@ const Home = () => {
         >
           <div className="flex flex-col gap-1">
             <h3 className="text-pryColor font-semibold text-lg font-bricolage leading-6">
-              Do You Have A Personal Alert Account?
+              Do You Have An Alert Account?
             </h3>
             <p className="text-greyColr font-workSans leading-4 font-normal text-xs">
               Get an Alert business account faster and in less steps <br /> when
@@ -36,14 +36,14 @@ const Home = () => {
               type="submit"
               onClick={() => handleAccountStatus(false)}
             >
-              No, I Don't
+              Create Business Account
             </button>
             <button
               className="main-btn w-1/2"
               type="submit"
               onClick={() => handleAccountStatus(true)}
             >
-              Yes, I do
+              Sign Up for Online Banking
             </button>
           </div>
         </div>

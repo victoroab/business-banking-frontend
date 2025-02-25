@@ -28,11 +28,13 @@ const TransactionChart: React.FC<AnalyticsChartProps> = ({
 }) => {
   const { data, isLoading } = useGetAllTransactionsQuery({});
 
-  const newList = data?.data?.data?.map((data: any) => ({
-    id: data?.id,
-    amount: parseInt(data?.amount as string),
-    createdAt: data?.createdAt,
-  }));
+  const newList = data?.data?.data
+    ? data.data.data.map((item: any) => ({
+        id: item?.id,
+        amount: parseInt(item?.amount as string),
+        createdAt: item?.createdAt,
+      }))
+    : [];
 
   const [filterBy, setFilter] = useState<string>("week");
   const [type, setType] = useState<"amount" | "expenses">("amount");
@@ -46,8 +48,8 @@ const TransactionChart: React.FC<AnalyticsChartProps> = ({
     return everyday.map((date) => ({
       name: format(date, "E"),
       amount: lastWeekData
-        .filter((item: any) => isSameDay(parseJSON(item.createdAt), date))
-        .reduce(
+        ?.filter((item: any) => isSameDay(parseJSON(item.createdAt), date))
+        ?.reduce(
           (total: number, currentItem: any) => total + currentItem.amount,
           0
         ),
@@ -62,8 +64,8 @@ const TransactionChart: React.FC<AnalyticsChartProps> = ({
     return everyWeek.map((date) => ({
       name: format(date, "MMM d"),
       amount: lastMonthData
-        .filter((item: any) => isSameWeek(parseJSON(item.createdAt), date))
-        .reduce(
+        ?.filter((item: any) => isSameWeek(parseJSON(item.createdAt), date))
+        ?.reduce(
           (total: number, currentItem: any) => total + currentItem.amount,
           0
         ),

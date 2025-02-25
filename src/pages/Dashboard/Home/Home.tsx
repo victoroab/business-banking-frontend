@@ -41,7 +41,7 @@ const Dashboard = () => {
       setWithdrawableAmount(response?.data[0]);
       dispatch(setAccountDetails(response?.data));
     } catch (error) {
-      errorHandler(error);
+      console.log(error);
     }
   };
   const handleFetchBusinessKYBDetails = async () => {
@@ -68,7 +68,7 @@ const Dashboard = () => {
         kybDetails === null ||
         kybDetails?.kybStatus?.attestation === false) && (
         <div className="flex justify-between bg-secColor p-3 mb-2 mx-10">
-          <div className="flex justify-between text-white w-[70%] gap-4 items-center">
+          <div className="flex text-white w-[70%] gap-2 items-center">
             <CautionIcon />
             <p className="text-white font-workSans leading-4 font-semibold text-sm">
               Thank you for choosing Alert as your preferred banking platform!
@@ -88,7 +88,7 @@ const Dashboard = () => {
 
       {profile?.data?.email === null && (
         <div className="flex justify-between bg-secColor p-3 mb-2 mx-10">
-          <div className="flex justify-between text-white w-[75%] gap-2 items-center">
+          <div className="flex text-white w-[75%] gap-2 items-center">
             <CautionIcon />
             <p className="text-white font-workSans leading-4 font-semibold text-sm">
               Hi, Bamidele! You currently don’t have an email address linked to

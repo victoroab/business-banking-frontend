@@ -64,6 +64,7 @@ const Passcode = () => {
           ? await setExistingPasscode(requiredExistingData).unwrap()
           : await setPasscode(requiredData).unwrap();
 
+        console.log(response);
         dispatch(saveUserInfo(response.data));
         dispatch(setKYBDetails(response?.data?.kyc));
         setResponseMessage(response?.message);
