@@ -49,6 +49,7 @@ export interface IFormInputProps {
   accountType?: string;
   searchFunc?: boolean;
   isLoading?: boolean;
+  bankName?: string;
 }
 
 export interface DashboardLayoutProps {

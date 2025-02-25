@@ -15,14 +15,24 @@ import { useEffect, useState } from "react";
 import { errorHandler } from "../../../utils";
 import Spinner from "../../../components/Spinner/Spinner";
 import { OkayIcon } from "../../../assets/svg/dashboard";
+import { useGetAllBeneficiariesQuery } from "../../../service/beneficiary";
 
 const BankDetails = () => {
   const dispatch = useAppDispatch();
   const [nameEnquiry, { isLoading }] = useNameEnquiryMutation();
+  const [openBeneficiary, setOpenBeneficiary] = useState<boolean>(false);
   const [beneficiaryAccountDetails, setBeneficiaryAccountDetails] =
     useState<any>();
   const { data, isLoading: bankLoading } = useGetAllBanksQuery();
   const [bankList, setBankList] = useState<any>();
+
+  const { data: allBeneficiaries, isLoading: beneficiariesLoading } =
+    useGetAllBeneficiariesQuery({
+      beneficiaryType: "TRANSFER",
+      pageNumber: 1,
+      pageSize: 10,
+    });
+
   const onSubmit = async (formData: {
     bankCode: string;
     accountNumber: string;
@@ -35,6 +45,7 @@ const BankDetails = () => {
       const response = await nameEnquiry(requiredData).unwrap();
 
       setBeneficiaryAccountDetails(response?.data);
+      setOpenBeneficiary(false);
       dispatch(
         setSendMoneyPayload({
           ...formData,
@@ -54,14 +65,27 @@ const BankDetails = () => {
     accountNumber: Yup.string(),
     bankCode: Yup.string(),
   });
-  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: formSchema,
-      onSubmit,
-    });
+  const {
+    values,
+    touched,
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: formSchema,
+    onSubmit,
+  });
 
   useEffect(() => {
+    const selectedBeneficiary = allBeneficiaries?.data?.data?.find(
+      (beneficiary: any) => beneficiary.accountNumber === values.accountNumber
+    );
+
+    setFieldValue("bankCode", selectedBeneficiary?.bankCode as string);
+
     if (values.accountNumber.length === 10) {
       handleSubmit();
     }
@@ -131,8 +155,35 @@ const BankDetails = () => {
               <div className="tex-[20px] font-workSans text-lightGreyColor">
                 OR
               </div>
-              <BeneficiaryIcon className="cursor-pointer" />
+              <BeneficiaryIcon
+                className="cursor-pointer"
+                onClick={() => setOpenBeneficiary(true)}
+              />
             </div>
+
+            {openBeneficiary && (
+              <FormInput
+                id={"accountNumber"}
+                type="searchSelect"
+                placeholder="Select Beneficiary"
+                className="flex flex-col gap-4"
+                name="accountNumber"
+                selectOptions={allBeneficiaries?.data?.data}
+                keyPropertyName="accountNumber"
+                valuePropertyName="accountNumber"
+                itemPropertyName="accountNumber"
+                accountName="accountName"
+                accountType="accountType"
+                error={touched.accountNumber ? errors.accountNumber : undefined}
+                onBlur={handleBlur}
+                onChange={handleChange}
+                defaultValue={values?.accountNumber}
+                bankName="bankName"
+                inputClassName="w-full"
+                isLoading={beneficiariesLoading}
+              />
+            )}
+
             <div className="flex justify-center  w-full gap-6">
               <button
                 className="main-btn w-full"
