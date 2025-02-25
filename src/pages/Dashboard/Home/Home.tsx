@@ -39,7 +39,6 @@ const Dashboard = () => {
     try {
       const response = await account().unwrap();
       setWithdrawableAmount(response?.data[0]);
-      console.log(response?.data[0]);
       dispatch(setAccountDetails(response?.data));
     } catch (error) {
       errorHandler(error);

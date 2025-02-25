@@ -2,11 +2,11 @@ import React from "react";
 import { TooltipProps } from "recharts";
 
 const ChartToolTip: React.FC<
-  TooltipProps<any, any> & { type: "income" | "expenses" }
+  TooltipProps<any, any> & { type: "amount" | "expenses" }
 > = ({ active, payload, label, type }) => {
   if (!active || !payload || payload.length === 0) return null;
 
-  const income = payload[0]?.value;
+  const amount = payload[0]?.value;
   return (
     <div
       className="font-workSans bg-white text-[#777777] text-sm font-normal gap-2 flex flex-col rounded-lg"
@@ -19,13 +19,13 @@ const ChartToolTip: React.FC<
         <p>{label}</p>
       </div>
       <div className="rounded-lg bg-[#F3F4F7] p-3">
-        Income:{" "}
+        amount:{" "}
         <span
           className={`${
-            type === "income" ? "text-positive" : "text-nagative"
+            type === "amount" ? "text-positive" : "text-nagative"
           } font-semibold`}
         >
-          #{income}.00
+          #{amount}.00
         </span>
       </div>
     </div>

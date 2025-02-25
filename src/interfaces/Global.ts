@@ -96,7 +96,7 @@ export interface AnalyticsChartProps {
 
 export interface GraphData {
   name: string;
-  income: number;
+  amount: number;
 }
 
 export type StepComponentProps = {

@@ -12,8 +12,6 @@ const TransactionHistory = () => {
   const navigate = useNavigate();
   const { data, isLoading } = useGetAllTransactionsQuery({});
 
-  console.log(data?.data?.data);
-
   const newList = data?.data?.data?.map((data: any) => ({
     id: data?.id,
     amount: data?.amount,
