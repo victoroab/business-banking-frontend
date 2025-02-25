@@ -1303,3 +1303,8 @@ export const cardTypes = [
   { id: 2, name: "MASTERCARD" },
   { id: 3, name: "VERVE" },
 ];
+
+export const isEmail = (input: string): boolean => {
+  const emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+  return emailPattern.test(input);
+};
