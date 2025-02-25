@@ -272,7 +272,7 @@ export const getLastMonthData = (array: DataItem[]): DataItem[] => {
   const today = new Date();
   const priorMonth = subMonths(today, 1);
 
-  return array.filter((item) =>
+  return array?.filter((item) =>
     isWithinInterval(new Date(item.createdAt), {
       start: priorMonth,
       end: today,
@@ -284,7 +284,7 @@ export const getLastWeekData = (array: DataItem[]): DataItem[] => {
   const today = new Date();
   const priorWeek = subWeeks(today, 1);
 
-  return array.filter((item) =>
+  return array?.filter((item) =>
     isWithinInterval(new Date(item.createdAt), {
       start: priorWeek,
       end: today,
