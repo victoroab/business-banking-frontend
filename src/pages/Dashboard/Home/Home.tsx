@@ -29,7 +29,7 @@ const Dashboard = () => {
   const { kybDetails } = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
   const { handleShow } = useGlobalHooks();
-  const [withdrawableAmount, setWithdrawableAmount] = useState<string>();
+  const [withdrawableAmount, setWithdrawableAmount] = useState<any>();
   const toggle = useAppSelector(selectGlobal);
   const { data: profile } = useUserProfileQuery({});
   const [businessKYBDetails] = useGetBusinessKYBDetailsMutation();
@@ -38,7 +38,8 @@ const Dashboard = () => {
   const handleFetchAccount = async () => {
     try {
       const response = await account().unwrap();
-      setWithdrawableAmount(response?.data[0]?.withdrawableAmount);
+      setWithdrawableAmount(response?.data[0]);
+      console.log(response?.data[0]);
       dispatch(setAccountDetails(response?.data));
     } catch (error) {
       errorHandler(error);
@@ -118,14 +119,20 @@ const Dashboard = () => {
       <div className="px-10 flex flex-col gap-10 pb-14">
         <MobileAppsCard />
         <div className="justify-between flex items-center">
-          <AccountCard type="Account" />
+          <AccountCard
+            type="Account"
+            accountName={withdrawableAmount?.accountName}
+            accountNumber={withdrawableAmount?.accountNumber}
+          />
           <AccountCard type="POS" />
         </div>
         <QuickAction />
         <div className="flex gap-10 items-center">
           <TransactionChart
             data={sampleData}
-            withdrawableAmount={withdrawableAmount as string}
+            withdrawableAmount={
+              withdrawableAmount?.withdrawableAmount as string
+            }
           />
           <TransactionHistory />
         </div>
