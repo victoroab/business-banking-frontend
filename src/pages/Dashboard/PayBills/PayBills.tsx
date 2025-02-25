@@ -123,7 +123,7 @@ const PayBills = () => {
                       refetch,
                       onClose
                     )}
-                    data={data?.data}
+                    data={data?.data?.data}
                     noDataComponent={<NoData />}
                     customStyles={tableCustomStyles}
                     className=""
@@ -131,14 +131,14 @@ const PayBills = () => {
 
                   <div className="">
                     <Paginate
-                      data={data?.data}
+                      data={data?.data?.data}
                       handleSearch={handleSearch}
                       currentPage={filteredData}
                       setCurrentPage={setFilteredData}
                       searchParams="networkProvider"
                       itemsPerPage={queryData?.pageSize as number}
                       setQueryData={setQueryData}
-                      totalItemsCount={data?.data?.length}
+                      totalItemsCount={data?.data?.data?.length}
                     />
                   </div>
                 </>
@@ -152,7 +152,7 @@ const PayBills = () => {
                       refetch,
                       onClose
                     )}
-                    data={data?.data}
+                    data={data?.data?.data}
                     noDataComponent={<NoData />}
                     customStyles={tableCustomStyles}
                     className=""
@@ -160,14 +160,14 @@ const PayBills = () => {
 
                   <div className="">
                     <Paginate
-                      data={data?.data}
+                      data={data?.data?.data}
                       handleSearch={handleSearch}
                       currentPage={filteredData}
                       setCurrentPage={setFilteredData}
                       searchParams="networkProvider"
                       itemsPerPage={queryData?.pageSize as number}
                       setQueryData={setQueryData}
-                      totalItemsCount={data?.data?.length}
+                      totalItemsCount={data?.data?.data?.length}
                     />
                   </div>
                 </>

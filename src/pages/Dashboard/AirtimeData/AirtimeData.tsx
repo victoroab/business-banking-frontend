@@ -146,7 +146,7 @@ const AirtimeData = () => {
                           refetch,
                           onClose
                         )}
-                        data={data?.data}
+                        data={data?.data?.data}
                         noDataComponent={<NoData />}
                         customStyles={tableCustomStyles}
                         className=""
@@ -154,14 +154,14 @@ const AirtimeData = () => {
                     </div>
                     <div className="">
                       <Paginate
-                        data={data?.data}
+                        data={data?.data?.data}
                         handleSearch={handleSearch}
                         currentPage={filteredData}
                         setCurrentPage={setFilteredData}
                         searchParams="accountName"
                         itemsPerPage={queryData?.pageSize as number}
                         setQueryData={setQueryData}
-                        totalItemsCount={data?.data.length}
+                        totalItemsCount={data?.data?.data.length}
                       />
                     </div>
                   </>
@@ -177,7 +177,7 @@ const AirtimeData = () => {
                           refetch,
                           onClose
                         )}
-                        data={data?.data}
+                        data={data?.data?.data}
                         noDataComponent={<NoData />}
                         customStyles={tableCustomStyles}
                         className=""
@@ -185,14 +185,14 @@ const AirtimeData = () => {
                     </div>
                     <div className="">
                       <Paginate
-                        data={data?.data}
+                        data={data?.data?.data}
                         handleSearch={handleSearch}
                         currentPage={filteredData}
                         setCurrentPage={setFilteredData}
                         searchParams="accountName"
                         itemsPerPage={queryData?.pageSize as number}
                         setQueryData={setQueryData}
-                        totalItemsCount={data?.data.length}
+                        totalItemsCount={data?.data?.data.length}
                       />
                     </div>
                   </>

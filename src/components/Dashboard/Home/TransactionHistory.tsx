@@ -21,7 +21,6 @@ const TransactionHistory = () => {
     // icon: "",
     action: data?.action,
     purpose: data?.narration,
-    time: "10:30PM",
     date: data?.createdAt,
   }));
 
