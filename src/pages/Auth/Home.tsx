@@ -17,16 +17,21 @@ const Home = () => {
       <div className="text-center flex justify-center items-center flex-col mt-10">
         <MobileIcon />
         <div
-          className="flex w-[500px] py-6 p-20 flex-col gap-6 rounded-md mb-8"
+          className="flex w-[600px] py-6 p-10 flex-col gap-6 rounded-md mb-8"
           style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
         >
-          <div className="flex flex-col gap-1">
+          <div className="flex flex-col gap-3">
             <h3 className="text-pryColor font-semibold text-lg font-bricolage leading-6">
               Do You Have An Alert Account?
             </h3>
-            <p className="text-greyColr font-workSans leading-4 font-normal text-xs">
-              Get an Alert business account faster and in less steps <br /> when
-              you sign up using your personal Alert account.
+            <p className="text-greyColr font-workSans leading-4 font-normal text-xs flex flex-col gap-2">
+              Yes? Great! You're one step closer to unlocking seamless business
+              banking. Use your existing account to sign up for an Alert
+              Business Account quickly.
+            </p>
+            <p className="text-greyColr font-workSans leading-4 font-normal text-xs flex flex-col gap-2">
+              No? No problem! Tap “Create New Account” to create your account
+              and take your business to the next level.
             </p>
           </div>
 
@@ -36,14 +41,14 @@ const Home = () => {
               type="submit"
               onClick={() => handleAccountStatus(false)}
             >
-              Create Business Account
+              Create Account
             </button>
             <button
               className="main-btn w-1/2"
               type="submit"
               onClick={() => handleAccountStatus(true)}
             >
-              Sign Up for Online Banking
+              Set Up Business Account
             </button>
           </div>
         </div>

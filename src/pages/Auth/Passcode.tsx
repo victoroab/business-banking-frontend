@@ -17,6 +17,7 @@ import { selectGlobal } from "../../store/slice/globalSlice";
 import { useGlobalHooks } from "../../hooks/globalHooks";
 import Spinner from "../../components/Spinner/Spinner";
 import SuccessMessage from "../../components/PopUps/SuccessMessage";
+import { useCookies } from "../../hooks/cookiesHook";
 
 const Passcode = () => {
   const navigate = useNavigate();
@@ -28,6 +29,7 @@ const Passcode = () => {
   const { phoneNumber, verificationOTP } = useAppSelector(selectAuth);
   const [setPasscode, newMutation] = useSetPasscodeMutation();
   const [responseMessage, setResponseMessage] = useState("");
+  const { setCookies } = useCookies();
   const [setExistingPasscode, existingMutation] =
     useSetExistingPasscodeMutation();
   const { havePersonalAccount } = useAppSelector(selectGlobal);
@@ -64,9 +66,8 @@ const Passcode = () => {
           ? await setExistingPasscode(requiredExistingData).unwrap()
           : await setPasscode(requiredData).unwrap();
 
-        console.log(response);
+        setCookies("businessUserToken", response?.data?.access_token);
         dispatch(saveUserInfo(response.data));
-        dispatch(setKYBDetails(response?.data?.kyc));
         setResponseMessage(response?.message);
         handleShow("success");
       }
