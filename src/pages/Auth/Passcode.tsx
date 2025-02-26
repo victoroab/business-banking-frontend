@@ -2,11 +2,7 @@ import AuthLayout from "../../layout/AuthLayout";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useNavigate } from "react-router-dom";
-import {
-  saveUserInfo,
-  selectAuth,
-  setKYBDetails,
-} from "../../store/slice/authSlice";
+import { saveUserInfo, selectAuth } from "../../store/slice/authSlice";
 import OTPInput from "react-otp-input";
 import { toast } from "react-toastify";
 import {
