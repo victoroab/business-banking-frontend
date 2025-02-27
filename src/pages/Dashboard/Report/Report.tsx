@@ -42,6 +42,7 @@ const Report = () => {
     IsOpenAction(false);
   };
 
+  console.log(data?.data?.data?.total);
   return (
     <div className="border">
       <Navbar title="Reports" subtitle="Here’s all your transactions." />
@@ -111,126 +112,132 @@ const Report = () => {
                 <Spinner />
               </div>
             ) : (
-              <div className="">
-                {queryData?.type === "TRANSFER" ? (
-                  <>
-                    <DataTable
-                      columns={sendMoneyColumnsData(
-                        handleOpenModal,
-                        selectedRow as TransactionProps,
-                        openAction,
-                        refetch,
-                        onClose
-                      )}
-                      data={data?.data}
-                      noDataComponent={<NoData />}
-                      customStyles={tableCustomStyles}
-                      className=""
-                    />
+              <>
+                {data?.data?.data?.length > 0 ? (
+                  <div className="">
+                    {queryData?.type === "TRANSFER" ? (
+                      <>
+                        <DataTable
+                          columns={sendMoneyColumnsData(
+                            handleOpenModal,
+                            selectedRow as TransactionProps,
+                            openAction,
+                            refetch,
+                            onClose
+                          )}
+                          data={data?.data?.data}
+                          noDataComponent={<NoData />}
+                          customStyles={tableCustomStyles}
+                          className=""
+                        />
 
-                    <div className="">
-                      <Paginate
-                        data={data?.data}
-                        handleSearch={handleSearch}
-                        currentPage={filteredData}
-                        setCurrentPage={setFilteredData}
-                        searchParams="accountName"
-                        itemsPerPage={queryData?.pageSize as number}
-                        setQueryData={setQueryData}
-                        totalItemsCount={data?.data?.length}
-                      />
-                    </div>
-                  </>
-                ) : queryData?.type === "AIRTIME" ||
-                  queryData?.type === "DATA" ? (
-                  <>
-                    <DataTable
-                      columns={dataColumnsData(
-                        handleOpenModal,
-                        selectedRow as TransactionProps,
-                        openAction,
-                        refetch,
-                        onClose
-                      )}
-                      data={data?.data}
-                      customStyles={tableCustomStyles}
-                      noDataComponent={<NoData />}
-                      className=""
-                    />
+                        <div className="">
+                          <Paginate
+                            data={data?.data?.data}
+                            handleSearch={handleSearch}
+                            currentPage={filteredData}
+                            setCurrentPage={setFilteredData}
+                            searchParams="accountName"
+                            itemsPerPage={queryData?.pageSize as number}
+                            setQueryData={setQueryData}
+                            totalItemsCount={data?.data?.total}
+                          />
+                        </div>
+                      </>
+                    ) : queryData?.type === "AIRTIME" ||
+                      queryData?.type === "DATA" ? (
+                      <>
+                        <DataTable
+                          columns={dataColumnsData(
+                            handleOpenModal,
+                            selectedRow as TransactionProps,
+                            openAction,
+                            refetch,
+                            onClose
+                          )}
+                          data={data?.data?.data}
+                          customStyles={tableCustomStyles}
+                          noDataComponent={<NoData />}
+                          className=""
+                        />
 
-                    <div className="">
-                      <Paginate
-                        data={data?.data}
-                        handleSearch={handleSearch}
-                        currentPage={filteredData}
-                        setCurrentPage={setFilteredData}
-                        searchParams="networkProvider"
-                        itemsPerPage={queryData?.pageSize as number}
-                        setQueryData={setQueryData}
-                        totalItemsCount={data?.data?.length}
-                      />
-                    </div>
-                  </>
-                ) : queryData?.type === "TV_BILL" ? (
-                  <>
-                    <DataTable
-                      columns={cableTvColumnsData(
-                        handleOpenModal,
-                        selectedRow as TransactionProps,
-                        openAction,
-                        refetch,
-                        onClose
-                      )}
-                      data={data?.data}
-                      noDataComponent={<NoData />}
-                      customStyles={tableCustomStyles}
-                      className=""
-                    />
+                        <div className="">
+                          <Paginate
+                            data={data?.data?.data}
+                            handleSearch={handleSearch}
+                            currentPage={filteredData}
+                            setCurrentPage={setFilteredData}
+                            searchParams="networkProvider"
+                            itemsPerPage={queryData?.pageSize as number}
+                            setQueryData={setQueryData}
+                            totalItemsCount={data?.data?.total}
+                          />
+                        </div>
+                      </>
+                    ) : queryData?.type === "TV_BILL" ? (
+                      <>
+                        <DataTable
+                          columns={cableTvColumnsData(
+                            handleOpenModal,
+                            selectedRow as TransactionProps,
+                            openAction,
+                            refetch,
+                            onClose
+                          )}
+                          data={data?.data?.data}
+                          noDataComponent={<NoData />}
+                          customStyles={tableCustomStyles}
+                          className=""
+                        />
 
-                    <div className="">
-                      <Paginate
-                        data={data?.data}
-                        handleSearch={handleSearch}
-                        currentPage={filteredData}
-                        setCurrentPage={setFilteredData}
-                        searchParams="networkProvider"
-                        itemsPerPage={queryData?.pageSize as number}
-                        setQueryData={setQueryData}
-                        totalItemsCount={data?.data?.length}
-                      />
-                    </div>
-                  </>
+                        <div className="">
+                          <Paginate
+                            data={data?.data?.data}
+                            handleSearch={handleSearch}
+                            currentPage={filteredData}
+                            setCurrentPage={setFilteredData}
+                            searchParams="networkProvider"
+                            itemsPerPage={queryData?.pageSize as number}
+                            setQueryData={setQueryData}
+                            totalItemsCount={data?.data?.total}
+                          />
+                        </div>
+                      </>
+                    ) : (
+                      <>
+                        <DataTable
+                          columns={electricityColumnsData(
+                            handleOpenModal,
+                            selectedRow as TransactionProps,
+                            openAction,
+                            refetch,
+                            onClose
+                          )}
+                          data={data?.data?.data}
+                          noDataComponent={<NoData />}
+                          customStyles={tableCustomStyles}
+                          className=""
+                        />
+
+                        <div className="">
+                          <Paginate
+                            data={data?.data?.data}
+                            handleSearch={handleSearch}
+                            currentPage={filteredData}
+                            setCurrentPage={setFilteredData}
+                            searchParams="networkProvider"
+                            itemsPerPage={queryData?.pageSize as number}
+                            setQueryData={setQueryData}
+                            totalItemsCount={data?.data?.total}
+                          />
+                        </div>
+                      </>
+                    )}
+                  </div>
                 ) : (
-                  <>
-                    <DataTable
-                      columns={electricityColumnsData(
-                        handleOpenModal,
-                        selectedRow as TransactionProps,
-                        openAction,
-                        refetch,
-                        onClose
-                      )}
-                      data={data?.data}
-                      noDataComponent={<NoData />}
-                      customStyles={tableCustomStyles}
-                      className=""
-                    />
-
-                    <div className="">
-                      <Paginate
-                        data={data?.data}
-                        handleSearch={handleSearch}
-                        currentPage={filteredData}
-                        setCurrentPage={setFilteredData}
-                        searchParams="networkProvider"
-                        itemsPerPage={queryData?.pageSize as number}
-                        setQueryData={setQueryData}
-                        totalItemsCount={data?.data?.length}
-                      />
-                    </div>
-                  </>
+                  <NoData />
                 )}
-              </div>
+              </>
             )}
           </section>
         </div>

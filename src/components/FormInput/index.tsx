@@ -27,6 +27,7 @@ const FormInput = ({
   filter,
   isLoading,
   searchFunc,
+  bankName,
 }: IFormInputProps) => {
   return (
     <div className={`${error ? "" : ""} ${className}`}>
@@ -85,6 +86,7 @@ const FormInput = ({
             valuePropertyName={valuePropertyName}
             accountName={accountName}
             accountType={accountType}
+            bankName={bankName}
           />
         ) : type === "checkbox" ? (
           <div className="flex items-center w-full gap-2">

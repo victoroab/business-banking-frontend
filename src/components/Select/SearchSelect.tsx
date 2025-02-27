@@ -19,6 +19,7 @@ interface SelectProps {
   filter?: boolean;
   accountName?: string;
   accountType?: string;
+  bankName?: string;
   isLoading?: boolean;
 }
 
@@ -35,6 +36,7 @@ const SearchSelect: FC<SelectProps> = ({
   accountType,
   filter,
   isLoading,
+  bankName,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
@@ -71,7 +73,7 @@ const SearchSelect: FC<SelectProps> = ({
       .toLowerCase()
       .includes(searchTerm.toLowerCase())
   );
-  console.log(filteredOptions);
+
   return (
     <div
       id={id}
@@ -123,7 +125,7 @@ const SearchSelect: FC<SelectProps> = ({
                         )
                       }
                     >
-                      <div className="items-center flex justify-between gap-2 bg-[#f7f8ff] rounded-xl p-4 w-full">
+                      <div className="items-center flex  justify-between gap-2 bg-[#f7f8ff] rounded-xl p-4 w-full">
                         <div className="flex gap-2">
                           <AlertLogoIcon />
                           <div className="text-greyColr font-workSans flex gap-2 flex-col leading-4 font-medium text-sm">
@@ -131,6 +133,7 @@ const SearchSelect: FC<SelectProps> = ({
                             <span className="text-sm font-medium text-greyColr">
                               Account Number {option?.[itemPropertyName as any]}
                             </span>
+                            Bank: {option?.[bankName as any]}
                           </div>
                         </div>
                         <div

@@ -14,6 +14,7 @@ import {
   setExistingVerificationOTP,
 } from "../../store/slice/authSlice";
 import Spinner from "../../components/Spinner/Spinner";
+import { isEmail } from "../../utils";
 
 const VerifyOtp = () => {
   const navigate = useNavigate();
@@ -56,14 +57,25 @@ const VerifyOtp = () => {
       <div className="text-center flex justify-center gap-8 items-center flex-col w-full mt-48 px-6 ">
         <Otp
           inputCount={6}
-          title={"Verify Your Phone Number"}
+          title={
+            isEmail(phoneNumber)
+              ? "Verify Your Email Address"
+              : "Verify Your Phone Number"
+          }
           setOtpCode={setOtpCode}
           otpCode={otpCode}
           paragraph={
-            <p>
-              We sent a 6 digit code to {phoneNumber}. Check your SMS and enter
-              it here.
-            </p>
+            isEmail(phoneNumber) ? (
+              <p>
+                We sent a 6 digit code to {phoneNumber}. Check your Email and
+                enter it here.
+              </p>
+            ) : (
+              <p>
+                We sent a 6 digit code to {phoneNumber}. Check your SMS and
+                enter it here.
+              </p>
+            )
           }
         />
         <div className="flex justify-center  w-full gap-6">

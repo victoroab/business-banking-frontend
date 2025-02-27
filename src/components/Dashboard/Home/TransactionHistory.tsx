@@ -1,8 +1,27 @@
 import { useNavigate } from "react-router-dom";
-import { transactionHistory } from "../../../utils";
+import {
+  formatOnlyTimestamp,
+  formatTimestamp,
+  // transactionHistory,
+} from "../../../utils";
+import { useGetAllTransactionsQuery } from "../../../service/transaction";
+import NoData from "../../NoData/NoData";
+import Spinner from "../../Spinner/Spinner";
 
 const TransactionHistory = () => {
   const navigate = useNavigate();
+  const { data, isLoading } = useGetAllTransactionsQuery({});
+
+  const newList = data?.data?.data?.map((data: any) => ({
+    id: data?.id,
+    amount: data?.amount,
+    status: data?.status,
+    // icon: "",
+    action: data?.action,
+    purpose: data?.narration,
+    date: data?.createdAt,
+  }));
+
   return (
     <div className="bg-white rounded-lg w-[40%] p-6 flex flex-col gap-6">
       <div className="flex justify-between items-center">
@@ -18,39 +37,55 @@ const TransactionHistory = () => {
       </div>
 
       <div className="flex flex-col gap-4">
-        {transactionHistory?.map((transaction: any) => (
-          <div className="flex justify-between" key={transaction.id}>
-            <div className="left flex items-center gap-2">
-              <div
-                className={`w-[40px] h-[40px] rounded-md items-center justify-center flex ${
-                  transaction.status === "CREDIT"
-                    ? "bg-[#F3FBF8]"
-                    : "bg-[#FFF7F5]"
-                }`}
-              >
-                <transaction.icon />
-              </div>
-              <div className="di">
-                <p className="amount font-workSans text-medium text-[13px]">
-                  {transaction.purpose}
-                </p>
-                <p className="amount font-workSans text-lightGreyColor font-normal text-xs">
-                  {transaction.date}
-                </p>
-              </div>
-            </div>
+        {isLoading ? (
+          <Spinner />
+        ) : (
+          <>
+            {" "}
+            {newList?.length > 0 ? (
+              <>
+                {" "}
+                {newList?.map((transaction: any) => (
+                  <div className="flex justify-between" key={transaction.id}>
+                    <div className="left flex items-center gap-2">
+                      <div
+                        className={`w-[40px] h-[40px] rounded-md items-center justify-center flex ${
+                          transaction.status === "CREDIT"
+                            ? "bg-[#F3FBF8]"
+                            : "bg-[#FFF7F5]"
+                        }`}
+                      >
+                        {/* <transaction.icon /> */}
+                      </div>
+                      <div className="di">
+                        <p className="amount font-workSans text-medium text-[13px]">
+                          {transaction.purpose}
+                        </p>
+                        <p className="amount font-workSans text-lightGreyColor font-normal text-xs">
+                          {formatTimestamp(transaction.date, false)}
+                        </p>
+                      </div>
+                    </div>
 
-            <div className="right">
-              <p className="amount font-workSans text-[13px] font-semibold">
-                {transaction.status === "CREDIT" ? "+" : "-"}
-                {transaction.amount}
-              </p>
-              <p className="amount font-workSans text-lightGreyColor font-normal text-xs">
-                {transaction.time}
-              </p>
-            </div>
-          </div>
-        ))}
+                    <div className="right">
+                      <p className="amount font-workSans text-[13px] font-semibold">
+                        {transaction.action === "CREDIT" ? "+" : "-"}
+                        {transaction.amount}
+                      </p>
+                      <p className="amount font-workSans text-lightGreyColor font-normal text-xs">
+                        {formatOnlyTimestamp(transaction.date)}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </>
+            ) : (
+              <div className="flex justify-center items-center py-6">
+                <NoData />
+              </div>
+            )}
+          </>
+        )}
       </div>
     </div>
   );

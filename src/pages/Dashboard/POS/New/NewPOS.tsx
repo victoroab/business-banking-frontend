@@ -1,6 +1,6 @@
 import ProgressLayout from "../../../../layout/ProgressLayout";
 import { StepComponentProps } from "../../../../interfaces/Global";
-import { newTransaction } from "../../../../utils";
+import { newPosSteps } from "../../../../utils";
 import Navbar from "../../../../components/Navbar/Navbar";
 import { useAppSelector } from "../../../../hooks";
 import StepBackNavigation from "../../../../components/ArrowBack/StepBackArrow";
@@ -35,7 +35,7 @@ const NewPOS = () => {
         <div className="bg-pryColor-Light w-full flex flex-col gap-10 justify-center items-center py-6 px-10 h-[80vh]">
           <ProgressLayout
             stepsComponents={stepsComponents}
-            progressSteps={newTransaction}
+            progressSteps={newPosSteps}
             isDashboard
             stateCurrentStep={posCurrentStep}
             setStateCurrentStep={setPosCurrentStep}

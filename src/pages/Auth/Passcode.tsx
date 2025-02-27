@@ -2,11 +2,7 @@ import AuthLayout from "../../layout/AuthLayout";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useNavigate } from "react-router-dom";
-import {
-  saveUserInfo,
-  selectAuth,
-  setKYBDetails,
-} from "../../store/slice/authSlice";
+import { saveUserInfo, selectAuth } from "../../store/slice/authSlice";
 import OTPInput from "react-otp-input";
 import { toast } from "react-toastify";
 import {
@@ -17,6 +13,7 @@ import { selectGlobal } from "../../store/slice/globalSlice";
 import { useGlobalHooks } from "../../hooks/globalHooks";
 import Spinner from "../../components/Spinner/Spinner";
 import SuccessMessage from "../../components/PopUps/SuccessMessage";
+import { useCookies } from "../../hooks/cookiesHook";
 
 const Passcode = () => {
   const navigate = useNavigate();
@@ -28,6 +25,7 @@ const Passcode = () => {
   const { phoneNumber, verificationOTP } = useAppSelector(selectAuth);
   const [setPasscode, newMutation] = useSetPasscodeMutation();
   const [responseMessage, setResponseMessage] = useState("");
+  const { setCookies } = useCookies();
   const [setExistingPasscode, existingMutation] =
     useSetExistingPasscodeMutation();
   const { havePersonalAccount } = useAppSelector(selectGlobal);
@@ -64,8 +62,8 @@ const Passcode = () => {
           ? await setExistingPasscode(requiredExistingData).unwrap()
           : await setPasscode(requiredData).unwrap();
 
+        setCookies("businessUserToken", response?.data?.access_token);
         dispatch(saveUserInfo(response.data));
-        dispatch(setKYBDetails(response?.data?.kyc));
         setResponseMessage(response?.message);
         handleShow("success");
       }

@@ -236,7 +236,7 @@ const Beneficiaries = () => {
                         openAction,
                         refetch
                       )}
-                      data={allBeneficiaries?.data}
+                      data={allBeneficiaries?.data?.data}
                       noDataComponent={<NoData />}
                       customStyles={tableCustomStyles}
                       className=""
@@ -244,14 +244,14 @@ const Beneficiaries = () => {
 
                     <div className="">
                       <Paginate
-                        data={allBeneficiaries?.data}
+                        data={allBeneficiaries?.data?.data}
                         handleSearch={handleSearch}
                         currentPage={filteredData}
                         setCurrentPage={setFilteredData}
                         searchParams="accountName"
                         itemsPerPage={queryData?.pageSize as number}
                         setQueryData={setQueryData}
-                        totalItemsCount={allBeneficiaries?.data?.length}
+                        totalItemsCount={allBeneficiaries?.data?.data?.length}
                       />
                     </div>
                   </>
@@ -265,7 +265,7 @@ const Beneficiaries = () => {
                         openAction,
                         refetch
                       )}
-                      data={allBeneficiaries?.data}
+                      data={allBeneficiaries?.data?.data}
                       customStyles={tableCustomStyles}
                       noDataComponent={<NoData />}
                       className=""
@@ -273,14 +273,14 @@ const Beneficiaries = () => {
 
                     <div className="">
                       <Paginate
-                        data={allBeneficiaries?.data}
+                        data={allBeneficiaries?.data?.data}
                         handleSearch={handleSearch}
                         currentPage={filteredData}
                         setCurrentPage={setFilteredData}
                         searchParams="networkProvider"
                         itemsPerPage={queryData?.pageSize as number}
                         setQueryData={setQueryData}
-                        totalItemsCount={allBeneficiaries?.data?.length}
+                        totalItemsCount={allBeneficiaries?.data?.data?.length}
                       />
                     </div>
                   </>
@@ -293,7 +293,7 @@ const Beneficiaries = () => {
                         openAction,
                         refetch
                       )}
-                      data={allBeneficiaries?.data}
+                      data={allBeneficiaries?.data?.data}
                       noDataComponent={<NoData />}
                       customStyles={tableCustomStyles}
                       className=""
@@ -301,14 +301,14 @@ const Beneficiaries = () => {
 
                     <div className="">
                       <Paginate
-                        data={allBeneficiaries?.data}
+                        data={allBeneficiaries?.data?.data}
                         handleSearch={handleSearch}
                         currentPage={filteredData}
                         setCurrentPage={setFilteredData}
                         searchParams="networkProvider"
                         itemsPerPage={queryData?.pageSize as number}
                         setQueryData={setQueryData}
-                        totalItemsCount={allBeneficiaries?.data?.length}
+                        totalItemsCount={allBeneficiaries?.data?.data?.length}
                       />
                     </div>
                   </>
@@ -321,7 +321,7 @@ const Beneficiaries = () => {
                         openAction,
                         refetch
                       )}
-                      data={allBeneficiaries?.data}
+                      data={allBeneficiaries?.data?.data}
                       noDataComponent={<NoData />}
                       customStyles={tableCustomStyles}
                       className=""
@@ -329,14 +329,14 @@ const Beneficiaries = () => {
 
                     <div className="">
                       <Paginate
-                        data={allBeneficiaries?.data}
+                        data={allBeneficiaries?.data?.data}
                         handleSearch={handleSearch}
                         currentPage={filteredData}
                         setCurrentPage={setFilteredData}
                         searchParams="networkProvider"
                         itemsPerPage={queryData?.pageSize as number}
                         setQueryData={setQueryData}
-                        totalItemsCount={allBeneficiaries?.data?.length}
+                        totalItemsCount={allBeneficiaries?.data?.data?.length}
                       />
                     </div>
                   </>

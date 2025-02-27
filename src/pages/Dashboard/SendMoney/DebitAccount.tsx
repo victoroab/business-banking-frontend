@@ -14,8 +14,8 @@ const DebitAccount = () => {
   const onSubmit = async (formData: { accountNumber: string }) => {
     dispatch(
       setSendMoneyPayload({ fromAccountNumber: formData.accountNumber })
-    ),
-      dispatch(setTransactionCurrentStep(2));
+    );
+    dispatch(setTransactionCurrentStep(2));
   };
 
   const initialValues = {

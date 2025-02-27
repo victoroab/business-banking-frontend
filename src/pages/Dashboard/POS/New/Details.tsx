@@ -1,16 +1,33 @@
 // import { useNavigate } from "react-router-dom";
 import FormInput from "../../../../components/FormInput";
-import { industries } from "../../../../utils";
-import { setPosCurrentStep } from "../../../../store/slice/posSlice";
+import {
+  setPosCurrentStep,
+  setResquestPOS,
+} from "../../../../store/slice/posSlice";
 import { useAppDispatch } from "../../../../hooks";
+import * as Yup from "yup";
+import { useFormik } from "formik";
 
 const Details = () => {
-  // const navigate = useNavigate();
   const dispatch = useAppDispatch();
-  const handleSubmit = () => {
-    // navigate("/request-pos/delivery-option");
+
+  const onSubmit = async (formData: { merchantName: string }) => {
+    dispatch(setResquestPOS({ merchantName: formData?.merchantName }));
     dispatch(setPosCurrentStep(4));
   };
+
+  const initialValues = {
+    merchantName: "",
+  };
+  const formSchema = Yup.object().shape({
+    merchantName: Yup.string(),
+  });
+  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: formSchema,
+      onSubmit,
+    });
 
   return (
     <div className="flex flex-col gap-14 pr-6">
@@ -25,42 +42,25 @@ const Details = () => {
       </div>
 
       <div className="form">
-        <form action="#" className="flex gap-4 flex-col">
+        <form
+          action="#"
+          onSubmit={handleSubmit}
+          className="flex gap-4 flex-col"
+        >
           <FormInput
-            id="debitAccount"
-            name="debitAccount"
+            id="merchantName"
+            name="merchantName"
             // label=""
             type="text"
-            selectOptions={industries}
             placeholder="Business Name"
-            keyPropertyName="industry"
-            valuePropertyName="industry"
-            itemPropertyName="industry"
-            //  defaultValue={values?.industry}
-            //  onChange={handleChange}
-            //  onBlur={handleBlur}
-          />
-          <FormInput
-            id="debitAccount"
-            name="debitAccount"
-            // label=""
-            type="text"
-            selectOptions={industries}
-            placeholder="POS Terminal Name"
-            keyPropertyName="industry"
-            valuePropertyName="industry"
-            itemPropertyName="industry"
-            //  defaultValue={values?.industry}
-            //  onChange={handleChange}
-            //  onBlur={handleBlur}
+            defaultValue={values?.merchantName}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            error={touched.merchantName ? errors.merchantName : undefined}
           />
 
           <div className="flex justify-center  w-full gap-6">
-            <button
-              className="main-btn w-full"
-              type="submit"
-              onClick={handleSubmit}
-            >
+            <button className="main-btn w-full" type="submit">
               Continue
             </button>
           </div>

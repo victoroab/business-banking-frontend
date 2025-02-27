@@ -29,9 +29,8 @@ const IdVerification = () => {
               Provide These IDs For Verification
             </h3>
             <p className="text-greyColr font-workSans leading-4 font-normal text-sm">
-              To keep your account secure and compliant, we need to validate{" "}
-              <br /> your identity. Please select the type of ID you’d like to
-              use..
+              To keep your account secure and compliant, we need to validate
+              your identity. Please provide these ID for verification.
             </p>
           </div>
 

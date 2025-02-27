@@ -1,54 +1,32 @@
 import { useState } from "react";
-import Otp from "../../../../components/OTP/Otp";
-import { useAppDispatch, useAppSelector } from "../../../../hooks";
-import { errorHandler } from "../../../../utils";
-import Spinner from "../../../../components/Spinner/Spinner";
-import {
-  selectBillPayment,
-  setAirtimeDataCurrentStep,
-} from "../../../../store/slice/billPaymentSlice";
-import {
-  useBuyAirtimeMutation,
-  useBuyBundleMutation,
-} from "../../../../service/billPayment";
-import { SuccessIcon } from "../../../../assets/svg/CustomSVGs";
+import Otp from "../../../components/OTP/Otp";
+import { useAppSelector } from "../../../hooks";
+import { errorHandler } from "../../../utils";
+import Spinner from "../../../components/Spinner/Spinner";
+import { SuccessIcon } from "../../../assets/svg/CustomSVGs";
 import { useNavigate } from "react-router-dom";
+import { useRequestCardMutation } from "../../../service/card";
+import { selectCard } from "../../../store/slice/cardSlice";
 
 const InputToken = () => {
   const [otpCode, setOtpCode] = useState<string>("");
-  const navigate = useNavigate();
   const [openReceipt, setOpenReceipt] = useState<boolean>(false);
-  const dispatch = useAppDispatch();
-  const [buyAirtime, { isLoading: buyingAirtime }] = useBuyAirtimeMutation();
-  const [buyBundle, { isLoading: buyingBundle }] = useBuyBundleMutation();
-  const { airtimeBundlePayload, airtimeDataAction } =
-    useAppSelector(selectBillPayment);
+  const [requestCard, { isLoading }] = useRequestCardMutation();
+  const { requestCardPayload } = useAppSelector(selectCard);
+  // const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
-  const isLoading = airtimeDataAction === "DATA" ? buyingBundle : buyingAirtime;
   const handleSubmit = async () => {
     try {
-      const airtimeRequiredData = {
-        fromAccountNumber: airtimeBundlePayload?.fromAccountNumber,
+      const requiredData = {
+        ...requestCardPayload,
         pin: otpCode,
-        serviceCategoryId: airtimeBundlePayload?.serviceCategoryId,
-        network: airtimeBundlePayload?.network,
-        amount: airtimeBundlePayload?.amount as number,
-        phoneNumber: airtimeBundlePayload?.phoneNumber as string,
-      };
-      const bundleRequiredData = {
-        fromAccountNumber: airtimeBundlePayload?.fromAccountNumber,
-        pin: otpCode,
-        serviceCategoryId: airtimeBundlePayload?.serviceCategoryId,
-        network: airtimeBundlePayload?.network,
-        bundleCode: airtimeBundlePayload?.bundleCode as string,
-        phoneNumber: airtimeBundlePayload?.phoneNumber as string,
       };
 
-      airtimeDataAction === "DATA"
-        ? await buyBundle(bundleRequiredData).unwrap()
-        : await buyAirtime(airtimeRequiredData).unwrap();
+      const response = await requestCard(requiredData).unwrap();
+
       setOpenReceipt(true);
-      dispatch(setAirtimeDataCurrentStep(1));
+      console.log(response);
     } catch (error: any) {
       errorHandler(error);
     }
@@ -67,30 +45,21 @@ const InputToken = () => {
 
           <div className="flex flex-col gap-4 items-center justify-center text-white">
             <h3 className=" font-semibold text-2xl font-bricolage leading-6">
-              {airtimeDataAction === "DATA"
-                ? "Data Purchased Successfully"
-                : "Airtime Purchased Successfully"}
+              Card Request Successful
             </h3>
             <p className=" font-workSans leading-4 font-normal text-base text-center">
-              {airtimeDataAction === "DATA"
-                ? `You have successfully sent data to
-              ${airtimeBundlePayload?.phoneNumber}`
-                : `You have successfully recharged your number
-              ${airtimeBundlePayload?.phoneNumber}`}
+              Your card request has been processed. You will be notified via
+              mail when your card is ready for pickup.
             </p>
           </div>
 
           <div className="flex flex-col gap-4 items-center justify-center border-t pt-6 text-white">
             <p className=" font-workSans leading-4 font-normal text-sm text-center">
-              Transfer Amount
+              Card Price
             </p>
             <h3 className="font-semibold text-2xl font-bricolage leading-6 text-secColor">
-              &#8358;{airtimeBundlePayload?.amount}.00
+              &#8358;1,000.00
             </h3>
-
-            <p className="font-workSans leading-4 font-medium text-base text-center mt-10">
-              Add Beneficiary ?
-            </p>
           </div>
           <div className="flex justify-center  w-[80%] gap-6">
             <button
@@ -112,7 +81,7 @@ const InputToken = () => {
             <button
               className="border border-[var(--secColor)] w-[80%] rounded-[12px] bg-pryColor px-[9px] py-[12px] text-[18px] font-medium text-[var(--secColor)] cursor-pointer font-['Bricolage_Grotesque']"
               onClick={() => {
-                dispatch(setAirtimeDataCurrentStep(1));
+                // dispatch(setPosCurrentStep(1));
                 navigate("/");
               }}
             >
@@ -143,6 +112,8 @@ const InputToken = () => {
         </div>
       )}
     </>
+
+    // </>
   );
 };
 

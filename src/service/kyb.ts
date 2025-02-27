@@ -237,6 +237,14 @@ export const kybApi = createApi({
       }),
       invalidatesTags: [{ type: "KYB", id: "KYB" }],
     }),
+
+    getBusinessKYBDetails: builder.mutation<any, void>({
+      query: () => ({
+        url: "/kyb/business-details",
+        method: "GET",
+      }),
+      invalidatesTags: [{ type: "KYB", id: "KYB" }],
+    }),
   }),
 });
 
@@ -259,4 +267,5 @@ export const {
   useKybDetailsQuery,
   useUserProfileQuery,
   useGetKybDetailsMutation,
+  useGetBusinessKYBDetailsMutation,
 } = kybApi;

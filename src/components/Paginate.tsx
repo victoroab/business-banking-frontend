@@ -13,6 +13,7 @@ interface IPaginate {
   searchParams: string;
   itemsPerPage: number;
   totalItemsCount: number;
+  handlePageClick?: any;
   handleSearch: (
     data: any[],
     searchQuery: string,
@@ -31,14 +32,19 @@ const Paginate: React.FC<IPaginate> = ({
   itemsPerPage,
   totalItemsCount,
   setQueryData,
+  handlePageClick,
 }) => {
   const { searchQuery } = useAppSelector(selectGlobal);
 
-  const pageCount = totalItemsCount / itemsPerPage;
-
-  const handlePageClick = (e: any) => {
-    console.log(e);
-    setQueryData((prev) => ({ ...prev, ["pageNumber"]: e?.selected + 1 }));
+  const pageCount = Math.ceil(itemsPerPage / 10);
+  console.log(pageCount, totalItemsCount, itemsPerPage);
+  const handlePageClicks = (e: any) => {
+    setCurrentPage(e.selected + 1); // Set the page correctly (1-indexed)
+    setQueryData((prev) => ({
+      ...prev,
+      ["perPage"]: itemsPerPage,
+      ["page"]: e.selected + 1, // Keep track of the page number in the query
+    }));
   };
 
   useEffect(() => {
@@ -48,7 +54,10 @@ const Paginate: React.FC<IPaginate> = ({
   return (
     <section className="mt-3 flex flex-wrap justify-between w-full  gap-4">
       <div className="flex items-center gap-3">
-        <p className="font-medium text-xs text-grey-300">
+        <p
+          className="font-medium text-xs text-grey-300"
+          onClick={handlePageClicks}
+        >
           {" "}
           Showing: <span className="text-pryColor">{1}</span> of{" "}
           {totalItemsCount}{" "}

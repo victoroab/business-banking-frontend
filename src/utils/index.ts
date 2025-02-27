@@ -272,7 +272,7 @@ export const getLastMonthData = (array: DataItem[]): DataItem[] => {
   const today = new Date();
   const priorMonth = subMonths(today, 1);
 
-  return array.filter((item) =>
+  return array?.filter((item) =>
     isWithinInterval(new Date(item.createdAt), {
       start: priorMonth,
       end: today,
@@ -284,7 +284,7 @@ export const getLastWeekData = (array: DataItem[]): DataItem[] => {
   const today = new Date();
   const priorWeek = subWeeks(today, 1);
 
-  return array.filter((item) =>
+  return array?.filter((item) =>
     isWithinInterval(new Date(item.createdAt), {
       start: priorWeek,
       end: today,
@@ -560,6 +560,35 @@ export const newTransaction: ProgressStepsProps[] = [
     id: 4,
     link: "option",
     title: "Delivery Option",
+  },
+  {
+    id: 5,
+    link: "confirmation",
+    title: "Confirmation",
+  },
+];
+
+export const newPosSteps: ProgressStepsProps[] = [
+  {
+    id: 1,
+    link: "debit-account",
+    title: "Select Debit Account",
+  },
+  {
+    id: 2,
+    link: "bank-details",
+    title: "Select Device Type",
+  },
+  {
+    id: 3,
+    link: "amount",
+    title: "Enter POS Details",
+  },
+
+  {
+    id: 4,
+    link: "option",
+    title: "Select Delivery Option",
   },
   {
     id: 5,
@@ -1128,6 +1157,7 @@ export const UploadBeneficiaryList: ProgressStepsProps[] = [
 ];
 
 export const queryBuilder = (params: { [key: string]: string }) => {
+  if (!params || Object.keys(params).length === 0) return "";
   const filteredParams = Object.entries(params)
     .filter(
       ([_, value]) => value !== null && value != undefined && value !== ""
@@ -1137,8 +1167,7 @@ export const queryBuilder = (params: { [key: string]: string }) => {
       return acc;
     }, {} as { [key: string]: string });
 
-  const query = new URLSearchParams(filteredParams);
-  return query;
+  return new URLSearchParams(filteredParams).toString();
 };
 
 export const errorHandler = (error: unknown) => {
@@ -1179,6 +1208,20 @@ export const formatTimestamp = (
   }
 
   return formattedDate;
+};
+
+export const formatOnlyTimestamp = (timestamp: string): string => {
+  const date = new Date(timestamp);
+
+  const timeOptions: Intl.DateTimeFormatOptions = {
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  };
+
+  const formattedTime = date.toLocaleTimeString("en-US", timeOptions);
+
+  return formattedTime;
 };
 
 export const businessDocuments = [
@@ -1246,4 +1289,22 @@ export const LogoutUser = (navigate: any) => {
   navigate("/");
   window.location.reload();
   // dispatch(saveUserInfo(undefined));
+};
+
+export const locations = [
+  { id: 1, name: "YABA" },
+  { id: 2, name: "IKEJA" },
+  { id: 3, name: "VI" },
+  { id: 4, name: "TRADEFAIR" },
+  { id: 5, name: "IKORODU" },
+];
+export const cardTypes = [
+  { id: 1, name: "VISA" },
+  { id: 2, name: "MASTERCARD" },
+  { id: 3, name: "VERVE" },
+];
+
+export const isEmail = (input: string): boolean => {
+  const emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+  return emailPattern.test(input);
 };
