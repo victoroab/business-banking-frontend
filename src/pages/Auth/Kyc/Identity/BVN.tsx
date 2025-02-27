@@ -1,11 +1,8 @@
 import * as Yup from "yup";
 import { useFormik } from "formik";
 import { toast } from "react-toastify";
-import {
-  selectAuth,
-  setKYCIdentityStep,
-} from "../../../../store/slice/authSlice";
-import { useAppDispatch, useAppSelector } from "../../../../hooks";
+import { selectAuth } from "../../../../store/slice/authSlice";
+import { useAppSelector } from "../../../../hooks";
 import FormInput from "../../../../components/FormInput";
 
 import Spinner from "../../../../components/Spinner/Spinner";
@@ -14,22 +11,25 @@ import { CautionIcon } from "../../../../assets/svg/CustomSVGs";
 import NIN from "./NIN";
 import { selectGlobal } from "../../../../store/slice/globalSlice";
 import IdentityDetails from "./IdentityDetails";
+import VerifyBVN from "./VerifyBVN";
+import { useGlobalHooks } from "../../../../hooks/globalHooks";
 
 const BVN = () => {
-  const dispatch = useAppDispatch();
   const [validateBVN, { isLoading }] = useValidateBVNMutation();
   const { kycIdentityStep } = useAppSelector(selectAuth);
   const { havePersonalAccount } = useAppSelector(selectGlobal);
-
+  const toggle = useAppSelector(selectGlobal);
+  const { handleShow } = useGlobalHooks();
   const initialValues = {
     bvn: "",
   };
 
   const onSubmit = async (formData: { bvn: string }) => {
     try {
-      const response = await validateBVN(formData).unwrap();
-      toast.success(response?.message);
-      dispatch(setKYCIdentityStep("NIN"));
+      await validateBVN(formData).unwrap();
+      // toast.success(response?.message);
+      // dispatch(setKYCIdentityStep("NIN"));
+      handleShow("verify-bvn");
     } catch (error: any) {
       toast.error(error.data.message);
     }
@@ -101,6 +101,8 @@ const BVN = () => {
           )}
         </>
       )}
+
+      {toggle["verify-bvn"] && <VerifyBVN bvn={values?.bvn} />}
     </div>
   );
 };

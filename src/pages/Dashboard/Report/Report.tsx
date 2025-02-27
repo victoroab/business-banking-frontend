@@ -129,6 +129,7 @@ const Report = () => {
                           noDataComponent={<NoData />}
                           customStyles={tableCustomStyles}
                           className=""
+                          selectableRows
                         />
 
                         <div className="">
@@ -159,6 +160,7 @@ const Report = () => {
                           customStyles={tableCustomStyles}
                           noDataComponent={<NoData />}
                           className=""
+                          selectableRows
                         />
 
                         <div className="">
@@ -188,6 +190,7 @@ const Report = () => {
                           noDataComponent={<NoData />}
                           customStyles={tableCustomStyles}
                           className=""
+                          selectableRows
                         />
 
                         <div className="">
@@ -217,6 +220,7 @@ const Report = () => {
                           noDataComponent={<NoData />}
                           customStyles={tableCustomStyles}
                           className=""
+                          selectableRows
                         />
 
                         <div className="">

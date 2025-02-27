@@ -8,7 +8,7 @@ import { errorHandler, sampleData } from "../../../utils";
 import { CautionIcon } from "../../../assets/svg/PayBill";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { selectAuth, setUserDetails } from "../../../store/slice/authSlice";
+import { setUserDetails } from "../../../store/slice/authSlice";
 import {
   useGetBusinessKYBDetailsMutation,
   useUserProfileQuery,
@@ -26,7 +26,7 @@ import {
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { kybDetails } = useAppSelector(selectAuth);
+  // const { kybDetails } = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
   const { handleShow } = useGlobalHooks();
   const [withdrawableAmount, setWithdrawableAmount] = useState<any>();
@@ -64,9 +64,7 @@ const Dashboard = () => {
         title={`Good Morning, ${profile?.data?.firstName}`}
         subtitle="Here’s your dashboard overview."
       />
-      {(kybDetails?.kybStatus === null ||
-        kybDetails === null ||
-        kybDetails?.kybStatus?.attestation === false) && (
+      {profile?.data?.kybStatus !== "APPROVED" && (
         <div className="flex justify-between bg-secColor p-3 mb-2 mx-10">
           <div className="flex text-white w-[70%] gap-2 items-center">
             <CautionIcon />

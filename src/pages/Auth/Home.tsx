@@ -48,7 +48,7 @@ const Home = () => {
               type="submit"
               onClick={() => handleAccountStatus(true)}
             >
-              Set Up Business Account
+              Sign Up For Online
             </button>
           </div>
         </div>
