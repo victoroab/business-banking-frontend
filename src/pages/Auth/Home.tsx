@@ -14,7 +14,7 @@ const Home = () => {
   };
   return (
     <AuthLayout loginBtn terms={false}>
-      <div className="text-center flex justify-center items-center flex-col mt-10">
+      <div className="text-center flex justify-center items-center flex-col">
         <MobileIcon />
         <div
           className="flex w-[600px] py-6 p-10 flex-col gap-6 rounded-md mb-8"
@@ -35,20 +35,20 @@ const Home = () => {
             </p>
           </div>
 
-          <div className="flex justify-center w-full gap-6">
+          <div className="flex justify-center flex-col w-full gap-6">
             <button
-              className="yellow-frame-btn w-1/2"
-              type="submit"
-              onClick={() => handleAccountStatus(false)}
-            >
-              Create Account
-            </button>
-            <button
-              className="main-btn w-1/2"
+              className="main-btn w-full"
               type="submit"
               onClick={() => handleAccountStatus(true)}
             >
-              Sign Up For Online
+              Set Up Business Profile
+            </button>
+            <button
+              className="yellow-frame-btn w-full"
+              type="submit"
+              onClick={() => handleAccountStatus(false)}
+            >
+              New to Alert Business? Create Account
             </button>
           </div>
         </div>
