@@ -34,7 +34,7 @@ const Dashboard = () => {
   const { data: profile } = useUserProfileQuery({});
   const [businessKYBDetails] = useGetBusinessKYBDetailsMutation();
   const [account] = useGetAccountsMutation();
-
+  const date = new Date();
   const handleFetchAccount = async () => {
     try {
       const response = await account().unwrap();
@@ -58,10 +58,24 @@ const Dashboard = () => {
     dispatch(setUserDetails(profile?.data));
   }, []);
 
+  const Greeting = () => {
+    let hours = date.getHours();
+    let greet;
+
+    if (hours < 12) {
+      greet = "Good Morning";
+    } else if (hours >= 12 && hours <= 16) {
+      greet = "Good Afternoon";
+    } else if (hours >= 16 && hours <= 24) {
+      greet = "Good Evening";
+    }
+    return greet;
+  };
+
   return (
     <div className="border">
       <Navbar
-        title={`Good Morning, ${profile?.data?.firstName}`}
+        title={Greeting() + ", " + `${profile?.data?.firstName}`}
         subtitle="Here’s your dashboard overview."
       />
       {profile?.data?.kybStatus !== "APPROVED" && (
