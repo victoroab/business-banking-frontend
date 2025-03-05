@@ -80,6 +80,17 @@ export const beneficiaryApi = createApi({
 
       invalidatesTags: [{ type: "Beneficiary", id: "Beneficiary" }],
     }),
+
+    //upload bulk beneficiary
+    uploadBulkBeneficiary: builder.mutation<any, any>({
+      query: (body) => ({
+        url: "/bulk-payment/beneficiary",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Beneficiary", id: "Beneficiary" }],
+    }),
   }),
 });
 
@@ -87,4 +98,5 @@ export const {
   useAddBeneficiaryMutation,
   useGetAllBeneficiariesQuery,
   useDeleteBeneficiaryMutation,
+  useUploadBulkBeneficiaryMutation,
 } = beneficiaryApi;

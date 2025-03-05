@@ -4,8 +4,8 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
 interface DatePickerProps {
-  selectedDate: Date;
-  setSelectedDate: Dispatch<SetStateAction<Date>>;
+  selectedDate: string;
+  setSelectedDate: Dispatch<SetStateAction<string>>;
   label?: string;
   filter?: boolean;
 }
@@ -17,7 +17,15 @@ const Calender = ({
 }: DatePickerProps) => {
   const [openCalendar, setOpenCalendar] = useState(false);
   const handleSelect = (date: any) => {
-    setSelectedDate(date);
+    console.log(date);
+    const newDate = new Date(date);
+
+    const day = String(newDate.getDate()).padStart(2, "0");
+    const month = String(newDate.getMonth() + 1).padStart(2, "0");
+    const year = newDate.getFullYear();
+
+    const formattedDate = `${year}-${month}-${day}`;
+    setSelectedDate(formattedDate);
     setOpenCalendar(false);
   };
   return (
@@ -30,12 +38,12 @@ const Calender = ({
         <input
           className="form-controls cursor-pointer"
           placeholder="DD/MM/YYYY"
-          value={selectedDate?.toLocaleDateString()}
+          value={selectedDate}
         />
       </div>
 
       {openCalendar && (
-        <div className="flex absolute right-[0px] top-[50px]">
+        <div className="flex absolute right-[0px] top-[50px] z-50">
           <Calendar
             value={selectedDate}
             onChange={(date: any) => handleSelect(date)}

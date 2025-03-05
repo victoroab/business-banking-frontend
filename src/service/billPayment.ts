@@ -57,7 +57,7 @@ export const billPaymentApi = createApi({
   reducerPath: "billPaymentApi",
   baseQuery: customBaseQuery,
 
-  tagTypes: ["Airtime", "Bundle", "TV", "Electricity"],
+  tagTypes: ["Airtime", "Data", "Bundle", "TV", "Electricity"],
 
   endpoints: (builder) => ({
     //all airtime providers
@@ -158,6 +158,28 @@ export const billPaymentApi = createApi({
 
       invalidatesTags: [{ type: "Airtime", id: "Airtime" }],
     }),
+
+    //upload bulk Airtime
+    uploadBulkAirtime: builder.mutation<any, any>({
+      query: (body) => ({
+        url: "/bulk-payment/airtime",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Airtime", id: "Airtime" }],
+    }),
+
+    //upload bulk Data
+    uploadBulkData: builder.mutation<any, any>({
+      query: (body) => ({
+        url: "/bulk-payment/data",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Data", id: "Data" }],
+    }),
   }),
 });
 
@@ -174,4 +196,6 @@ export const {
   useBuyElectricityMutation,
   useValidateCableMutation,
   useBuyCableMutation,
+  useUploadBulkAirtimeMutation,
+  useUploadBulkDataMutation,
 } = billPaymentApi;

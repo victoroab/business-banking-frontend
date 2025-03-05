@@ -1,9 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import FormInput from "../../../components/FormInput";
 import { industries } from "../../../utils";
+import Calender from "../../../components/Calendar/DatePicker";
+import { useState } from "react";
 
 const UploadPaymentPeriod = () => {
   const navigate = useNavigate();
+  const [selectedDate, setSelectedDate] = useState<string>("");
   const handleSubmit = () => {
     navigate("/send-money/uploads/upload-file");
   };
@@ -25,7 +28,7 @@ const UploadPaymentPeriod = () => {
             id="debitAccount"
             name="debitAccount"
             type="text"
-            placeholder="Enter employer code"
+            placeholder="Month"
             //  defaultValue={values?.industry}
             //  onChange={handleChange}
             //  onBlur={handleBlur}
@@ -35,10 +38,14 @@ const UploadPaymentPeriod = () => {
             name="debitAccount"
             type="text"
             selectOptions={industries}
-            placeholder="Email address"
+            placeholder="Year"
             //  defaultValue={values?.industry}
             //  onChange={handleChange}
             //  onBlur={handleBlur}
+          />
+          <Calender
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
           />
         </form>
         <div className="flex justify-center  w-full gap-6">
