@@ -8,11 +8,17 @@ import { toast } from "react-toastify";
 import Spinner from "../../../components/Spinner/Spinner";
 import { AddressProps } from "../../../interfaces/service/kyb";
 import { useNavigate } from "react-router-dom";
+import GooglePlacesAutocomplete, {
+  geocodeByAddress,
+} from "react-google-places-autocomplete";
+import { useState } from "react";
 
 const BusinessAddress = () => {
   const [setBusinessAddress, { isLoading }] =
     useVerifyBusinessAddressMutation();
   const navigate = useNavigate();
+  const [address, setAddress] = useState(null);
+
   const { kybDetails } = useAppSelector(selectAuth);
   const initialValues = {
     address: kybDetails?.businessDetails?.address || "",
@@ -46,13 +52,34 @@ const BusinessAddress = () => {
     lga: Yup.string().required("LGA is required"),
   });
 
-  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: businessAddressSchema,
-      onSubmit,
-    });
+  const {
+    values,
+    touched,
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: businessAddressSchema,
+    onSubmit,
+  });
 
+  const handleAddressSelect = async (selectedAddress: any) => {
+    console.log("handleAddressSelect", selectedAddress);
+    setAddress(selectedAddress.label);
+    setFieldValue("address", selectedAddress.label);
+
+    try {
+      const results = await geocodeByAddress(selectedAddress.label);
+      console.log(results);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  console.log(address);
   return (
     <form
       onSubmit={handleSubmit}
@@ -68,7 +95,7 @@ const BusinessAddress = () => {
       </div>
 
       <div className="flex flex-col gap-4 w-[100%]">
-        <FormInput
+        {/* <FormInput
           id={""}
           placeholder="Enter your address"
           name="address"
@@ -76,7 +103,18 @@ const BusinessAddress = () => {
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.address}
+        /> */}
+
+        <GooglePlacesAutocomplete
+          apiKey={import.meta.env.VITE_REACT_GOOGLE_API_KEY}
+          selectProps={{
+            value: address,
+            onChange: handleAddressSelect,
+            placeholder: "Enter address",
+            className: "w-full",
+          }}
         />
+
         <FormInput
           id={""}
           placeholder="City"

@@ -136,7 +136,7 @@ const Dashboard = () => {
             accountNumber={withdrawableAmount?.accountNumber}
             balance={withdrawableAmount?.withdrawableAmount}
           />
-          <AccountCard type="POS" />
+          <AccountCard type="POS" balance={"0"} />
         </div>
         <QuickAction />
         <div className="flex gap-10 items-center">

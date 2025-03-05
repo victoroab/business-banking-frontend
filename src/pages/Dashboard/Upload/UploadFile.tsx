@@ -1,6 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import ImageUpload from "../../../components/Upload/ImageUpload";
 import { useState } from "react";
+import { useAppSelector } from "../../../hooks";
+import { selectAccount } from "../../../store/slice/account";
 
 const UploadBulkFile = () => {
   const [bulkFile, setBulkFile] = useState<string>("");
@@ -10,6 +12,10 @@ const UploadBulkFile = () => {
     navigate("/send-money/uploads/debit-account");
   };
   console.log(bulkFile);
+
+  const { businessKYBDetails } = useAppSelector(selectAccount);
+
+  console.log(businessKYBDetails);
   return (
     <div className="flex flex-col gap-14 pr-6">
       <div className="gap-4 flex flex-col">

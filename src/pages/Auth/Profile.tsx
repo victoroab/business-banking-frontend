@@ -33,6 +33,7 @@ const Profile = () => {
         dob: format(new Date(dob), "yyyy-MM-dd"),
         phoneNumber: phoneNumber,
       };
+
       const response = await setName(requiredData).unwrap();
       toast.success(response?.message);
 

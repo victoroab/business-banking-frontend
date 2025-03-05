@@ -1,7 +1,7 @@
-import { Dispatch, SetStateAction } from "react";
-import DatePicker from "react-datepicker";
+import { Dispatch, SetStateAction, useState } from "react";
+import Calendar from "react-calendar";
 
-import "react-datepicker/dist/react-datepicker.css";
+import "react-calendar/dist/Calendar.css";
 
 interface DatePickerProps {
   selectedDate: Date;
@@ -15,14 +15,34 @@ const Calender = ({
   label,
   filter,
 }: DatePickerProps) => {
+  const [openCalendar, setOpenCalendar] = useState(false);
+  const handleSelect = (date: any) => {
+    setSelectedDate(date);
+    setOpenCalendar(false);
+  };
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col relative">
       <p className="font-workSans font-medium text-greyColr">{label}</p>
-      <DatePicker
-        selected={selectedDate}
-        onChange={(date: any) => setSelectedDate(date)}
-        className={`form-controls ${filter && "shadow-md"}`}
-      />
+      <div
+        className="flex cursor-pointer"
+        onClick={() => setOpenCalendar(!openCalendar)}
+      >
+        <input
+          className="form-controls cursor-pointer"
+          placeholder="DD/MM/YYYY"
+          value={selectedDate?.toLocaleDateString()}
+        />
+      </div>
+
+      {openCalendar && (
+        <div className="flex absolute right-[0px] top-[50px]">
+          <Calendar
+            value={selectedDate}
+            onChange={(date: any) => handleSelect(date)}
+            className={`form-controls ${filter && "shadow-md"}`}
+          />
+        </div>
+      )}
     </div>
   );
 };
