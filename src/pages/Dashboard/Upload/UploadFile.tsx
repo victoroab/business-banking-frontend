@@ -33,6 +33,7 @@ const UploadBulkFile = () => {
   const [uploadBulkPension, { isLoading: pensionLoader }] =
     useUploadBulkPensionMutation();
   const { businessKYBDetails } = useAppSelector(selectAccount);
+
   const isLoading =
     activeUploadTab === 1
       ? transferLoader
@@ -51,70 +52,62 @@ const UploadBulkFile = () => {
         toast.error("Please upload a file before submitting.");
         return;
       }
+      const createFormData = (additionalFields = {}) => {
+        const formData = new FormData();
+        //common fields
+        formData.append("file", bulkFile as File);
+        formData.append("businessId", businessKYBDetails.id);
+        formData.append("fromAccountNumber", uploadPayload.fromAccountNumber);
+        formData.append("paymentDate", uploadPayload.paymentDate);
+        Object.entries(additionalFields).forEach(([key, value]) => {
+          formData.append(key, value as string);
+        });
+        return formData;
+      };
 
-      if (activeUploadTab === 1) {
-        const transferFormData = new FormData();
-        transferFormData.append(
-          "fromAccountNumber",
-          uploadPayload.fromAccountNumber
-        );
-        transferFormData.append("paymentMode", uploadPayload.paymentMode);
-        transferFormData.append("paymentDate", uploadPayload.paymentDate);
-        transferFormData.append("file", bulkFile as File);
-        transferFormData.append("businessId", businessKYBDetails.id);
-        const response = await uploadBulkTransaction(transferFormData).unwrap();
-        console.log(response);
-        toast.success(response?.message);
-        dispatch(setUploadCurrentStep(1));
-      } else if (activeUploadTab === 2 || activeUploadTab === 3) {
-        const billFormData = new FormData();
-        billFormData.append(
-          "fromAccountNumber",
-          uploadPayload.fromAccountNumber
-        );
-        billFormData.append("paymentDate", uploadPayload.paymentDate);
-        billFormData.append("file", bulkFile as File);
-        billFormData.append("businessId", businessKYBDetails.id);
-        const response =
-          activeUploadTab === 2
-            ? await uploadBulkAirtime(billFormData).unwrap()
-            : await uploadBulkData(billFormData).unwrap();
-        console.log(response);
-        toast.success(response?.message);
-        dispatch(setUploadCurrentStep(1));
-      } else if (activeUploadTab === 4) {
-        const pensionFormData = new FormData();
-        pensionFormData.append("file", bulkFile as File);
-        pensionFormData.append(
-          "fromAccountNumber",
-          uploadPayload.fromAccountNumber
-        );
-        pensionFormData.append("paymentDate", uploadPayload.paymentDate);
-        pensionFormData.append("month", businessKYBDetails.id);
-        pensionFormData.append("year", businessKYBDetails.id);
-        pensionFormData.append("employerCode", businessKYBDetails.id);
-        pensionFormData.append("email", businessKYBDetails.id);
-        pensionFormData.append("businessId", businessKYBDetails.id);
+      let response;
 
-        const response = await uploadBulkPension(pensionFormData).unwrap();
-        console.log(response);
-        toast.success(response?.message);
-        dispatch(setUploadCurrentStep(1));
-      } else if (activeUploadTab === 5) {
-        const beneficiaryFormData = new FormData();
-        beneficiaryFormData.append("file", bulkFile as File);
-        beneficiaryFormData.append("businessId", businessKYBDetails.id);
-        beneficiaryFormData.append(
-          "beneficiaryType",
-          uploadPayload.beneficiaryType
-        );
-        const response = await uploadBulkBeneficiary(
-          beneficiaryFormData
-        ).unwrap();
-        console.log(response);
-        toast.success(response?.message);
-        dispatch(setUploadCurrentStep(1));
+      switch (activeUploadTab) {
+        case 1:
+          response = await uploadBulkTransaction(
+            createFormData({ paymentMode: uploadPayload.paymentMode })
+          ).unwrap();
+          break;
+
+        case 2:
+          response = await uploadBulkAirtime(createFormData()).unwrap();
+          break;
+
+        case 3:
+          response = await uploadBulkData(createFormData()).unwrap();
+          break;
+
+        case 4:
+          response = await uploadBulkPension(
+            createFormData({
+              month: uploadPayload.month,
+              year: uploadPayload.year,
+              employerCode: uploadPayload.employerCode,
+              email: uploadPayload.email,
+            })
+          ).unwrap();
+          break;
+
+        case 5:
+          response = await uploadBulkBeneficiary(
+            createFormData({
+              beneficiaryType: uploadPayload.beneficiaryType,
+            })
+          ).unwrap();
+          break;
+
+        default:
+          throw new Error("Invalid upload tab");
       }
+
+      console.log(response);
+      toast.success(response?.message);
+      dispatch(setUploadCurrentStep(1));
     } catch (error) {
       errorHandler(error);
     }
