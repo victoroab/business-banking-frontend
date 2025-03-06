@@ -205,3 +205,12 @@
 .react-calendar__tile--active {
   background: var(--pryColor) !important;
 }
+
+.scrollbar-hidden::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hidden {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

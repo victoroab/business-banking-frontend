@@ -240,6 +240,7 @@ const Beneficiaries = () => {
                       noDataComponent={<NoData />}
                       customStyles={tableCustomStyles}
                       className=""
+                      selectableRows
                     />
 
                     <div className="">
@@ -269,6 +270,7 @@ const Beneficiaries = () => {
                       customStyles={tableCustomStyles}
                       noDataComponent={<NoData />}
                       className=""
+                      selectableRows
                     />
 
                     <div className="">
@@ -297,6 +299,7 @@ const Beneficiaries = () => {
                       noDataComponent={<NoData />}
                       customStyles={tableCustomStyles}
                       className=""
+                      selectableRows
                     />
 
                     <div className="">
@@ -325,6 +328,7 @@ const Beneficiaries = () => {
                       noDataComponent={<NoData />}
                       customStyles={tableCustomStyles}
                       className=""
+                      selectableRows
                     />
 
                     <div className="">

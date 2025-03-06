@@ -8,13 +8,14 @@ import * as Yup from "yup";
 import { useFormik } from "formik";
 import { AddressProps } from "../../../interfaces/service/kyb";
 import { useNavigate } from "react-router-dom";
-
+import allState from "../../../components/nigeria-state-and-lgas.json";
+import { useEffect, useState } from "react";
 const ResidentialAddress = () => {
   const [setBusinessAddress, { isLoading }] =
     useVerifyResidentialAddressMutation();
   const navigate = useNavigate();
   const { kybDetails } = useAppSelector(selectAuth);
-
+  const [getLga, setGetLga] = useState<string[]>([]);
   const initialValues = {
     address: kybDetails?.residendialAddress?.address || "",
     city: kybDetails?.residendialAddress?.city || "",
@@ -54,6 +55,14 @@ const ResidentialAddress = () => {
       onSubmit,
     });
 
+  useEffect(() => {
+    if (values?.state !== "") {
+      const lgaData = allState.find((s) => s?.state === values?.state);
+
+      setGetLga(lgaData?.lgas as string[]);
+    }
+  }, [values?.state]);
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -79,6 +88,31 @@ const ResidentialAddress = () => {
           defaultValue={values?.address}
         />
         <FormInput
+          id="state"
+          name="state"
+          type="cSelect"
+          selectOptions={allState}
+          defaultValue={values?.state}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={touched.state ? (errors.state as string) : undefined}
+          placeholder="Select State"
+          keyPropertyName="state"
+          valuePropertyName="state"
+          itemPropertyName="state"
+        />
+        <FormInput
+          id="lga"
+          name="lga"
+          type="cSelect"
+          selectOptions={getLga}
+          defaultValue={values?.lga}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={touched.lga ? (errors.lga as string) : undefined}
+          placeholder="Select LGA"
+        />
+        <FormInput
           id={""}
           placeholder="City"
           name="city"
@@ -87,15 +121,7 @@ const ResidentialAddress = () => {
           onChange={handleChange}
           defaultValue={values?.city}
         />
-        <FormInput
-          id={""}
-          placeholder="State"
-          name="state"
-          error={touched.state ? (errors.state as string) : undefined}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          defaultValue={values?.state}
-        />
+
         <FormInput
           id={"zipcode"}
           placeholder="Zip Code"
@@ -113,15 +139,6 @@ const ResidentialAddress = () => {
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.landmark}
-        />
-        <FormInput
-          id={""}
-          placeholder="LGA"
-          name="lga"
-          error={touched.lga ? (errors.lga as string) : undefined}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          defaultValue={values?.lga}
         />
       </div>
 
