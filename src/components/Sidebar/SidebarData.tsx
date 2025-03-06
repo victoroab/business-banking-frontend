@@ -117,34 +117,4 @@ export const SidebarData: SidebarDataProps[] = [
     title: "Account Settings",
     url: "/account",
   },
-  {
-    id: "tab12",
-    icon: SidebarUserIcon,
-    title: "Account Settings",
-    url: "/account",
-  },
-  {
-    id: "tab12",
-    icon: SidebarUserIcon,
-    title: "Account Settings",
-    url: "/account",
-  },
-  {
-    id: "tab12",
-    icon: SidebarUserIcon,
-    title: "Account Settings",
-    url: "/account",
-  },
-  {
-    id: "tab12",
-    icon: SidebarUserIcon,
-    title: "Account Settings",
-    url: "/account",
-  },
-  {
-    id: "tab12",
-    icon: SidebarUserIcon,
-    title: "Account Settings",
-    url: "/account",
-  },
 ];
