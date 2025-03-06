@@ -14,7 +14,6 @@ import Search from "../../../components/Search/Search";
 import { FilterIcon } from "../../../assets/svg/dashboard";
 import { TransactionProps } from "../../../interfaces/service/billPayment";
 import Spinner from "../../../components/Spinner/Spinner";
-import { format } from "date-fns";
 
 const SendMoney = () => {
   const { handleSearch } = useGlobalHooks();
@@ -29,13 +28,11 @@ const SendMoney = () => {
     keyword: "",
     type: "TRANSFER",
     page: 1,
-    perPage: 5,
+    perPage: 10,
   });
-  const { data, refetch, isLoading } = useGetAllTransactionsQuery(queryData, {
-    skip: queryData.page === 0,
-  });
+  const { data, refetch, isLoading } = useGetAllTransactionsQuery(queryData);
   const navigate = useNavigate();
-  console.log(filteredData);
+
   const handleOpenModal = (row: TransactionProps) => {
     setSelectedRow(row);
     IsOpenAction((prev) => !prev);
@@ -44,6 +41,7 @@ const SendMoney = () => {
   const onClose = () => {
     IsOpenAction(false);
   };
+  console.log(filteredData);
 
   const handleChange = (e: ChangeEvent<HTMLSelectElement>) => {
     const { id, value } = e.target as HTMLSelectElement;
@@ -53,8 +51,10 @@ const SendMoney = () => {
   const handleSetFilter = () => {
     setQueryData((prev) => ({
       ...prev,
-      from: format(new Date(from), "yyyy-MM-dd"),
-      to: format(new Date(to), "yyyy-MM-dd"),
+      page: 1,
+      perPage: 10,
+      from: from,
+      to: to,
     }));
   };
 
@@ -67,20 +67,21 @@ const SendMoney = () => {
     refetch();
   };
 
-  const getPaginatedData = (
-    data: any[],
-    page: number,
-    itemsPerPage: number
-  ) => {
-    const startIndex = (page - 1) * itemsPerPage;
-    const endIndex = page * itemsPerPage;
-    return data.slice(startIndex, endIndex);
-  };
+  // const getPaginatedData = (
+  //   data: any[],
+  //   page: number,
+  //   itemsPerPage: number
+  // ) => {
+  //   const startIndex = (page - 1) * itemsPerPage;
+  //   const endIndex = page * itemsPerPage;
+  //   return data.slice(startIndex, endIndex);
+  // };
 
-  const paginatedData = data?.data?.data
-    ? getPaginatedData(data.data.data, queryData.page as number, 10)
-    : [];
+  // const paginatedData = data?.data?.data
+  //   ? getPaginatedData(data?.data?.data, queryData.page as number, 10)
+  //   : [];
 
+  const paginatedData = data?.data?.data ? data?.data?.data : [];
   return (
     <div className="border">
       <Navbar
