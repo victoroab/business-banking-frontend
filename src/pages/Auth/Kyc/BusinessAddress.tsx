@@ -8,17 +8,17 @@ import { toast } from "react-toastify";
 import Spinner from "../../../components/Spinner/Spinner";
 import { AddressProps } from "../../../interfaces/service/kyb";
 import { useNavigate } from "react-router-dom";
-import GooglePlacesAutocomplete, {
-  geocodeByAddress,
-} from "react-google-places-autocomplete";
-import { useState } from "react";
-
+// import GooglePlacesAutocomplete, {
+//   geocodeByAddress,
+// } from "react-google-places-autocomplete";
+import { useEffect, useState } from "react";
+import allState from "../../../components/nigeria-state-and-lgas.json";
 const BusinessAddress = () => {
   const [setBusinessAddress, { isLoading }] =
     useVerifyBusinessAddressMutation();
   const navigate = useNavigate();
-  const [address, setAddress] = useState(null);
-
+  // const [address, setAddress] = useState(null);
+  const [getLga, setGetLga] = useState<string[]>([]);
   const { kybDetails } = useAppSelector(selectAuth);
   const initialValues = {
     address: kybDetails?.businessDetails?.address || "",
@@ -59,33 +59,42 @@ const BusinessAddress = () => {
     handleBlur,
     handleChange,
     handleSubmit,
-    setFieldValue,
+    // setFieldValue,
   } = useFormik({
     initialValues: initialValues,
     validationSchema: businessAddressSchema,
     onSubmit,
   });
 
-  const handleAddressSelect = async (selectedAddress: any) => {
-    console.log("handleAddressSelect", selectedAddress);
-    setAddress(selectedAddress.label);
-    setFieldValue("address", selectedAddress.label);
+  // const handleAddressSelect = async (selectedAddress: any) => {
+  //   console.log("handleAddressSelect", selectedAddress);
+  //   setAddress(selectedAddress.label);
+  //   setFieldValue("address", selectedAddress.label);
 
-    try {
-      const results = await geocodeByAddress(selectedAddress.label);
-      console.log(results);
-    } catch (error) {
-      console.log(error);
+  //   try {
+  //     const results = await geocodeByAddress(selectedAddress.label);
+  //     console.log(results);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+  // console.log(address);
+
+  useEffect(() => {
+    if (values?.state !== "") {
+      const lgaData = allState.find((s) => s?.state === values?.state);
+
+      setGetLga(lgaData?.lgas as string[]);
     }
-  };
+  }, [values?.state]);
 
-  console.log(address);
   return (
     <form
       onSubmit={handleSubmit}
       className="flex flex-col gap-6 justify-center items-center"
     >
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 w-full">
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
           Business Address
         </h3>
@@ -95,7 +104,7 @@ const BusinessAddress = () => {
       </div>
 
       <div className="flex flex-col gap-4 w-[100%]">
-        {/* <FormInput
+        <FormInput
           id={""}
           placeholder="Enter your address"
           name="address"
@@ -103,9 +112,9 @@ const BusinessAddress = () => {
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.address}
-        /> */}
+        />
 
-        <GooglePlacesAutocomplete
+        {/* <GooglePlacesAutocomplete
           apiKey={import.meta.env.VITE_REACT_GOOGLE_API_KEY}
           selectProps={{
             value: address,
@@ -113,8 +122,32 @@ const BusinessAddress = () => {
             placeholder: "Enter address",
             className: "w-full",
           }}
+        /> */}
+        <FormInput
+          id="state"
+          name="state"
+          type="cSelect"
+          selectOptions={allState}
+          defaultValue={values?.state}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={touched.state ? (errors.state as string) : undefined}
+          placeholder="Select State"
+          keyPropertyName="state"
+          valuePropertyName="state"
+          itemPropertyName="state"
         />
-
+        <FormInput
+          id="lga"
+          name="lga"
+          type="cSelect"
+          selectOptions={getLga}
+          defaultValue={values?.lga}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          error={touched.lga ? (errors.lga as string) : undefined}
+          placeholder="Select LGA"
+        />
         <FormInput
           id={""}
           placeholder="City"
@@ -124,15 +157,7 @@ const BusinessAddress = () => {
           onChange={handleChange}
           defaultValue={values?.city}
         />
-        <FormInput
-          id={""}
-          placeholder="State"
-          name="state"
-          error={touched.state ? (errors.state as string) : undefined}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          defaultValue={values?.state}
-        />
+
         <FormInput
           id={"zipcode"}
           placeholder="Zip Code"
@@ -150,15 +175,6 @@ const BusinessAddress = () => {
           onBlur={handleBlur}
           onChange={handleChange}
           defaultValue={values?.landmark}
-        />
-        <FormInput
-          id={""}
-          placeholder="LGA"
-          name="lga"
-          error={touched.lga ? (errors.lga as string) : undefined}
-          onBlur={handleBlur}
-          onChange={handleChange}
-          defaultValue={values?.lga}
         />
       </div>
 
