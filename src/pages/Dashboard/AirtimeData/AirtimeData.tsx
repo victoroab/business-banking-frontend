@@ -24,7 +24,8 @@ const AirtimeData = () => {
   const { handleSearch } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [selectedRow, setSelectedRow] = useState<TransactionProps>();
-  const [dob, setDob] = useState<string>("");
+  const [to, setTo] = useState<string>("");
+  const [from, setFrom] = useState<string>("");
   const [openAction, IsOpenAction] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const [queryData, setQueryData] = useState<{
@@ -45,6 +46,18 @@ const AirtimeData = () => {
   const onClose = () => {
     IsOpenAction(false);
   };
+
+  const handleSetFilter = () => {
+    setQueryData((prev) => ({
+      ...prev,
+      page: 1,
+      perPage: 10,
+      from: from,
+      to: to,
+    }));
+  };
+
+  const paginatedData = data?.data?.data ? data?.data?.data : [];
 
   return (
     <div className="border">
@@ -78,19 +91,22 @@ const AirtimeData = () => {
             name="transferType"
           />
           <Calender
-            setSelectedDate={setDob}
-            selectedDate={dob}
+            setSelectedDate={setFrom}
+            selectedDate={from}
             label="From"
             filter
           />
           <Calender
-            setSelectedDate={setDob}
-            selectedDate={dob}
+            setSelectedDate={setTo}
+            selectedDate={to}
             label="To"
             filter
           />
 
-          <div className="flex items-center gap-2 bg-[#e2eefa] rounded-xl py-4 px-6 mt-6 cursor-pointer">
+          <div
+            className="flex items-center gap-2 bg-[#e2eefa] rounded-xl py-4 px-6 mt-6 cursor-pointer"
+            onClick={handleSetFilter}
+          >
             <FilterIcon />
             <p className="font-bold text-pryColor tex-sm"> Filter</p>
           </div>
@@ -146,15 +162,16 @@ const AirtimeData = () => {
                           refetch,
                           onClose
                         )}
-                        data={data?.data?.data}
+                        data={paginatedData}
                         noDataComponent={<NoData />}
                         customStyles={tableCustomStyles}
                         className=""
+                        selectableRows
                       />
                     </div>
                     <div className="">
                       <Paginate
-                        data={data?.data?.data}
+                        data={paginatedData}
                         handleSearch={handleSearch}
                         currentPage={filteredData}
                         setCurrentPage={setFilteredData}
@@ -162,6 +179,7 @@ const AirtimeData = () => {
                         itemsPerPage={queryData?.pageSize as number}
                         setQueryData={setQueryData}
                         totalItemsCount={data?.data?.data.length}
+                        refetch={refetch}
                       />
                     </div>
                   </>
@@ -177,15 +195,16 @@ const AirtimeData = () => {
                           refetch,
                           onClose
                         )}
-                        data={data?.data?.data}
+                        data={paginatedData}
                         noDataComponent={<NoData />}
                         customStyles={tableCustomStyles}
                         className=""
+                        selectableRows
                       />
                     </div>
                     <div className="">
                       <Paginate
-                        data={data?.data?.data}
+                        data={paginatedData}
                         handleSearch={handleSearch}
                         currentPage={filteredData}
                         setCurrentPage={setFilteredData}
@@ -193,6 +212,7 @@ const AirtimeData = () => {
                         itemsPerPage={queryData?.pageSize as number}
                         setQueryData={setQueryData}
                         totalItemsCount={data?.data?.data.length}
+                        refetch={refetch}
                       />
                     </div>
                   </>

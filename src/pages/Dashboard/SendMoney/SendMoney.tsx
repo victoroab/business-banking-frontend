@@ -58,15 +58,6 @@ const SendMoney = () => {
     }));
   };
 
-  const handlePageClick = (e: any) => {
-    const newPage = e.selected + 1;
-    setQueryData((prev) => ({
-      ...prev,
-      page: newPage,
-    }));
-    refetch();
-  };
-
   // const getPaginatedData = (
   //   data: any[],
   //   page: number,
@@ -199,12 +190,13 @@ const SendMoney = () => {
                         noDataComponent={<NoData />}
                         customStyles={tableCustomStyles}
                         className=""
+                        selectableRows
                       />
                     </div>
 
                     <div className="">
                       <Paginate
-                        data={data?.data?.data}
+                        data={paginatedData}
                         handleSearch={handleSearch}
                         currentPage={queryData.page as number}
                         setCurrentPage={setFilteredData}
@@ -212,7 +204,7 @@ const SendMoney = () => {
                         setQueryData={setQueryData}
                         itemsPerPage={queryData?.perPage as number}
                         totalItemsCount={data?.data?.total || 0}
-                        handlePageClick={handlePageClick}
+                        refetch={refetch}
                       />
                     </div>
                   </>
