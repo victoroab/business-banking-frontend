@@ -1,13 +1,40 @@
-import { useNavigate } from "react-router-dom";
 import FormInput from "../../../components/FormInput";
-import { industries } from "../../../utils";
-
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import {
+  setUploadCurrentStep,
+  setUploadPayload,
+} from "../../../store/slice/uploadSlic";
+import { useAppDispatch } from "../../../hooks";
 const UploadEmployerDetails = () => {
-  const navigate = useNavigate();
-  const handleSubmit = () => {
-    navigate("/send-money/uploads/payment-period");
+  const dispatch = useAppDispatch();
+  const onSubmit = async (formData: {
+    employerCode: string;
+    email: string;
+  }) => {
+    dispatch(
+      setUploadPayload({
+        employerCode: formData.employerCode,
+        email: formData.email,
+      })
+    );
+    dispatch(setUploadCurrentStep(2));
   };
 
+  const initialValues = {
+    employerCode: "",
+    email: "",
+  };
+  const formSchema = Yup.object().shape({
+    email: Yup.string(),
+    employerCode: Yup.string(),
+  });
+  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: formSchema,
+      onSubmit,
+    });
   return (
     <div className="flex flex-col gap-14 pr-6">
       <div className="gap-4 flex flex-col">
@@ -21,33 +48,34 @@ const UploadEmployerDetails = () => {
       </div>
 
       <div className="flex gap-8 flex-col">
-        <form action="#" className="flex gap-6 flex-col">
+        <form
+          action="#"
+          className="flex gap-6 flex-col"
+          onSubmit={handleSubmit}
+        >
           <FormInput
-            id="debitAccount"
-            name="debitAccount"
+            id="employerCode"
+            name="employerCode"
             type="text"
             placeholder="Enter employer code"
-            //  defaultValue={values?.industry}
-            //  onChange={handleChange}
-            //  onBlur={handleBlur}
+            defaultValue={values?.employerCode}
+            error={touched.employerCode ? errors.employerCode : undefined}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           <FormInput
-            id="debitAccount"
-            name="debitAccount"
+            id="email"
+            name="email"
             type="text"
-            selectOptions={industries}
             placeholder="Email address"
-            //  defaultValue={values?.industry}
-            //  onChange={handleChange}
-            //  onBlur={handleBlur}
+            defaultValue={values?.email}
+            error={touched.email ? errors.email : undefined}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
 
           <div className="flex justify-center  w-full gap-6">
-            <button
-              className="main-btn w-full"
-              type="submit"
-              onClick={handleSubmit}
-            >
+            <button className="main-btn w-full" type="submit">
               Continue
             </button>
           </div>

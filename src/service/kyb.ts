@@ -245,6 +245,17 @@ export const kybApi = createApi({
       }),
       invalidatesTags: [{ type: "KYB", id: "KYB" }],
     }),
+
+    //verify-bvn
+    verfifyBVN: builder.mutation<any, { bvn: string; otp: string }>({
+      query: (body) => ({
+        url: "/kyb/verify-bvn-otp",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Auth", id: "Auth" }],
+    }),
   }),
 });
 
@@ -268,4 +279,5 @@ export const {
   useUserProfileQuery,
   useGetKybDetailsMutation,
   useGetBusinessKYBDetailsMutation,
+  useVerfifyBVNMutation,
 } = kybApi;

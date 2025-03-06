@@ -1,11 +1,17 @@
-import { useNavigate } from "react-router-dom";
-import FormInput from "../../../components/FormInput";
-import { industries } from "../../../utils";
+import Calender from "../../../components/Calendar/DatePicker";
+import { useState } from "react";
+import { useAppDispatch } from "../../../hooks";
+import {
+  setUploadCurrentStep,
+  setUploadPayload,
+} from "../../../store/slice/uploadSlic";
 
 const UploadPaymentDate = () => {
-  const navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const [selectedDate, setSelectedDate] = useState<string>("");
   const handleSubmit = () => {
-    navigate("/send-money/uploads/upload-file");
+    dispatch(setUploadPayload({ paymentDate: selectedDate }));
+    dispatch(setUploadCurrentStep(4));
   };
 
   return (
@@ -22,19 +28,9 @@ const UploadPaymentDate = () => {
 
       <div className="form">
         <form action="#" className="flex gap-8 flex-col">
-          <FormInput
-            id="debitAccount"
-            name="debitAccount"
-            label="Debit Account"
-            type="cSelect"
-            selectOptions={industries}
-            placeholder="Select industry"
-            keyPropertyName="industry"
-            valuePropertyName="industry"
-            itemPropertyName="industry"
-            //  defaultValue={values?.industry}
-            //  onChange={handleChange}
-            //  onBlur={handleBlur}
+          <Calender
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
           />
           <div className="flex justify-center  w-full gap-6">
             <button

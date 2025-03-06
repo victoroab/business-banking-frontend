@@ -40,7 +40,7 @@ const SuccessMessage = ({
             type="submit"
             onClick={handleNavigate}
           >
-            Continue To Know Your Business(KYB) Verification
+            Continue To Know Your Business (KYB) Verification
           </button>
           {auth && (
             <button

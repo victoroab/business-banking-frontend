@@ -18,7 +18,7 @@ const Pos = () => {
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [selectedRow, setSelectedRow] = useState<PosDataProps>();
   const navigate = useNavigate();
-  const [dob, setDob] = useState(new Date());
+  const [dob, setDob] = useState<string>("");
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({

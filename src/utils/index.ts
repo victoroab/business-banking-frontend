@@ -64,6 +64,14 @@ export const securityQuestions = [
   { id: 5, question: "What was your childhood best friend's name?" },
 ];
 
+export const beneficiaryTypes = [
+  { id: 1, type: "TRANSFER" },
+  { id: 1, type: "AIRTIME" },
+  { id: 1, type: "DATA" },
+  { id: 1, type: "TV_BILL" },
+  { id: 1, type: "ELECTRICITY" },
+];
+
 export const KYCProgressSteps: ProgressStepsProps[] = [
   // {
   //   id: 1,
@@ -851,6 +859,7 @@ export const industries = [
   { id: 4, industry: "Health" },
   { id: 5, industry: "Technology" },
 ];
+export const paymentModes = [{ id: 1, mode: "NIP_INSTANT" }];
 
 export const companyType = [
   { id: 1, type: "COMPANY" },
@@ -1151,6 +1160,11 @@ export const pensionUpload: ProgressStepsProps[] = [
 export const UploadBeneficiaryList: ProgressStepsProps[] = [
   {
     id: 1,
+    link: "Select-Beneficiary-Type",
+    title: "Select Beneficiary Type",
+  },
+  {
+    id: 2,
     link: "upload-file",
     title: "Upload Beneficiary File",
   },

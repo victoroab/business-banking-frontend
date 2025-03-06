@@ -117,6 +117,27 @@ export const transactionApi = createApi({
       query: () => `/logos`,
       providesTags: [{ type: "Transaction", id: "Transaction" }],
     }),
+    //upload bulk Transaction
+    uploadBulkTransaction: builder.mutation<any, any>({
+      query: (body) => ({
+        url: "/bulk-payment/transfer",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Transaction", id: "Transaction" }],
+    }),
+
+    //upload bulk Pension
+    uploadBulkPension: builder.mutation<any, any>({
+      query: (body) => ({
+        url: "/bulk-payment/pension",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Transaction", id: "Transaction" }],
+    }),
   }),
 });
 export const {
@@ -126,4 +147,6 @@ export const {
   useNameEnquiryMutation,
   useSendMoneyMutation,
   useGetAllLogosQuery,
+  useUploadBulkTransactionMutation,
+  useUploadBulkPensionMutation,
 } = transactionApi;

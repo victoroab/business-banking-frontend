@@ -39,7 +39,7 @@ const Beneficiaries = () => {
   const toggle = useAppSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
   const { handleSearch } = useGlobalHooks();
-  const [dob, setDob] = useState(new Date());
+  const [dob, setDob] = useState<string>("");
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({

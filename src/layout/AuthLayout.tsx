@@ -46,7 +46,8 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
       </section>
       <section className="ml-[50%] w-1/2 bg-white px-20 pt-4 overflow-y-auto">
         {loginBtn && (
-          <div className="flex justify-end">
+          <div className="flex justify-end font-workSans text-base items-center gap-2">
+            <p className="question">Already have an account?</p>
             <button
               className="main-btn w-[160px]"
               type="submit"

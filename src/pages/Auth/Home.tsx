@@ -14,10 +14,10 @@ const Home = () => {
   };
   return (
     <AuthLayout loginBtn terms={false}>
-      <div className="text-center flex justify-center items-center flex-col mt-10">
+      <div className="text-center flex justify-center items-center flex-col">
         <MobileIcon />
         <div
-          className="flex w-[600px] py-6 p-10 flex-col gap-6 rounded-md mb-8"
+          className="flex w-[600px] py-6 p-10 flex-col gap-4 rounded-md mb-4"
           style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
         >
           <div className="flex flex-col gap-3">
@@ -25,30 +25,30 @@ const Home = () => {
               Do You Have An Alert Account?
             </h3>
             <p className="text-greyColr font-workSans leading-4 font-normal text-xs flex flex-col gap-2">
-              Yes? Great! You're one step closer to unlocking seamless business
-              banking. Use your existing account to sign up for an Alert
-              Business Account quickly.
+              {/* Yes? Great! You're one step closer to unlocking seamless business
+              banking. */}
+              Get an Alert business account faster and in less steps when you
+              sign up using your personal Alert account.
             </p>
-            <p className="text-greyColr font-workSans leading-4 font-normal text-xs flex flex-col gap-2">
-              No? No problem! Tap “Create New Account” to create your account
-              and take your business to the next level.
-            </p>
-          </div>
-
-          <div className="flex justify-center w-full gap-6">
             <button
-              className="yellow-frame-btn w-1/2"
-              type="submit"
-              onClick={() => handleAccountStatus(false)}
-            >
-              Create Account
-            </button>
-            <button
-              className="main-btn w-1/2"
+              className="main-btn w-full"
               type="submit"
               onClick={() => handleAccountStatus(true)}
             >
-              Set Up Business Account
+              Yes? Set Up Business Profile
+            </button>
+          </div>
+
+          <div className="flex justify-center flex-col w-full gap-3">
+            {/* <p className="text-greyColr font-workSans leading-4 font-normal text-xs flex flex-col gap-2">
+              No? Tap “Create Account” to create your account .
+            </p> */}
+            <button
+              className="yellow-frame-btn w-full"
+              type="submit"
+              onClick={() => handleAccountStatus(false)}
+            >
+              No? Create Account
             </button>
           </div>
         </div>

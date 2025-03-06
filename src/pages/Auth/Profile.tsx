@@ -8,12 +8,12 @@ import { useSetNameMutation } from "../../service/kyb";
 import { useNavigate } from "react-router-dom";
 import Calender from "../../components/Calendar/DatePicker";
 import { useState } from "react";
-import { format } from "date-fns";
+// import { format } from "date-fns";
 import { selectAuth } from "../../store/slice/authSlice";
 import { useAppSelector } from "../../hooks";
 
 const Profile = () => {
-  const [dob, setDob] = useState(new Date());
+  const [dob, setDob] = useState<string>("");
   const { phoneNumber } = useAppSelector(selectAuth);
   const navigate = useNavigate();
   const [setName, { isLoading }] = useSetNameMutation();
@@ -30,9 +30,10 @@ const Profile = () => {
         firstName: formData.firstName,
         lastName: formData.lastName,
         otherName: formData.otherName,
-        dob: format(new Date(dob), "yyyy-MM-dd"),
+        dob: dob,
         phoneNumber: phoneNumber,
       };
+
       const response = await setName(requiredData).unwrap();
       toast.success(response?.message);
 

@@ -21,6 +21,8 @@ import {
   setActiveUploadTab,
   setUploadCurrentStep,
 } from "../../../store/slice/uploadSlic";
+import StepBackNavigation from "../../../components/ArrowBack/StepBackArrow";
+import BeneficiaryType from "./BeneficiaryType";
 
 const Upload = () => {
   const { activeUploadTab, uploadCurrentStep } = useAppSelector(selectUpload);
@@ -63,7 +65,8 @@ const Upload = () => {
   ];
 
   const stepsBeficaneryListComponents: StepComponentProps[] = [
-    { step: 1, component: UploadBulkFile },
+    { step: 1, component: BeneficiaryType },
+    { step: 2, component: UploadBulkFile },
   ];
   const stepsComponents =
     activeUploadTab === 2
@@ -100,6 +103,12 @@ const Upload = () => {
               {tab.title}
             </button>
           ))}
+        </div>
+        <div className="flex  justify-start w-48 my-8">
+          <StepBackNavigation
+            stateCurrentStep={uploadCurrentStep}
+            setStateCurrentStep={setUploadCurrentStep}
+          />
         </div>
         <ProgressLayout
           progressSteps={uploadSteps}

@@ -2,7 +2,11 @@ import AuthLayout from "../../layout/AuthLayout";
 import { useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../hooks";
 import { useNavigate } from "react-router-dom";
-import { saveUserInfo, selectAuth } from "../../store/slice/authSlice";
+import {
+  saveUserInfo,
+  selectAuth,
+  setKYBDetails,
+} from "../../store/slice/authSlice";
 import OTPInput from "react-otp-input";
 import { toast } from "react-toastify";
 import {
@@ -61,7 +65,7 @@ const Passcode = () => {
         const response = havePersonalAccount
           ? await setExistingPasscode(requiredExistingData).unwrap()
           : await setPasscode(requiredData).unwrap();
-
+        dispatch(setKYBDetails(response?.data?.kyc));
         setCookies("businessUserToken", response?.data?.access_token);
         dispatch(saveUserInfo(response.data));
         setResponseMessage(response?.message);

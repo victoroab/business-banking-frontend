@@ -1,13 +1,43 @@
-import { useNavigate } from "react-router-dom";
 import FormInput from "../../../components/FormInput";
 import { industries } from "../../../utils";
+import * as Yup from "yup";
+import { useFormik } from "formik";
+import Calender from "../../../components/Calendar/DatePicker";
+import { useAppDispatch } from "../../../hooks";
+import {
+  setUploadCurrentStep,
+  setUploadPayload,
+} from "../../../store/slice/uploadSlic";
+import { useState } from "react";
 
 const UploadPaymentPeriod = () => {
-  const navigate = useNavigate();
-  const handleSubmit = () => {
-    navigate("/send-money/uploads/upload-file");
+  const dispatch = useAppDispatch();
+  const [selectedDate, setSelectedDate] = useState<string>("");
+  const onSubmit = async (formData: { month: string; year: string }) => {
+    dispatch(
+      setUploadPayload({
+        month: formData.month,
+        year: formData.year,
+        paymentDate: selectedDate,
+      })
+    );
+    dispatch(setUploadCurrentStep(3));
   };
 
+  const initialValues = {
+    month: "",
+    year: "",
+  };
+  const formSchema = Yup.object().shape({
+    month: Yup.string(),
+    year: Yup.string(),
+  });
+  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: formSchema,
+      onSubmit,
+    });
   return (
     <div className="flex flex-col gap-14 pr-6">
       <div className="gap-4 flex flex-col">
@@ -20,33 +50,39 @@ const UploadPaymentPeriod = () => {
       </div>
 
       <div className="flex gap-8 flex-col">
-        <form action="#" className="flex gap-6 flex-col">
+        <form
+          action="#"
+          className="flex gap-6 flex-col"
+          onSubmit={handleSubmit}
+        >
           <FormInput
-            id="debitAccount"
-            name="debitAccount"
+            id="month"
+            name="month"
             type="text"
-            placeholder="Enter employer code"
-            //  defaultValue={values?.industry}
-            //  onChange={handleChange}
-            //  onBlur={handleBlur}
+            placeholder="Month"
+            error={touched.month ? errors.month : undefined}
+            defaultValue={values?.month}
+            onChange={handleChange}
+            onBlur={handleBlur}
           />
           <FormInput
-            id="debitAccount"
-            name="debitAccount"
+            id="year"
+            name="year"
             type="text"
             selectOptions={industries}
-            placeholder="Email address"
-            //  defaultValue={values?.industry}
-            //  onChange={handleChange}
-            //  onBlur={handleBlur}
+            placeholder="Year"
+            defaultValue={values?.year}
+            error={touched.year ? errors.year : undefined}
+            onChange={handleChange}
+            onBlur={handleBlur}
+          />
+          <Calender
+            selectedDate={selectedDate}
+            setSelectedDate={setSelectedDate}
           />
         </form>
         <div className="flex justify-center  w-full gap-6">
-          <button
-            className="main-btn w-full"
-            type="submit"
-            onClick={handleSubmit}
-          >
+          <button className="main-btn w-full" type="submit">
             Continue
           </button>
         </div>

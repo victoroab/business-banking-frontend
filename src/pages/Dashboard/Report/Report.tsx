@@ -24,7 +24,7 @@ const Report = () => {
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [selectedRow, setSelectedRow] = useState<TransactionProps>();
   const [openAction, IsOpenAction] = useState<boolean>(false);
-  const [dob, setDob] = useState(new Date());
+  const [dob, setDob] = useState<string>("");
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
@@ -129,6 +129,7 @@ const Report = () => {
                           noDataComponent={<NoData />}
                           customStyles={tableCustomStyles}
                           className=""
+                          selectableRows
                         />
 
                         <div className="">
@@ -159,6 +160,7 @@ const Report = () => {
                           customStyles={tableCustomStyles}
                           noDataComponent={<NoData />}
                           className=""
+                          selectableRows
                         />
 
                         <div className="">
@@ -188,6 +190,7 @@ const Report = () => {
                           noDataComponent={<NoData />}
                           customStyles={tableCustomStyles}
                           className=""
+                          selectableRows
                         />
 
                         <div className="">
@@ -217,6 +220,7 @@ const Report = () => {
                           noDataComponent={<NoData />}
                           customStyles={tableCustomStyles}
                           className=""
+                          selectableRows
                         />
 
                         <div className="">

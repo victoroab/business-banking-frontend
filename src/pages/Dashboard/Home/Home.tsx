@@ -8,7 +8,7 @@ import { errorHandler, sampleData } from "../../../utils";
 import { CautionIcon } from "../../../assets/svg/PayBill";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { selectAuth, setUserDetails } from "../../../store/slice/authSlice";
+import { setUserDetails } from "../../../store/slice/authSlice";
 import {
   useGetBusinessKYBDetailsMutation,
   useUserProfileQuery,
@@ -26,7 +26,7 @@ import {
 
 const Dashboard = () => {
   const navigate = useNavigate();
-  const { kybDetails } = useAppSelector(selectAuth);
+  // const { kybDetails } = useAppSelector(selectAuth);
   const dispatch = useAppDispatch();
   const { handleShow } = useGlobalHooks();
   const [withdrawableAmount, setWithdrawableAmount] = useState<any>();
@@ -34,7 +34,7 @@ const Dashboard = () => {
   const { data: profile } = useUserProfileQuery({});
   const [businessKYBDetails] = useGetBusinessKYBDetailsMutation();
   const [account] = useGetAccountsMutation();
-
+  const date = new Date();
   const handleFetchAccount = async () => {
     try {
       const response = await account().unwrap();
@@ -58,15 +58,27 @@ const Dashboard = () => {
     dispatch(setUserDetails(profile?.data));
   }, []);
 
+  const Greeting = () => {
+    let hours = date.getHours();
+    let greet;
+
+    if (hours < 12) {
+      greet = "Good Morning";
+    } else if (hours >= 12 && hours <= 16) {
+      greet = "Good Afternoon";
+    } else if (hours >= 16 && hours <= 24) {
+      greet = "Good Evening";
+    }
+    return greet;
+  };
+
   return (
     <div className="border">
       <Navbar
-        title={`Good Morning, ${profile?.data?.firstName}`}
+        title={Greeting() + ", " + `${profile?.data?.firstName}`}
         subtitle="Here’s your dashboard overview."
       />
-      {(kybDetails?.kybStatus === null ||
-        kybDetails === null ||
-        kybDetails?.kybStatus?.attestation === false) && (
+      {profile?.data?.kybStatus !== "APPROVED" && (
         <div className="flex justify-between bg-secColor p-3 mb-2 mx-10">
           <div className="flex text-white w-[70%] gap-2 items-center">
             <CautionIcon />
@@ -124,7 +136,7 @@ const Dashboard = () => {
             accountNumber={withdrawableAmount?.accountNumber}
             balance={withdrawableAmount?.withdrawableAmount}
           />
-          <AccountCard type="POS" />
+          <AccountCard type="POS" balance={"0"} />
         </div>
         <QuickAction />
         <div className="flex gap-10 items-center">

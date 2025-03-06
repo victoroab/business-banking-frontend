@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { BalanceIcon, CopyIcon, EyeIcon } from "../../../assets/svg/CustomSVGs";
 import { AlertLogoIcon } from "../../../assets/svg/Sidebar";
 import { copyToClipboard } from "../../../utils";
@@ -15,6 +16,11 @@ const AccountCard = ({
   accountNumber,
   balance,
 }: CardProps) => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
+  const toggleVisibility = () => {
+    setIsVisible((prev: any) => !prev);
+  };
+
   return (
     <div className="rounded-lg py-4 px-6 bg-white items-center flex w-[48%] justify-between">
       <div className=" flex flex-col gap-4">
@@ -40,10 +46,10 @@ const AccountCard = ({
         )}
 
         <p className="text-lightGreyColor font-workSans flex items-center gap-2 leading-4 font-medium text-base text-center">
-          {type} Balance <EyeIcon />
+          {type} Balance <EyeIcon onClick={toggleVisibility} />
         </p>
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-          &#8358;{balance}
+          {isVisible ? `\u20A6${balance}` : "**********"}
         </h3>
       </div>
 
