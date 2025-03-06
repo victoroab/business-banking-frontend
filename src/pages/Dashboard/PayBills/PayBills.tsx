@@ -23,7 +23,7 @@ const PayBills = () => {
   const { handleSearch } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [selectedRow, setSelectedRow] = useState<TransactionProps>();
-  const [dob, setDob] = useState(new Date());
+  const [dob, setDob] = useState<string>("");
   const [openAction, IsOpenAction] = useState<boolean>(false);
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;

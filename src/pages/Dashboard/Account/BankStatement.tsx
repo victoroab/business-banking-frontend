@@ -7,8 +7,8 @@ import { useState } from "react";
 import { documentFormats } from "../../../utils";
 
 const BankStatement = () => {
-  const [startDob, setStartDob] = useState(new Date());
-  const [endDob, setEndDob] = useState(new Date());
+  const [startDob, setStartDob] = useState<string>("");
+  const [endDob, setEndDob] = useState<string>("");
   const initialValues = {
     format: "",
   };

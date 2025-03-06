@@ -24,7 +24,7 @@ const AirtimeData = () => {
   const { handleSearch } = useGlobalHooks();
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [selectedRow, setSelectedRow] = useState<TransactionProps>();
-  const [dob, setDob] = useState(new Date());
+  const [dob, setDob] = useState<string>("");
   const [openAction, IsOpenAction] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const [queryData, setQueryData] = useState<{

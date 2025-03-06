@@ -21,8 +21,8 @@ const SendMoney = () => {
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [selectedRow, setSelectedRow] = useState<TransactionProps>();
   const [openAction, IsOpenAction] = useState<boolean>(false);
-  const [to, setTo] = useState(new Date());
-  const [from, setFrom] = useState(new Date());
+  const [to, setTo] = useState<string>("");
+  const [from, setFrom] = useState<string>("");
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
@@ -58,9 +58,8 @@ const SendMoney = () => {
     }));
   };
 
-  // Page change handler
   const handlePageClick = (e: any) => {
-    const newPage = e.selected + 1; // Add 1 because React Paginate uses 0-based indexing
+    const newPage = e.selected + 1;
     setQueryData((prev) => ({
       ...prev,
       page: newPage,
@@ -82,7 +81,6 @@ const SendMoney = () => {
     ? getPaginatedData(data.data.data, queryData.page as number, 10)
     : [];
 
-  console.log(queryData);
   return (
     <div className="border">
       <Navbar

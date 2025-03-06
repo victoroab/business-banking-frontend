@@ -44,7 +44,7 @@ const UploadBulkFile = () => {
       : activeUploadTab === 4
       ? pensionLoader
       : beneficiaryLoader;
-  console.log(activeUploadTab, uploadPayload);
+
   const dispatch = useAppDispatch();
   const handleSubmit = async () => {
     try {
@@ -105,7 +105,6 @@ const UploadBulkFile = () => {
           throw new Error("Invalid upload tab");
       }
 
-      console.log(response);
       toast.success(response?.message);
       dispatch(setUploadCurrentStep(1));
     } catch (error) {

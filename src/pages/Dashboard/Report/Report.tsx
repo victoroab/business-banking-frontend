@@ -24,7 +24,7 @@ const Report = () => {
   const [filteredData, setFilteredData] = useState<any[]>([]);
   const [selectedRow, setSelectedRow] = useState<TransactionProps>();
   const [openAction, IsOpenAction] = useState<boolean>(false);
-  const [dob, setDob] = useState(new Date());
+  const [dob, setDob] = useState<string>("");
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
