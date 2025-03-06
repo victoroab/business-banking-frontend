@@ -178,7 +178,7 @@ const AirtimeData = () => {
                         searchParams="accountName"
                         itemsPerPage={queryData?.pageSize as number}
                         setQueryData={setQueryData}
-                        totalItemsCount={data?.data?.data.length}
+                        totalItemsCount={data?.data?.total || 0}
                         refetch={refetch}
                       />
                     </div>
@@ -211,7 +211,7 @@ const AirtimeData = () => {
                         searchParams="accountName"
                         itemsPerPage={queryData?.pageSize as number}
                         setQueryData={setQueryData}
-                        totalItemsCount={data?.data?.data.length}
+                        totalItemsCount={data?.data?.total || 0}
                         refetch={refetch}
                       />
                     </div>
