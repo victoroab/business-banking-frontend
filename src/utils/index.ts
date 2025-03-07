@@ -900,60 +900,74 @@ export const annualIncome = [
 export const accountSettingsSteps: ProgressStepsProps[] = [
   {
     id: 1,
+    link: "profile",
     title: "Profile",
   },
   {
     id: 2,
+    link: "verification",
     title: "Verification",
   },
   {
     id: 3,
+    link: "transaction-limit",
     title: "Transaction Limit",
   },
   {
     id: 4,
+    link: "notification-preference",
     title: "Notification Preferences",
   },
   {
     id: 5,
+    link: "reset-code",
     title: "Reset Passcode",
   },
   {
     id: 6,
+    link: "transaction-pin",
     title: "Set Transaction PIN",
   },
   {
     id: 7,
+    link: "security-question",
     title: "Security Question",
   },
   {
     id: 8,
+    link: "setup-2fa",
     title: "Setup 2FA",
   },
   {
     id: 9,
+    link: "user-management",
     title: "User Management",
   },
   {
     id: 10,
+    link: "bank-statement",
     title: "Bank Statement",
   },
   {
     id: 12,
+    link: "device-management",
     title: "Device Management",
   },
   {
     id: 13,
+    link: "contact-us",
     title: "Contact US",
   },
-  {
-    id: 14,
-    title: "Terms and Conditions",
-  },
-  {
-    id: 15,
-    title: "Visit our Website",
-  },
+  // {
+  //   id: 14,
+  //   link: "terms-&-condition",
+  //   title: "Terms and Conditions",
+  // },
+  // {
+  //   id: 15,
+  //   link: "visit",
+  //   title: "Visit our Website",
+  // },
 ];
 
 export const accountVerificationOptions: IDOption[] = [
