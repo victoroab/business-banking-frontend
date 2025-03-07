@@ -71,7 +71,18 @@ import Report from "../pages/Dashboard/Report/Report";
 import AuditTrail from "../pages/Dashboard/AuditTrail/Audit";
 import NewAirtimeData from "../pages/Dashboard/AirtimeData/NewTransaction/NewAirtimeData";
 import NewPOS from "../pages/Dashboard/POS/New/NewPOS";
-
+import Verification from "../pages/Dashboard/Account/Verification";
+import AccountProfile from "../pages/Dashboard/Account/Profile";
+import TransactionLimit from "../pages/Dashboard/Account/TransactionLimit/TransactionLimit";
+import NotificationPreference from "../pages/Dashboard/Account/NotificationPreference";
+import ResetPasscode from "../pages/Dashboard/Account/ResetPasscode";
+import SettingTransactionPin from "../pages/Dashboard/Account/TransactionPin";
+import SecurityQuestion from "../pages/Dashboard/Account/SecurityQuestion";
+import SetUp2FA from "../pages/Dashboard/Account/Setup2FA";
+import UserManagement from "../pages/Dashboard/Account/UserManagement/UserManagement";
+import BankStatement from "../pages/Dashboard/Account/BankStatement";
+import DeviceMgt from "../pages/Dashboard/Account/DeviceMgt";
+import ContactUs from "../pages/Dashboard/Account/ContactUs";
 const authRoutes: RouteProps[] = [
   { path: "/welcome", name: "Home", element: <Home /> },
   { path: "/signup", name: "SignUp", element: <SignUp /> },
@@ -156,7 +167,7 @@ const dashboardRoutes: RouteProps[] = [
   { path: "/support", name: "Home", element: <Support /> },
   { path: "/audit-trail", name: "Home", element: <AuditTrail /> },
   { path: "/reports", name: "Home", element: <Report /> },
-  { path: "/account", name: "Account", element: <Account /> },
+  { path: "/account-settings", name: "Account", element: <Account /> },
   { path: "/pos", name: "Account", element: <Pos /> },
   { path: "/request-pos", name: "Account", element: <NewPOS /> },
   { path: "/utility", name: "Account", element: <AirtimeData /> },
@@ -207,28 +218,80 @@ const kybRoutes: RouteProps[] = [
   },
 ];
 
-// const sendMoneyRoutes: RouteProps[] = [
-//   {
-//     path: "debit-account",
-//     name: "Debit Account",
-//     element: <DebitAccount />,
-//   },
-//   {
-//     path: "bank-details",
-//     name: "Bank Details",
-//     element: <BankDetails />,
-//   },
-//   {
-//     path: "amount",
-//     name: "Amount",
-//     element: <Amount />,
-//   },
-//   {
-//     path: "confirmation",
-//     name: "Confirmation",
-//     element: <Confirmation />,
-//   },
-// ];
+const settingsRoutes: RouteProps[] = [
+  {
+    path: "profile",
+    name: "Profile",
+    element: <AccountProfile />,
+  },
+  {
+    path: "verification",
+    name: "Verification",
+    element: <Verification />,
+  },
+  {
+    path: "transaction-limit",
+    name: "Transaction Limit",
+    element: <TransactionLimit />,
+  },
+  {
+    path: "notification-preference",
+    name: "Notification Preference",
+    element: <NotificationPreference />,
+  },
+  {
+    path: "reset-code",
+    name: "Reset Code",
+    element: <ResetPasscode />,
+  },
+
+  {
+    path: "transaction-pin",
+    name: "Transaction PIN",
+    element: <SettingTransactionPin />,
+  },
+
+  {
+    path: "security-question",
+    name: "Security Question",
+    element: <SecurityQuestion />,
+  },
+  {
+    path: "setup-2fa",
+    name: "Set Up 2FA",
+    element: <SetUp2FA />,
+  },
+  {
+    path: "user-management",
+    name: "User Management",
+    element: <UserManagement />,
+  },
+  {
+    path: "bank-statement",
+    name: "Bank Statement",
+    element: <BankStatement />,
+  },
+  {
+    path: "device-management",
+    name: "Device Management",
+    element: <DeviceMgt />,
+  },
+  {
+    path: "contact-us",
+    name: "Contact Us",
+    element: <ContactUs />,
+  },
+  {
+    path: "terms-&-condition",
+    name: "Terms & Condition",
+    element: <DeviceMgt />,
+  },
+  {
+    path: "visit",
+    name: "Visit our Website",
+    element: <DeviceMgt />,
+  },
+];
 
 // const airtimeDataRoutes: RouteProps[] = [
 //   {
@@ -376,4 +439,5 @@ export {
   // airtimeDataRoutes,
   payBillDataRoutes,
   // bulkUploadRoutes,
+  settingsRoutes,
 };

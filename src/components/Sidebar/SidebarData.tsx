@@ -115,6 +115,6 @@ export const SidebarData: SidebarDataProps[] = [
     id: "tab12",
     icon: SidebarUserIcon,
     title: "Account Settings",
-    url: "/account",
+    url: "/account-settings/profile",
   },
 ];

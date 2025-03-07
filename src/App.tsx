@@ -2,7 +2,12 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import "./App.css";
 import { Route, Routes, useNavigate } from "react-router-dom";
-import { authRoutes, dashboardRoutes, kybRoutes } from "./routes/routes";
+import {
+  authRoutes,
+  dashboardRoutes,
+  kybRoutes,
+  settingsRoutes,
+} from "./routes/routes";
 import DashboardLayout from "./layout/Dashboard";
 import { RouteProps } from "./interfaces/Global";
 import ProgressLayout from "./layout/ProgressLayout";
@@ -15,6 +20,8 @@ import { useEffect, useState } from "react";
 import GeneralModal from "./components/PopUps/GeneralModal";
 import Cookies from "js-cookie";
 import Livechat from "./components/Chatwoot/Chatwoot";
+import Account from "./pages/Dashboard/Account/Account";
+import Profile from "./pages/Dashboard/Account/Profile";
 
 function App() {
   const [showModal, setShowModal] = useState<boolean>(false);
@@ -102,25 +109,21 @@ function App() {
           ))}
         </Route>
 
-        {/* <Route
-          path="/send-money"
+        <Route
+          path="/account-settings"
           element={
             <Guard>
               <DashboardLayout>
-                <ProgressLayout
-                  progressSteps={newTransaction}
-                  isDashboard={true}
-                  navTitle="Send Money"
-                  navDesc="Sending money has never been easier. ."
-                />
+                <Account />
               </DashboardLayout>
             </Guard>
           }
         >
-          {sendMoneyRoutes.map((route, idx: number) => (
+          <Route index element={<Profile />} />
+          {settingsRoutes.map((route, idx: number) => (
             <Route key={idx} path={route.path} element={route.element} />
           ))}
-        </Route> */}
+        </Route>
 
         {/* <Route
           path="/utility"

@@ -222,3 +222,15 @@ export interface ModalProps {
   general?: boolean;
   children: React.ReactNode;
 }
+
+export type User = {
+  idCard?: string;
+  id?: number;
+  firstName: string;
+  lastName: string;
+  idNumber?: string;
+  idType?: string;
+  email: string;
+  phone: string;
+  date?: string;
+};
