@@ -13,6 +13,7 @@ import {
   IDOption,
   ProgressStepsProps,
   RowDataProps,
+  User,
 } from "../interfaces/Global";
 import { BettingIcon, CableIcon, ElectricityIcon } from "../assets/svg/PayBill";
 import { Dispatch, SetStateAction } from "react";
@@ -27,11 +28,17 @@ import { persistor } from "../store/store";
 import { useCookies } from "../hooks/cookiesHook";
 
 export const manageBeneficiaryHeader = [
+  { id: 1, title: "Admin" },
+  { id: 2, title: "Super Admin" },
+  { id: 3, title: "Authorizer" },
+  { id: 4, title: "Verifier" },
+  { id: 5, title: "Initiator" },
+];
+export const userManagementHeader = [
   { id: 1, title: "Transfer" },
   { id: 2, title: "Airtime & Data" },
   { id: 3, title: "Bills" },
 ];
-
 export const documentFormats = [
   { id: 1, format: "PDF", logoImage: "https://example.com/logos/pdf-logo.png" },
   {
@@ -925,26 +932,26 @@ export const accountSettingsSteps: ProgressStepsProps[] = [
   },
   {
     id: 9,
-    title: "Bank Statement",
+    title: "User Management",
   },
   {
     id: 10,
-    title: "Manage Beneficiaries",
-  },
-  {
-    id: 11,
-    title: "Device Management",
+    title: "Bank Statement",
   },
   {
     id: 12,
-    title: "Contact US",
+    title: "Device Management",
   },
   {
     id: 13,
-    title: "Terms and Conditions",
+    title: "Contact US",
   },
   {
     id: 14,
+    title: "Terms and Conditions",
+  },
+  {
+    id: 15,
     title: "Visit our Website",
   },
 ];
@@ -1322,3 +1329,22 @@ export const isEmail = (input: string): boolean => {
   const emailPattern = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
   return emailPattern.test(input);
 };
+
+export const users: User[] = [
+  {
+    id: 1,
+    firstName: "Bamidele",
+    lastName: "Akinyemi",
+    email: "akinyemibamidele2@gmail.com",
+    phone: "09131683009",
+    date: "Nov 31, 2024",
+  },
+  {
+    id: 2,
+    firstName: "Bamidele",
+    lastName: "Akinyemi",
+    email: "akinyemibamidele2@gmail.com",
+    phone: "09131683009",
+    date: "Nov 31, 2024",
+  },
+];

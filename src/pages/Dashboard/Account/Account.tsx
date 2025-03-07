@@ -10,9 +10,10 @@ import SecurityQuestion from "./SecurityQuestion";
 import BankStatement from "./BankStatement";
 import ContactUs from "./ContactUs";
 import DeviceMgt from "./DeviceMgt";
-import ManageBeneficiary from "./ManagementBeneficiary/ManageBeneficiary";
+// import ManageBeneficiary from "./ManagementBeneficiary/ManageBeneficiary";
 import TransactionPin from "./TransactionPin";
 import SetUp2FA from "./Setup2FA";
+import UserManagement from "./UserManagement/UserManagement";
 
 const Account = () => {
   const [currentTab, setCurrentTab] = useState<number>(1);
@@ -46,10 +47,11 @@ const Account = () => {
           {currentTab === 6 && <TransactionPin />}
           {currentTab === 7 && <SecurityQuestion />}
           {currentTab === 8 && <SetUp2FA />}
-          {currentTab === 9 && <BankStatement />}
-          {currentTab === 10 && <ManageBeneficiary />}
-          {currentTab === 11 && <DeviceMgt />}
-          {currentTab === 12 && <ContactUs />}
+          {currentTab === 9 && <UserManagement />}
+          {currentTab === 10 && <BankStatement />}
+
+          {currentTab === 12 && <DeviceMgt />}
+          {currentTab === 13 && <ContactUs />}
         </div>
       </div>
     </div>
