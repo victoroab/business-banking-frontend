@@ -99,14 +99,16 @@ const SearchSelect: FC<SelectProps> = ({
       </p>
       {isOpen && (
         <ul className="options p-4">
-          <div className="flex px-4 mb-6">
-            <input
-              placeholder="🔍 Search for Account"
-              className={`form-controls w-full`}
-              value={searchTerm}
-              onChange={(e: any) => setSearchTerm(e.target.value)}
-            />
-          </div>
+          {filteredOptions !== undefined && filteredOptions?.length > 2 && (
+            <div className="flex px-4 mb-6">
+              <input
+                placeholder="🔍 Search for Account"
+                className={`form-controls w-full`}
+                value={searchTerm}
+                onChange={(e: any) => setSearchTerm(e.target.value)}
+              />
+            </div>
+          )}
           {isLoading ? (
             <div className="flex justify-center items-center w-full">
               <Spinner />
@@ -131,9 +133,10 @@ const SearchSelect: FC<SelectProps> = ({
                           <div className="text-greyColr font-workSans flex gap-2 flex-col leading-4 font-medium text-sm">
                             {option?.[accountName as any]}{" "}
                             <span className="text-sm font-medium text-greyColr">
-                              Account Number {option?.[itemPropertyName as any]}
+                              Account Number:{" "}
+                              {option?.[itemPropertyName as any]}
                             </span>
-                            Bank: {option?.[bankName as any]}
+                            {/* Bank: {option?.[bankName as any]} */}
                           </div>
                         </div>
                         <div
