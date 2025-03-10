@@ -29,7 +29,7 @@ const SubMenu = ({ item }: SidebarItemProps) => {
         }
       >
         {({ isActive }) => (
-          <hgroup className=" flex justify-between items-center  p-3">
+          <hgroup className=" flex justify-between items-center p-3">
             <div className="flex gap-4 items-center">
               {<item.icon fillColor={isActive ? "white" : "#352F36"} />}
               <p className="font-workSans">{item.title}</p>
@@ -62,7 +62,7 @@ const SubMenu = ({ item }: SidebarItemProps) => {
         }`}
       >
         {isSubNavOpen && (
-          <>
+          <div className={`${item.id === "tab2" ? "h-48" : "h-32"}`}>
             {item?.subNav?.map((item: SidebarDataProps) => (
               <React.Fragment key={item.id}>
                 <NavLink
@@ -87,7 +87,7 @@ const SubMenu = ({ item }: SidebarItemProps) => {
                 </NavLink>
               </React.Fragment>
             ))}
-          </>
+          </div>
         )}
       </div>
     </React.Fragment>
