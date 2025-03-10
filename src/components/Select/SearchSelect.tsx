@@ -36,7 +36,6 @@ const SearchSelect: FC<SelectProps> = ({
   accountType,
   filter,
   isLoading,
-  bankName,
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const popupRef = useRef<HTMLDivElement>(null);
