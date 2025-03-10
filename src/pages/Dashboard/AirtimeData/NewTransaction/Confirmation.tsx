@@ -135,7 +135,7 @@ const AirtimeConfirmation = () => {
 
       {openPinModal && (
         <GeneralModal>
-          <InputToken />
+          <InputToken setOpenPinModal={setOpenPinModal} />
         </GeneralModal>
       )}
     </div>
