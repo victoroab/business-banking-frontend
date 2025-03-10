@@ -103,9 +103,9 @@ const Dashboard = () => {
           <div className="flex text-white w-[75%] gap-2 items-center">
             <CautionIcon />
             <p className="text-white font-workSans leading-4 font-semibold text-sm">
-              Hi, `${profile?.data?.firstName}`! You currently don’t have an
-              email address linked to your account. Click the button to add your
-              email address.
+              Hi, {profile?.data?.firstName}! You currently don’t have an email
+              address linked to your account. Click the button to add your email
+              address.
             </p>
           </div>
           <button className="white-btn" onClick={() => handleShow("add-email")}>

@@ -54,6 +54,7 @@ const BankDetails = () => {
         })
       );
     } catch (error: any) {
+      setFieldValue("accountNumber", "");
       errorHandler(error);
     }
   };
@@ -62,13 +63,14 @@ const BankDetails = () => {
     bankCode: "",
   };
   const formSchema = Yup.object().shape({
-    accountNumber: Yup.string(),
+    accountNumber: Yup.string().required(),
     bankCode: Yup.string(),
   });
   const {
     values,
     touched,
     errors,
+    isValid,
     handleBlur,
     handleChange,
     handleSubmit,
@@ -78,15 +80,21 @@ const BankDetails = () => {
     validationSchema: formSchema,
     onSubmit,
   });
-
+  console.log(values);
   useEffect(() => {
-    const selectedBeneficiary = allBeneficiaries?.data?.data?.find(
-      (beneficiary: any) => beneficiary.accountNumber === values.accountNumber
-    );
+    if (openBeneficiary) {
+      const selectedBeneficiary = allBeneficiaries?.data?.data?.find(
+        (beneficiary: any) => beneficiary.accountNumber === values.accountNumber
+      );
+      console.log(selectedBeneficiary);
+      setFieldValue("bankCode", selectedBeneficiary?.bankCode as string);
+      setFieldValue(
+        "accountNumber",
+        selectedBeneficiary?.accountNumber as string
+      );
+    }
 
-    setFieldValue("bankCode", selectedBeneficiary?.bankCode as string);
-
-    if (values.accountNumber.length === 10) {
+    if (values?.accountNumber?.length === 10) {
       handleSubmit();
     }
   }, [values?.accountNumber]);
@@ -94,7 +102,7 @@ const BankDetails = () => {
   useEffect(() => {
     setBankList(data);
   }, [data]);
-
+  console.log(isValid);
   return (
     <>
       <div className="flex flex-col gap-14">
@@ -159,6 +167,9 @@ const BankDetails = () => {
                 className="cursor-pointer"
                 onClick={() => setOpenBeneficiary(true)}
               />
+              <p className="flex font-workSans text-sm">
+                Select From Saved Beneficiary
+              </p>
             </div>
 
             {openBeneficiary && (
@@ -187,7 +198,9 @@ const BankDetails = () => {
             <div className="flex justify-center  w-full gap-6">
               <button
                 className="main-btn w-full"
-                onClick={() => dispatch(setTransactionCurrentStep(3))}
+                onClick={() =>
+                  isValid && dispatch(setTransactionCurrentStep(3))
+                }
               >
                 Continue
               </button>
