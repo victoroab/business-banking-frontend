@@ -26,7 +26,7 @@ export const SidebarData: SidebarDataProps[] = [
   },
 
   {
-    id: "tab3",
+    id: "tab2",
     icon: SendMoneyIcon,
     title: "Send Money",
     url: "/send-money",
@@ -52,7 +52,7 @@ export const SidebarData: SidebarDataProps[] = [
     ],
   },
   {
-    id: "tab4",
+    id: "tab3",
     icon: SidebarAirtimeIcon,
     title: "Airtime | Data | Bills",
     url: "/utility",

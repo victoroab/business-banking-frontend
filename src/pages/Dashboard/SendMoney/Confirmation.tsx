@@ -143,7 +143,7 @@ const Confirmation = () => {
 
       {openPinModal && (
         <GeneralModal>
-          <InputToken />
+          <InputToken setOpenPinModal={setOpenPinModal} />
         </GeneralModal>
       )}
     </div>

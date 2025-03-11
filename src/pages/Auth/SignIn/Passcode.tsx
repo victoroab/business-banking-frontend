@@ -22,7 +22,7 @@ import PopUp from "../../../components/PopUps/PopUp";
 import { errorHandler } from "../../../utils";
 import { useCookies } from "../../../hooks/cookiesHook";
 import { FAIcon } from "../../../assets/svg/dashboard";
-import { EmailIcon } from "../../../assets/svg/Accout";
+import { EmailOtp } from "../../../assets/svg/Auth";
 
 const LoginPasscode = () => {
   const [signIn, { isLoading }] = useSignInMutation();
@@ -118,7 +118,7 @@ const LoginPasscode = () => {
             (loginResponse?.otpEnabled && phoneNumber.length === 11) ? (
               <FAIcon />
             ) : (
-              <EmailIcon />
+              <EmailOtp />
             )}
             <Otp
               otpCode={verifyOtpCode}

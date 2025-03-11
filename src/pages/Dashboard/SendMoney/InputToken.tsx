@@ -10,8 +10,9 @@ import { errorHandler } from "../../../utils";
 import Spinner from "../../../components/Spinner/Spinner";
 import { SuccessIcon } from "../../../assets/svg/CustomSVGs";
 import { useNavigate } from "react-router-dom";
+import { CloseIcon } from "../../../assets/svg/Auth";
 
-const InputToken = () => {
+const InputToken = ({ setOpenPinModal }: { setOpenPinModal: any }) => {
   const [otpCode, setOtpCode] = useState<string>("");
   const [openReceipt, setOpenReceipt] = useState<boolean>(false);
   const [sendMoney, { isLoading }] = useSendMoneyMutation();
@@ -97,6 +98,10 @@ const InputToken = () => {
       ) : (
         <div className="bg-white rounded-lg flex flex-col items-center justify-center p-10 gap-10 w-[650px]">
           <div className="flex flex-col w-full gap-10 justify-center items-center text-center">
+            <div className="cursor-pointer w-full justify-end items-end flex">
+              <CloseIcon onClick={() => setOpenPinModal(false)} />
+            </div>
+
             <Otp
               inputCount={4}
               title={"Enter Your Transaction PIN"}

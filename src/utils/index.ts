@@ -288,7 +288,7 @@ export const getLastMonthData = (array: DataItem[]): DataItem[] => {
   const priorMonth = subMonths(today, 1);
 
   return array?.filter((item) =>
-    isWithinInterval(new Date(item.createdAt), {
+    isWithinInterval(new Date(item?.createdAt), {
       start: priorMonth,
       end: today,
     })
@@ -300,7 +300,7 @@ export const getLastWeekData = (array: DataItem[]): DataItem[] => {
   const priorWeek = subWeeks(today, 1);
 
   return array?.filter((item) =>
-    isWithinInterval(new Date(item.createdAt), {
+    isWithinInterval(new Date(item?.createdAt), {
       start: priorWeek,
       end: today,
     })
@@ -323,7 +323,7 @@ export const sampleData = [
 ];
 
 export const filterList = [
-  // { value: "week", name: "Weekly" },
+  { value: "week", name: "1W" },
   { value: "month", name: "1M" },
   { value: "three", name: "3M" },
   { value: "six", name: "6M" },
@@ -1362,3 +1362,10 @@ export const users: User[] = [
     date: "Nov 31, 2024",
   },
 ];
+
+export function calculateTotalAmount<T extends Record<string, any>>(
+  data: T[],
+  key: keyof T = "amount"
+): number {
+  return data.reduce((sum, item) => sum + ((item[key] as number) || 0), 0);
+}
