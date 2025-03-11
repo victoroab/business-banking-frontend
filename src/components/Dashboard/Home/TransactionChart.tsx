@@ -11,6 +11,7 @@ import {
   parseJSON,
 } from "date-fns";
 import {
+  calculateTotalAmount,
   filterList,
   getLastMonthData,
   getLastWeekData,
@@ -22,10 +23,7 @@ import { useGetAllTransactionsQuery } from "../../../service/transaction";
 import Spinner from "../../Spinner/Spinner";
 import NoData from "../../NoData/NoData";
 
-const TransactionChart: React.FC<AnalyticsChartProps> = ({
-  // data,
-  withdrawableAmount,
-}) => {
+const TransactionChart: React.FC<AnalyticsChartProps> = () => {
   const { data, isLoading } = useGetAllTransactionsQuery({});
 
   const newList = data?.data?.data
@@ -35,17 +33,18 @@ const TransactionChart: React.FC<AnalyticsChartProps> = ({
         createdAt: item?.createdAt,
       }))
     : [];
-  console.log(newList, "nrewqweklj");
-  const [filterBy, setFilter] = useState<string>("month");
+
+  const [filterBy, setFilter] = useState<string>("week");
   const [type, setType] = useState<"amount" | "expenses">("amount");
   const [graphData, setGraphData] = useState<GraphData[]>([]);
+  const [totalAmount, setTotalAmount] = useState<number>(0);
   const getWeekData = useCallback(() => {
     const today = new Date();
     const lastWeek = subWeeks(today, 1);
     const lastWeekData = getLastWeekData(newList);
     const everyday = eachDayOfInterval({ start: lastWeek, end: today });
 
-    return everyday.map((date) => ({
+    const weeklyData = everyday.map((date) => ({
       name: format(date, "E"),
       amount: lastWeekData
         ?.filter((item: any) => isSameDay(parseJSON(item.createdAt), date))
@@ -54,6 +53,9 @@ const TransactionChart: React.FC<AnalyticsChartProps> = ({
           0
         ),
     }));
+    const cal = calculateTotalAmount(weeklyData);
+    setTotalAmount(cal);
+    return weeklyData;
   }, [newList]);
   const getMonthData = useCallback(() => {
     const today = new Date();
@@ -61,7 +63,7 @@ const TransactionChart: React.FC<AnalyticsChartProps> = ({
     const lastMonthData = getLastMonthData(newList);
     const everyWeek = eachWeekOfInterval({ start: lastMonth, end: today });
 
-    return everyWeek.map((date) => ({
+    const monthlyData = everyWeek.map((date) => ({
       name: format(date, "MMM d"),
       amount: lastMonthData
         ?.filter((item: any) => isSameWeek(parseJSON(item.createdAt), date))
@@ -70,6 +72,9 @@ const TransactionChart: React.FC<AnalyticsChartProps> = ({
           0
         ),
     }));
+    const cal = calculateTotalAmount(monthlyData);
+    setTotalAmount(cal);
+    return monthlyData;
   }, [newList]);
   useEffect(() => {
     switch (filterBy) {
@@ -122,7 +127,7 @@ const TransactionChart: React.FC<AnalyticsChartProps> = ({
           ))}
         </select>
         <p className="font-bricolage text-pryColor font-bold text-[42px]">
-          &#8358;{withdrawableAmount}
+          &#8358;{totalAmount}
         </p>
         <div className="font-workSans text-pryColor  font-2xl flex gap-2 items-center">
           <div
