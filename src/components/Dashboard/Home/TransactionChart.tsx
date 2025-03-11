@@ -35,8 +35,8 @@ const TransactionChart: React.FC<AnalyticsChartProps> = ({
         createdAt: item?.createdAt,
       }))
     : [];
-
-  const [filterBy, setFilter] = useState<string>("week");
+  console.log(newList, "nrewqweklj");
+  const [filterBy, setFilter] = useState<string>("month");
   const [type, setType] = useState<"amount" | "expenses">("amount");
   const [graphData, setGraphData] = useState<GraphData[]>([]);
   const getWeekData = useCallback(() => {
