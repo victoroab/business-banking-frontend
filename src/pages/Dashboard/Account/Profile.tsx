@@ -1,7 +1,12 @@
+import { useAppSelector } from "../../../hooks";
 import { useUserProfileQuery } from "../../../service/kyb";
+import { selectAccount } from "../../../store/slice/account";
 
 const Profile = () => {
   const { data } = useUserProfileQuery({});
+  const { businessKYBDetails } = useAppSelector(selectAccount);
+
+  console.log(businessKYBDetails);
   return (
     <div className="flex flex-col gap-10">
       <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
@@ -89,9 +94,11 @@ const Profile = () => {
       >
         <div className="flex justify-start items-start w-full">
           <div className="flex items-center justify-center w-[64px] h-[64px] bg-[#f1f2f3] p-4 rounded-full">
-            <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">
-              BA
-            </h3>
+            <img
+              src={businessKYBDetails?.logo}
+              alt="avatar"
+              className="w-10 h-10 rounded-full"
+            />
           </div>
         </div>
         <div className="column flex justify-between items-center w-full">
@@ -100,7 +107,7 @@ const Profile = () => {
               Business Name
             </p>
             <p className="text-base text-greyColr font-workSans font-medium">
-              Bammy World
+              {businessKYBDetails?.businessName}
             </p>
           </div>
           <div className="flex flex-col justify-end items-end">
@@ -108,7 +115,7 @@ const Profile = () => {
               Business Industry
             </p>
             <p className="text-base text-greyColr font-workSans font-medium">
-              ICT
+              {businessKYBDetails?.industry}
             </p>
           </div>
         </div>
@@ -118,7 +125,7 @@ const Profile = () => {
               Size
             </p>
             <p className="text-base text-greyColr font-workSans font-medium">
-              1000-10000
+              {businessKYBDetails?.size}
             </p>
           </div>
           <div className="flex flex-col justify-end items-end">
@@ -126,7 +133,7 @@ const Profile = () => {
               Estimated Annual Income
             </p>
             <p className="text-base text-greyColr font-workSans font-medium">
-              NGN 10,000,000 - NGN 100,000,000
+              {businessKYBDetails?.income}
             </p>
           </div>
         </div>
@@ -136,7 +143,7 @@ const Profile = () => {
               Business Address
             </p>
             <p className="text-base text-greyColr font-workSans font-medium ">
-              132 Herbert Macuarly Way, Yaba, Lagos
+              {businessKYBDetails?.address}
             </p>
           </div>
         </div>
