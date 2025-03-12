@@ -13,7 +13,7 @@ const Home = () => {
     navigate("/signup");
   };
   return (
-    <AuthLayout loginBtn terms={false}>
+    <AuthLayout loginBtn={false} terms={false}>
       <div className="text-center flex justify-center items-center flex-col">
         <MobileIcon />
         <div
@@ -22,20 +22,21 @@ const Home = () => {
         >
           <div className="flex flex-col gap-3">
             <h3 className="text-pryColor font-semibold text-lg font-bricolage leading-6">
-              Do You Have An Alert Account?
+              Join Alert Business Today!
             </h3>
             <p className="text-greyColr font-workSans leading-4 font-normal text-xs flex flex-col gap-2">
               {/* Yes? Great! You're one step closer to unlocking seamless business
               banking. */}
-              Get an Alert business account faster and in less steps when you
-              sign up using your personal Alert account.
+              Take control of your business with an all-in-one platform designed
+              to simplify operations, track transactions, and boost growth. Sign
+              up today and experience seamless business management!
             </p>
             <button
               className="main-btn w-full"
               type="submit"
               onClick={() => handleAccountStatus(true)}
             >
-              Yes? Set Up Business Profile
+              Get Started
             </button>
           </div>
 
@@ -48,7 +49,7 @@ const Home = () => {
               type="submit"
               onClick={() => handleAccountStatus(false)}
             >
-              No? Create Account
+              Login
             </button>
           </div>
         </div>

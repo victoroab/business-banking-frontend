@@ -95,6 +95,26 @@ export const userApi = createApi({
 
       invalidatesTags: [{ type: "User", id: "User" }],
     }),
+
+    //roles
+    getAllRoles: builder.query<any, void>({
+      query: () => `/role`,
+      providesTags: [{ type: "User", id: "User" }],
+    }),
+
+    //Invite
+    inviteUser: builder.mutation<
+      any,
+      { businessId: string; email: string; roleId: string }
+    >({
+      query: (body) => ({
+        url: "/business-user/invite",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "User", id: "User" }],
+    }),
   }),
 });
 
@@ -103,4 +123,6 @@ export const {
   useVerfifyPhoneMutation,
   useSetEmailMutation,
   useVerfifyEmailMutation,
+  useGetAllRolesQuery,
+  useInviteUserMutation,
 } = userApi;
