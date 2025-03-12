@@ -47,7 +47,8 @@ const Home = () => {
             <button
               className="yellow-frame-btn w-full"
               type="submit"
-              onClick={() => handleAccountStatus(false)}
+              // onClick={() => handleAccountStatus(false)}
+              onClick={() => navigate("/login")}
             >
               Login
             </button>
