@@ -136,7 +136,11 @@ const Dashboard = () => {
             type="Account"
             accountName={withdrawableAmount?.accountName}
             accountNumber={withdrawableAmount?.accountNumber}
-            balance={withdrawableAmount?.withdrawableAmount}
+            balance={
+              withdrawableAmount?.withdrawableAmount !== undefined
+                ? withdrawableAmount?.withdrawableAmount
+                : 0
+            }
           />
           <AccountCard type="POS" balance={"0"} />
         </div>

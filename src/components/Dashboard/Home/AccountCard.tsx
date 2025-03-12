@@ -45,7 +45,7 @@ const AccountCard = ({
           </div>
         )}
 
-        <p className="text-lightGreyColor font-workSans flex items-center gap-2 leading-4 font-medium text-base text-center">
+        <p className="text-lightGreyColor cursor-pointer font-workSans flex items-center gap-2 leading-4 font-medium text-base text-center">
           {type} Balance <EyeIcon onClick={toggleVisibility} />
         </p>
         <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">

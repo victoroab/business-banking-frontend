@@ -62,7 +62,7 @@ const SubMenu = ({ item }: SidebarItemProps) => {
         }`}
       >
         {isSubNavOpen && (
-          <div className={`${item.id === "tab2" ? "h-48" : "h-32"}`}>
+          <div className={`${item.id === "tab2" ? "h-48" : "h-[140px]"}`}>
             {item?.subNav?.map((item: SidebarDataProps) => (
               <React.Fragment key={item.id}>
                 <NavLink

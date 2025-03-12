@@ -31,6 +31,13 @@ export const airtimeColumnsData = (
       grow: 1.2,
       cell: ({ amount }) => <div className="centered-box">NGN{amount}</div>,
     },
+
+    {
+      name: "Transaction Date",
+      cell: ({ createdAt }) => (
+        <div className="centered-box">{formatTimestamp(createdAt, false)}</div>
+      ),
+    },
     {
       name: "Status",
       selector: ({ status }) => status,
@@ -40,21 +47,16 @@ export const airtimeColumnsData = (
             className={`rounded-2xl flex items-center py-2 px-4 text-center ${
               status === "successful"
                 ? "text-positive bg-[#f3fbf8]"
+                : status === "PENDING"
+                ? "text-secColor bg-[#fdfbf6]"
                 : "text-nagative bg-[#fff7f5]"
             }`}
           >
-            {status}
+            {status.charAt(0).toUpperCase() + status.slice(1).toLowerCase()}
           </span>
         </div>
       ),
     },
-    {
-      name: "Transaction Date",
-      cell: ({ createdAt }) => (
-        <div className="centered-box">{formatTimestamp(createdAt, false)}</div>
-      ),
-    },
-
     {
       name: "Action",
       cell: (row: TransactionProps) => (
@@ -111,6 +113,13 @@ export const dataColumnsData = (
       grow: 1.2,
       cell: ({ amount }) => <div className="centered-box">NGN{amount}</div>,
     },
+
+    {
+      name: "Transaction Date",
+      cell: ({ createdAt }) => (
+        <div className="centered-box">{formatTimestamp(createdAt, false)}</div>
+      ),
+    },
     {
       name: "Status",
       selector: ({ status }) => status,
@@ -120,21 +129,16 @@ export const dataColumnsData = (
             className={`rounded-2xl flex items-center py-2 px-4 text-center ${
               status === "successful"
                 ? "text-positive bg-[#f3fbf8]"
+                : status === "PENDING"
+                ? "text-secColor bg-[#fdfbf6]"
                 : "text-nagative bg-[#fff7f5]"
             }`}
           >
-            {status}
+            {status.charAt(0).toUpperCase() + status.slice(1).toLowerCase()}
           </span>
         </div>
       ),
     },
-    {
-      name: "Transaction Date",
-      cell: ({ createdAt }) => (
-        <div className="centered-box">{formatTimestamp(createdAt, false)}</div>
-      ),
-    },
-
     {
       name: "Action",
       cell: (row: TransactionProps) => (
