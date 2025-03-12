@@ -31,6 +31,13 @@ export const electricityColumnsData = (
       grow: 1.2,
       cell: ({ amount }) => <div className="centered-box">NGN{amount}</div>,
     },
+
+    {
+      name: "Transaction Date",
+      cell: ({ createdAt }) => (
+        <div className="centered-box">{formatTimestamp(createdAt, false)}</div>
+      ),
+    },
     {
       name: "Status",
       selector: ({ status }) => status,
@@ -50,13 +57,6 @@ export const electricityColumnsData = (
         </div>
       ),
     },
-    {
-      name: "Transaction Date",
-      cell: ({ createdAt }) => (
-        <div className="centered-box">{formatTimestamp(createdAt, false)}</div>
-      ),
-    },
-
     {
       name: "Action",
       cell: (row: TransactionProps) => (
@@ -113,6 +113,13 @@ export const cableTvColumnsData = (
       grow: 1.2,
       cell: ({ amount }) => <div className="centered-box">NGN{amount}</div>,
     },
+
+    {
+      name: "Transaction Date",
+      cell: ({ createdAt }) => (
+        <div className="centered-box">{formatTimestamp(createdAt, false)}</div>
+      ),
+    },
     {
       name: "Status",
       selector: ({ status }) => status,
@@ -132,13 +139,6 @@ export const cableTvColumnsData = (
         </div>
       ),
     },
-    {
-      name: "Transaction Date",
-      cell: ({ createdAt }) => (
-        <div className="centered-box">{formatTimestamp(createdAt, false)}</div>
-      ),
-    },
-
     {
       name: "Action",
       cell: (row: TransactionProps) => (
