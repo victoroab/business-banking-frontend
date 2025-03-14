@@ -22,6 +22,7 @@ const Profile = () => {
     firstName: "",
     lastName: "",
     otherName: "",
+    dob: "",
   };
 
   const onSubmit = async (formData: any) => {
@@ -47,6 +48,7 @@ const Profile = () => {
     firstName: Yup.string().required("First name is required"),
     otherName: Yup.string(),
     lastName: Yup.string().required("Last name is required"),
+    dob: Yup.string().required("Date of birth is required"),
   });
 
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
@@ -110,6 +112,9 @@ const Profile = () => {
               />
 
               <Calender setSelectedDate={setDob} selectedDate={dob} />
+              {touched.dob && errors.dob && (
+                <div className="text-red-500 text-xs">{errors.dob}</div>
+              )}
             </div>
             <div className="flex justify-center  w-full gap-6">
               <button className="main-btn w-full" type="submit">

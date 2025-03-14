@@ -1322,7 +1322,7 @@ export const LogoutUser = (navigate: any) => {
   sessionStorage.clear();
   persistor.purge();
   navigate("/");
-  window.location.reload();
+  // window.location.reload();
   // dispatch(saveUserInfo(undefined));
 };
 
