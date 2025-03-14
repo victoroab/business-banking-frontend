@@ -7,6 +7,7 @@ import {
 import { useGetAllTransactionsQuery } from "../../../service/transaction";
 import NoData from "../../NoData/NoData";
 import Spinner from "../../Spinner/Spinner";
+import { TransactionElectricityIcon } from "../../../assets/svg/CustomSVGs";
 
 const TransactionHistory = () => {
   const navigate = useNavigate();
@@ -16,12 +17,22 @@ const TransactionHistory = () => {
     id: data?.id,
     amount: data?.amount,
     status: data?.status,
-    // icon: "",
+    icon:
+      data?.transactionType === "TRANSFER"
+        ? TransactionElectricityIcon
+        : data?.transactionType === "TV_BILL"
+        ? TransactionElectricityIcon
+        : data?.transactionType === "ELECTRICITY"
+        ? TransactionElectricityIcon
+        : data?.transactionType === "DATA"
+        ? TransactionElectricityIcon
+        : TransactionElectricityIcon,
     action: data?.action,
     purpose: data?.narration,
     date: data?.createdAt,
   }));
 
+  console.log(data?.data?.data, "testingggggggg transa");
   return (
     <div className="bg-white rounded-lg w-[40%] p-6 flex flex-col gap-6">
       <div className="flex justify-between items-center">
@@ -55,7 +66,7 @@ const TransactionHistory = () => {
                             : "bg-[#FFF7F5]"
                         }`}
                       >
-                        {/* <transaction.icon /> */}
+                        <transaction.icon />
                       </div>
                       <div className="di">
                         <p className="amount font-workSans text-medium text-[13px]">

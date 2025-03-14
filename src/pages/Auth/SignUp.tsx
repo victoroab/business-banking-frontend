@@ -8,8 +8,13 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 
 import { setPhoneNumber } from "../../store/slice/authSlice";
 import Spinner from "../../components/Spinner/Spinner";
-import { selectGlobal } from "../../store/slice/globalSlice";
+import {
+  selectGlobal,
+  setHavePersonalAccount,
+} from "../../store/slice/globalSlice";
 import { toast } from "react-toastify";
+import { useState } from "react";
+import { UserSignUpTabIcon } from "../../assets/svg/Sidebar";
 
 const SignUp = () => {
   const dispatch = useAppDispatch();
@@ -17,7 +22,21 @@ const SignUp = () => {
   const navigate = useNavigate();
   const [initiate, { isLoading }] = useInitiateMutation();
   const { havePersonalAccount } = useAppSelector(selectGlobal);
-
+  const [activeTab, setActiveTab] = useState(1);
+  const signUpTab = [
+    {
+      id: 1,
+      title: "New User ?",
+      paragraph:
+        "You are just signing up on Alert for the first time. Get started now",
+    },
+    {
+      id: 2,
+      title: "Existing User ?",
+      paragraph:
+        "Get an Alert business account faster and in less steps when you sign up using your Alert account.",
+    },
+  ];
   const initialValues = {
     phoneNumber: "",
   };
@@ -39,7 +58,13 @@ const SignUp = () => {
   };
 
   const formSchema = Yup.object().shape({
-    phoneNumber: Yup.string().required("Phone number is required"),
+    phoneNumber: Yup.string().required(
+      ` ${
+        activeTab === 1
+          ? "Phone number is required"
+          : "Account Number is required"
+      }`
+    ),
   });
 
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
@@ -49,11 +74,44 @@ const SignUp = () => {
       onSubmit,
     });
 
+  const handleAccountStatus = (id: number) => {
+    const status = id === 1 ? false : true;
+    dispatch(setHavePersonalAccount(status));
+    setActiveTab(id);
+  };
+
   return (
     <div>
       {" "}
       <AuthLayout loginBtn={false} terms>
         <div className="text-center flex justify-center items-center flex-col mt-32 px-6">
+          <div className="flex justify-between items-center gap-8 mb-4 px-6">
+            {signUpTab?.map((tab: any) => (
+              <div
+                onClick={() => handleAccountStatus(tab.id)}
+                className={`flex flex-col cursor-pointer rounded-2xl p-4 items-start w-1/2 h-[160px] ${
+                  activeTab === tab.id ? "border-secColor border" : "border"
+                }`}
+              >
+                <div className="flex">
+                  <UserSignUpTabIcon
+                    fillColor={activeTab === tab.id ? "#DBB951" : "#352F36"}
+                    fillOpacity={activeTab === tab.id ? "1" : "0.3"}
+                  />
+                </div>
+                <div
+                  className={`flex font-bricolage ${
+                    activeTab === tab.id ? "text-pryColor" : "text-greyColr"
+                  } font-semibold`}
+                >
+                  {tab.title}
+                </div>
+                <div className="flex font-workSans text-sm text-left">
+                  {tab.paragraph}
+                </div>
+              </div>
+            ))}
+          </div>
           <form className="flex px-6 flex-col gap-8" onSubmit={handleSubmit}>
             <div className="flex flex-col gap-4">
               <h3 className="text-pryColor font-semibold text-2xl font-bricolage leading-6">

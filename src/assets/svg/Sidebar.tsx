@@ -2,8 +2,28 @@ import { SVGProps } from "react";
 
 interface DashboardIconProps extends SVGProps<SVGSVGElement> {
   fillColor?: string;
+  fillOpacity?: string;
 }
-
+export const UserSignUpTabIcon = ({
+  fillColor,
+  fillOpacity,
+  ...props
+}: DashboardIconProps) => (
+  <svg
+    width="28"
+    height="28"
+    {...props}
+    viewBox="0 0 28 28"
+    fill="none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
+    <path
+      d="M13.9998 0.666687C6.77184 0.666687 0.666504 6.77202 0.666504 14C0.666504 21.228 6.77184 27.3334 13.9998 27.3334C21.2278 27.3334 27.3332 21.228 27.3332 14C27.3332 6.77202 21.2278 0.666687 13.9998 0.666687ZM13.9998 7.33335C16.3025 7.33335 17.9998 9.02935 17.9998 11.3334C17.9998 13.6374 16.3025 15.3334 13.9998 15.3334C11.6985 15.3334 9.99984 13.6374 9.99984 11.3334C9.99984 9.02935 11.6985 7.33335 13.9998 7.33335ZM7.19184 20.3627C8.38784 18.6027 10.3825 17.4294 12.6665 17.4294H15.3332C17.6185 17.4294 19.6118 18.6027 20.8078 20.3627C19.1038 22.1867 16.6865 23.3334 13.9998 23.3334C11.3132 23.3334 8.89584 22.1867 7.19184 20.3627Z"
+      fill={fillColor}
+      fillOpacity={fillOpacity}
+    />
+  </svg>
+);
 export const SidebarAuditTrailIcon = ({
   fillColor,
   ...props

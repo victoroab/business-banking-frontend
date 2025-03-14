@@ -1,11 +1,11 @@
 import { Layout } from "../interfaces/Global";
 import { AlertLogoIcon } from "../assets/svg/Sidebar";
 import BackNavigation from "../components/ArrowBack/Back";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { CBNIcon, NDICIcon } from "../assets/svg/Auth";
 
 const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   return (
     <main className="h-screen w-full flex">
       <section className="fixed h-full flex flex-col w-1/2 bg-pryColor-Light px-20 py-6 justify-between">
@@ -45,7 +45,7 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
         </div>
       </section>
       <section className="ml-[50%] w-1/2 bg-white px-20 pt-4 overflow-y-auto">
-        {loginBtn && (
+        {/* {loginBtn && (
           <div className="flex justify-end font-workSans text-base items-center gap-2">
             <p className="question">Already have an account?</p>
             <button
@@ -56,7 +56,7 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
               Log In
             </button>
           </div>
-        )}
+        )} */}
         <div className={loginBtn ? "" : "h-[100%] flex justify-end flex-col"}>
           <div
             className={

@@ -1,19 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { MobileIcon } from "../../assets/svg/Mobile";
 import AuthLayout from "../../layout/AuthLayout";
-import { useAppDispatch } from "../../hooks";
-import { setHavePersonalAccount } from "../../store/slice/globalSlice";
 
 const Home = () => {
   const navigate = useNavigate();
-  const dispatch = useAppDispatch();
-
-  const handleAccountStatus = (status: boolean) => {
-    dispatch(setHavePersonalAccount(status));
+  const handleAccountStatus = () => {
     navigate("/signup");
   };
   return (
-    <AuthLayout loginBtn={false} terms={false}>
+    <AuthLayout loginBtn={true} terms={false}>
       <div className="text-center flex justify-center items-center flex-col">
         <MobileIcon />
         <div
@@ -34,7 +29,7 @@ const Home = () => {
             <button
               className="main-btn w-full"
               type="submit"
-              onClick={() => handleAccountStatus(true)}
+              onClick={handleAccountStatus}
             >
               Get Started
             </button>
