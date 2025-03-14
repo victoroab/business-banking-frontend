@@ -7,7 +7,16 @@ import {
 import { useGetAllTransactionsQuery } from "../../../service/transaction";
 import NoData from "../../NoData/NoData";
 import Spinner from "../../Spinner/Spinner";
-import { TransactionElectricityIcon } from "../../../assets/svg/CustomSVGs";
+import {
+  TransactionArrowDownIcon,
+  TransactionElectricityIcon,
+  TransactionUpDownIcon,
+} from "../../../assets/svg/CustomSVGs";
+import {
+  AirtimeTransactionIcon,
+  DataTransactionIcon,
+  TVTransactionIcon,
+} from "../../../assets/svg/Card";
 
 const TransactionHistory = () => {
   const navigate = useNavigate();
@@ -19,14 +28,16 @@ const TransactionHistory = () => {
     status: data?.status,
     icon:
       data?.transactionType === "TRANSFER"
-        ? TransactionElectricityIcon
+        ? data?.status === "Credit"
+          ? TransactionArrowDownIcon
+          : TransactionUpDownIcon
         : data?.transactionType === "TV_BILL"
-        ? TransactionElectricityIcon
+        ? TVTransactionIcon
         : data?.transactionType === "ELECTRICITY"
         ? TransactionElectricityIcon
         : data?.transactionType === "DATA"
-        ? TransactionElectricityIcon
-        : TransactionElectricityIcon,
+        ? DataTransactionIcon
+        : AirtimeTransactionIcon,
     action: data?.action,
     purpose: data?.narration,
     date: data?.createdAt,
@@ -60,11 +71,7 @@ const TransactionHistory = () => {
                   <div className="flex justify-between" key={transaction.id}>
                     <div className="left flex items-center gap-2">
                       <div
-                        className={`w-[40px] h-[40px] rounded-md items-center justify-center flex ${
-                          transaction.status === "CREDIT"
-                            ? "bg-[#F3FBF8]"
-                            : "bg-[#FFF7F5]"
-                        }`}
+                        className={`w-[40px] h-[40px] rounded-md items-center justify-center flex`}
                       >
                         <transaction.icon />
                       </div>
