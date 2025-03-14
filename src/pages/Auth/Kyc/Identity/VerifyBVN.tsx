@@ -41,7 +41,7 @@ const VerifyBVN = ({ bvn }: { bvn: string }) => {
               otpCode={otpCode}
               paragraph={
                 <p>
-                  We sent a 6 digit code to your mail. Check your mail and enter
+                  We sent a 6 digit code to your phone. Check your sms and enter
                   it here.
                 </p>
               }
