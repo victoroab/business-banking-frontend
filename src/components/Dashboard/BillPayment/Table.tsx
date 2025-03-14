@@ -29,7 +29,12 @@ export const electricityColumnsData = (
     {
       name: "Amount",
       grow: 1.2,
-      cell: ({ amount }) => <div className="centered-box">NGN{amount}</div>,
+      cell: ({ amount }) => (
+        <div className="centered-box">
+          {" "}
+          NGN {new Intl.NumberFormat().format(amount)}
+        </div>
+      ),
     },
 
     {
@@ -111,7 +116,12 @@ export const cableTvColumnsData = (
     {
       name: "Amount",
       grow: 1.2,
-      cell: ({ amount }) => <div className="centered-box">NGN{amount}</div>,
+      cell: ({ amount }) => (
+        <div className="centered-box">
+          {" "}
+          NGN {new Intl.NumberFormat().format(amount)}
+        </div>
+      ),
     },
 
     {

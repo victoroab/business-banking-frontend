@@ -88,7 +88,8 @@ const TransactionHistory = () => {
                     <div className="right items-end flex flex-col">
                       <p className="amount font-workSans text-[13px] font-semibold">
                         {transaction.action === "CREDIT" ? "+" : "-"}
-                        &#8358;{transaction.amount}
+                        &#8358;
+                        {new Intl.NumberFormat().format(transaction.amount)}
                       </p>
                       <p className="amount font-workSans text-lightGreyColor font-normal text-xs">
                         {formatOnlyTimestamp(transaction.date)}
