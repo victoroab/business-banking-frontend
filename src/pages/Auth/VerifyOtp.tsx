@@ -54,7 +54,7 @@ const VerifyOtp = () => {
 
   return (
     <AuthLayout loginBtn={false} terms>
-      <div className="text-center flex justify-center gap-8 items-center flex-col w-full mt-48 px-6 ">
+      <div className="text-center flex justify-center gap-8 items-center flex-col w-full mt-48 px-10">
         <Otp
           inputCount={6}
           title={

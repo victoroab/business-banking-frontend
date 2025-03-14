@@ -3,9 +3,12 @@ import { AlertLogoIcon } from "../assets/svg/Sidebar";
 import BackNavigation from "../components/ArrowBack/Back";
 // import { useNavigate } from "react-router-dom";
 import { CBNIcon, NDICIcon } from "../assets/svg/Auth";
+// import { useState } from "react";
 
 const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
   // const navigate = useNavigate();
+
+  // console.log(isChecked, "sdfd");
   return (
     <main className="h-screen w-full flex">
       <section className="fixed h-full flex flex-col w-1/2 bg-pryColor-Light px-20 py-6 justify-between">
@@ -69,16 +72,26 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
 
             {terms && (
               <div className="flex p-6 flex-col gap-8">
-                <p className="text-greyColr font-workSans leading-6 text-center font-normal text-sm px-6">
-                  By using Alert Business, you agree to our{" "}
-                  <span className="font-bold cursor-pointer text-black">
-                    Terms of Use
-                  </span>{" "}
-                  and{" "}
-                  <span className="font-bold cursor-pointer text-black">
-                    Privacy Policy
-                  </span>
-                </p>
+                {/* <p className="text-greyColr font-workSans leading-6 text-left font-normal text-sm w-full px-6 flex">
+                  <label className="purple-checkbox gap-2">
+                    <input
+                      type="checkbox"
+                      checked={isChecked}
+                      onChange={handleCheckboxChange}
+                    />
+                    <span className="checkmark"></span>
+                    <span className="text-greyColr font-workSans leading-4 font-normal text-sm">
+                      By useing Aert Business, I agree to the{" "}
+                      <span className="font-bold cursor-pointer text-black">
+                        Terms of Use
+                      </span>{" "}
+                      and{" "}
+                      <span className="font-bold cursor-pointer text-black">
+                        Privacy Policy
+                      </span>
+                    </span>
+                  </label>
+                </p> */}
 
                 <BackNavigation />
               </div>

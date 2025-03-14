@@ -23,6 +23,10 @@ const SignUp = () => {
   const [initiate, { isLoading }] = useInitiateMutation();
   const { havePersonalAccount } = useAppSelector(selectGlobal);
   const [activeTab, setActiveTab] = useState(1);
+  const [isChecked, setIsChecked] = useState(false);
+  const handleCheckboxChange = () => {
+    setIsChecked((prev) => !prev);
+  };
   const signUpTab = [
     {
       id: 1,
@@ -137,6 +141,28 @@ const SignUp = () => {
               onChange={handleChange}
               defaultValue={values?.phoneNumber}
             />
+            <div className="flex flex-col gap-8">
+              <p className="text-greyColr font-workSans leading-6 text-left font-normal text-sm w-full flex">
+                <label className="purple-checkbox gap-2">
+                  <input
+                    type="checkbox"
+                    checked={isChecked}
+                    onChange={handleCheckboxChange}
+                  />
+                  <span className="checkmark"></span>
+                  <span className="text-greyColr font-workSans leading-4 font-normal text-sm">
+                    By useing Aert Business, I agree to the{" "}
+                    <span className="font-bold cursor-pointer text-black">
+                      Terms of Use
+                    </span>{" "}
+                    and{" "}
+                    <span className="font-bold cursor-pointer text-black">
+                      Privacy Policy
+                    </span>
+                  </span>
+                </label>
+              </p>
+            </div>
 
             <div className="flex justify-center  w-full gap-6">
               <button className="main-btn w-full" type="submit">
