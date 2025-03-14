@@ -119,9 +119,9 @@ const Dashboard = () => {
           <div className="flex justify-between text-white w-[75%] gap-4 items-center">
             <CautionIcon />
             <p className="text-white font-workSans leading-4 font-semibold text-sm">
-              Hi, `${profile?.data?.firstName}`! You currently don’t have a
-              phone number linked to your account. Click the button to add your
-              phone number.
+              Hi, {profile?.data?.firstName}! You currently don’t have a phone
+              number linked to your account. Click the button to add your phone
+              number.
             </p>
           </div>
           <button className="white-btn" onClick={() => handleShow("add-phone")}>

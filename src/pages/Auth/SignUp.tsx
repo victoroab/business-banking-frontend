@@ -156,7 +156,7 @@ const SignUp = () => {
                   />
                   <span className="checkmark"></span>
                   <span className="text-greyColr font-workSans leading-4 font-normal text-sm">
-                    By useing Aert Business, I agree to the{" "}
+                    By using Aert Business, I agree to the{" "}
                     <span className="font-bold cursor-pointer text-black">
                       Terms of Use
                     </span>{" "}
