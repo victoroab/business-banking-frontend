@@ -46,6 +46,10 @@ const SignUp = () => {
   };
 
   const onSubmit = async (formData: { phoneNumber: string }) => {
+    if (!isChecked) {
+      toast.error("Please agree to the terms.");
+      return;
+    }
     const requiredData = {
       phoneNumber: formData.phoneNumber,
       onboardType: havePersonalAccount ? "EXISTING" : "NEW",
@@ -84,6 +88,7 @@ const SignUp = () => {
     setActiveTab(id);
   };
 
+  console.log(isChecked);
   return (
     <div>
       {" "}
