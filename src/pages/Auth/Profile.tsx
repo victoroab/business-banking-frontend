@@ -113,7 +113,7 @@ const Profile = () => {
 
               <Calender setSelectedDate={setDob} selectedDate={dob} />
               {touched.dob && errors.dob && (
-                <div className="text-red-500 text-xs">{errors.dob}</div>
+                <div className="text-red-500 text-[10px]">{errors.dob}</div>
               )}
             </div>
             <div className="flex justify-center  w-full gap-6">
