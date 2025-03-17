@@ -59,6 +59,7 @@ const Profile = () => {
     handleChange,
     handleSubmit,
     setFieldValue,
+    setFieldError,
   } = useFormik({
     initialValues: initialValues,
     validationSchema: formSchema,
@@ -84,6 +85,8 @@ const Profile = () => {
       if (valid) {
         setFieldValue("dob", dob);
       } else {
+        setFieldError("dob", "Minimum of 18 Years");
+        //TODO: set error message to minimum of 18
       }
     }
   }, [dob]);

@@ -32,12 +32,12 @@ const Profile = () => {
               First Name
             </p>
             <p className="text-base text-greyColr font-workSans font-medium">
-              Bamidele
+              {data?.data?.firstName}
             </p>
           </div>
           <div className="flex flex-col justify-end items-end">
             <p className="tit text-sm text-lightGreyColor font-workSans font-normal">
-              {data?.data?.firstName}
+              Last Name
             </p>
             <p className="text-base text-greyColr font-workSans font-medium">
               {data?.data?.lastName}
@@ -47,10 +47,10 @@ const Profile = () => {
         <div className="column flex justify-between items-center w-full">
           <div className="flex flex-col items-start justify-start">
             <p className="tit text-sm text-lightGreyColor font-workSans font-normal">
-              {data?.data?.email}
+              Email Address
             </p>
             <p className="text-base text-greyColr font-workSans font-medium">
-              bamidele.akinyemi@alertgroup.com.ng
+              {data?.data?.email}
             </p>
           </div>
           <div className="flex flex-col justify-end items-end">
@@ -58,7 +58,7 @@ const Profile = () => {
               Phone Number
             </p>
             <p className="text-base text-greyColr font-workSans font-medium">
-              09131683009
+              {data?.data?.phoneNumber}
             </p>
           </div>
         </div>
@@ -71,14 +71,14 @@ const Profile = () => {
               {data?.data?.dob}
             </p>
           </div>
-          <div className="flex flex-col justify-end items-end">
+          {/* <div className="flex flex-col justify-end items-end">
             <p className="tit text-sm text-lightGreyColor font-workSans font-normal">
               Next of Kin
             </p>
             <p className="text-base text-greyColr font-workSans font-medium">
               Olaniyan Remilekun
             </p>
-          </div>
+          </div> */}
         </div>
       </div>
 

@@ -32,13 +32,13 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
           </p>
         </div>
         <div className="flex flex-col">
-          <p className="footer-text font-normal text-sm text-greyColr font-workSans leading-4 flex items-center gap-1">
+          <p className="footer-text font-normal text-base text-greyColr font-workSans leading-4 flex items-center gap-1">
             Alert MFB is licensed by the Central Bank of Nigeria{" "}
             <span className="flex items-center gap-1">
               <CBNIcon /> All deposits are
             </span>{" "}
           </p>
-          <p className="footer-text font-normal text-sm text-greyColr font-workSans leading-4 flex items-center gap-1">
+          <p className="footer-text font-normal text-base text-greyColr font-workSans leading-4 flex items-center gap-1">
             insured by the NDIC{" "}
             <span>
               {" "}
