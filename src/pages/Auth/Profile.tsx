@@ -48,7 +48,7 @@ const Profile = () => {
     firstName: Yup.string().required("First name is required"),
     otherName: Yup.string(),
     lastName: Yup.string().required("Last name is required"),
-    dob: Yup.string().required("Date of birth is required"),
+    dob: Yup.string().required("Date of birth required (must be 18+)"),
   });
 
   const {
@@ -59,7 +59,7 @@ const Profile = () => {
     handleChange,
     handleSubmit,
     setFieldValue,
-    setFieldError,
+    setErrors,
   } = useFormik({
     initialValues: initialValues,
     validationSchema: formSchema,
@@ -84,12 +84,12 @@ const Profile = () => {
 
       if (valid) {
         setFieldValue("dob", dob);
+        setErrors({});
       } else {
-        setFieldError("dob", "Minimum of 18 Years");
-        //TODO: set error message to minimum of 18
+        setErrors({ dob: "You must be at least 18 years old" });
       }
     }
-  }, [dob]);
+  }, [dob, setFieldValue, setErrors]);
 
   return (
     <div>
@@ -146,7 +146,7 @@ const Profile = () => {
 
               <Calender setSelectedDate={setDob} selectedDate={dob} />
               {touched.dob && errors.dob && (
-                <div className="text-red-500 text-[10px] text-left">
+                <div className="text-red-500 text-xs text-left">
                   {errors.dob}
                 </div>
               )}
