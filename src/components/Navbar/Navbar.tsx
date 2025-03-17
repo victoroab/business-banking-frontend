@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../hooks";
 import { NotificationIcon } from "../../assets/svg/CustomSVGs";
 import { NavbarProps } from "../../interfaces/Global";
 import { useUserProfileQuery } from "../../service/kyb";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { setUserDetails } from "../../store/slice/authSlice";
 import { selectAccount } from "../../store/slice/account";
 import Notification from "../Notification/Notification";
@@ -14,7 +14,7 @@ import { selectGlobal } from "../../store/slice/globalSlice";
 const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
   const dispatch = useAppDispatch();
   const { data } = useUserProfileQuery({});
-  const [openNotification, setOpenNotification] = useState(false);
+  // const [openNotification, setOpenNotification] = useState(false);
   const toggle = useAppSelector(selectGlobal);
   const { handleShow } = useGlobalHooks();
   // const [isChecked, setIsChecked] = useState(false);
