@@ -32,7 +32,7 @@ const Amount = () => {
       validationSchema: formSchema,
       onSubmit,
     });
-
+  console.log(values);
   return (
     <div className="flex flex-col gap-14">
       <div className="gap-4 flex flex-col">
@@ -51,7 +51,7 @@ const Amount = () => {
           onSubmit={handleSubmit}
         >
           <FormInput
-            type="text"
+            type="number"
             placeholder="Amount"
             id="amount"
             className="w-full"

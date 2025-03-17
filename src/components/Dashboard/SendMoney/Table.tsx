@@ -40,7 +40,11 @@ export const sendMoneyColumnsData = (
     },
     {
       name: "Amount",
-      cell: ({ amount }) => <div className="centered-box">NGN {amount}</div>,
+      cell: ({ amount }) => (
+        <div className="centered-box">
+          NGN {new Intl.NumberFormat().format(amount)}
+        </div>
+      ),
     },
     {
       name: "Date Added",

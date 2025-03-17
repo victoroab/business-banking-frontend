@@ -45,7 +45,7 @@ export const airtimeColumnsData = (
         <div className="centered-box">
           <span
             className={`rounded-2xl flex items-center py-2 px-4 text-center ${
-              status === "successful"
+              status === "SUCCESS"
                 ? "text-positive bg-[#f3fbf8]"
                 : status === "PENDING"
                 ? "text-secColor bg-[#fdfbf6]"
@@ -127,7 +127,7 @@ export const dataColumnsData = (
         <div className="centered-box">
           <span
             className={`rounded-2xl flex items-center py-2 px-4 text-center ${
-              status === "successful"
+              status === "SUCCESS"
                 ? "text-positive bg-[#f3fbf8]"
                 : status === "PENDING"
                 ? "text-secColor bg-[#fdfbf6]"

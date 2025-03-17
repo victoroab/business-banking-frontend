@@ -10,8 +10,9 @@ import {
   setBillpaymentCurrentStep,
 } from "../../../../../store/slice/billPaymentSlice";
 import { useBuyElectricityMutation } from "../../../../../service/billPayment";
+import { CloseIcon } from "../../../../../assets/svg/Auth";
 
-const InputToken = () => {
+const InputToken = ({ setOpenPinModal }: { setOpenPinModal: any }) => {
   const [otpCode, setOtpCode] = useState<string>("");
   const [openReceipt, setOpenReceipt] = useState<boolean>(false);
   const [buyElectricity, { isLoading }] = useBuyElectricityMutation();
@@ -25,6 +26,7 @@ const InputToken = () => {
         serviceCategoryId: billPaymentPayload.serviceCategoryId,
         meterType: billPaymentPayload.meterType,
         meterNumber: billPaymentPayload.meterNumber,
+        meterAddress: billPaymentPayload.meterAddress,
         meterName: billPaymentPayload.meterName,
         vendType: billPaymentPayload.vendType,
         amount: billPaymentPayload.amount,
@@ -103,6 +105,9 @@ const InputToken = () => {
       ) : (
         <div className="bg-white rounded-lg flex flex-col items-center justify-center p-10 gap-10 w-[650px]">
           <div className="flex flex-col w-full gap-10 justify-center items-center text-center">
+            <div className="cursor-pointer w-full justify-end items-end flex">
+              <CloseIcon onClick={() => setOpenPinModal(false)} />
+            </div>
             <Otp
               inputCount={4}
               title={"Enter Your Transaction PIN"}

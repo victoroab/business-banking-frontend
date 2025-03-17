@@ -75,12 +75,19 @@ const Dashboard = () => {
   return (
     <div className="border">
       <Navbar
-        title={Greeting() + ", " + `${profile?.data?.firstName}`}
+        title={
+          Greeting() +
+          ", " +
+          `${
+            profile?.data?.firstName?.charAt(0).toUpperCase() +
+            profile?.data?.firstName?.slice(1).toLowerCase()
+          }`
+        }
         subtitle="Here’s your dashboard overview."
       />
       {profile?.data?.kybStatus !== "APPROVED" && (
         <div className="flex justify-between bg-secColor p-3 mb-2 mx-10">
-          <div className="flex text-white w-[70%] gap-2 items-center">
+          <div className="flex text-white w-[80%] gap-2 items-center">
             <CautionIcon />
             <p className="text-white font-workSans leading-4 font-semibold text-sm">
               Thank you for choosing Alert as your preferred banking platform!
@@ -100,7 +107,7 @@ const Dashboard = () => {
 
       {profile?.data?.email === null && (
         <div className="flex justify-between bg-secColor p-3 mb-2 mx-10">
-          <div className="flex text-white w-[75%] gap-2 items-center">
+          <div className="flex text-white w-[70%] gap-2 items-center">
             <CautionIcon />
             <p className="text-white font-workSans leading-4 font-semibold text-sm">
               Hi, {profile?.data?.firstName}! You currently don’t have an email
@@ -116,12 +123,12 @@ const Dashboard = () => {
 
       {profile?.data?.phoneNumber === null && (
         <div className="flex justify-between bg-secColor p-3 mb-2 mx-10">
-          <div className="flex justify-between text-white w-[75%] gap-4 items-center">
+          <div className="flex justify-between text-white w-[70%] gap-4 items-center">
             <CautionIcon />
             <p className="text-white font-workSans leading-4 font-semibold text-sm">
-              Hi, `${profile?.data?.firstName}`! You currently don’t have a
-              phone number linked to your account. Click the button to add your
-              phone number.
+              Hi, {profile?.data?.firstName}! You currently don’t have a phone
+              number linked to your account. Click the button to add your phone
+              number.
             </p>
           </div>
           <button className="white-btn" onClick={() => handleShow("add-phone")}>

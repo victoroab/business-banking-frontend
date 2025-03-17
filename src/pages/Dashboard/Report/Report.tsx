@@ -127,7 +127,7 @@ const Report = () => {
             ) : (
               <>
                 {data?.data?.data?.length > 0 ? (
-                  <div className="">
+                  <div className="pb-6">
                     {queryData?.type === "TRANSFER" ? (
                       <>
                         <DataTable
@@ -141,11 +141,11 @@ const Report = () => {
                           data={paginatedData}
                           noDataComponent={<NoData />}
                           customStyles={tableCustomStyles}
-                          className=""
+                          className="pb-6"
                           selectableRows
                         />
 
-                        <div className="">
+                        <div className="pb-6">
                           <Paginate
                             data={paginatedData}
                             handleSearch={handleSearch}
@@ -173,17 +173,17 @@ const Report = () => {
                           data={paginatedData}
                           customStyles={tableCustomStyles}
                           noDataComponent={<NoData />}
-                          className=""
+                          className="pb-6"
                           selectableRows
                         />
 
-                        <div className="">
+                        <div className="pb-6">
                           <Paginate
                             data={paginatedData}
                             handleSearch={handleSearch}
                             currentPage={filteredData}
                             setCurrentPage={setFilteredData}
-                            searchParams="networkProvider"
+                            searchParams="phoneNumber"
                             itemsPerPage={queryData?.pageSize as number}
                             setQueryData={setQueryData}
                             totalItemsCount={data?.data?.total}
@@ -204,17 +204,17 @@ const Report = () => {
                           data={paginatedData}
                           noDataComponent={<NoData />}
                           customStyles={tableCustomStyles}
-                          className=""
+                          className="pb-6"
                           selectableRows
                         />
 
-                        <div className="">
+                        <div className="pb-6">
                           <Paginate
                             data={paginatedData}
                             handleSearch={handleSearch}
                             currentPage={filteredData}
                             setCurrentPage={setFilteredData}
-                            searchParams="networkProvider"
+                            searchParams="phoneNumber"
                             itemsPerPage={queryData?.pageSize as number}
                             setQueryData={setQueryData}
                             totalItemsCount={data?.data?.total}
@@ -235,17 +235,17 @@ const Report = () => {
                           data={paginatedData}
                           noDataComponent={<NoData />}
                           customStyles={tableCustomStyles}
-                          className=""
+                          className="pb-6"
                           selectableRows
                         />
 
-                        <div className="">
+                        <div className="pb-6">
                           <Paginate
                             data={paginatedData}
                             handleSearch={handleSearch}
                             currentPage={filteredData}
                             setCurrentPage={setFilteredData}
-                            searchParams="networkProvider"
+                            searchParams="meterName"
                             itemsPerPage={queryData?.pageSize as number}
                             setQueryData={setQueryData}
                             totalItemsCount={data?.data?.total}

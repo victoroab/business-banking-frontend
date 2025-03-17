@@ -1,11 +1,14 @@
 import { Layout } from "../interfaces/Global";
 import { AlertLogoIcon } from "../assets/svg/Sidebar";
 import BackNavigation from "../components/ArrowBack/Back";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 import { CBNIcon, NDICIcon } from "../assets/svg/Auth";
+// import { useState } from "react";
 
 const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+
+  // console.log(isChecked, "sdfd");
   return (
     <main className="h-screen w-full flex">
       <section className="fixed h-full flex flex-col w-1/2 bg-pryColor-Light px-20 py-6 justify-between">
@@ -29,13 +32,13 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
           </p>
         </div>
         <div className="flex flex-col">
-          <p className="footer-text font-normal text-sm text-greyColr font-workSans leading-4 flex items-center gap-1">
+          <p className="footer-text font-normal text-base text-greyColr font-workSans leading-4 flex items-center gap-1">
             Alert MFB is licensed by the Central Bank of Nigeria{" "}
             <span className="flex items-center gap-1">
               <CBNIcon /> All deposits are
             </span>{" "}
           </p>
-          <p className="footer-text font-normal text-sm text-greyColr font-workSans leading-4 flex items-center gap-1">
+          <p className="footer-text font-normal text-base text-greyColr font-workSans leading-4 flex items-center gap-1">
             insured by the NDIC{" "}
             <span>
               {" "}
@@ -45,7 +48,7 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
         </div>
       </section>
       <section className="ml-[50%] w-1/2 bg-white px-20 pt-4 overflow-y-auto">
-        {loginBtn && (
+        {/* {loginBtn && (
           <div className="flex justify-end font-workSans text-base items-center gap-2">
             <p className="question">Already have an account?</p>
             <button
@@ -56,7 +59,7 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
               Log In
             </button>
           </div>
-        )}
+        )} */}
         <div className={loginBtn ? "" : "h-[100%] flex justify-end flex-col"}>
           <div
             className={
@@ -69,16 +72,26 @@ const AuthLayout: React.FC<Layout> = ({ children, loginBtn, terms }) => {
 
             {terms && (
               <div className="flex p-6 flex-col gap-8">
-                <p className="text-greyColr font-workSans leading-6 text-center font-normal text-sm px-6">
-                  By using Alert Business, you agree to our{" "}
-                  <span className="font-bold cursor-pointer text-black">
-                    Terms of Use
-                  </span>{" "}
-                  and{" "}
-                  <span className="font-bold cursor-pointer text-black">
-                    Privacy Policy
-                  </span>
-                </p>
+                {/* <p className="text-greyColr font-workSans leading-6 text-left font-normal text-sm w-full px-6 flex">
+                  <label className="purple-checkbox gap-2">
+                    <input
+                      type="checkbox"
+                      checked={isChecked}
+                      onChange={handleCheckboxChange}
+                    />
+                    <span className="checkmark"></span>
+                    <span className="text-greyColr font-workSans leading-4 font-normal text-sm">
+                      By useing Aert Business, I agree to the{" "}
+                      <span className="font-bold cursor-pointer text-black">
+                        Terms of Use
+                      </span>{" "}
+                      and{" "}
+                      <span className="font-bold cursor-pointer text-black">
+                        Privacy Policy
+                      </span>
+                    </span>
+                  </label>
+                </p> */}
 
                 <BackNavigation />
               </div>

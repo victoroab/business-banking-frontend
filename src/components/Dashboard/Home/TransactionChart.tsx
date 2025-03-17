@@ -127,7 +127,7 @@ const TransactionChart: React.FC<AnalyticsChartProps> = () => {
           ))}
         </select>
         <p className="font-bricolage text-pryColor font-bold text-[42px]">
-          &#8358;{totalAmount}
+          &#8358;{new Intl.NumberFormat().format(totalAmount)}
         </p>
         <div className="font-workSans text-pryColor  font-2xl flex gap-2 items-center">
           <div

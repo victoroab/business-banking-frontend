@@ -7,6 +7,16 @@ import {
 import { useGetAllTransactionsQuery } from "../../../service/transaction";
 import NoData from "../../NoData/NoData";
 import Spinner from "../../Spinner/Spinner";
+import {
+  TransactionArrowDownIcon,
+  TransactionElectricityIcon,
+  TransactionUpDownIcon,
+} from "../../../assets/svg/CustomSVGs";
+import {
+  AirtimeTransactionIcon,
+  DataTransactionIcon,
+  TVTransactionIcon,
+} from "../../../assets/svg/Card";
 
 const TransactionHistory = () => {
   const navigate = useNavigate();
@@ -16,12 +26,27 @@ const TransactionHistory = () => {
     id: data?.id,
     amount: data?.amount,
     status: data?.status,
-    // icon: "",
+    icon:
+      data?.transactionType === "TRANSFER"
+        ? data?.status === "Credit"
+          ? TransactionArrowDownIcon
+          : TransactionUpDownIcon
+        : data?.transactionType === "TV_BILL"
+        ? TVTransactionIcon
+        : data?.transactionType === "ELECTRICITY"
+        ? TransactionElectricityIcon
+        : data?.transactionType === "DATA"
+        ? DataTransactionIcon
+        : AirtimeTransactionIcon,
     action: data?.action,
-    purpose: data?.narration,
+    purpose:
+      data?.transactionType === "TRANSFER"
+        ? data?.beneficiary?.accountName
+        : data?.narration,
     date: data?.createdAt,
   }));
 
+  console.log(data?.data?.data, "testingggggggg transa");
   return (
     <div className="bg-white rounded-lg w-[40%] p-6 flex flex-col gap-6">
       <div className="flex justify-between items-center">
@@ -49,13 +74,9 @@ const TransactionHistory = () => {
                   <div className="flex justify-between" key={transaction.id}>
                     <div className="left flex items-center gap-2">
                       <div
-                        className={`w-[40px] h-[40px] rounded-md items-center justify-center flex ${
-                          transaction.status === "CREDIT"
-                            ? "bg-[#F3FBF8]"
-                            : "bg-[#FFF7F5]"
-                        }`}
+                        className={`w-[40px] h-[40px] rounded-md items-center justify-center flex`}
                       >
-                        {/* <transaction.icon /> */}
+                        <transaction.icon />
                       </div>
                       <div className="di">
                         <p className="amount font-workSans text-medium text-[13px]">
@@ -70,7 +91,8 @@ const TransactionHistory = () => {
                     <div className="right items-end flex flex-col">
                       <p className="amount font-workSans text-[13px] font-semibold">
                         {transaction.action === "CREDIT" ? "+" : "-"}
-                        &#8358;{transaction.amount}
+                        &#8358;
+                        {new Intl.NumberFormat().format(transaction.amount)}
                       </p>
                       <p className="amount font-workSans text-lightGreyColor font-normal text-xs">
                         {formatOnlyTimestamp(transaction.date)}

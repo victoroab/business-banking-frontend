@@ -83,6 +83,7 @@ import UserManagement from "../pages/Dashboard/Account/UserManagement/UserManage
 import BankStatement from "../pages/Dashboard/Account/BankStatement";
 import DeviceMgt from "../pages/Dashboard/Account/DeviceMgt";
 import ContactUs from "../pages/Dashboard/Account/ContactUs";
+import AssignNewUser from "../pages/Dashboard/Account/UserManagement/AssignNewUser";
 const authRoutes: RouteProps[] = [
   { path: "/welcome", name: "Home", element: <Home /> },
   { path: "/signup", name: "SignUp", element: <SignUp /> },
@@ -265,6 +266,11 @@ const settingsRoutes: RouteProps[] = [
     path: "user-management",
     name: "User Management",
     element: <UserManagement />,
+  },
+  {
+    path: "user-management/assign",
+    name: "Assign User",
+    element: <AssignNewUser />,
   },
   {
     path: "bank-statement",

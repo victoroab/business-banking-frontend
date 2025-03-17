@@ -39,7 +39,11 @@ const AirtimeConfirmation = () => {
         </p>
 
         <h3 className="text-pryColor font-extrabold text-2xl font-bricolage leading-6">
-          &#8358;{airtimeBundlePayload?.amount}.00
+          &#8358;
+          {new Intl.NumberFormat().format(
+            airtimeBundlePayload?.amount as number
+          )}
+          .00
         </h3>
       </div>
 
@@ -62,7 +66,11 @@ const AirtimeConfirmation = () => {
           "
             >
               <p className="tit text-sm  text-amount font-semibold font-workSans">
-                &#8358;{airtimeBundlePayload?.amount}.00
+                &#8358;
+                {new Intl.NumberFormat().format(
+                  airtimeBundlePayload?.amount as number
+                )}
+                .00
               </p>
               <p className="va text-amount font-semibold text-sm font-workSans">
                 &#8358;0.00
@@ -81,7 +89,11 @@ const AirtimeConfirmation = () => {
           "
             >
               <p className="tit  font-workSanstext-sm  text-amount font-semibold flex flex-col justify-end items-end">
-                &#8358;{airtimeBundlePayload?.amount}.00
+                &#8358;
+                {new Intl.NumberFormat().format(
+                  airtimeBundlePayload?.amount as number
+                )}
+                .00
               </p>
             </div>
           </div>
@@ -123,7 +135,7 @@ const AirtimeConfirmation = () => {
           </button>
         </div>
         <div
-          className="flex bg-white rounded-3xl text-pryColor font-bricolage items-center gap-2 fixed bottom-[60px] px-6 py-3 font-semibold right-[320px] cursor-pointer"
+          className="flex bg-white rounded-3xl text-pryColor font-bricolage items-center gap-2 fixed bottom-[20px] px-6 py-3 font-semibold right-[320px] cursor-pointer"
           style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
           onClick={scrollToBottom}
         >

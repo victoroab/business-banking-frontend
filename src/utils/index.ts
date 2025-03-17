@@ -926,7 +926,7 @@ export const accountSettingsSteps: ProgressStepsProps[] = [
   {
     id: 6,
     link: "transaction-pin",
-    title: "Set Transaction PIN",
+    title: "Transaction PIN",
   },
   {
     id: 7,
@@ -1322,7 +1322,7 @@ export const LogoutUser = (navigate: any) => {
   sessionStorage.clear();
   persistor.purge();
   navigate("/");
-  window.location.reload();
+  // window.location.reload();
   // dispatch(saveUserInfo(undefined));
 };
 

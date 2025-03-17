@@ -48,7 +48,7 @@ const Amount = () => {
           onSubmit={handleSubmit}
         >
           <FormInput
-            type="text"
+            type="number"
             placeholder="Amount"
             id="amount"
             className="w-full"

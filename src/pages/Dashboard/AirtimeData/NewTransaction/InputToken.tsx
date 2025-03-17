@@ -44,12 +44,14 @@ const InputToken = ({ setOpenPinModal }: { setOpenPinModal: any }) => {
         bundleCode: airtimeBundlePayload?.bundleCode as string,
         phoneNumber: airtimeBundlePayload?.phoneNumber as string,
       };
-
-      airtimeDataAction === "DATA"
-        ? await buyBundle(bundleRequiredData).unwrap()
-        : await buyAirtime(airtimeRequiredData).unwrap();
+      let response;
+      if (airtimeDataAction === "DATA") {
+        response = await buyBundle(bundleRequiredData).unwrap();
+      } else {
+        response = await buyAirtime(airtimeRequiredData).unwrap();
+      }
+      console.log(response);
       setOpenReceipt(true);
-      dispatch(setAirtimeDataCurrentStep(1));
     } catch (error: any) {
       errorHandler(error);
     }

@@ -138,6 +138,12 @@ export const transactionApi = createApi({
 
       invalidatesTags: [{ type: "Transaction", id: "Transaction" }],
     }),
+
+    //notification
+    getAllNotification: builder.query<any, any>({
+      query: (params) => `/notification?${queryBuilder(params)}`,
+      providesTags: [{ type: "Transaction", id: "Transaction" }],
+    }),
   }),
 });
 export const {
@@ -149,4 +155,5 @@ export const {
   useGetAllLogosQuery,
   useUploadBulkTransactionMutation,
   useUploadBulkPensionMutation,
+  useGetAllNotificationQuery,
 } = transactionApi;

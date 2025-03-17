@@ -143,10 +143,10 @@ const PayBills = () => {
                     data={paginatedData}
                     noDataComponent={<NoData />}
                     customStyles={tableCustomStyles}
-                    className=""
+                    className="pb-6"
                   />
 
-                  <div className="">
+                  <div className="pb-6">
                     <Paginate
                       data={paginatedData}
                       handleSearch={handleSearch}
@@ -173,10 +173,10 @@ const PayBills = () => {
                     data={paginatedData}
                     noDataComponent={<NoData />}
                     customStyles={tableCustomStyles}
-                    className=""
+                    className="pb-6"
                   />
 
-                  <div className="">
+                  <div className="pb-6">
                     <Paginate
                       data={paginatedData}
                       handleSearch={handleSearch}

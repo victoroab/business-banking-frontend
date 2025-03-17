@@ -153,7 +153,7 @@ const AirtimeData = () => {
                 {queryData?.type === "AIRTIME" ? (
                   <>
                     {" "}
-                    <div className="">
+                    <div className="pb-6">
                       <DataTable
                         columns={airtimeColumnsData(
                           handleOpenModal,
@@ -165,17 +165,17 @@ const AirtimeData = () => {
                         data={paginatedData}
                         noDataComponent={<NoData />}
                         customStyles={tableCustomStyles}
-                        className=""
+                        className="pb-6"
                         selectableRows
                       />
                     </div>
-                    <div className="">
+                    <div className="pb-6">
                       <Paginate
                         data={paginatedData}
                         handleSearch={handleSearch}
                         currentPage={filteredData}
                         setCurrentPage={setFilteredData}
-                        searchParams="accountName"
+                        searchParams="phoneNumber"
                         itemsPerPage={queryData?.pageSize as number}
                         setQueryData={setQueryData}
                         totalItemsCount={data?.data?.total || 0}
@@ -186,7 +186,7 @@ const AirtimeData = () => {
                 ) : (
                   <>
                     {" "}
-                    <div className="">
+                    <div className="pb-6">
                       <DataTable
                         columns={dataColumnsData(
                           handleOpenModal,
@@ -198,17 +198,17 @@ const AirtimeData = () => {
                         data={paginatedData}
                         noDataComponent={<NoData />}
                         customStyles={tableCustomStyles}
-                        className=""
+                        className="pb-6"
                         selectableRows
                       />
                     </div>
-                    <div className="">
+                    <div className="pb-6">
                       <Paginate
                         data={paginatedData}
                         handleSearch={handleSearch}
                         currentPage={filteredData}
                         setCurrentPage={setFilteredData}
-                        searchParams="accountName"
+                        searchParams="phoneNumber"
                         itemsPerPage={queryData?.pageSize as number}
                         setQueryData={setQueryData}
                         totalItemsCount={data?.data?.total || 0}

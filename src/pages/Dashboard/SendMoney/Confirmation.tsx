@@ -34,7 +34,7 @@ const Confirmation = () => {
         </p>
 
         <h3 className="text-pryColor font-extrabold text-2xl font-bricolage leading-6">
-          &#8358;{sendMoneyPayload?.amount}.00
+          &#8358;{new Intl.NumberFormat().format(sendMoneyPayload?.amount)}.00
         </h3>
       </div>
 
@@ -57,7 +57,8 @@ const Confirmation = () => {
           "
             >
               <p className="tit text-sm  text-amount font-semibold font-workSans">
-                &#8358;{sendMoneyPayload?.amount}.00
+                &#8358;
+                {new Intl.NumberFormat().format(sendMoneyPayload?.amount)}.00
               </p>
               <p className="va text-amount font-semibold text-sm font-workSans">
                 &#8358;0.00
@@ -76,7 +77,8 @@ const Confirmation = () => {
           "
             >
               <p className="tit  font-workSanstext-sm  text-amount font-semibold flex flex-col justify-end items-end">
-                &#8358;{sendMoneyPayload?.amount}.00
+                &#8358;
+                {new Intl.NumberFormat().format(sendMoneyPayload?.amount)}.00
               </p>
             </div>
           </div>

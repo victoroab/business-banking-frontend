@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import { useSetNameMutation } from "../../service/kyb";
 import { useNavigate } from "react-router-dom";
 import Calender from "../../components/Calendar/DatePicker";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import { format } from "date-fns";
 import { selectAuth } from "../../store/slice/authSlice";
 import { useAppSelector } from "../../hooks";
@@ -22,6 +22,7 @@ const Profile = () => {
     firstName: "",
     lastName: "",
     otherName: "",
+    dob: "",
   };
 
   const onSubmit = async (formData: any) => {
@@ -47,14 +48,48 @@ const Profile = () => {
     firstName: Yup.string().required("First name is required"),
     otherName: Yup.string(),
     lastName: Yup.string().required("Last name is required"),
+    dob: Yup.string().required("Date of birth required (must be 18+)"),
   });
 
-  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: formSchema,
-      onSubmit,
-    });
+  const {
+    values,
+    touched,
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    setFieldValue,
+    setErrors,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: formSchema,
+    onSubmit,
+  });
+
+  const validateDOB = (value: string) => {
+    const selectedDate = new Date(value);
+    const currentDate = new Date();
+    const minDate = new Date();
+    minDate.setFullYear(currentDate.getFullYear() - 18);
+
+    if (selectedDate > minDate) {
+      return false;
+    }
+    return true;
+  };
+
+  useEffect(() => {
+    if (dob) {
+      const valid = validateDOB(dob);
+
+      if (valid) {
+        setFieldValue("dob", dob);
+        setErrors({});
+      } else {
+        setErrors({ dob: "You must be at least 18 years old" });
+      }
+    }
+  }, [dob, setFieldValue, setErrors]);
 
   return (
     <div>
@@ -110,6 +145,11 @@ const Profile = () => {
               />
 
               <Calender setSelectedDate={setDob} selectedDate={dob} />
+              {touched.dob && errors.dob && (
+                <div className="text-red-500 text-xs text-left">
+                  {errors.dob}
+                </div>
+              )}
             </div>
             <div className="flex justify-center  w-full gap-6">
               <button className="main-btn w-full" type="submit">
