@@ -31,6 +31,7 @@ const initialState: TransactionState = {
     meterType: "",
     meterNumber: "",
     meterName: "",
+    meterAddress: "",
     vendType: "",
     pin: "",
     amount: 0,

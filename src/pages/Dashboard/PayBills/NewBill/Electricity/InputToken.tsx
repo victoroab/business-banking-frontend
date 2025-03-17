@@ -25,6 +25,7 @@ const InputToken = () => {
         serviceCategoryId: billPaymentPayload.serviceCategoryId,
         meterType: billPaymentPayload.meterType,
         meterNumber: billPaymentPayload.meterNumber,
+        meterAddress: billPaymentPayload.meterAddress,
         meterName: billPaymentPayload.meterName,
         vendType: billPaymentPayload.vendType,
         amount: billPaymentPayload.amount,

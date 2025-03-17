@@ -47,6 +47,7 @@ const AddBillBeneficiary = () => {
           ...formData,
           meterNumber: response?.data?.meterNumber,
           meterName: response?.data?.name,
+          meterAddress: response?.data?.address,
         })
       );
     } catch (error: any) {
