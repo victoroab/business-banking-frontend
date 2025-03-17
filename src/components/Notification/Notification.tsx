@@ -38,7 +38,7 @@ const Notification = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [onClose]);
-
+  console.log(notifications);
   return (
     <PopUp id={"notification"} className="!justify-end">
       <section className="animate__animated animate__bounceInRight h-full w-9/12 py-10 absolute overflow-y-auto bg-white pb-24 md:w-4/12">
@@ -63,10 +63,15 @@ const Notification = () => {
                   <div className="flex gap-2">
                     <AlertLogoIcon />
                     <div className="text-positive font-workSans flex gap-2 flex-col leading-4 font-semibold text-sm">
-                      {notification?.transaction?.action} Alert!
+                      {notification?.transaction?.action
+                        ?.charAt(0)
+                        .toUpperCase() +
+                        notification?.transaction?.action
+                          ?.slice(1)
+                          .toLowerCase()}{" "}
+                      Alert!
                       <span className="text-sm font-normal text-greyColr">
-                        You have just received{" "}
-                        {notification?.transaction?.amount} from OLUWATOBI OSENI
+                        {notification?.transaction?.narration}
                       </span>
                     </div>
                   </div>
