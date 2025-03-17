@@ -53,10 +53,14 @@ const BillConfirmation = () => {
           "
             >
               <p className="tit text-sm  text-amount font-semibold font-workSans">
-                &#8358;{billPaymentPayload?.amount}.00
+                &#8358;
+                {new Intl.NumberFormat().format(
+                  billPaymentPayload?.amount as number
+                )}
+                .00
               </p>
               <p className="va text-amount font-semibold text-sm font-workSans">
-                #500.00
+                &#8358;0.00
               </p>
             </div>
           </div>
@@ -72,7 +76,11 @@ const BillConfirmation = () => {
           "
             >
               <p className="tit  font-workSanstext-sm  text-amount font-semibold flex flex-col justify-end items-end">
-                &#8358;{billPaymentPayload?.amount}.00
+                &#8358;
+                {new Intl.NumberFormat().format(
+                  billPaymentPayload?.amount as number
+                )}
+                .00
               </p>
             </div>
           </div>
