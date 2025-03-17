@@ -34,13 +34,13 @@ const IdVerification = () => {
             </p>
           </div>
 
-          <div className="flex flex-col gap-2">
+          <div className="flex flex-col">
             {accountOptions.map((option: IDOption, index) => (
               <div
-                className="account-option flex rounded-xl p-6 gap-4"
-                style={{
-                  boxShadow: "0px 1px 7px 5px rgba(216, 216, 216, 0.2)",
-                }}
+                className="account-option flex rounded-xl p-4 gap-4"
+                // style={{
+                //   boxShadow: "0px 1px 7px 5px rgba(216, 216, 216, 0.2)",
+                // }}
                 key={index}
               >
                 <div
