@@ -127,7 +127,7 @@ const Report = () => {
             ) : (
               <>
                 {data?.data?.data?.length > 0 ? (
-                  <div className="">
+                  <div className="pb-6">
                     {queryData?.type === "TRANSFER" ? (
                       <>
                         <DataTable
@@ -141,11 +141,11 @@ const Report = () => {
                           data={paginatedData}
                           noDataComponent={<NoData />}
                           customStyles={tableCustomStyles}
-                          className=""
+                          className="pb-6"
                           selectableRows
                         />
 
-                        <div className="">
+                        <div className="pb-6">
                           <Paginate
                             data={paginatedData}
                             handleSearch={handleSearch}
@@ -173,11 +173,11 @@ const Report = () => {
                           data={paginatedData}
                           customStyles={tableCustomStyles}
                           noDataComponent={<NoData />}
-                          className=""
+                          className="pb-6"
                           selectableRows
                         />
 
-                        <div className="">
+                        <div className="pb-6">
                           <Paginate
                             data={paginatedData}
                             handleSearch={handleSearch}
@@ -204,11 +204,11 @@ const Report = () => {
                           data={paginatedData}
                           noDataComponent={<NoData />}
                           customStyles={tableCustomStyles}
-                          className=""
+                          className="pb-6"
                           selectableRows
                         />
 
-                        <div className="">
+                        <div className="pb-6">
                           <Paginate
                             data={paginatedData}
                             handleSearch={handleSearch}
@@ -235,11 +235,11 @@ const Report = () => {
                           data={paginatedData}
                           noDataComponent={<NoData />}
                           customStyles={tableCustomStyles}
-                          className=""
+                          className="pb-6"
                           selectableRows
                         />
 
-                        <div className="">
+                        <div className="pb-6">
                           <Paginate
                             data={paginatedData}
                             handleSearch={handleSearch}
