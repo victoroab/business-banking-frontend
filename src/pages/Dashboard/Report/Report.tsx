@@ -183,7 +183,7 @@ const Report = () => {
                             handleSearch={handleSearch}
                             currentPage={filteredData}
                             setCurrentPage={setFilteredData}
-                            searchParams="networkProvider"
+                            searchParams="phoneNumber"
                             itemsPerPage={queryData?.pageSize as number}
                             setQueryData={setQueryData}
                             totalItemsCount={data?.data?.total}
@@ -214,7 +214,7 @@ const Report = () => {
                             handleSearch={handleSearch}
                             currentPage={filteredData}
                             setCurrentPage={setFilteredData}
-                            searchParams="networkProvider"
+                            searchParams="phoneNumber"
                             itemsPerPage={queryData?.pageSize as number}
                             setQueryData={setQueryData}
                             totalItemsCount={data?.data?.total}
@@ -245,7 +245,7 @@ const Report = () => {
                             handleSearch={handleSearch}
                             currentPage={filteredData}
                             setCurrentPage={setFilteredData}
-                            searchParams="networkProvider"
+                            searchParams="meterName"
                             itemsPerPage={queryData?.pageSize as number}
                             setQueryData={setQueryData}
                             totalItemsCount={data?.data?.total}

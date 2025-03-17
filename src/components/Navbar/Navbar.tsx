@@ -66,11 +66,20 @@ const Navbar: React.FC<NavbarProps> = ({ title, subtitle }) => {
           </div>
           <div className="flex flex-col">
             <p className=" font-semibold text-sm font-workSans text-greyColr">
-              {data?.data?.firstName + " " + data?.data?.lastName}
+              {`${
+                data?.data?.firstName?.charAt(0).toUpperCase() +
+                data?.data?.firstName?.slice(1).toLowerCase()
+              }` +
+                " " +
+                `${
+                  data?.data?.lastName?.charAt(0).toUpperCase() +
+                  data?.data?.lastName?.slice(1).toLowerCase()
+                }`}
             </p>
             <div className="flex gap-1 items-center">
               <p className="text-lightGreyColor font-medium font-workSans text-xs">
-                {businessKYBDetails?.businessName}
+                {businessKYBDetails?.businessName?.charAt(0).toUpperCase() +
+                  businessKYBDetails?.businessName?.slice(1).toLowerCase()}
               </p>
             </div>
           </div>

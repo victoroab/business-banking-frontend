@@ -175,7 +175,7 @@ const AirtimeData = () => {
                         handleSearch={handleSearch}
                         currentPage={filteredData}
                         setCurrentPage={setFilteredData}
-                        searchParams="accountName"
+                        searchParams="phoneNumber"
                         itemsPerPage={queryData?.pageSize as number}
                         setQueryData={setQueryData}
                         totalItemsCount={data?.data?.total || 0}
@@ -208,7 +208,7 @@ const AirtimeData = () => {
                         handleSearch={handleSearch}
                         currentPage={filteredData}
                         setCurrentPage={setFilteredData}
-                        searchParams="accountName"
+                        searchParams="phoneNumber"
                         itemsPerPage={queryData?.pageSize as number}
                         setQueryData={setQueryData}
                         totalItemsCount={data?.data?.total || 0}

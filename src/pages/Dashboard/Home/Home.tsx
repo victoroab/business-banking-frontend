@@ -75,7 +75,14 @@ const Dashboard = () => {
   return (
     <div className="border">
       <Navbar
-        title={Greeting() + ", " + `${profile?.data?.firstName}`}
+        title={
+          Greeting() +
+          ", " +
+          `${
+            profile?.data?.firstName?.charAt(0).toUpperCase() +
+            profile?.data?.firstName?.slice(1).toLowerCase()
+          }`
+        }
         subtitle="Here’s your dashboard overview."
       />
       {profile?.data?.kybStatus !== "APPROVED" && (
