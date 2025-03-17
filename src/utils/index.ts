@@ -926,7 +926,7 @@ export const accountSettingsSteps: ProgressStepsProps[] = [
   {
     id: 6,
     link: "transaction-pin",
-    title: "Set Transaction PIN",
+    title: "Transaction PIN",
   },
   {
     id: 7,
