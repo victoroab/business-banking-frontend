@@ -123,7 +123,7 @@ const AirtimeConfirmation = () => {
           </button>
         </div>
         <div
-          className="flex bg-white rounded-3xl text-pryColor font-bricolage items-center gap-2 fixed bottom-[60px] px-6 py-3 font-semibold right-[320px] cursor-pointer"
+          className="flex bg-white rounded-3xl text-pryColor font-bricolage items-center gap-2 fixed bottom-[20px] px-6 py-3 font-semibold right-[320px] cursor-pointer"
           style={{ boxShadow: "0px 1px 5px 2px rgba(216, 216, 216, 0.2)" }}
           onClick={scrollToBottom}
         >

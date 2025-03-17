@@ -52,12 +52,11 @@ const InputToken = ({ setOpenPinModal }: { setOpenPinModal: any }) => {
       }
       console.log(response);
       setOpenReceipt(true);
-      dispatch(setAirtimeDataCurrentStep(1));
     } catch (error: any) {
       errorHandler(error);
     }
   };
-  console.log(openReceipt, "dfasdf");
+
   return (
     <>
       {openReceipt ? (
@@ -128,7 +127,9 @@ const InputToken = ({ setOpenPinModal }: { setOpenPinModal: any }) => {
         <div className="bg-white rounded-lg flex flex-col items-center justify-center p-10 gap-10 w-[650px]">
           <div className="flex flex-col w-full gap-10 justify-center items-center text-center">
             <div className="cursor-pointer w-full justify-end items-end flex">
-              <CloseIcon onClick={() => setOpenPinModal(false)} />
+              <CloseIcon
+                onClick={() => openReceipt && setOpenPinModal(false)}
+              />
             </div>
             <Otp
               inputCount={4}
