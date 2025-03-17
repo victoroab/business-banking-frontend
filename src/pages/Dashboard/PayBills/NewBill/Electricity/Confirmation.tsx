@@ -158,7 +158,7 @@ const BillConfirmation = () => {
 
       {openPinModal && (
         <GeneralModal>
-          <InputToken />
+          <InputToken setOpenPinModal={setOpenPinModal} />
         </GeneralModal>
       )}
     </div>

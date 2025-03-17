@@ -159,7 +159,7 @@ const CableConfirmation = () => {
 
       {openPinModal && (
         <GeneralModal>
-          <InputToken />
+          <InputToken setOpenPinModal={setOpenPinModal} />
         </GeneralModal>
       )}
     </div>
