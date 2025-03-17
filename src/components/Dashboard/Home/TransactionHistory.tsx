@@ -39,7 +39,10 @@ const TransactionHistory = () => {
         ? DataTransactionIcon
         : AirtimeTransactionIcon,
     action: data?.action,
-    purpose: data?.narration,
+    purpose:
+      data?.transactionType === "TRANSFER"
+        ? data?.beneficiary?.accountName
+        : data?.narration,
     date: data?.createdAt,
   }));
 
