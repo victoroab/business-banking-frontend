@@ -173,6 +173,22 @@ export const authApi = createApi({
 
       invalidatesTags: [{ type: "Auth", id: "Auth" }],
     }),
+
+    //accept invitation
+    acceptInvitation: builder.mutation<
+      any,
+      {
+        token: string;
+      }
+    >({
+      query: (body) => ({
+        url: "/business-user/invite/accept",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Auth", id: "Auth" }],
+    }),
   }),
 });
 
@@ -189,4 +205,5 @@ export const {
   useRequestResetCodeMutation,
   useVerifyResetCodeMutation,
   useSetCodeMutation,
+  useAcceptInvitationMutation,
 } = authApi;

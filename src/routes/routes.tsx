@@ -84,6 +84,7 @@ import BankStatement from "../pages/Dashboard/Account/BankStatement";
 import DeviceMgt from "../pages/Dashboard/Account/DeviceMgt";
 import ContactUs from "../pages/Dashboard/Account/ContactUs";
 import AssignNewUser from "../pages/Dashboard/Account/UserManagement/AssignNewUser";
+import InviteAccept from "../pages/Auth/Invitation/Invitation";
 const authRoutes: RouteProps[] = [
   { path: "/welcome", name: "Home", element: <Home /> },
   { path: "/signup", name: "SignUp", element: <SignUp /> },
@@ -93,6 +94,11 @@ const authRoutes: RouteProps[] = [
   { path: "/passcode", name: "Passcode", element: <Passcode /> },
   { path: "/signin-passcode", name: "Passcode", element: <LoginPasscode /> },
   { path: "/reset-passcode", name: "Reset Passcode", element: <SetPasscode /> },
+  {
+    path: "/invite/accept/:token",
+    name: "Accept Invitation",
+    element: <InviteAccept />,
+  },
   {
     path: "/confirm-passcode",
     name: "Confirm Passcode",
