@@ -1315,11 +1315,10 @@ export const LogoutUser = (navigate: any) => {
   localStorage.clear();
   sessionStorage.clear();
 
-  persistor.purge().then(() => {
-    navigate("/");
+  persistor.purge();
+  navigate("/");
 
-    window.location.reload();
-  });
+  window.location.reload();
 };
 
 export const locations = [
