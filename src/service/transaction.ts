@@ -53,7 +53,7 @@ const customBaseQuery: BaseQueryFn<
 
   if (errorCode === 401) {
     localStorage.clear();
-    window.location.href = "/";
+    window.location.href = "/welcome";
   }
   return baseResult;
 };
