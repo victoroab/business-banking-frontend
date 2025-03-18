@@ -26,15 +26,13 @@ const Sidebar = () => {
         </section>
       </div>
 
-      <div className="">
-        <div onClick={() => LogoutUser(navigate)} className="cursor-pointer">
-          <hgroup className=" flex gap-4 items-center p-3">
-            <h4>
-              <LogoutIcon />{" "}
-            </h4>
-            <p className="font-workSans text-nagative">Logout</p>
-          </hgroup>
-        </div>
+      <div onClick={() => LogoutUser(navigate)} className="cursor-pointer">
+        <hgroup className=" flex gap-4 items-center p-3">
+          <h4>
+            <LogoutIcon />{" "}
+          </h4>
+          <p className="font-workSans text-nagative">Logout</p>
+        </hgroup>
       </div>
     </main>
   );

@@ -1316,7 +1316,7 @@ export const LogoutUser = (navigate: any) => {
   sessionStorage.clear();
 
   persistor.purge();
-  navigate("/");
+  navigate("/welcome");
 
   window.location.reload();
 };
