@@ -168,7 +168,9 @@ const Dashboard = () => {
       {toggle["add-email"] && <AddEmail />}
       {toggle["add-phone"] && <AddPhoneNumber />}
 
-      {!userDetails?.isPinSet && <TransactionPin />}
+      {userDetails !== undefined && !userDetails?.isPinSet && (
+        <TransactionPin />
+      )}
     </div>
   );
 };
