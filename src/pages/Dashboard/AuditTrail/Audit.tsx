@@ -1,7 +1,7 @@
 import Navbar from "../../../components/Navbar/Navbar";
 import Paginate from "../../../components/Paginate";
 import { useGlobalHooks } from "../../../hooks/globalHooks";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import DataTable from "react-data-table-component";
 import { tableCustomStyles } from "../../../utils";
 import { ActivityProps } from "../../../interfaces/Global";
