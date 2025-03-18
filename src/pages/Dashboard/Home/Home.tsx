@@ -8,7 +8,7 @@ import { errorHandler, sampleData } from "../../../utils";
 import { CautionIcon } from "../../../assets/svg/PayBill";
 import { useNavigate } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../../hooks";
-import { setUserDetails } from "../../../store/slice/authSlice";
+import { selectAuth, setUserDetails } from "../../../store/slice/authSlice";
 import {
   useGetBusinessKYBDetailsMutation,
   useUserProfileQuery,
@@ -23,6 +23,7 @@ import {
   setAccountDetails,
   setBusinessKYBDetials,
 } from "../../../store/slice/account";
+import TransactionPin from "../../../components/Dashboard/Home/TransactionPin";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -34,6 +35,8 @@ const Dashboard = () => {
   const { data: profile } = useUserProfileQuery({});
   const [businessKYBDetails] = useGetBusinessKYBDetailsMutation();
   const [account] = useGetAccountsMutation();
+  const { userDetails } = useAppSelector(selectAuth);
+
   const date = new Date();
   const handleFetchAccount = async () => {
     try {
@@ -164,6 +167,8 @@ const Dashboard = () => {
       </div>
       {toggle["add-email"] && <AddEmail />}
       {toggle["add-phone"] && <AddPhoneNumber />}
+
+      {!userDetails?.isPinSet && <TransactionPin />}
     </div>
   );
 };
