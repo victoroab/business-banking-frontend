@@ -234,3 +234,23 @@ export type User = {
   phone: string;
   date?: string;
 };
+
+export type ActivityProps = {
+  id: string;
+  userId: string;
+  businessId: string | null;
+  transactionId: string | null;
+  ipAddress: string | null;
+  device: string | null;
+  action: string;
+  status: string;
+  type: string;
+  description: string;
+  createdAt: string;
+  updatedAt: string;
+  transaction: any | null;
+  user: {
+    firstName: string;
+    lastName: string;
+  };
+};

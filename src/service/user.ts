@@ -7,6 +7,7 @@ import {
 } from "@reduxjs/toolkit/query/react";
 // import { RootState } from "../store/store";
 import Cookies from "js-cookie";
+import { queryBuilder } from "../utils";
 
 const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 
@@ -115,6 +116,12 @@ export const userApi = createApi({
 
       invalidatesTags: [{ type: "User", id: "User" }],
     }),
+
+    //activities
+    getAllActivities: builder.query<any, any>({
+      query: (params) => `/activity?${queryBuilder(params)}`,
+      providesTags: [{ type: "User", id: "User" }],
+    }),
   }),
 });
 
@@ -125,4 +132,5 @@ export const {
   useVerfifyEmailMutation,
   useGetAllRolesQuery,
   useInviteUserMutation,
+  useGetAllActivitiesQuery,
 } = userApi;
