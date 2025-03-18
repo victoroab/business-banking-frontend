@@ -22,22 +22,27 @@ const TransactionHistory = () => {
   const navigate = useNavigate();
   const { data, isLoading } = useGetAllTransactionsQuery({});
 
+  const getTransactionIcon = (transactionType: string, action: string) => {
+    if (transactionType === "TRANSFER") {
+      return action === "CREDIT"
+        ? TransactionArrowDownIcon
+        : TransactionUpDownIcon;
+    } else if (transactionType === "TV_BILL") {
+      return TVTransactionIcon;
+    } else if (transactionType === "ELECTRICITY") {
+      return TransactionElectricityIcon;
+    } else if (transactionType === "DATA") {
+      return DataTransactionIcon;
+    } else {
+      return AirtimeTransactionIcon;
+    }
+  };
+
   const newList = data?.data?.data?.map((data: any) => ({
     id: data?.id,
     amount: data?.amount,
     status: data?.status,
-    icon:
-      data?.transactionType === "TRANSFER"
-        ? data?.status === "Credit"
-          ? TransactionArrowDownIcon
-          : TransactionUpDownIcon
-        : data?.transactionType === "TV_BILL"
-        ? TVTransactionIcon
-        : data?.transactionType === "ELECTRICITY"
-        ? TransactionElectricityIcon
-        : data?.transactionType === "DATA"
-        ? DataTransactionIcon
-        : AirtimeTransactionIcon,
+    icon: getTransactionIcon(data?.transactionType, data?.action),
     action: data?.action,
     purpose:
       data?.transactionType === "TRANSFER"
@@ -46,9 +51,8 @@ const TransactionHistory = () => {
     date: data?.createdAt,
   }));
 
-  console.log(data?.data?.data, "testingggggggg transa");
   return (
-    <div className="bg-white rounded-lg w-[40%] p-6 flex flex-col gap-6">
+    <div className="bg-white rounded-lg w-[40%] p-6 flex flex-col gap-6 min-h-[55vh]">
       <div className="flex justify-between items-center">
         <p className="font-medium text-[#15191E] text-[20px]">
           Transaction History

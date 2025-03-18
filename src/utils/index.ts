@@ -1306,24 +1306,19 @@ export const accounts = [
 ];
 
 export const LogoutUser = (navigate: any) => {
-  const { removeTokenCookie, getTokenCookie } = useCookies();
+  const { removeTokenCookie } = useCookies();
 
-  const userToken = getTokenCookie("businessUserToken");
-  const chatwoot = getTokenCookie("_chatwoot_session");
-  if (userToken) {
-    removeTokenCookie("businessUserToken");
-  }
-  if (chatwoot) {
-    removeTokenCookie("_chatwoot_session");
-  }
+  removeTokenCookie("businessUserToken");
+  removeTokenCookie("_chatwoot_session");
+
   localStorage.removeItem("persist:alert-business");
-
   localStorage.clear();
   sessionStorage.clear();
+
   persistor.purge();
-  navigate("/");
-  // window.location.reload();
-  // dispatch(saveUserInfo(undefined));
+  navigate("/welcome");
+
+  window.location.reload();
 };
 
 export const locations = [
