@@ -45,7 +45,6 @@ const AssignNewUser = () => {
       onSubmit,
     });
 
-  console.log(values);
   return (
     <div className="flex flex-col gap-8 justify-center items-center w-full">
       <div className="flex flex-col gap-6 w-full">
