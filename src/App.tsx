@@ -38,8 +38,8 @@ function App() {
     // }
   };
 
-  // const sessionTime = import.meta.env.VITE_REACT_APP_SESSION_TIME;
-  const sessionTime = 20;
+  const sessionTime = import.meta.env.VITE_REACT_APP_SESSION_TIME;
+  // const sessionTime = 20;
   useIdleTimer({
     onIdle,
     timeout: sessionTime * 60 * 1000,
