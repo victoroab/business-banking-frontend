@@ -37,6 +37,7 @@ const Paginate: React.FC<IPaginate> = ({
   const { searchQuery } = useAppSelector(selectGlobal);
 
   const pageCount = Math.ceil(totalItemsCount / itemsPerPage);
+  console.log(pageCount, "vicc");
   // const handlePageClicks = (e: any) => {
   //   console.log("testing click");
   //   console.log(currentPage, "current page");
