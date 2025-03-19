@@ -10,6 +10,7 @@ import {
 import { useAppSelector } from "../../../../hooks";
 import { selectAccount } from "../../../../store/slice/account";
 import Spinner from "../../../../components/Spinner/Spinner";
+import { errorHandler } from "../../../../utils";
 
 const AssignNewUser = () => {
   const initialValues = {
@@ -29,13 +30,13 @@ const AssignNewUser = () => {
       toast.success(response?.data?.message);
       console.log(requiredData, "Testing");
     } catch (error: any) {
-      toast.error(error.data.message);
+      errorHandler(error);
     }
   };
 
   const businessAddressSchema = Yup.object().shape({
     email: Yup.string().required("Email address is required"),
-    roleId: Yup.string().required("role Id is required"),
+    roleId: Yup.string().required("Role is required"),
   });
 
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
