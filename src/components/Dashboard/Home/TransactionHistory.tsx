@@ -107,7 +107,10 @@ const TransactionHistory = () => {
               </>
             ) : (
               <div className="flex justify-center items-center py-6">
-                <NoData />
+                <NoData
+                  title="Nothing to see yet"
+                  paragraph="Send or receive some money to see your transactions here"
+                />
               </div>
             )}
           </>

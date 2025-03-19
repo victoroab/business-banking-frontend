@@ -19,6 +19,10 @@ import {
 } from "../../../components/Dashboard/AirtimeData/Table";
 import { TransactionProps } from "../../../interfaces/service/billPayment";
 import Spinner from "../../../components/Spinner/Spinner";
+import {
+  AirtimeTransactionIcon,
+  SidebarAirtimeIcon,
+} from "../../../assets/svg/Sidebar";
 
 const AirtimeData = () => {
   const { handleSearch } = useGlobalHooks();
@@ -113,21 +117,23 @@ const AirtimeData = () => {
         </div>
         <div className="flex justify-end px-10 gap-6">
           <button
-            className="main-btn w-40 font-bricolage"
+            className="main-btn w-44 flex gap-2 justify-center items-center font-bricolage"
             onClick={() => {
               navigate("/utility/airtime-data");
               dispatch(setAirtimeDataAction("AIRTIME"));
             }}
           >
+            <AirtimeTransactionIcon fillColor="white" />
             Buy Airtime
           </button>
           <button
-            className="yellow-frame-btn w-40 font-bricolage"
+            className="yellow-frame-btn w-44 flex gap-2 justify-center items-center font-bricolage"
             onClick={() => {
               navigate("/utility/airtime-data");
               dispatch(setAirtimeDataAction("DATA"));
             }}
           >
+            <SidebarAirtimeIcon fillColor="#DBB950" />
             Buy Data
           </button>
         </div>
