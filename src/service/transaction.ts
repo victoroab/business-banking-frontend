@@ -144,6 +144,21 @@ export const transactionApi = createApi({
       query: (params) => `/notification?${queryBuilder(params)}`,
       providesTags: [{ type: "Transaction", id: "Transaction" }],
     }),
+    //beneficiary
+    getAllBulkPayment: builder.query({
+      query: (params) => `/bulk-payment?${queryBuilder(params)}`,
+      providesTags: [{ type: "Transaction", id: "Transaction" }],
+    }),
+    //beneficiary
+    getAllBulkPaymentById: builder.query({
+      query: (id) => `/bulk-payment/${id}`,
+      providesTags: [{ type: "Transaction", id: "Transaction" }],
+    }),
+    //beneficiary
+    getAllBulkPaymentItems: builder.query({
+      query: (id) => `/bulk-payment/${id}/items`,
+      providesTags: [{ type: "Transaction", id: "Transaction" }],
+    }),
   }),
 });
 export const {
@@ -156,4 +171,7 @@ export const {
   useUploadBulkTransactionMutation,
   useUploadBulkPensionMutation,
   useGetAllNotificationQuery,
+  useGetAllBulkPaymentByIdQuery,
+  useGetAllBulkPaymentItemsQuery,
+  useGetAllBulkPaymentQuery,
 } = transactionApi;
