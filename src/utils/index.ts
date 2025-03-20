@@ -1339,7 +1339,7 @@ export const isEmail = (input: string): boolean => {
   return emailPattern.test(input);
 };
 
-export const users: User[] = [
+export const users: any[] = [
   {
     id: 1,
     firstName: "Bamidele",
