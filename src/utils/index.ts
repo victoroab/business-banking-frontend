@@ -13,7 +13,6 @@ import {
   IDOption,
   ProgressStepsProps,
   RowDataProps,
-  User,
 } from "../interfaces/Global";
 import { BettingIcon, CableIcon, ElectricityIcon } from "../assets/svg/PayBill";
 import { Dispatch, SetStateAction } from "react";
