@@ -256,6 +256,16 @@ export const kybApi = createApi({
 
       invalidatesTags: [{ type: "Auth", id: "Auth" }],
     }),
+    //dojah-verification
+    dojahCheck: builder.mutation<any, any>({
+      query: (body) => ({
+        url: "/webhook/dojah-liveliness",
+        method: "POST",
+        body,
+      }),
+
+      invalidatesTags: [{ type: "Auth", id: "Auth" }],
+    }),
   }),
 });
 
@@ -280,4 +290,5 @@ export const {
   useGetKybDetailsMutation,
   useGetBusinessKYBDetailsMutation,
   useVerfifyBVNMutation,
+  useDojahCheckMutation,
 } = kybApi;

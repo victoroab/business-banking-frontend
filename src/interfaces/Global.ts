@@ -233,6 +233,12 @@ export type User = {
   email: string;
   phone: string;
   date?: string;
+  createdAt?: string;
+  user: {
+    firstName: string;
+    lastName: string;
+    email: string;
+  };
 };
 
 export type ActivityProps = {

@@ -14,6 +14,7 @@ import Search from "../../../components/Search/Search";
 import { FilterIcon } from "../../../assets/svg/dashboard";
 import { TransactionProps } from "../../../interfaces/service/billPayment";
 import Spinner from "../../../components/Spinner/Spinner";
+import { SendMoneyIcon } from "../../../assets/svg/Sidebar";
 
 const SendMoney = () => {
   const { handleSearch } = useGlobalHooks();
@@ -131,9 +132,10 @@ const SendMoney = () => {
         </div>
         <div className="flex justify-end px-10">
           <button
-            className="main-btn w-40 font-bricolage"
+            className="main-btn w-44 gap-2 font-bricolage flex items-center justify-center"
             onClick={() => navigate("/send-money/new-transaction")}
           >
+            <SendMoneyIcon fillColor="white" />
             Send Money
           </button>
         </div>
@@ -187,7 +189,12 @@ const SendMoney = () => {
                           onClose
                         )}
                         data={paginatedData}
-                        noDataComponent={<NoData />}
+                        noDataComponent={
+                          <NoData
+                            title="Nothing to see yet"
+                            paragraph="Send or receive some money to see your transactions here"
+                          />
+                        }
                         customStyles={tableCustomStyles}
                         className="pb-6"
                         selectableRows

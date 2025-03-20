@@ -13,7 +13,6 @@ import {
   IDOption,
   ProgressStepsProps,
   RowDataProps,
-  User,
 } from "../interfaces/Global";
 import { BettingIcon, CableIcon, ElectricityIcon } from "../assets/svg/PayBill";
 import { Dispatch, SetStateAction } from "react";
@@ -1339,7 +1338,7 @@ export const isEmail = (input: string): boolean => {
   return emailPattern.test(input);
 };
 
-export const users: User[] = [
+export const users: any[] = [
   {
     id: 1,
     firstName: "Bamidele",

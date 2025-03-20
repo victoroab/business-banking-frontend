@@ -192,7 +192,10 @@ const TransactionChart: React.FC<AnalyticsChartProps> = () => {
               </AreaChart>
             </ResponsiveContainer>
           ) : (
-            <NoData />
+            <NoData
+              title="Nothing to see yet."
+              paragraph="There is currently no graph data to display for your account at this time"
+            />
           )}
         </>
       )}

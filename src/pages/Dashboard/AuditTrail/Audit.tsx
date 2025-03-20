@@ -24,9 +24,9 @@ const AuditTrail = () => {
   const [queryData, setQueryData] = useState<{
     [key: string]: string | number;
   }>({
-    terminal: "",
-    pageNumber: 1,
-    pageSize: 10,
+    type: "",
+    page: 1,
+    perPage: 10,
   });
   console.log(filteredData);
   const { data, refetch, isLoading } = useGetAllActivitiesQuery(queryData);
@@ -63,13 +63,18 @@ const AuditTrail = () => {
           />
           <FormInput
             type="cSelect"
-            selectOptions={["TV_BILL", "ELECTRICITY"]}
+            selectOptions={[
+              "TRANSFER",
+              "AIRTIME",
+              "DATA",
+              "ELECTRICITY",
+              "LOGIN",
+              "LOGOUT",
+            ]}
             placeholder="Action Type"
             label="Action Type"
             filter
-            defaultValue={
-              queryData?.type !== "" ? queryData?.type : "ELECTRICITY"
-            }
+            defaultValue={queryData?.type}
             id="tyoe"
             onChange={(e) => {
               setQueryData((prev) => ({

@@ -122,6 +122,11 @@ export const userApi = createApi({
       query: (params) => `/activity?${queryBuilder(params)}`,
       providesTags: [{ type: "User", id: "User" }],
     }),
+    //business-user
+    getAllBusinessUser: builder.query<any, any>({
+      query: () => `/business-user`,
+      providesTags: [{ type: "User", id: "User" }],
+    }),
   }),
 });
 
@@ -133,4 +138,5 @@ export const {
   useGetAllRolesQuery,
   useInviteUserMutation,
   useGetAllActivitiesQuery,
+  useGetAllBusinessUserQuery,
 } = userApi;

@@ -17,6 +17,7 @@ import {
   cableTvColumnsData,
   electricityColumnsData,
 } from "../../../components/Dashboard/BillPayment/Table";
+import { PayBillIcons } from "../../../assets/svg/Sidebar";
 
 const PayBills = () => {
   const navigate = useNavigate();
@@ -112,9 +113,10 @@ const PayBills = () => {
         <div className="flex flex-col gap-10">
           <div className="flex justify-end px-10">
             <button
-              className="main-btn w-40 font-bricolage"
+              className="main-btn w-44 flex gap-2 justify-center items-center font-bricolage"
               onClick={() => navigate("/utility/pay-new-bill")}
             >
+              <PayBillIcons fillColor="white" />
               Pay New Bill
             </button>
           </div>
