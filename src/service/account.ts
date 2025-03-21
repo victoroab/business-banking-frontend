@@ -87,6 +87,29 @@ export const accountApi = createApi({
       query: () => "/account/balance-enquiry",
       providesTags: [{ type: "Account", id: "Account" }],
     }),
+    //business
+    getAllBusinesses: builder.query({
+      query: () => "/business",
+      providesTags: [{ type: "Account", id: "Account" }],
+    }),
+    //business-current
+    getAllBusinessCurrent: builder.query({
+      query: () => "/business-current",
+      providesTags: [{ type: "Account", id: "Account" }],
+    }),
+    switchBusiness: builder.mutation<
+      any,
+      {
+        businessId: string;
+      }
+    >({
+      query: (body) => ({
+        url: "/business/switch",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: [{ type: "Account", id: "Account" }],
+    }),
   }),
 });
 
@@ -95,4 +118,7 @@ export const {
   useGetAccountsMutation,
   useSubmitSecurityQuestionsMutation,
   useGetAccountEnquiryQuery,
+  useGetAllBusinessesQuery,
+  useGetAllBusinessCurrentQuery,
+  useSwitchBusinessMutation,
 } = accountApi;
