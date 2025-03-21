@@ -97,6 +97,19 @@ export const accountApi = createApi({
       query: () => "/business-current",
       providesTags: [{ type: "Account", id: "Account" }],
     }),
+    switchBusiness: builder.mutation<
+      any,
+      {
+        businessId: string;
+      }
+    >({
+      query: (body) => ({
+        url: "/business/switch",
+        method: "POST",
+        body,
+      }),
+      invalidatesTags: [{ type: "Account", id: "Account" }],
+    }),
   }),
 });
 
@@ -107,4 +120,5 @@ export const {
   useGetAccountEnquiryQuery,
   useGetAllBusinessesQuery,
   useGetAllBusinessCurrentQuery,
+  useSwitchBusinessMutation,
 } = accountApi;
