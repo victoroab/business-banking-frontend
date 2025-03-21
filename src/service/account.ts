@@ -92,6 +92,11 @@ export const accountApi = createApi({
       query: () => "/business",
       providesTags: [{ type: "Account", id: "Account" }],
     }),
+    //business-current
+    getAllBusinessCurrent: builder.query({
+      query: () => "/business-current",
+      providesTags: [{ type: "Account", id: "Account" }],
+    }),
   }),
 });
 
@@ -101,4 +106,5 @@ export const {
   useSubmitSecurityQuestionsMutation,
   useGetAccountEnquiryQuery,
   useGetAllBusinessesQuery,
+  useGetAllBusinessCurrentQuery,
 } = accountApi;
